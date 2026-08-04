@@ -7,7 +7,7 @@ interface DirectorLogoProps {
   showBadge?: boolean;
 }
 
-export const DirectorLogoIcon: React.FC<{ className?: string }> = ({ className = 'h-8 w-auto' }) => {
+export const DirectorLogoIcon: React.FC<{ className?: string }> = ({ className = 'h-10 w-auto' }) => {
   return (
     <img
       src={logoNoBg}
@@ -30,12 +30,12 @@ export const DirectorLogoBanner: React.FC<{
     <div
       className={`inline-flex items-center bg-[#070709] border border-[#222228] rounded-full shadow-2xl transition-all max-w-full overflow-hidden ${
         isSm
-          ? 'px-2.5 sm:px-3.5 py-1.5 gap-2 sm:gap-2.5'
+          ? 'px-3 sm:px-4 py-2 gap-2.5 sm:gap-3'
           : isLg
-          ? 'px-4 sm:px-6 py-2.5 sm:py-3 gap-2.5 sm:gap-4'
+          ? 'px-6 sm:px-8 py-3.5 sm:py-4 gap-3 sm:gap-5'
           : isXl
-          ? 'px-5 sm:px-8 py-3 sm:py-4 gap-3 sm:gap-5'
-          : 'px-3 sm:px-4 py-2 gap-2 sm:gap-3'
+          ? 'px-7 sm:px-10 py-4 sm:py-5 gap-4 sm:gap-6'
+          : 'px-4 sm:px-5 py-2.5 sm:py-3 gap-3 sm:gap-4'
       } ${className}`}
     >
       {/* Official Transparent Logo Image */}
@@ -44,12 +44,12 @@ export const DirectorLogoBanner: React.FC<{
         alt="Director.ai"
         className={
           isSm
-            ? 'h-6 sm:h-7 w-auto object-contain'
+            ? 'h-8 sm:h-10 w-auto object-contain'
             : isLg
-            ? 'h-9 sm:h-11 w-auto object-contain'
+            ? 'h-14 sm:h-18 w-auto object-contain'
             : isXl
-            ? 'h-12 sm:h-16 w-auto object-contain'
-            : 'h-7 sm:h-8.5 w-auto object-contain'
+            ? 'h-18 sm:h-24 w-auto object-contain'
+            : 'h-10 sm:h-13 w-auto object-contain'
         }
       />
 

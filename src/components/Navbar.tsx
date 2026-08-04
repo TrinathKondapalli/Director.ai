@@ -18,7 +18,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
 
   return (
     <header className="sticky top-0 z-50 bg-[#09090B]/95 backdrop-blur-md border-b border-[#27272A]">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
         {/* Brand Logo Banner */}
         <button
           onClick={() => handleMobileNav('/')}
