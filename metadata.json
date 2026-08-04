@@ -1,0 +1,8 @@
+{
+  "name": "Director.ai",
+  "description": "AI Creative Director specialized in creating high-converting AI UGC advertisement master prompts.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
