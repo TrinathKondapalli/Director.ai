@@ -9,6 +9,7 @@ import { PricingPage } from './components/PricingPage';
 import { PrivacyPage } from './components/PrivacyPage';
 import { TermsPage } from './components/TermsPage';
 import { ContactPage } from './components/ContactPage';
+import { DirectorLogoIcon } from './components/DirectorLogo';
 import { MasterPromptInput, MasterPromptResult, AiConceptCard } from './types';
 import { generateLocalMasterPrompt } from './data/generatorEngine';
 
@@ -173,6 +174,7 @@ export default function App() {
       <footer className="border-t border-[#27272A] py-8 px-4 text-center text-xs text-[#A1A1AA]">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2 font-mono">
+            <DirectorLogoIcon className="h-6 w-auto" />
             <span className="font-bold text-[#FAFAFA]">Director.ai</span>
             <span>— AI UGC Advertisement Master Prompt Generator</span>
           </div>
