@@ -28,23 +28,13 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
         </button>
 
         {/* Desktop Nav Links */}
-        <nav className="hidden md:flex items-center gap-5 text-sm">
-          <button
-            onClick={() => onNavigate('/')}
-            className={`px-3 py-1.5 rounded-lg transition-colors cursor-pointer ${
-              currentPath === '/' ? 'text-white font-medium bg-[#111113]' : 'text-[#A1A1AA] hover:text-white'
-            }`}
+        <nav className="hidden md:flex items-center gap-6 text-sm">
+          <a
+            href="#how-it-works"
+            className="text-[#A1A1AA] hover:text-white transition-colors cursor-pointer"
           >
-            Home
-          </button>
-          <button
-            onClick={() => onNavigate('/generate')}
-            className={`px-3 py-1.5 rounded-lg transition-colors cursor-pointer ${
-              currentPath === '/generate' ? 'text-white font-medium bg-[#111113]' : 'text-[#A1A1AA] hover:text-white'
-            }`}
-          >
-            Generate
-          </button>
+            How It Works
+          </a>
           <button
             onClick={() => onNavigate('/ideas')}
             className={`px-3 py-1.5 rounded-lg transition-colors cursor-pointer flex items-center gap-1.5 ${
@@ -75,7 +65,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
           {/* Primary Action Button */}
           <button
             onClick={() => onNavigate('/generate')}
-            className="ml-2 px-4 py-2 bg-[#8B5CF6] hover:bg-[#A78BFA] text-white text-sm font-semibold rounded-xl transition-all shadow-md shadow-[#8B5CF6]/20 hover:shadow-[#A78BFA]/30 flex items-center gap-2 cursor-pointer active:scale-[0.98]"
+            className="ml-2 px-4.5 py-2.5 bg-[#8B5CF6] hover:bg-[#A78BFA] text-white text-sm font-semibold rounded-xl transition-all shadow-md shadow-[#8B5CF6]/20 hover:shadow-[#A78BFA]/30 flex items-center gap-2 cursor-pointer active:scale-[0.98]"
           >
             <Sparkles className="w-4 h-4 fill-current" />
             <span>Generate Master Prompt</span>
