@@ -151,7 +151,7 @@ ${(fb?.hashtags || []).join(' ')}`;
   };
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] bg-[#09090B] py-10 px-4 sm:px-6 flex flex-col items-center justify-start selection:bg-[#8B5CF6]/30 relative pb-24">
+    <div className="min-h-[calc(100vh-4rem)] bg-[#09090B] py-10 px-4 sm:px-6 flex flex-col items-center justify-start selection:bg-[#6615F6]/30 relative pb-24">
       {/* SUCCESS TOAST NOTIFICATION */}
       <AnimatePresence>
         {toastMessage && (
@@ -177,7 +177,7 @@ ${(fb?.hashtags || []).join(' ')}`;
               <h1 className="text-2xl sm:text-3xl font-extrabold text-[#FAFAFA] tracking-tight">
                 {result.productName}
               </h1>
-              <span className="px-3 py-1 rounded-full bg-[#8B5CF6]/15 border border-[#8B5CF6]/30 text-[#A78BFA] text-xs font-mono font-semibold">
+              <span className="px-3 py-1 rounded-full bg-[#6615F6]/15 border border-[#6615F6]/30 text-[#8B5CF6] text-xs font-mono font-semibold">
                 Complete Publishing Package
               </span>
             </div>
@@ -191,7 +191,7 @@ ${(fb?.hashtags || []).join(' ')}`;
             className={`w-full sm:w-auto px-6 py-3.5 rounded-2xl text-xs sm:text-sm font-semibold transition-all flex items-center justify-center gap-2.5 cursor-pointer shadow-xl active:scale-95 shrink-0 ${
               activeCopiedKey === 'everything'
                 ? 'bg-[#22C55E] text-white shadow-[#22C55E]/25'
-                : 'bg-[#8B5CF6] hover:bg-[#A78BFA] text-white shadow-[#8B5CF6]/30'
+                : 'bg-[#6615F6] hover:bg-[#8B5CF6] text-white shadow-[#6615F6]/30'
             }`}
           >
             {activeCopiedKey === 'everything' ? (
@@ -212,7 +212,7 @@ ${(fb?.hashtags || []).join(' ')}`;
         <section className="space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-xl bg-[#8B5CF6]/15 border border-[#8B5CF6]/30 text-[#A78BFA] flex items-center justify-center font-mono text-xs font-bold">
+              <div className="w-8 h-8 rounded-xl bg-[#6615F6]/15 border border-[#6615F6]/30 text-[#8B5CF6] flex items-center justify-center font-mono text-xs font-bold">
                 01
               </div>
               <h2 className="text-xl font-bold text-[#FAFAFA] tracking-tight">
@@ -236,7 +236,7 @@ ${(fb?.hashtags || []).join(' ')}`;
                 <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
                 <div className="w-3 h-3 rounded-full bg-green-500/80" />
                 <span className="ml-2 text-xs text-[#A1A1AA] font-mono flex items-center gap-1.5 truncate">
-                  <Terminal className="w-3.5 h-3.5 text-[#8B5CF6]" />
+                  <Terminal className="w-3.5 h-3.5 text-[#6615F6]" />
                   <span>DIRECTOR.AI // MASTER_PROMPT.txt</span>
                 </span>
               </div>
@@ -264,7 +264,7 @@ ${(fb?.hashtags || []).join(' ')}`;
                   className={`px-3.5 py-1.5 rounded-lg text-xs font-mono transition-all flex items-center gap-1.5 cursor-pointer ${
                     activeCopiedKey === 'master-prompt'
                       ? 'bg-[#22C55E] text-white'
-                      : 'bg-[#8B5CF6] hover:bg-[#A78BFA] text-white'
+                      : 'bg-[#6615F6] hover:bg-[#8B5CF6] text-white'
                   }`}
                 >
                   {activeCopiedKey === 'master-prompt' ? (
@@ -284,7 +284,7 @@ ${(fb?.hashtags || []).join(' ')}`;
 
             {/* Prompt Editor Content Body */}
             <div
-              className={`p-4 sm:p-6 bg-[#09090B] font-mono text-xs sm:text-sm text-zinc-200 overflow-x-auto leading-relaxed selection:bg-[#8B5CF6]/40 transition-all ${
+              className={`p-4 sm:p-6 bg-[#09090B] font-mono text-xs sm:text-sm text-zinc-200 overflow-x-auto leading-relaxed selection:bg-[#6615F6]/40 transition-all ${
                 isPromptExpanded ? 'max-h-none' : 'max-h-[500px] overflow-y-auto'
               }`}
             >
@@ -300,7 +300,7 @@ ${(fb?.hashtags || []).join(' ')}`;
                       <span
                         className={`whitespace-pre-wrap break-words min-w-0 flex-1 ${
                           isHeader
-                            ? 'text-[#8B5CF6] font-bold text-xs sm:text-sm pt-2 block border-b border-[#27272A]/60 pb-1'
+                            ? 'text-[#6615F6] font-bold text-xs sm:text-sm pt-2 block border-b border-[#27272A]/60 pb-1'
                             : isBracket
                             ? 'text-[#22C55E] font-semibold'
                             : line.startsWith('-')
@@ -324,7 +324,7 @@ ${(fb?.hashtags || []).join(' ')}`;
               className={`px-5 py-2.5 rounded-xl text-xs font-semibold transition-all flex items-center gap-2 cursor-pointer ${
                 activeCopiedKey === 'master-prompt-btn'
                   ? 'bg-[#22C55E] text-white'
-                  : 'bg-[#8B5CF6] hover:bg-[#A78BFA] text-white shadow-md shadow-[#8B5CF6]/20'
+                  : 'bg-[#6615F6] hover:bg-[#8B5CF6] text-white shadow-md shadow-[#6615F6]/20'
               }`}
             >
               <Copy className="w-4 h-4" />
@@ -334,7 +334,7 @@ ${(fb?.hashtags || []).join(' ')}`;
               onClick={onCreateAnother}
               className="px-5 py-2.5 bg-[#111113] hover:bg-[#1C1C20] text-white text-xs font-medium rounded-xl border border-[#27272A] transition-colors flex items-center gap-2 cursor-pointer"
             >
-              <RefreshCw className="w-4 h-4 text-[#8B5CF6]" />
+              <RefreshCw className="w-4 h-4 text-[#6615F6]" />
               <span>Generate Another</span>
             </button>
           </div>
@@ -457,7 +457,7 @@ ${(fb?.hashtags || []).join(' ')}`;
                         <span>Copy Tags</span>
                       </button>
                     </div>
-                    <div className="bg-[#09090B] border border-[#27272A]/80 p-4 rounded-xl text-xs font-mono text-[#FAFAFA] leading-relaxed selection:bg-[#8B5CF6]/40">
+                    <div className="bg-[#09090B] border border-[#27272A]/80 p-4 rounded-xl text-xs font-mono text-[#FAFAFA] leading-relaxed selection:bg-[#6615F6]/40">
                       {formattedTagsString}
                     </div>
                   </div>
@@ -582,7 +582,7 @@ ${(fb?.hashtags || []).join(' ')}`;
               <div className="bg-[#111113] border border-[#27272A] p-5 rounded-2xl space-y-2">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-mono uppercase tracking-wider text-[#A1A1AA] font-bold flex items-center gap-1.5">
-                    <Share2 className="w-3.5 h-3.5 text-[#8B5CF6]" />
+                    <Share2 className="w-3.5 h-3.5 text-[#6615F6]" />
                     <span>Call To Action (CTA)</span>
                   </span>
                   <button
@@ -630,7 +630,7 @@ ${(fb?.hashtags || []).join(' ')}`;
             className={`w-full sm:w-auto px-8 py-4 rounded-2xl text-sm sm:text-base font-semibold transition-all shadow-xl flex items-center justify-center gap-2.5 cursor-pointer active:scale-[0.98] ${
               activeCopiedKey === 'everything'
                 ? 'bg-[#22C55E] text-white shadow-[#22C55E]/20'
-                : 'bg-[#8B5CF6] hover:bg-[#A78BFA] text-white shadow-[#8B5CF6]/30'
+                : 'bg-[#6615F6] hover:bg-[#8B5CF6] text-white shadow-[#6615F6]/30'
             }`}
           >
             {activeCopiedKey === 'everything' ? (
@@ -650,7 +650,7 @@ ${(fb?.hashtags || []).join(' ')}`;
             onClick={onCreateAnother}
             className="w-full sm:w-auto px-8 py-4 bg-[#111113] hover:bg-[#1C1C20] text-[#FAFAFA] text-sm sm:text-base font-medium rounded-2xl border border-[#27272A] transition-colors flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
           >
-            <RefreshCw className="w-5 h-5 text-[#8B5CF6]" />
+            <RefreshCw className="w-5 h-5 text-[#6615F6]" />
             <span>Generate Another Prompt</span>
           </button>
 

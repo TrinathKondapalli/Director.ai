@@ -43,12 +43,12 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
   const progressPercent = Math.min(100, Math.round(((currentStepIndex + 1) / STEPS.length) * 100));
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] bg-[#09090B] py-12 px-4 flex flex-col items-center justify-center selection:bg-[#8B5CF6]/30">
+    <div className="min-h-[calc(100vh-4rem)] bg-[#09090B] py-12 px-4 flex flex-col items-center justify-center selection:bg-[#6615F6]/30">
       <div className="w-full max-w-md bg-[#111113] border border-[#27272A] rounded-3xl p-8 shadow-2xl text-center relative overflow-hidden">
         {/* Glow pulsing ring */}
         <div className="relative w-20 h-20 mx-auto mb-6 flex items-center justify-center">
-          <div className="absolute inset-0 rounded-full bg-[#8B5CF6]/20 animate-ping" />
-          <div className="w-16 h-16 rounded-2xl bg-[#09090B] border border-[#8B5CF6]/50 flex items-center justify-center shadow-lg shadow-[#8B5CF6]/30 relative z-10 text-[#A78BFA]">
+          <div className="absolute inset-0 rounded-full bg-[#6615F6]/20 animate-ping" />
+          <div className="w-16 h-16 rounded-2xl bg-[#09090B] border border-[#6615F6]/50 flex items-center justify-center shadow-lg shadow-[#6615F6]/30 relative z-10 text-[#8B5CF6]">
             <Clapperboard className="w-8 h-8" />
           </div>
         </div>
@@ -60,7 +60,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
         {/* Progress Bar */}
         <div className="w-full bg-[#09090B] border border-[#27272A] h-2.5 rounded-full overflow-hidden mb-6">
           <motion.div
-            className="h-full bg-gradient-to-r from-[#8B5CF6] to-[#A78BFA] rounded-full"
+            className="h-full bg-gradient-to-r from-[#6615F6] to-[#8B5CF6] rounded-full"
             initial={{ width: '0%' }}
             animate={{ width: `${progressPercent}%` }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
@@ -81,7 +81,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
               {currentStepIndex === STEPS.length - 1 ? (
                 <Check className="w-4 h-4 text-[#22C55E]" />
               ) : (
-                <Loader2 className="w-4 h-4 text-[#8B5CF6] animate-spin" />
+                <Loader2 className="w-4 h-4 text-[#6615F6] animate-spin" />
               )}
               <span>{STEPS[currentStepIndex]}</span>
             </motion.div>

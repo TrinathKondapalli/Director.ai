@@ -143,7 +143,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#09090B] text-[#FAFAFA] flex flex-col font-sans selection:bg-[#8B5CF6]/30">
+    <div className="min-h-screen bg-[#09090B] text-[#FAFAFA] flex flex-col font-sans selection:bg-[#6615F6]/30">
       <PageCurtain isVisible={isTransitioning} title={incomingPageName} />
       
       <Navbar currentPath={currentPath} onNavigate={navigateTo} />
@@ -183,7 +183,7 @@ export default function App() {
                   </p>
                   <button
                     onClick={() => navigateTo('/generate')}
-                    className="px-6 py-3 bg-[#8B5CF6] hover:bg-[#A78BFA] text-white text-xs font-semibold rounded-xl cursor-pointer transition-colors shadow-lg shadow-[#8B5CF6]/20"
+                    className="px-6 py-3 bg-[#6615F6] hover:bg-[#8B5CF6] text-white text-xs font-semibold rounded-xl cursor-pointer transition-colors shadow-lg shadow-[#6615F6]/20"
                   >
                     Generate Master Prompt
                   </button>

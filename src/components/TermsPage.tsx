@@ -3,9 +3,9 @@ import { FileText, CheckCircle2 } from 'lucide-react';
 
 export const TermsPage: React.FC = () => {
   return (
-    <div className="min-h-[calc(100vh-4rem)] bg-[#09090B] py-16 px-4 sm:px-6 selection:bg-[#8B5CF6]/30">
+    <div className="min-h-[calc(100vh-4rem)] bg-[#09090B] py-16 px-4 sm:px-6 selection:bg-[#6615F6]/30">
       <div className="max-w-3xl mx-auto bg-[#111113] border border-[#27272A] rounded-3xl p-8 sm:p-12 shadow-2xl text-[#FAFAFA]">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#8B5CF6]/15 border border-[#8B5CF6]/30 text-[#A78BFA] text-xs font-mono mb-6">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#6615F6]/15 border border-[#6615F6]/30 text-[#8B5CF6] text-xs font-mono mb-6">
           <FileText className="w-4 h-4" />
           <span>Terms of Service</span>
         </div>

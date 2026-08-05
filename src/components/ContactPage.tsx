@@ -13,9 +13,9 @@ export const ContactPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] bg-[#09090B] py-16 px-4 sm:px-6 flex items-center justify-center selection:bg-[#8B5CF6]/30">
+    <div className="min-h-[calc(100vh-4rem)] bg-[#09090B] py-16 px-4 sm:px-6 flex items-center justify-center selection:bg-[#6615F6]/30">
       <div className="w-full max-w-lg bg-[#111113] border border-[#27272A] rounded-3xl p-8 sm:p-10 shadow-2xl">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#8B5CF6]/15 border border-[#8B5CF6]/30 text-[#A78BFA] text-xs font-mono mb-6">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#6615F6]/15 border border-[#6615F6]/30 text-[#8B5CF6] text-xs font-mono mb-6">
           <MessageSquare className="w-4 h-4" />
           <span>Get in Touch</span>
         </div>
@@ -47,7 +47,7 @@ export const ContactPage: React.FC = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="creator@example.com"
-                className="w-full bg-[#09090B] border border-[#27272A] focus:border-[#8B5CF6] focus:ring-1 focus:ring-[#8B5CF6] rounded-xl px-4 py-3 text-sm text-[#FAFAFA] placeholder-[#A1A1AA]/50 outline-none"
+                className="w-full bg-[#09090B] border border-[#27272A] focus:border-[#6615F6] focus:ring-1 focus:ring-[#6615F6] rounded-xl px-4 py-3 text-sm text-[#FAFAFA] placeholder-[#A1A1AA]/50 outline-none"
               />
             </div>
 
@@ -61,13 +61,13 @@ export const ContactPage: React.FC = () => {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder="How can we help you create high-converting AI UGC ad prompts?"
-                className="w-full bg-[#09090B] border border-[#27272A] focus:border-[#8B5CF6] focus:ring-1 focus:ring-[#8B5CF6] rounded-xl px-4 py-3 text-sm text-[#FAFAFA] placeholder-[#A1A1AA]/50 outline-none resize-none"
+                className="w-full bg-[#09090B] border border-[#27272A] focus:border-[#6615F6] focus:ring-1 focus:ring-[#6615F6] rounded-xl px-4 py-3 text-sm text-[#FAFAFA] placeholder-[#A1A1AA]/50 outline-none resize-none"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full py-3.5 bg-[#8B5CF6] hover:bg-[#A78BFA] text-white text-sm font-semibold rounded-xl transition-all shadow-lg shadow-[#8B5CF6]/20 flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
+              className="w-full py-3.5 bg-[#6615F6] hover:bg-[#8B5CF6] text-white text-sm font-semibold rounded-xl transition-all shadow-lg shadow-[#6615F6]/20 flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
             >
               <Send className="w-4 h-4" />
               <span>Send Message</span>

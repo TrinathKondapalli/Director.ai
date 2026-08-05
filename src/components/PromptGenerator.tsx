@@ -50,7 +50,7 @@ export const PromptGenerator: React.FC<PromptGeneratorProps> = ({
   };
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] bg-[#09090B] py-12 px-4 sm:px-6 flex flex-col items-center justify-center selection:bg-[#8B5CF6]/30">
+    <div className="min-h-[calc(100vh-4rem)] bg-[#09090B] py-12 px-4 sm:px-6 flex flex-col items-center justify-center selection:bg-[#6615F6]/30">
       <div className="w-full max-w-xl">
         {/* Header Bar */}
         <div className="flex items-center justify-between mb-4 px-1">
@@ -64,7 +64,7 @@ export const PromptGenerator: React.FC<PromptGeneratorProps> = ({
             <button
               type="button"
               onClick={() => handlePreFillSample('serum')}
-              className="text-[11px] text-[#A78BFA] hover:text-white transition-colors underline cursor-pointer"
+              className="text-[11px] text-[#8B5CF6] hover:text-white transition-colors underline cursor-pointer"
             >
               Skincare
             </button>
@@ -72,7 +72,7 @@ export const PromptGenerator: React.FC<PromptGeneratorProps> = ({
             <button
               type="button"
               onClick={() => handlePreFillSample('ring')}
-              className="text-[11px] text-[#A78BFA] hover:text-white transition-colors underline cursor-pointer"
+              className="text-[11px] text-[#8B5CF6] hover:text-white transition-colors underline cursor-pointer"
             >
               Smart Ring
             </button>
@@ -87,7 +87,7 @@ export const PromptGenerator: React.FC<PromptGeneratorProps> = ({
           className="bg-[#111113] border border-[#27272A] rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden"
         >
           <div className="mb-6">
-            <div className="w-10 h-10 rounded-xl bg-[#8B5CF6]/20 border border-[#8B5CF6]/40 flex items-center justify-center text-[#A78BFA] mb-4">
+            <div className="w-10 h-10 rounded-xl bg-[#6615F6]/20 border border-[#6615F6]/40 flex items-center justify-center text-[#8B5CF6] mb-4">
               <Clapperboard className="w-5 h-5" />
             </div>
             <h1 className="text-2xl font-extrabold text-[#FAFAFA] mb-1.5 tracking-tight">
@@ -102,7 +102,7 @@ export const PromptGenerator: React.FC<PromptGeneratorProps> = ({
             {/* Field 1: Product Name */}
             <div>
               <label className="block text-xs font-bold text-[#FAFAFA] mb-1.5 uppercase tracking-wider font-mono">
-                Product Name <span className="text-[#8B5CF6]">*</span>
+                Product Name <span className="text-[#6615F6]">*</span>
               </label>
               <input
                 type="text"
@@ -111,14 +111,14 @@ export const PromptGenerator: React.FC<PromptGeneratorProps> = ({
                 value={formData.productName}
                 onChange={handleChange}
                 placeholder="e.g. Lumora Hydra-Glow Serum"
-                className="w-full bg-[#09090B] border border-[#27272A] focus:border-[#8B5CF6] focus:ring-1 focus:ring-[#8B5CF6] rounded-xl px-4 py-3.5 text-sm text-[#FAFAFA] placeholder-[#A1A1AA]/50 outline-none transition-colors"
+                className="w-full bg-[#09090B] border border-[#27272A] focus:border-[#6615F6] focus:ring-1 focus:ring-[#6615F6] rounded-xl px-4 py-3.5 text-sm text-[#FAFAFA] placeholder-[#A1A1AA]/50 outline-none transition-colors"
               />
             </div>
 
             {/* Field 2: Who is this product for? */}
             <div>
               <label className="block text-xs font-bold text-[#FAFAFA] mb-1.5 uppercase tracking-wider font-mono">
-                Who is this product for? <span className="text-[#8B5CF6]">*</span>
+                Who is this product for? <span className="text-[#6615F6]">*</span>
               </label>
               <textarea
                 name="targetAudience"
@@ -127,7 +127,7 @@ export const PromptGenerator: React.FC<PromptGeneratorProps> = ({
                 value={formData.targetAudience}
                 onChange={handleChange}
                 placeholder="e.g. Women aged 20-35 struggling with dull skin & dark spots"
-                className="w-full bg-[#09090B] border border-[#27272A] focus:border-[#8B5CF6] focus:ring-1 focus:ring-[#8B5CF6] rounded-xl px-4 py-3 text-sm text-[#FAFAFA] placeholder-[#A1A1AA]/50 outline-none transition-colors resize-none"
+                className="w-full bg-[#09090B] border border-[#27272A] focus:border-[#6615F6] focus:ring-1 focus:ring-[#6615F6] rounded-xl px-4 py-3 text-sm text-[#FAFAFA] placeholder-[#A1A1AA]/50 outline-none transition-colors resize-none"
               />
             </div>
 
@@ -144,7 +144,7 @@ export const PromptGenerator: React.FC<PromptGeneratorProps> = ({
                   value={formData.productUrl}
                   onChange={handleChange}
                   placeholder="https://example.com/product"
-                  className="w-full bg-[#09090B] border border-[#27272A] focus:border-[#8B5CF6] focus:ring-1 focus:ring-[#8B5CF6] rounded-xl pl-9 pr-4 py-3 text-sm text-[#FAFAFA] placeholder-[#A1A1AA]/50 outline-none transition-colors"
+                  className="w-full bg-[#09090B] border border-[#27272A] focus:border-[#6615F6] focus:ring-1 focus:ring-[#6615F6] rounded-xl pl-9 pr-4 py-3 text-sm text-[#FAFAFA] placeholder-[#A1A1AA]/50 outline-none transition-colors"
                 />
                 <LinkIcon className="w-4 h-4 text-[#A1A1AA] absolute left-3 top-3.5" />
               </div>
@@ -152,7 +152,7 @@ export const PromptGenerator: React.FC<PromptGeneratorProps> = ({
 
             {/* Auto-Determined AI Callout */}
             <div className="bg-[#09090B] border border-[#27272A]/80 p-3.5 rounded-xl text-[11px] text-[#A1A1AA] flex items-center gap-2 font-mono">
-              <Sparkles className="w-4 h-4 text-[#A78BFA] shrink-0" />
+              <Sparkles className="w-4 h-4 text-[#8B5CF6] shrink-0" />
               <span>
                 Director.ai auto-calculates viral hooks, marketing angles, voiceover scripts, camera movements & lighting setups.
               </span>
@@ -162,7 +162,7 @@ export const PromptGenerator: React.FC<PromptGeneratorProps> = ({
             <button
               type="submit"
               disabled={isGenerating || !formData.productName?.trim() || !formData.targetAudience?.trim()}
-              className="w-full py-4 bg-[#8B5CF6] hover:bg-[#A78BFA] disabled:opacity-50 disabled:cursor-not-allowed text-white text-base font-semibold rounded-2xl transition-all shadow-xl shadow-[#8B5CF6]/25 hover:shadow-[#A78BFA]/30 flex items-center justify-center gap-2.5 cursor-pointer active:scale-[0.99]"
+              className="w-full py-4 bg-[#6615F6] hover:bg-[#8B5CF6] disabled:opacity-50 disabled:cursor-not-allowed text-white text-base font-semibold rounded-2xl transition-all shadow-xl shadow-[#6615F6]/25 hover:shadow-[#8B5CF6]/30 flex items-center justify-center gap-2.5 cursor-pointer active:scale-[0.99]"
             >
               <Sparkles className="w-5 h-5 fill-current" />
               <span>Generate Master Prompt</span>
