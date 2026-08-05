@@ -119,7 +119,7 @@ export default function App() {
           <LoadingScreen onComplete={handleLoadingComplete} />
         ) : (
           <>
-            {(currentPath === '/' || currentPath === '') && (
+            {(currentPath === '/' || currentPath === '' || currentPath.endsWith('/') || !['/generate', '/result', '/ideas', '/pricing', '/privacy', '/terms', '/contact'].includes(currentPath)) && (
               <LandingPage onNavigate={navigateTo} />
             )}
 
