@@ -166,6 +166,43 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
         </motion.div>
       </section>
 
+      {/* INFINITE MARQUEE PLATFORMS */}
+      <section className="py-12 border-t border-[#27272A] overflow-hidden bg-[#07090E]">
+        <div className="text-center mb-8">
+          <span className="font-inter text-[14px] text-[#A1A1AA] font-medium">
+            Works with leading AI video generators
+          </span>
+        </div>
+        <div className="relative w-full overflow-hidden flex items-center">
+          {/* Fade edges */}
+          <div className="absolute top-0 bottom-0 left-0 w-32 bg-gradient-to-r from-[#07090E] to-transparent z-10 pointer-events-none" />
+          <div className="absolute top-0 bottom-0 right-0 w-32 bg-gradient-to-l from-[#07090E] to-transparent z-10 pointer-events-none" />
+          
+          <div className="flex w-max animate-marquee">
+            {[...Array(2)].map((_, i) => (
+              <div key={i} className="flex items-center gap-12 sm:gap-24 px-6 sm:px-12">
+                {[
+                  'Google Veo',
+                  'Kling AI',
+                  'Runway Gen-3',
+                  'Pika Labs',
+                  'Hailuo AI',
+                  'Luma Dream Machine',
+                  'OpenAI Sora'
+                ].map((name, idx) => (
+                  <span
+                    key={`${i}-${idx}`}
+                    className="font-sora text-2xl sm:text-3xl md:text-4xl font-bold text-[#27272A] whitespace-nowrap tracking-tight transition-colors hover:text-[#3F3F46] cursor-default"
+                  >
+                    {name}
+                  </span>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* 3. HOW IT WORKS (TIMELINE) */}
       <section id="how-it-works" className="py-24 px-4 sm:px-6 max-w-6xl mx-auto border-t border-[#27272A]">
         <div className="text-center max-w-2xl mx-auto mb-16">
