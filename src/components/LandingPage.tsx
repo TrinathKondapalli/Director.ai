@@ -353,21 +353,25 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
       </section>
 
       {/* 4. TRENDING UGC CONCEPTS PREVIEW */}
-      <section className="py-24 px-4 sm:px-6 max-w-6xl mx-auto">
+      <section className="py-32 px-4 sm:px-6 max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#8B5CF6]/15 border border-[#8B5CF6]/30 text-[#A78BFA] text-[14px] font-inter font-medium mb-3">
-              <Flame className="w-3.5 h-3.5 text-[#F59E0B]" />
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#09090B] border border-[#8B5CF6]/50 shadow-[0_0_15px_rgba(139,92,246,0.2)] text-[#E4E4E7] text-[12px] font-inter font-semibold uppercase tracking-wider mb-6">
+              <Flame className="w-4 h-4 text-[#F97316]" />
               <span>Daily Creator Discovery</span>
             </div>
-            <h2 className="font-sora text-[40px] md:text-[48px] font-bold text-[#FAFAFA] tracking-tight">
+            <h2 className="font-sora text-[48px] md:text-[56px] font-bold text-white tracking-tight mb-4">
               Trending Concepts
             </h2>
+            <p className="font-inter text-[#A1A1AA] text-[16px] md:text-[18px]">
+              Fresh, high-performing UGC concepts trending right now.<br className="hidden md:block" />
+              Use proven hooks. Create scroll-stopping ads.
+            </p>
           </div>
 
           <button
             onClick={() => onNavigate('/ideas')}
-            className="px-6 py-3 bg-[#111113] hover:bg-[#1C1C20] text-white text-sm font-semibold rounded-xl border border-[#27272A] transition-colors cursor-pointer flex items-center gap-2 self-start md:self-auto"
+            className="px-6 py-3 bg-[#09090B] hover:bg-[#1C1C20] text-white text-sm font-semibold rounded-full border border-[#27272A] hover:border-[#8B5CF6]/50 transition-colors cursor-pointer flex items-center gap-2 self-start md:self-auto shadow-lg"
           >
             <span>View All Concepts</span>
             <ArrowRight className="w-4 h-4" />
@@ -375,29 +379,44 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {featuredConcepts.map((concept) => (
+          {featuredConcepts.map((concept, idx) => (
             <motion.div
               key={concept.id}
-              whileHover={{ y: -6 }}
+              whileHover={{ y: -4 }}
               transition={{ duration: 0.2 }}
-              className="bg-[#111113] border border-[#27272A] hover:border-[#8B5CF6]/40 p-6 rounded-3xl flex flex-col justify-between shadow-xl"
+              className="bg-[#09090B]/80 backdrop-blur-sm border border-[#27272A] hover:border-[#8B5CF6]/40 p-6 rounded-[24px] flex flex-col justify-between shadow-2xl relative group overflow-hidden"
             >
+              {/* Subtle background glow on hover */}
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#8B5CF6]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
               <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="px-3 py-1 rounded-full bg-[#8B5CF6]/15 text-[#A78BFA] text-[14px] font-inter font-medium">
+                <div className="flex items-center justify-between mb-6 relative z-10">
+                  <span className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#111113] border border-[#27272A] text-[#A78BFA] text-[12px] font-inter font-medium shadow-sm">
+                    <Layers className="w-3.5 h-3.5" />
                     {concept.nicheCategory}
                   </span>
-                  <div className="flex items-center gap-1 font-inter text-[14px] text-[#22C55E]">
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#111113] border border-[#27272A] font-inter text-[12px] font-medium text-[#22C55E] shadow-sm">
                     <Flame className="w-3.5 h-3.5 fill-current" />
                     <span>Score {concept.trendScore}</span>
                   </div>
                 </div>
 
-                <h3 className="font-sora text-[24px] font-semibold text-[#FAFAFA] mb-3 leading-snug">
+                {/* 3D Glassmorphic Image Placeholder */}
+                <div className="relative w-full h-[180px] rounded-2xl mb-8 overflow-hidden bg-[#111113] border border-[#27272A] group-hover:border-[#8B5CF6]/30 transition-colors flex items-center justify-center">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#8B5CF6]/10 to-transparent opacity-50 group-hover:opacity-100 transition-opacity" />
+                  
+                  {/* Abstract Glassmorphic Shape */}
+                  <div className="relative w-24 h-24 rounded-2xl bg-gradient-to-tr from-[#8B5CF6]/30 to-[#C084FC]/10 backdrop-blur-md border border-[#8B5CF6]/40 shadow-[0_0_40px_rgba(139,92,246,0.3)] rotate-12 group-hover:rotate-0 transition-transform duration-500 flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-full bg-[#8B5CF6]/20 blur-md absolute" />
+                    <Sparkles className="w-10 h-10 text-[#C084FC] drop-shadow-lg relative z-10" />
+                  </div>
+                </div>
+
+                <h3 className="font-sora text-[22px] font-bold text-[#FAFAFA] mb-3 leading-snug relative z-10">
                   {concept.conceptTitle}
                 </h3>
 
-                <p className="font-inter text-[16px] text-[#A1A1AA] leading-relaxed mb-6">
+                <p className="font-inter text-[14px] text-[#A1A1AA] leading-relaxed mb-8 relative z-10">
                   {concept.whyItWorks}
                 </p>
               </div>
@@ -406,13 +425,23 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                 onClick={() => {
                   onNavigate('/generate');
                 }}
-                className="w-full py-3 px-4 bg-[#1C1C20] hover:bg-[#8B5CF6] text-white text-xs font-semibold rounded-xl border border-[#27272A] hover:border-transparent transition-all cursor-pointer flex items-center justify-center gap-2 group"
+                className="w-full py-3.5 px-4 bg-[#09090B] hover:bg-[#111113] text-[#FAFAFA] hover:text-white text-sm font-semibold rounded-xl border border-[#27272A] group-hover:border-[#8B5CF6]/60 shadow-[0_0_10px_rgba(139,92,246,0)] group-hover:shadow-[0_0_15px_rgba(139,92,246,0.15)] transition-all cursor-pointer flex items-center justify-center gap-2 relative z-10"
               >
                 <span>Use Concept</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-[#8B5CF6]" />
               </button>
             </motion.div>
           ))}
+        </div>
+
+        {/* Bottom Info Pill */}
+        <div className="mt-16 flex justify-center">
+          <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#09090B] border border-[#27272A] shadow-lg">
+            <Sparkles className="w-4 h-4 text-[#A78BFA]" />
+            <span className="font-inter text-[13px] text-[#A1A1AA]">
+              All concepts are <span className="text-[#8B5CF6] font-medium">data-backed</span> and updated daily based on performance across top platforms.
+            </span>
+          </div>
         </div>
       </section>
 
