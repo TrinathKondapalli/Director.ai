@@ -82,11 +82,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-[40px] sm:text-[64px] md:text-[76px] font-extrabold tracking-tight text-[#FAFAFA] max-w-5xl leading-[1.1] mb-6"
+          className="font-sora text-[40px] sm:text-[64px] md:text-[72px] font-extrabold tracking-[-0.04em] text-[#FAFAFA] max-w-5xl leading-[0.92] mb-6"
         >
-          Stop Writing Prompts. <br />
+          Create AI UGC Ads <br className="hidden md:block" />
           <span className="bg-gradient-to-r from-[#A78BFA] to-[#C084FC] bg-clip-text text-transparent">
-            Start Creating UGC Ads.
+            Without Writing Complex Prompts.
           </span>
         </motion.h1>
 
@@ -95,7 +95,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-sm sm:text-base md:text-[17px] text-[#A1A1AA] max-w-[800px] leading-relaxed mb-10 font-normal"
+          className="font-inter text-[16px] sm:text-[18px] text-[#A1A1AA] max-w-[800px] leading-relaxed mb-10 font-normal"
         >
           Describe your product once. Director.ai builds a complete AI-ready Master Prompt<br className="hidden md:block"/> with strategy, hook, storytelling, camera direction, and everything needed to<br className="hidden md:block"/> generate a professional 10-second UGC advertisement.
         </motion.p>
@@ -109,7 +109,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
         >
           <button
             onClick={() => onNavigate('/generate')}
-            className="w-full sm:w-auto px-8 py-3.5 bg-[#8B5CF6] hover:bg-[#A78BFA] text-white text-[15px] font-semibold rounded-2xl transition-all flex items-center justify-center gap-2.5 cursor-pointer"
+            className="w-full sm:w-auto px-8 py-3.5 bg-[#8B5CF6] hover:bg-[#A78BFA] text-white text-[16px] font-semibold font-inter rounded-2xl transition-all flex items-center justify-center gap-2.5 cursor-pointer"
           >
             <Sparkles className="w-4 h-4 fill-current text-white" />
             <span>Generate Master Prompt</span>
@@ -118,7 +118,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
 
           <button
             onClick={() => onNavigate('/ideas')}
-            className="w-full sm:w-auto px-8 py-3.5 bg-[#09090B] hover:bg-[#111113] text-white text-[15px] font-medium rounded-2xl border border-[#27272A] transition-colors cursor-pointer flex items-center justify-center gap-2.5"
+            className="w-full sm:w-auto px-8 py-3.5 bg-[#09090B] hover:bg-[#111113] text-white text-[16px] font-medium font-inter rounded-2xl border border-[#27272A] transition-colors cursor-pointer flex items-center justify-center gap-2.5"
           >
             <Lightbulb className="w-4 h-4 text-[#A78BFA]" />
             <span>See Trending Concepts</span>
@@ -133,34 +133,34 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
           className="flex flex-wrap items-center justify-center gap-8 md:gap-14 w-full max-w-5xl mb-20 text-left"
         >
           <div className="flex items-start gap-3">
-            <Zap className="w-6 h-6 text-[#A78BFA] shrink-0 mt-0.5" />
+            <Zap className="w-7 h-7 text-[#A78BFA] shrink-0 mt-0.5" />
             <div>
-              <div className="text-[13px] font-bold text-[#FAFAFA]">10X Faster</div>
-              <div className="text-[11px] text-[#A1A1AA]">From idea to prompt</div>
+              <div className="font-sora text-[18px] md:text-[20px] font-semibold text-[#E4E4E7]">10X Faster</div>
+              <div className="font-inter text-[14px] md:text-[16px] text-[#71717A]">From idea to prompt</div>
             </div>
           </div>
 
           <div className="flex items-start gap-3">
-            <Film className="w-6 h-6 text-[#A78BFA] shrink-0 mt-0.5" />
+            <Film className="w-7 h-7 text-[#A78BFA] shrink-0 mt-0.5" />
             <div>
-              <div className="text-[13px] font-bold text-[#FAFAFA]">Production-Ready</div>
-              <div className="text-[11px] text-[#A1A1AA]">Made for AI video models</div>
+              <div className="font-sora text-[18px] md:text-[20px] font-semibold text-[#E4E4E7]">Production-Ready</div>
+              <div className="font-inter text-[14px] md:text-[16px] text-[#71717A]">Made for AI models</div>
             </div>
           </div>
 
           <div className="flex items-start gap-3">
-            <Eye className="w-6 h-6 text-[#A78BFA] shrink-0 mt-0.5" />
+            <Eye className="w-7 h-7 text-[#A78BFA] shrink-0 mt-0.5" />
             <div>
-              <div className="text-[13px] font-bold text-[#FAFAFA]">Strategy-Driven</div>
-              <div className="text-[11px] text-[#A1A1AA]">Hooks that convert</div>
+              <div className="font-sora text-[18px] md:text-[20px] font-semibold text-[#E4E4E7]">Strategy-Driven</div>
+              <div className="font-inter text-[14px] md:text-[16px] text-[#71717A]">Hooks that convert</div>
             </div>
           </div>
 
           <div className="flex items-start gap-3">
-            <ShieldCheck className="w-6 h-6 text-[#A78BFA] shrink-0 mt-0.5" />
+            <ShieldCheck className="w-7 h-7 text-[#A78BFA] shrink-0 mt-0.5" />
             <div>
-              <div className="text-[13px] font-bold text-[#FAFAFA]">Zero Storage</div>
-              <div className="text-[11px] text-[#A1A1AA]">Your ideas stay yours</div>
+              <div className="font-sora text-[18px] md:text-[20px] font-semibold text-[#E4E4E7]">Zero Storage</div>
+              <div className="font-inter text-[14px] md:text-[16px] text-[#71717A]">Your ideas stay yours</div>
             </div>
           </div>
         </motion.div>
@@ -318,11 +318,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
       {/* 3. HOW IT WORKS (TIMELINE) */}
       <section id="how-it-works" className="py-24 px-4 sm:px-6 max-w-6xl mx-auto border-t border-[#27272A]">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-xs font-mono uppercase tracking-widest text-[#A78BFA] font-semibold block mb-2">
+          <span className="font-inter text-[14px] uppercase tracking-widest text-[#A78BFA] font-medium block mb-3">
             The Streamlined Workflow
           </span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-[#FAFAFA] tracking-tight">
-            How Director.ai Works
+          <h2 className="font-sora text-[40px] md:text-[48px] font-bold text-[#FAFAFA] tracking-tight">
+            How It Works
           </h2>
         </div>
 
@@ -369,8 +369,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                 </div>
               </div>
               <div>
-                <h3 className="text-lg font-bold text-[#FAFAFA] mb-2">{item.title}</h3>
-                <p className="text-xs sm:text-sm text-[#A1A1AA] leading-relaxed">{item.desc}</p>
+                <h3 className="font-sora text-[24px] font-semibold text-[#FAFAFA] mb-2">{item.title}</h3>
+                <p className="font-inter text-[16px] text-[#A1A1AA] leading-relaxed">{item.desc}</p>
               </div>
             </motion.div>
           ))}
@@ -381,12 +381,12 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
       <section className="py-24 px-4 sm:px-6 max-w-6xl mx-auto border-t border-[#27272A]">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#8B5CF6]/15 border border-[#8B5CF6]/30 text-[#A78BFA] text-xs font-mono mb-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#8B5CF6]/15 border border-[#8B5CF6]/30 text-[#A78BFA] text-[14px] font-inter font-medium mb-3">
               <Flame className="w-3.5 h-3.5 text-[#F59E0B]" />
               <span>Daily Creator Discovery</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#FAFAFA] tracking-tight">
-              Trending UGC Concepts
+            <h2 className="font-sora text-[40px] md:text-[48px] font-bold text-[#FAFAFA] tracking-tight">
+              Trending Concepts
             </h2>
           </div>
 
@@ -409,20 +409,20 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <span className="px-3 py-1 rounded-full bg-[#8B5CF6]/15 text-[#A78BFA] text-[11px] font-mono font-medium">
+                  <span className="px-3 py-1 rounded-full bg-[#8B5CF6]/15 text-[#A78BFA] text-[14px] font-inter font-medium">
                     {concept.nicheCategory}
                   </span>
-                  <div className="flex items-center gap-1 font-mono text-xs text-[#22C55E]">
+                  <div className="flex items-center gap-1 font-inter text-[14px] text-[#22C55E]">
                     <Flame className="w-3.5 h-3.5 fill-current" />
                     <span>Score {concept.trendScore}</span>
                   </div>
                 </div>
 
-                <h3 className="text-base font-bold text-[#FAFAFA] mb-3 leading-snug">
+                <h3 className="font-sora text-[24px] font-semibold text-[#FAFAFA] mb-3 leading-snug">
                   {concept.conceptTitle}
                 </h3>
 
-                <p className="text-xs text-[#A1A1AA] leading-relaxed mb-6">
+                <p className="font-inter text-[16px] text-[#A1A1AA] leading-relaxed mb-6">
                   {concept.whyItWorks}
                 </p>
               </div>
@@ -444,11 +444,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
       {/* 5. WHY DIRECTOR.AI */}
       <section className="py-24 px-4 sm:px-6 max-w-6xl mx-auto border-t border-[#27272A]">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-xs font-mono uppercase tracking-widest text-[#A78BFA] font-semibold block mb-2">
+          <span className="font-inter text-[14px] uppercase tracking-widest text-[#A78BFA] font-medium block mb-3">
             Built For Modern Creators & Marketers
           </span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-[#FAFAFA] tracking-tight">
-            Why Director.ai?
+          <h2 className="font-sora text-[40px] md:text-[48px] font-bold text-[#FAFAFA] tracking-tight">
+            Why Creators Choose Director.ai
           </h2>
         </div>
 
@@ -457,8 +457,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             <div className="w-12 h-12 rounded-2xl bg-[#8B5CF6]/15 border border-[#8B5CF6]/30 flex items-center justify-center text-[#A78BFA] mb-6">
               <Zap className="w-6 h-6" />
             </div>
-            <h3 className="text-xl font-bold text-[#FAFAFA] mb-3">Creative Strategy</h3>
-            <p className="text-sm text-[#A1A1AA] leading-relaxed">
+            <h3 className="font-sora text-[24px] font-semibold text-[#FAFAFA] mb-3">Creative Strategy</h3>
+            <p className="font-inter text-[16px] text-[#A1A1AA] leading-relaxed">
               AI thinks like a veteran marketing director — injecting proven hooks, visual framing, and emotional triggers automatically.
             </p>
           </div>
@@ -467,8 +467,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             <div className="w-12 h-12 rounded-2xl bg-[#8B5CF6]/15 border border-[#8B5CF6]/30 flex items-center justify-center text-[#A78BFA] mb-6">
               <Film className="w-6 h-6" />
             </div>
-            <h3 className="text-xl font-bold text-[#FAFAFA] mb-3">Production Ready</h3>
-            <p className="text-sm text-[#A1A1AA] leading-relaxed">
+            <h3 className="font-sora text-[24px] font-semibold text-[#FAFAFA] mb-3">Production Ready</h3>
+            <p className="font-inter text-[16px] text-[#A1A1AA] leading-relaxed">
               Formatted specifically for next-gen models. Paste directly into Google Veo, Kling, Runway, or Luma without tweaking camera terms.
             </p>
           </div>
@@ -477,8 +477,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             <div className="w-12 h-12 rounded-2xl bg-[#22C55E]/15 border border-[#22C55E]/30 flex items-center justify-center text-[#22C55E] mb-6">
               <ShieldCheck className="w-6 h-6" />
             </div>
-            <h3 className="text-xl font-bold text-[#FAFAFA] mb-3">Privacy First</h3>
-            <p className="text-sm text-[#A1A1AA] leading-relaxed">
+            <h3 className="font-sora text-[24px] font-semibold text-[#FAFAFA] mb-3">Privacy First</h3>
+            <p className="font-inter text-[16px] text-[#A1A1AA] leading-relaxed">
               Your prompts, products, and campaign strategies are never stored in databases. Refresh the page and your session data is wiped clean.
             </p>
           </div>
@@ -493,11 +493,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             <span>Zero Data Retention</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-[#FAFAFA] tracking-tight mb-6">
+          <h2 className="font-sora text-[40px] md:text-[48px] font-bold text-[#FAFAFA] tracking-tight mb-6">
             Your Ideas Stay Yours.
           </h2>
 
-          <p className="text-base sm:text-lg text-[#A1A1AA] max-w-2xl mx-auto leading-relaxed mb-10">
+          <p className="font-inter text-[16px] sm:text-[18px] text-[#A1A1AA] max-w-2xl mx-auto leading-relaxed mb-10">
             Director.ai never stores prompts, products, or generated content. Everything exists only while you're using the application. Once you refresh or leave the page, it's gone forever.
           </p>
 
@@ -529,11 +529,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
       {/* 7. PRICING */}
       <section className="py-24 px-4 sm:px-6 max-w-6xl mx-auto border-t border-[#27272A]">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#8B5CF6]/15 border border-[#8B5CF6]/30 text-[#A78BFA] text-xs font-mono mb-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#8B5CF6]/15 border border-[#8B5CF6]/30 text-[#A78BFA] text-[14px] font-inter font-medium mb-4">
             <Zap className="w-4 h-4 text-[#A78BFA]" />
             <span>Transparent Plans</span>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-[#FAFAFA] tracking-tight">
+          <h2 className="font-sora text-[40px] md:text-[48px] font-bold text-[#FAFAFA] tracking-tight">
             Simple, Transparent Pricing
           </h2>
         </div>
@@ -542,18 +542,18 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
           {/* Free Tier */}
           <div className="bg-[#111113] border border-[#27272A] rounded-3xl p-8 sm:p-10 flex flex-col justify-between shadow-xl">
             <div>
-              <div className="text-xs font-mono uppercase tracking-widest text-[#A1A1AA] mb-2 font-bold">
+              <div className="text-[14px] font-inter uppercase tracking-widest text-[#A1A1AA] mb-2 font-medium">
                 Free Plan
               </div>
               <div className="flex items-baseline gap-1 mb-4">
-                <span className="text-5xl font-extrabold text-[#FAFAFA]">$0</span>
-                <span className="text-sm text-[#A1A1AA]">/ forever</span>
+                <span className="font-sora text-5xl font-bold text-[#FAFAFA]">$0</span>
+                <span className="font-inter text-sm text-[#A1A1AA]">/ forever</span>
               </div>
-              <p className="text-sm text-[#A1A1AA] mb-8 leading-relaxed">
+              <p className="font-inter text-[16px] text-[#A1A1AA] mb-8 leading-relaxed">
                 Generate Master Prompts instantly to elevate your video ad concepts.
               </p>
 
-              <ul className="space-y-4 text-sm text-[#FAFAFA] mb-10">
+              <ul className="space-y-4 font-inter text-[16px] text-[#FAFAFA] mb-10">
                 <li className="flex items-center gap-3">
                   <Check className="w-5 h-5 text-[#22C55E]" />
                   <span>5 Free Master Prompts per day</span>
@@ -575,7 +575,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
 
             <button
               onClick={() => onNavigate('/generate')}
-              className="w-full py-4 px-6 bg-[#1C1C20] hover:bg-[#27272A] text-white text-sm font-semibold rounded-2xl border border-[#27272A] transition-colors cursor-pointer"
+              className="w-full py-4 px-6 bg-[#1C1C20] hover:bg-[#27272A] text-white text-[16px] font-semibold font-inter rounded-2xl border border-[#27272A] transition-colors cursor-pointer"
             >
               Start Free
             </button>
@@ -588,18 +588,18 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             </div>
 
             <div>
-              <div className="text-xs font-mono uppercase tracking-widest text-[#A78BFA] mb-2 font-bold">
+              <div className="text-[14px] font-inter uppercase tracking-widest text-[#A78BFA] mb-2 font-medium">
                 Pro Plan
               </div>
               <div className="flex items-baseline gap-1 mb-4">
-                <span className="text-5xl font-extrabold text-[#FAFAFA]">$29</span>
-                <span className="text-sm text-[#A1A1AA]">/ month</span>
+                <span className="font-sora text-5xl font-bold text-[#FAFAFA]">$29</span>
+                <span className="font-inter text-sm text-[#A1A1AA]">/ month</span>
               </div>
-              <p className="text-sm text-[#A1A1AA] mb-8 leading-relaxed">
+              <p className="font-inter text-[16px] text-[#A1A1AA] mb-8 leading-relaxed">
                 For power creators, agencies, and performance marketers building high volume ads.
               </p>
 
-              <ul className="space-y-4 text-sm text-[#FAFAFA] mb-10">
+              <ul className="space-y-4 font-inter text-[16px] text-[#FAFAFA] mb-10">
                 <li className="flex items-center gap-3">
                   <Check className="w-5 h-5 text-[#8B5CF6]" />
                   <span>Unlimited Master Prompts</span>
@@ -621,7 +621,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
 
             <button
               onClick={() => onNavigate('/generate')}
-              className="w-full py-4 px-6 bg-[#8B5CF6] hover:bg-[#A78BFA] text-white text-sm font-semibold rounded-2xl transition-all shadow-xl shadow-[#8B5CF6]/30 flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
+              className="w-full py-4 px-6 bg-[#8B5CF6] hover:bg-[#A78BFA] text-white text-[16px] font-semibold font-inter rounded-2xl transition-all shadow-xl shadow-[#8B5CF6]/30 flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
             >
               <Sparkles className="w-5 h-5 fill-current" />
               <span>Get Pro Access</span>
@@ -633,10 +633,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
       {/* 8. FAQ SECTION */}
       <section className="py-24 px-4 sm:px-6 max-w-4xl mx-auto border-t border-[#27272A]">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-xs font-mono uppercase tracking-widest text-[#A78BFA] font-semibold block mb-2">
+          <span className="font-inter text-[14px] uppercase tracking-widest text-[#A78BFA] font-medium block mb-2">
             Got Questions?
           </span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-[#FAFAFA] tracking-tight">
+          <h2 className="font-sora text-[40px] md:text-[48px] font-bold text-[#FAFAFA] tracking-tight">
             Frequently Asked Questions
           </h2>
         </div>
@@ -649,7 +649,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             >
               <button
                 onClick={() => toggleFaq(idx)}
-                className="w-full px-6 py-5 text-left flex items-center justify-between font-bold text-base text-[#FAFAFA] cursor-pointer hover:text-[#A78BFA] transition-colors"
+                className="w-full px-6 py-5 text-left flex items-center justify-between font-sora font-semibold text-[18px] text-[#FAFAFA] cursor-pointer hover:text-[#A78BFA] transition-colors"
               >
                 <span>{faq.q}</span>
                 {openFaq === idx ? (
@@ -660,7 +660,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
               </button>
 
               {openFaq === idx && (
-                <div className="px-6 pb-6 text-sm text-[#A1A1AA] leading-relaxed border-t border-[#27272A]/50 pt-4">
+                <div className="px-6 pb-6 font-inter text-[16px] text-[#A1A1AA] leading-relaxed border-t border-[#27272A]/50 pt-4">
                   {faq.a}
                 </div>
               )}

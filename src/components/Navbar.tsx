@@ -32,17 +32,17 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
         </button>
 
         {/* Desktop Nav Links */}
-        <nav className="hidden md:flex items-center gap-8 text-xs font-semibold tracking-wide">
+        <nav className="hidden md:flex items-center gap-8 text-[15px] font-medium tracking-wide">
           <a
             href="#how-it-works"
-            className="text-[#A1A1AA] hover:text-white transition-colors cursor-pointer"
+            className="text-[#A1A1AA] hover:text-[#FAFAFA] transition-colors cursor-pointer"
           >
             How It Works
           </a>
           <button
             onClick={() => onNavigate('/ideas')}
             className={`transition-colors cursor-pointer ${
-              currentPath === '/ideas' ? 'text-white' : 'text-[#A1A1AA] hover:text-white'
+              currentPath === '/ideas' ? 'text-[#FAFAFA]' : 'text-[#A1A1AA] hover:text-[#FAFAFA]'
             }`}
           >
             Trending Concepts
@@ -50,7 +50,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
           <button
             onClick={() => onNavigate('/pricing')}
             className={`transition-colors cursor-pointer ${
-              currentPath === '/pricing' ? 'text-white' : 'text-[#A1A1AA] hover:text-white'
+              currentPath === '/pricing' ? 'text-[#FAFAFA]' : 'text-[#A1A1AA] hover:text-[#FAFAFA]'
             }`}
           >
             Pricing
@@ -58,7 +58,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
           <button
             onClick={() => onNavigate('/privacy')}
             className={`transition-colors cursor-pointer ${
-              currentPath === '/privacy' ? 'text-white' : 'text-[#A1A1AA] hover:text-white'
+              currentPath === '/privacy' ? 'text-[#FAFAFA]' : 'text-[#A1A1AA] hover:text-[#FAFAFA]'
             }`}
           >
             Privacy
@@ -67,11 +67,11 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
           {/* Primary Action Button */}
           <button
             onClick={() => onNavigate('/generate')}
-            className="ml-4 px-4.5 py-2.5 bg-[#8B5CF6] hover:bg-[#A78BFA] text-white text-xs rounded-xl transition-all shadow-md shadow-[#8B5CF6]/20 hover:shadow-[#A78BFA]/30 flex items-center gap-2 cursor-pointer active:scale-[0.98]"
+            className="ml-4 px-5 py-2.5 bg-[#8B5CF6] hover:bg-[#A78BFA] text-white text-[16px] font-semibold rounded-xl transition-all shadow-md shadow-[#8B5CF6]/20 hover:shadow-[#A78BFA]/30 flex items-center gap-2 cursor-pointer active:scale-[0.98]"
           >
-            <Sparkles className="w-3.5 h-3.5 fill-current" />
+            <Sparkles className="w-4 h-4 fill-current" />
             <span>Generate Master Prompt</span>
-            <ArrowRight className="w-3.5 h-3.5 ml-1" />
+            <ArrowRight className="w-4 h-4 ml-1" />
           </button>
         </nav>
 
