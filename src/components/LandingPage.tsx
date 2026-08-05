@@ -61,18 +61,19 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
   return (
     <div className="w-full bg-[#09090B] text-white selection:bg-[#8B5CF6]/30 overflow-hidden">
       {/* 1. HERO SECTION */}
-      <section className="relative pt-12 sm:pt-16 pb-24 px-4 sm:px-6 max-w-6xl mx-auto text-center flex flex-col items-center">
-        {/* Glow backdrop */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[380px] bg-[#8B5CF6]/15 blur-[140px] rounded-full pointer-events-none -z-10" />
+      <section className="relative pt-10 sm:pt-14 pb-20 px-4 sm:px-6 max-w-6xl mx-auto text-center flex flex-col items-center">
+        {/* Glow backdrop & Curved Neon Light Arc */}
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[450px] bg-[#8B5CF6]/15 blur-[150px] rounded-full pointer-events-none -z-10" />
 
-        {/* Director.ai Official Logo Banner */}
+        {/* AI UGC AD DIRECTOR Top Pill */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="mb-8"
+          className="mb-6 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#111113] border border-[#27272A] text-[#A78BFA] text-xs font-mono tracking-widest uppercase shadow-md"
         >
-          <DirectorLogoBanner size="lg" showBadge={true} />
+          <Sparkles className="w-3.5 h-3.5 text-[#8B5CF6]" />
+          <span>AI UGC AD DIRECTOR</span>
         </motion.div>
 
         {/* Headline */}
@@ -80,10 +81,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-[#FAFAFA] max-w-4xl leading-[1.1] mb-6"
+          className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white max-w-5xl leading-[1.08] mb-6"
         >
           Stop Writing Prompts. <br />
-          <span className="bg-gradient-to-r from-white via-[#E9D5FF] to-[#8B5CF6] bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-[#A78BFA] via-[#C084FC] to-[#8B5CF6] bg-clip-text text-transparent">
             Start Creating UGC Ads.
           </span>
         </motion.h1>
@@ -93,7 +94,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-lg sm:text-xl text-[#A1A1AA] max-w-3xl leading-relaxed mb-10 font-normal"
+          className="text-base sm:text-lg md:text-xl text-[#A1A1AA] max-w-3xl leading-relaxed mb-10 font-normal"
         >
           Describe your product once. Director.ai builds a complete AI-ready Master Prompt with strategy, hook, storytelling, camera direction, and everything needed to generate a professional 10-second UGC advertisement.
         </motion.p>
@@ -103,103 +104,168 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto mb-16"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mb-14"
         >
           <button
             onClick={() => onNavigate('/generate')}
-            className="w-full sm:w-auto px-9 py-4.5 bg-[#8B5CF6] hover:bg-[#A78BFA] text-white text-base font-semibold rounded-2xl transition-all shadow-xl shadow-[#8B5CF6]/25 hover:shadow-[#A78BFA]/40 flex items-center justify-center gap-3 group cursor-pointer active:scale-[0.98]"
+            className="w-full sm:w-auto px-8 py-4 bg-[#8B5CF6] hover:bg-[#A78BFA] text-white text-base font-semibold rounded-2xl transition-all shadow-xl shadow-[#8B5CF6]/30 hover:shadow-[#A78BFA]/40 flex items-center justify-center gap-3 group cursor-pointer active:scale-[0.98]"
           >
-            <Sparkles className="w-5 h-5 fill-current" />
+            <Sparkles className="w-5 h-5 fill-current text-white" />
             <span>Generate Master Prompt</span>
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </button>
 
           <button
             onClick={() => onNavigate('/ideas')}
-            className="w-full sm:w-auto px-8 py-4.5 bg-[#111113] hover:bg-[#1C1C20] text-white text-base font-medium rounded-2xl border border-[#27272A] transition-colors cursor-pointer flex items-center justify-center gap-2.5"
+            className="w-full sm:w-auto px-8 py-4 bg-[#111113] hover:bg-[#1C1C20] text-white text-base font-medium rounded-2xl border border-[#27272A] transition-colors cursor-pointer flex items-center justify-center gap-2.5"
           >
             <Lightbulb className="w-5 h-5 text-[#A78BFA]" />
             <span>See Trending Concepts</span>
           </button>
         </motion.div>
 
-        {/* ANIMATED HERO MOCKUP */}
+        {/* 4 HERO FEATURE PILLARS */}
         <motion.div
-          initial={{ opacity: 0, y: 35 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.4 }}
-          className="w-full max-w-4xl bg-[#111113]/90 border border-[#27272A] rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-xl relative overflow-hidden text-left"
+          transition={{ duration: 0.5, delay: 0.35 }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 w-full max-w-4xl mb-16 text-left"
         >
-          {/* Subtle top glow bar inside mockup */}
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#8B5CF6] to-transparent opacity-70" />
-
-          {/* Browser dots header */}
-          <div className="flex items-center justify-between pb-6 border-b border-[#27272A]">
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full bg-[#EF4444]/80" />
-              <div className="w-3 h-3 rounded-full bg-[#F59E0B]/80" />
-              <div className="w-3 h-3 rounded-full bg-[#10B981]/80" />
-              <span className="ml-3 text-xs font-mono text-[#A1A1AA]/60">director.ai / engine-pipeline</span>
+          <div className="flex items-start gap-3 bg-[#111113]/80 border border-[#27272A] p-4 rounded-2xl">
+            <div className="p-2 rounded-xl bg-[#8B5CF6]/15 text-[#A78BFA] shrink-0">
+              <Zap className="w-5 h-5" />
             </div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#8B5CF6]/15 border border-[#8B5CF6]/30 text-[#A78BFA] text-[11px] font-mono">
-              <span className="w-2 h-2 rounded-full bg-[#22C55E] animate-pulse" />
-              <span>LIVE WORKFLOW ENGINE</span>
+            <div>
+              <div className="text-sm font-bold text-white">10X Faster</div>
+              <div className="text-xs text-[#A1A1AA]">From idea to prompt</div>
             </div>
           </div>
 
-          {/* Flow visual grid */}
-          <div className="grid grid-cols-1 md:grid-cols-6 gap-3 sm:gap-4 pt-6 items-center">
-            {/* Step 1 Input Box */}
-            <div className="md:col-span-2 bg-[#09090B] border border-[#27272A] rounded-2xl p-4 space-y-3">
-              <div className="text-[10px] font-mono uppercase tracking-wider text-[#A78BFA]">1. Input Details</div>
-              <div>
-                <label className="text-[10px] text-[#A1A1AA] block mb-1">Product</label>
-                <div className="bg-[#111113] border border-[#27272A] text-xs text-[#FAFAFA] px-3 py-2 rounded-lg font-mono">
-                  Aura Track Pro Smart Ring
-                </div>
+          <div className="flex items-start gap-3 bg-[#111113]/80 border border-[#27272A] p-4 rounded-2xl">
+            <div className="p-2 rounded-xl bg-[#8B5CF6]/15 text-[#A78BFA] shrink-0">
+              <Film className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="text-sm font-bold text-white">Production-Ready</div>
+              <div className="text-xs text-[#A1A1AA]">Made for AI video models</div>
+            </div>
+          </div>
+
+          <div className="flex items-start gap-3 bg-[#111113]/80 border border-[#27272A] p-4 rounded-2xl">
+            <div className="p-2 rounded-xl bg-[#8B5CF6]/15 text-[#A78BFA] shrink-0">
+              <Eye className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="text-sm font-bold text-white">Strategy-Driven</div>
+              <div className="text-xs text-[#A1A1AA]">Hooks that convert</div>
+            </div>
+          </div>
+
+          <div className="flex items-start gap-3 bg-[#111113]/80 border border-[#27272A] p-4 rounded-2xl">
+            <div className="p-2 rounded-xl bg-[#22C55E]/15 text-[#22C55E] shrink-0">
+              <ShieldCheck className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="text-sm font-bold text-white">Zero Storage</div>
+              <div className="text-xs text-[#A1A1AA]">Your ideas stay yours</div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* HERO UI SCREEN DISPLAY (FLOATING MOCKUP WITH PURPLE GLOW ARC) */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.4 }}
+          className="w-full max-w-5xl relative"
+        >
+          {/* Curved Purple Neon Glow Arc Effect around frame */}
+          <div className="absolute -top-10 left-0 right-0 h-32 bg-gradient-to-r from-transparent via-[#8B5CF6]/40 to-transparent blur-2xl pointer-events-none -z-10" />
+
+          {/* Interactive Dual-Panel UI Frame */}
+          <div className="bg-[#111113] border-2 border-[#27272A] rounded-3xl p-4 sm:p-7 shadow-2xl backdrop-blur-2xl text-left relative overflow-hidden">
+            {/* Top Bar */}
+            <div className="flex items-center justify-between pb-4 mb-5 border-b border-[#27272A]">
+              <div className="text-xs font-mono text-[#A1A1AA] flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#8B5CF6]" />
+                <span>Your Input</span>
               </div>
-              <div>
-                <label className="text-[10px] text-[#A1A1AA] block mb-1">Target Audience</label>
-                <div className="bg-[#111113] border border-[#27272A] text-xs text-[#FAFAFA] px-3 py-2 rounded-lg font-mono">
-                  Busy Tech Professionals & Biohackers
-                </div>
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#22C55E]/15 border border-[#22C55E]/30 text-[#22C55E] text-xs font-mono">
+                <span className="w-2 h-2 rounded-full bg-[#22C55E] animate-pulse" />
+                <span>AI MODELS READY</span>
               </div>
             </div>
 
-            {/* Arrow Divider */}
-            <div className="flex justify-center md:col-span-1">
-              <div className="p-2 rounded-full bg-[#8B5CF6]/20 border border-[#8B5CF6]/40 text-[#A78BFA]">
-                <ArrowRight className="w-5 h-5 hidden md:block" />
-                <ArrowDown className="w-5 h-5 md:hidden" />
-              </div>
-            </div>
-
-            {/* Step 2 Master Prompt Output Box */}
-            <div className="md:col-span-3 bg-[#09090B] border border-[#8B5CF6]/40 rounded-2xl p-4 relative space-y-2.5">
-              <div className="flex items-center justify-between">
-                <div className="text-[10px] font-mono uppercase tracking-wider text-[#8B5CF6] font-bold flex items-center gap-1.5">
-                  <Sparkles className="w-3.5 h-3.5" />
-                  <span>2. Master Prompt Generated</span>
+            {/* Split Input / Output UI */}
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-center">
+              {/* Left Panel: Input Fields */}
+              <div className="md:col-span-5 bg-[#09090B] border border-[#27272A] rounded-2xl p-4 space-y-3">
+                <div>
+                  <div className="text-[11px] font-mono text-[#A1A1AA] mb-1">Product</div>
+                  <div className="bg-[#111113] border border-[#27272A] text-xs text-white px-3 py-2 rounded-xl font-mono">
+                    GlowUp Skincare Serum
+                  </div>
                 </div>
-                <div className="px-2 py-0.5 rounded bg-[#8B5CF6]/20 text-[#A78BFA] text-[10px] font-mono">
-                  READY
+                <div>
+                  <div className="text-[11px] font-mono text-[#A1A1AA] mb-1">Audience</div>
+                  <div className="bg-[#111113] border border-[#27272A] text-xs text-white px-3 py-2 rounded-xl font-mono">
+                    Young women (18-30)
+                  </div>
+                </div>
+                <div>
+                  <div className="text-[11px] font-mono text-[#A1A1AA] mb-1">Platform</div>
+                  <div className="bg-[#111113] border border-[#27272A] text-xs text-white px-3 py-2 rounded-xl font-mono">
+                    Instagram, YouTube, Facebook
+                  </div>
+                </div>
+                <div>
+                  <div className="text-[11px] font-mono text-[#A1A1AA] mb-1">Goal</div>
+                  <div className="bg-[#111113] border border-[#27272A] text-xs text-white px-3 py-2 rounded-xl font-mono">
+                    Increase awareness & drive sales
+                  </div>
                 </div>
               </div>
 
-              <div className="bg-[#111113] border border-[#27272A] p-3 rounded-xl text-[11px] font-mono text-[#A1A1AA] leading-relaxed line-clamp-3">
-                [SCENE START] 9:16 vertical 4K macro. Close-up selfie mode creator holding sleek titanium smart ring under warm morning window light...
+              {/* Middle Arrow Circle */}
+              <div className="md:col-span-2 flex justify-center">
+                <div className="w-12 h-12 rounded-full bg-[#8B5CF6] text-white flex items-center justify-center shadow-lg shadow-[#8B5CF6]/50">
+                  <ArrowRight className="w-6 h-6" />
+                </div>
               </div>
 
-              {/* Copy & Platform Destinations */}
-              <div className="flex flex-wrap items-center justify-between gap-2 pt-1 border-t border-[#27272A]/50">
-                <div className="flex items-center gap-1.5 text-[10px] font-mono text-[#22C55E]">
-                  <Copy className="w-3 h-3" />
-                  <span>1-Click Copy</span>
+              {/* Right Panel: Director.ai Output */}
+              <div className="md:col-span-5 bg-[#09090B] border border-[#8B5CF6]/50 rounded-2xl p-5 space-y-3 relative">
+                <div className="text-xs font-mono text-[#8B5CF6] font-bold">Director.ai Output</div>
+                
+                <div className="bg-[#111113] border border-[#27272A] p-4 rounded-xl space-y-2 text-xs font-mono text-[#A1A1AA] leading-relaxed">
+                  <div className="text-[#8B5CF6] font-bold text-[11px]">MASTER PROMPT</div>
+                  <p className="text-zinc-300">
+                    Create a 10-second UGC video ad for GlowUp Skincare Serum targeted at young women (18-30) who struggle with dull and tired skin...
+                  </p>
+
+                  <div className="text-[#8B5CF6] font-bold text-[11px] pt-1">HOOK (0-3s):</div>
+                  <p className="text-zinc-300">
+                    Close-up shot of a young woman looking in the mirror...
+                  </p>
+
+                  <div className="text-[#8B5CF6] font-bold text-[11px] pt-1">VISUAL STYLE:</div>
+                  <p className="text-zinc-300">
+                    Natural lighting, soft and warm tone, handheld smartphone feel...
+                  </p>
                 </div>
-                <div className="flex items-center gap-2 text-[10px] font-mono text-[#A1A1AA]">
-                  <span>Paste to:</span>
-                  <span className="px-2 py-0.5 rounded bg-[#1C1C20] text-white">Google Veo</span>
-                  <span className="px-2 py-0.5 rounded bg-[#1C1C20] text-white">Kling AI</span>
+
+                {/* Bottom Model Buttons */}
+                <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-[#27272A]">
+                  <div className="flex items-center gap-1.5 text-xs text-[#22C55E] font-mono">
+                    <Check className="w-4 h-4" />
+                    <span>Ready to use</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-[11px] font-mono text-[#A1A1AA]">
+                    <span className="px-2 py-1 rounded bg-[#1C1C20] border border-[#27272A]">Veo</span>
+                    <span className="px-2 py-1 rounded bg-[#1C1C20] border border-[#27272A]">Kling AI</span>
+                    <span className="px-2 py-1 rounded bg-[#1C1C20] border border-[#27272A]">Runway</span>
+                    <span className="px-2 py-1 bg-[#8B5CF6] text-white rounded font-semibold cursor-pointer">Copy</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -207,32 +273,34 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
         </motion.div>
       </section>
 
-      {/* 2. TRUSTED AI VIDEO PLATFORMS */}
-      <section className="py-16 px-4 sm:px-6 max-w-6xl mx-auto border-t border-[#27272A]">
+      {/* 2. TRUSTED AI VIDEO PLATFORMS - MATCHING USER SCREENSHOT */}
+      <section className="py-14 px-4 sm:px-6 max-w-6xl mx-auto border-t border-[#27272A]">
         <div className="text-center mb-8">
-          <span className="text-xs font-mono uppercase tracking-widest text-[#A1A1AA] font-semibold">
-            Optimized Master Prompts Compatible With
+          <span className="text-xs sm:text-sm font-mono uppercase tracking-wider text-[#A1A1AA] font-semibold">
+            Works with leading AI video generators
           </span>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-4 max-w-5xl mx-auto">
           {[
-            { name: 'Google Veo', tag: 'Cinematic' },
-            { name: 'Google Flow', tag: 'Interactive' },
-            { name: 'Kling AI', tag: 'Hyper-Realism' },
-            { name: 'Runway', tag: 'Gen-3 Alpha' },
-            { name: 'Pika', tag: 'Animation' },
-            { name: 'Luma', tag: 'Dream Machine' },
-            { name: 'Hailuo', tag: 'Minimax' },
-          ].map((platform, idx) => (
+            { name: 'Google Veo', tag: 'Cinematic', color: 'from-blue-500 to-emerald-400' },
+            { name: 'Google Flow', tag: 'Interactive', color: 'from-cyan-400 to-blue-600' },
+            { name: 'Kling AI', tag: 'Hyper-Realism', color: 'from-[#22C55E] to-teal-500' },
+            { name: 'Runway', tag: 'Gen-3 Alpha', color: 'from-purple-500 to-indigo-600' },
+            { name: 'Pika', tag: 'Animation', color: 'from-pink-500 to-rose-500' },
+            { name: 'Hailuo', tag: 'Minimax', color: 'from-orange-400 to-amber-500' },
+            { name: 'Luma', tag: 'Dream Machine', color: 'from-indigo-400 to-purple-600' },
+          ].map((platform) => (
             <motion.div
               key={platform.name}
-              whileHover={{ y: -4, borderColor: '#8B5CF6' }}
+              whileHover={{ y: -5, borderColor: '#8B5CF6' }}
               transition={{ duration: 0.2 }}
-              className="bg-[#111113] border border-[#27272A] rounded-2xl p-4 text-center cursor-default transition-all shadow-md hover:shadow-[#8B5CF6]/10"
+              className="bg-[#111113] border border-[#27272A] rounded-2xl p-5 flex flex-col items-center justify-center text-center cursor-default transition-all shadow-lg hover:shadow-[#8B5CF6]/15 group"
             >
-              <div className="text-sm font-bold text-[#FAFAFA] mb-1">{platform.name}</div>
-              <div className="text-[10px] text-[#A1A1AA] font-mono">{platform.tag}</div>
+              <div className={`w-10 h-10 rounded-xl bg-gradient-to-tr ${platform.color} flex items-center justify-center text-white text-xs font-bold font-mono mb-3 shadow-md group-hover:scale-105 transition-transform`}>
+                {platform.name.substring(0, 2).toUpperCase()}
+              </div>
+              <div className="text-xs font-bold text-white">{platform.name}</div>
             </motion.div>
           ))}
         </div>
