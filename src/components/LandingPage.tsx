@@ -16,9 +16,12 @@ import {
   Eye,
   Film,
   Flame,
-  ArrowDown,
   Terminal,
-  Star
+  Star,
+  LayoutTemplate,
+  Target,
+  Code,
+  Play
 } from 'lucide-react';
 import { DirectorLogoBanner } from './DirectorLogo';
 import { TRENDING_UGC_CONCEPTS } from '../data/conceptsData';
@@ -248,64 +251,108 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
       </section>
 
       {/* 3. HOW IT WORKS (TIMELINE) */}
-      <section id="how-it-works" className="py-24 px-4 sm:px-6 max-w-6xl mx-auto">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="font-inter text-[14px] uppercase tracking-widest text-[#A78BFA] font-medium block mb-3">
-            The Streamlined Workflow
+      <section id="how-it-works" className="py-32 px-4 sm:px-6 max-w-6xl mx-auto relative">
+        <div className="text-center max-w-3xl mx-auto mb-20">
+          <span className="font-inter text-[12px] uppercase tracking-[0.2em] text-[#A78BFA] font-bold block mb-4">
+            THE STREAMLINED WORKFLOW
           </span>
-          <h2 className="font-sora text-[40px] md:text-[48px] font-bold text-[#FAFAFA] tracking-tight">
+          <h2 className="font-sora text-[48px] md:text-[56px] font-bold text-white tracking-tight mb-4">
             How It Works
           </h2>
+          <p className="font-inter text-[16px] md:text-[18px] text-[#A1A1AA] leading-relaxed">
+            From product details to production-ready AI video.<br className="hidden md:block" />
+            Four simple steps. Infinite possibilities.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 relative">
-          {/* Timeline Connector Line */}
-          <div className="hidden md:block absolute top-1/2 left-8 right-8 h-0.5 bg-gradient-to-r from-[#8B5CF6]/10 via-[#8B5CF6]/50 to-[#8B5CF6]/10 -translate-y-8 pointer-events-none" />
+        <div className="relative">
+          {/* Timeline Connecting Line */}
+          <div className="hidden md:block absolute top-1/2 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#8B5CF6]/50 to-transparent -translate-y-1/2 z-0" />
 
-          {[
-            {
-              step: '01',
-              title: 'Describe Product',
-              desc: 'Enter your product name and who it is for. Optional URL. That is all.',
-              icon: Cpu,
-            },
-            {
-              step: '02',
-              title: 'AI Strategy',
-              desc: 'Director.ai formulates hook, lighting specs, timeline, and emotional triggers.',
-              icon: Layers,
-            },
-            {
-              step: '03',
-              title: 'Copy Master Prompt',
-              desc: 'Get your single production-ready MASTER PROMPT with one click.',
-              icon: Copy,
-            },
-            {
-              step: '04',
-              title: 'Generate AI Video',
-              desc: 'Paste directly into Veo, Kling, Runway, or Luma to produce your UGC ad.',
-              icon: Film,
-            },
-          ].map((item, idx) => (
-            <motion.div
-              key={item.step}
-              whileHover={{ y: -6 }}
-              transition={{ duration: 0.2 }}
-              className="bg-[#111113] border border-[#27272A] hover:border-[#8B5CF6]/50 p-6 sm:p-8 rounded-3xl relative flex flex-col justify-between shadow-xl"
-            >
-              <div className="flex items-center justify-between mb-6">
-                <span className="text-4xl font-black text-[#8B5CF6] font-mono">{item.step}</span>
-                <div className="p-3 rounded-2xl bg-[#1C1C20] border border-[#27272A] text-[#A78BFA]">
-                  <item.icon className="w-5 h-5" />
-                </div>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 relative z-10">
+            {[
+              {
+                step: '01',
+                title: 'Describe Product',
+                desc: 'Enter your product name and who it is for. Optional URL. That is all.',
+                icon: LayoutTemplate,
+              },
+              {
+                step: '02',
+                title: 'AI Strategy',
+                desc: 'Director.ai formulates hook, lighting specs, timeline, and emotional triggers.',
+                icon: Target,
+              },
+              {
+                step: '03',
+                title: 'Copy Master Prompt',
+                desc: 'Get your single production-ready MASTER PROMPT with one click.',
+                icon: Code,
+              },
+              {
+                step: '04',
+                title: 'Generate AI Video',
+                desc: 'Paste directly into Veo, Kling, Runway, or Luma to produce your UGC ad.',
+                icon: Play,
+              },
+            ].map((item, idx) => (
+              <div key={item.step} className="relative group">
+                {/* Connecting Node on Line (only on desktop and not first/last if we want, or just between) */}
+                {idx > 0 && (
+                  <div className="hidden md:block absolute top-1/2 -left-[15px] w-[6px] h-[6px] bg-[#C084FC] rounded-full shadow-[0_0_12px_rgba(192,132,252,0.8)] -translate-y-1/2 z-20" />
+                )}
+
+                <motion.div
+                  whileHover={{ y: -4 }}
+                  transition={{ duration: 0.2 }}
+                  className="bg-[#09090B]/80 backdrop-blur-sm border border-[#27272A] group-hover:border-[#8B5CF6]/40 p-6 md:p-8 rounded-[24px] h-full sm:h-[400px] flex flex-col justify-between shadow-xl relative overflow-hidden transition-colors"
+                >
+                  {/* Subtle purple glow at bottom */}
+                  <div className="absolute -bottom-12 -inset-x-10 h-32 bg-[#8B5CF6]/20 blur-[50px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+                  {/* Top Content */}
+                  <div>
+                    <span className="text-[28px] font-bold text-[#8B5CF6] font-sora block mb-8">
+                      {item.step}
+                    </span>
+                    
+                    {/* CSS Styled Glassmorphic Icon Approximation */}
+                    <div className="flex justify-center mb-8">
+                      <div className="relative w-24 h-24 flex items-center justify-center rounded-2xl bg-gradient-to-br from-[#8B5CF6]/20 to-transparent border border-[#8B5CF6]/30 shadow-[0_0_30px_rgba(139,92,246,0.15)] backdrop-blur-md rotate-[-5deg] group-hover:rotate-0 transition-transform duration-300">
+                        <item.icon className="w-10 h-10 text-[#C084FC] drop-shadow-[0_0_8px_rgba(192,132,252,0.8)]" />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Bottom Content */}
+                  <div className="relative z-10">
+                    <h3 className="font-sora text-[22px] font-bold text-[#FAFAFA] mb-3 leading-tight">{item.title}</h3>
+                    <p className="font-inter text-[14px] text-[#A1A1AA] leading-relaxed mb-6">{item.desc}</p>
+                    
+                    <button className="w-10 h-10 rounded-full border border-[#27272A] flex items-center justify-center bg-[#09090B] group-hover:border-[#8B5CF6]/50 transition-colors">
+                      <ArrowRight className="w-4 h-4 text-[#A1A1AA] group-hover:text-[#FAFAFA]" />
+                    </button>
+                  </div>
+                </motion.div>
               </div>
-              <div>
-                <h3 className="font-sora text-[24px] font-semibold text-[#FAFAFA] mb-2">{item.title}</h3>
-                <p className="font-inter text-[16px] text-[#A1A1AA] leading-relaxed">{item.desc}</p>
-              </div>
-            </motion.div>
-          ))}
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom Info Pill */}
+        <div className="mt-16 flex justify-center">
+          <div className="inline-flex flex-col sm:flex-row items-center gap-3 px-6 py-3 rounded-full bg-[#111113] border border-[#27272A]">
+            <div className="flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-[#A78BFA]" />
+              <span className="font-inter text-[13px] text-[#E4E4E7]">
+                Built for creators, marketers, and brands who move fast.
+              </span>
+            </div>
+            <span className="hidden sm:inline text-[#27272A]">|</span>
+            <span className="font-inter text-[13px] text-[#A1A1AA]">
+              No prompt engineering. No guesswork.
+            </span>
+          </div>
         </div>
       </section>
 
