@@ -357,7 +357,6 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
           <div>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#09090B] border border-[#8B5CF6]/50 shadow-[0_0_15px_rgba(139,92,246,0.2)] text-[#E4E4E7] text-[12px] font-inter font-semibold uppercase tracking-wider mb-6">
-              <Flame className="w-4 h-4 text-[#F97316]" />
               <span>Daily Creator Discovery</span>
             </div>
             <h2 className="font-sora text-[48px] md:text-[56px] font-bold text-white tracking-tight mb-4">
@@ -395,10 +394,6 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                     <Layers className="w-3.5 h-3.5" />
                     {concept.nicheCategory}
                   </span>
-                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#111113] border border-[#27272A] font-inter text-[12px] font-medium text-[#22C55E] shadow-sm">
-                    <Flame className="w-3.5 h-3.5 fill-current" />
-                    <span>Score {concept.trendScore}</span>
-                  </div>
                 </div>
 
                 {/* 3D Glassmorphic Image Placeholder */}
