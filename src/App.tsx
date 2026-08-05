@@ -13,7 +13,19 @@ import { DirectorLogoIcon } from './components/DirectorLogo';
 import { MasterPromptInput, MasterPromptResult, AiConceptCard } from './types';
 import { generateLocalMasterPrompt } from './data/generatorEngine';
 import { PageCurtain } from './components/PageCurtain';
-
+import { 
+  Youtube, 
+  Instagram, 
+  Linkedin, 
+  Music, 
+  Mail, 
+  ArrowRight, 
+  ShieldCheck, 
+  Lock, 
+  Zap, 
+  Globe,
+  ChevronDown
+} from 'lucide-react';
 export default function App() {
   const [currentPath, setCurrentPath] = useState<string>(() => {
     if (typeof window !== 'undefined') {
@@ -209,29 +221,155 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-[#27272A] py-8 px-4 text-center text-xs text-[#A1A1AA]">
-        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2 font-mono">
-            <DirectorLogoIcon className="h-6 w-auto" />
-            <span className="font-bold text-[#FAFAFA]">Director.ai</span>
-            <span>— AI UGC Advertisement Master Prompt Generator</span>
+      <footer className="bg-[#09090B] pt-24 pb-8 px-4 sm:px-6 relative border-t border-[#1C1C20] mt-12 rounded-t-[40px]">
+        <div className="max-w-6xl mx-auto">
+          {/* Top Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-12 lg:gap-8 mb-24">
+            
+            {/* Column 1: Brand & Socials */}
+            <div className="md:col-span-1 lg:col-span-2">
+              <div className="mb-6">
+                <DirectorLogoIcon className="h-10 w-auto mb-2" />
+                <div className="text-[10px] font-mono tracking-widest text-[#A1A1AA] uppercase">AI Creative Studio</div>
+              </div>
+              <p className="font-inter text-[14px] text-[#A1A1AA] leading-relaxed max-w-sm mb-8">
+                The AI UGC Ad Director that turns ideas into scroll-stopping ads — in seconds. <br/> No prompts. Just results.
+              </p>
+              <div className="flex items-center gap-3">
+                <button className="w-10 h-10 rounded-full bg-[#111113] border border-[#27272A] flex items-center justify-center text-[#A1A1AA] hover:text-[#C084FC] hover:border-[#8B5CF6]/50 transition-colors">
+                  <Youtube className="w-4 h-4" />
+                </button>
+                <button className="w-10 h-10 rounded-full bg-[#111113] border border-[#27272A] flex items-center justify-center text-[#A1A1AA] hover:text-[#C084FC] hover:border-[#8B5CF6]/50 transition-colors">
+                  <Instagram className="w-4 h-4" />
+                </button>
+                <button className="w-10 h-10 rounded-full bg-[#111113] border border-[#27272A] flex items-center justify-center text-[#A1A1AA] hover:text-[#C084FC] hover:border-[#8B5CF6]/50 transition-colors">
+                  <Music className="w-4 h-4" />
+                </button>
+                <button className="w-10 h-10 rounded-full bg-[#111113] border border-[#27272A] flex items-center justify-center text-[#A1A1AA] hover:text-[#C084FC] hover:border-[#8B5CF6]/50 transition-colors">
+                  <Linkedin className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+
+            {/* Column 2: PRODUCT */}
+            <div>
+              <div className="flex items-center gap-2 mb-6">
+                <span className="font-inter text-[12px] font-bold text-[#FAFAFA] tracking-wider uppercase">PRODUCT</span>
+                <div className="w-1.5 h-1.5 rounded-full bg-[#8B5CF6] shadow-[0_0_8px_rgba(139,92,246,0.8)]" />
+              </div>
+              <ul className="space-y-4 font-inter text-[14px] text-[#A1A1AA]">
+                <li><button className="hover:text-[#FAFAFA] transition-colors">How It Works</button></li>
+                <li><button onClick={() => navigateTo('/ideas')} className="hover:text-[#FAFAFA] transition-colors">Trending Concepts</button></li>
+                <li><button onClick={() => navigateTo('/pricing')} className="hover:text-[#FAFAFA] transition-colors">Pricing</button></li>
+                <li><button className="hover:text-[#FAFAFA] transition-colors">Update Log</button></li>
+                <li><button className="hover:text-[#FAFAFA] transition-colors">Roadmap</button></li>
+              </ul>
+            </div>
+
+            {/* Column 3: RESOURCES */}
+            <div>
+              <div className="flex items-center gap-2 mb-6">
+                <span className="font-inter text-[12px] font-bold text-[#FAFAFA] tracking-wider uppercase">RESOURCES</span>
+                <div className="w-1.5 h-1.5 rounded-full bg-[#8B5CF6] shadow-[0_0_8px_rgba(139,92,246,0.8)]" />
+              </div>
+              <ul className="space-y-4 font-inter text-[14px] text-[#A1A1AA]">
+                <li><button className="hover:text-[#FAFAFA] transition-colors">Help Center</button></li>
+                <li><button className="hover:text-[#FAFAFA] transition-colors">Tutorials</button></li>
+                <li><button className="hover:text-[#FAFAFA] transition-colors">Blog</button></li>
+                <li><button className="hover:text-[#FAFAFA] transition-colors">API Docs</button></li>
+                <li><button className="hover:text-[#FAFAFA] transition-colors">Affiliate Program</button></li>
+              </ul>
+            </div>
+
+            {/* Column 4: COMPANY */}
+            <div>
+              <div className="flex items-center gap-2 mb-6">
+                <span className="font-inter text-[12px] font-bold text-[#FAFAFA] tracking-wider uppercase">COMPANY</span>
+                <div className="w-1.5 h-1.5 rounded-full bg-[#8B5CF6] shadow-[0_0_8px_rgba(139,92,246,0.8)]" />
+              </div>
+              <ul className="space-y-4 font-inter text-[14px] text-[#A1A1AA]">
+                <li><button className="hover:text-[#FAFAFA] transition-colors">About Us</button></li>
+                <li><button className="hover:text-[#FAFAFA] transition-colors">Careers</button></li>
+                <li><button onClick={() => navigateTo('/contact')} className="hover:text-[#FAFAFA] transition-colors">Contact</button></li>
+                <li><button className="hover:text-[#FAFAFA] transition-colors">Press Kit</button></li>
+                <li><button className="hover:text-[#FAFAFA] transition-colors">Brand Assets</button></li>
+              </ul>
+            </div>
+
+            {/* Column 5: LEGAL */}
+            <div>
+              <div className="flex items-center gap-2 mb-6">
+                <span className="font-inter text-[12px] font-bold text-[#FAFAFA] tracking-wider uppercase">LEGAL</span>
+                <div className="w-1.5 h-1.5 rounded-full bg-[#8B5CF6] shadow-[0_0_8px_rgba(139,92,246,0.8)]" />
+              </div>
+              <ul className="space-y-4 font-inter text-[14px] text-[#A1A1AA]">
+                <li><button onClick={() => navigateTo('/privacy')} className="hover:text-[#FAFAFA] transition-colors">Privacy Policy</button></li>
+                <li><button onClick={() => navigateTo('/terms')} className="hover:text-[#FAFAFA] transition-colors">Terms of Use</button></li>
+                <li><button className="hover:text-[#FAFAFA] transition-colors">Refund Policy</button></li>
+                <li><button className="hover:text-[#FAFAFA] transition-colors">Cookies Policy</button></li>
+                <li><button className="hover:text-[#FAFAFA] transition-colors">Data Policy</button></li>
+              </ul>
+            </div>
+
           </div>
 
-          <div className="flex items-center gap-4 text-xs font-medium">
-            <button onClick={() => navigateTo('/ideas')} className="hover:text-white cursor-pointer transition-colors">
-              Trending Concepts
-            </button>
-            <button onClick={() => navigateTo('/pricing')} className="hover:text-white cursor-pointer transition-colors">
-              Pricing
-            </button>
-            <button onClick={() => navigateTo('/privacy')} className="hover:text-white cursor-pointer transition-colors">
-              Privacy
-            </button>
-            <button onClick={() => navigateTo('/terms')} className="hover:text-white cursor-pointer transition-colors">
-              Terms
-            </button>
-            <button onClick={() => navigateTo('/contact')} className="hover:text-white cursor-pointer transition-colors">
-              Contact
+          {/* Middle Section: Newsletter */}
+          <div className="w-full relative bg-[#09090B] border border-[#8B5CF6]/20 rounded-[32px] p-8 sm:p-10 mb-16 overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8 shadow-[0_0_50px_rgba(139,92,246,0.05)]">
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#8B5CF6]/10 blur-[100px] rounded-full pointer-events-none -translate-y-1/2 translate-x-1/4" />
+            
+            <div className="flex items-center gap-6 relative z-10 w-full md:w-auto">
+              <div className="w-16 h-16 rounded-[20px] bg-[#111113] border border-[#8B5CF6]/30 flex items-center justify-center shrink-0 shadow-[inset_0_0_20px_rgba(139,92,246,0.2)] relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#8B5CF6]/20 to-transparent opacity-50" />
+                <Mail className="w-7 h-7 text-[#C084FC] relative z-10" />
+              </div>
+              <div>
+                <h3 className="font-sora text-[22px] font-bold text-[#FAFAFA] mb-2">Stay in the loop</h3>
+                <p className="font-inter text-[14px] text-[#A1A1AA] max-w-sm">
+                  Get exclusive creator insights, new features, and proven UGC strategies — straight to your inbox.
+                </p>
+              </div>
+            </div>
+
+            <div className="relative z-10 w-full md:w-auto flex-1 max-w-md">
+              <div className="flex p-1.5 bg-[#111113] border border-[#27272A] rounded-2xl focus-within:border-[#8B5CF6]/50 transition-colors">
+                <input 
+                  type="email" 
+                  placeholder="Enter your email" 
+                  className="flex-1 bg-transparent border-none outline-none px-4 text-[15px] font-inter text-[#FAFAFA] placeholder:text-[#52525B]"
+                />
+                <button className="bg-gradient-to-r from-[#8B5CF6] to-[#6615F6] hover:from-[#A78BFA] hover:to-[#8B5CF6] text-white font-inter font-semibold text-[14px] px-6 py-3 rounded-xl flex items-center gap-2 transition-all shadow-[0_0_15px_rgba(139,92,246,0.4)]">
+                  Subscribe
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Bar */}
+          <div className="border-t border-[#1C1C20] pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="font-inter text-[13px] text-[#71717A]">
+              © 2025 Director.ai. All rights reserved.
+            </div>
+
+            <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-12 text-[13px] font-inter text-[#A1A1AA]">
+              <div className="flex items-center gap-2">
+                <ShieldCheck className="w-4 h-4 text-[#8B5CF6]" />
+                <span>Zero Data Retention</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Lock className="w-4 h-4 text-[#8B5CF6]" />
+                <span>Enterprise Grade Security</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Zap className="w-4 h-4 text-[#8B5CF6]" />
+                <span>Built for Speed</span>
+              </div>
+            </div>
+
+            <button className="flex items-center gap-2 px-4 py-2 rounded-xl border border-[#27272A] bg-[#111113] text-[#A1A1AA] hover:text-[#FAFAFA] text-[13px] font-inter transition-colors">
+              <Globe className="w-4 h-4 text-[#8B5CF6]" />
+              <span>English</span>
+              <ChevronDown className="w-4 h-4 ml-2" />
             </button>
           </div>
         </div>
