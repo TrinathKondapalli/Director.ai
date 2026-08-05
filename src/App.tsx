@@ -15,7 +15,13 @@ import { generateLocalMasterPrompt } from './data/generatorEngine';
 
 export default function App() {
   const [currentPath, setCurrentPath] = useState<string>(() => {
-    return window.location.pathname || '/';
+    if (typeof window !== 'undefined') {
+      const p = window.location.pathname;
+      if (p === '/generate' || p === '/result' || p === '/ideas' || p === '/pricing' || p === '/privacy' || p === '/terms' || p === '/contact') {
+        return p;
+      }
+    }
+    return '/';
   });
 
   const [isGenerating, setIsGenerating] = useState<boolean>(false);
@@ -119,7 +125,7 @@ export default function App() {
           <LoadingScreen onComplete={handleLoadingComplete} />
         ) : (
           <>
-            {(currentPath === '/' || currentPath === '' || currentPath.endsWith('/') || !['/generate', '/result', '/ideas', '/pricing', '/privacy', '/terms', '/contact'].includes(currentPath)) && (
+            {currentPath === '/' && (
               <LandingPage onNavigate={navigateTo} />
             )}
 
