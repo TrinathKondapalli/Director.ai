@@ -96,7 +96,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
           className="font-sora text-[40px] sm:text-[64px] md:text-[72px] font-extrabold tracking-[-0.04em] text-[#FAFAFA] max-w-5xl leading-[0.92] mb-6"
         >
           Create AI UGC Ads <br className="hidden md:block" />
-          <span className="text-[#A78BFA]">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D649F2] to-[#813FF7]">
             Without Writing Complex Prompts.
           </span>
         </motion.h1>
