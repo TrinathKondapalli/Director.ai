@@ -59,7 +59,7 @@ STRICT GUIDELINES:
    - Sound Design & Background Audio
    - Call To Action (CTA)
    - Thumbnail Prompt & Platform Optimization
-4. Also generate matching YouTube (Title max 100 chars, Description 150-300 words with CTA & website mention, 10-15 Hashtags, Thumbnail Idea & Prompt), Instagram (Caption 100-200 words with hook & CTA, 8-12 Hashtags, Emojis), and Facebook package (Conversational Caption, Hashtags, CTA).
+4. Also generate matching YouTube (Title max 100 chars, Description 150-300 words with CTA & website mention, 10-15 Tags formatted as comma-separated phrase tags STRICTLY under 500 total characters for YouTube Studio, Thumbnail Idea & Prompt), Instagram (Caption 100-200 words with hook & CTA, 8-12 Hashtags, Emojis), and Facebook package (Conversational Caption, Hashtags, CTA).
 5. Output ONLY a JSON object conforming strictly to the format specified.`;
 
     const userPrompt = `Generate the Ultimate AI UGC Ad Master Prompt & Complete Publishing Package for Director.ai based on:

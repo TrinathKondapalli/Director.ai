@@ -415,30 +415,54 @@ ${(fb?.hashtags || []).join(' ')}`;
                 </div>
               </div>
 
-              {/* YouTube Search Tags Card (Comma Separated) */}
-              <div className="bg-[#111113] border border-[#27272A] p-5 rounded-2xl space-y-2">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono uppercase tracking-wider text-[#A1A1AA] font-bold flex items-center gap-1.5">
-                    <Tag className="w-3.5 h-3.5 text-red-400" />
-                    <span>YouTube Tags (Comma-Separated for YouTube Studio)</span>
-                  </span>
-                  <button
-                    onClick={() => {
-                      const tagsFormatted = yt.hashtags
-                        .map((tag) => tag.replace(/^#/, '').trim())
-                        .join(', ');
-                      copyToClipboard(tagsFormatted, 'YouTube Tags', 'yt-tags');
-                    }}
-                    className="px-3 py-1 rounded-lg bg-[#09090B] hover:bg-[#1C1C20] text-[#A1A1AA] hover:text-white border border-[#27272A] text-xs font-mono transition-colors flex items-center gap-1 cursor-pointer"
-                  >
-                    {activeCopiedKey === 'yt-tags' ? <Check className="w-3 h-3 text-[#22C55E]" /> : <Copy className="w-3 h-3" />}
-                    <span>Copy Tags</span>
-                  </button>
-                </div>
-                <div className="bg-[#09090B] border border-[#27272A]/80 p-4 rounded-xl text-xs font-mono text-[#FAFAFA] leading-relaxed selection:bg-[#8B5CF6]/40">
-                  {yt.hashtags.map((tag) => tag.replace(/^#/, '').trim()).join(', ')}
-                </div>
-              </div>
+              {/* YouTube Search Tags Card (Strict 500-Character Limit for YouTube Studio) */}
+              {(() => {
+                const rawTagList = yt.hashtags.map((tag) => tag.replace(/^#/, '').trim());
+                // Build tag list strictly under 500 characters
+                const fitTags: string[] = [];
+                let currentLength = 0;
+                for (const t of rawTagList) {
+                  const addedLength = fitTags.length > 0 ? t.length + 2 : t.length;
+                  if (currentLength + addedLength <= 500) {
+                    fitTags.push(t);
+                    currentLength += addedLength;
+                  } else {
+                    break;
+                  }
+                }
+                const formattedTagsString = fitTags.join(', ');
+
+                return (
+                  <div className="bg-[#111113] border border-[#27272A] p-5 rounded-2xl space-y-2">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-mono uppercase tracking-wider text-[#A1A1AA] font-bold flex items-center gap-1.5">
+                          <Tag className="w-3.5 h-3.5 text-red-400" />
+                          <span>YouTube Tags (Comma-Separated for YouTube Studio)</span>
+                        </span>
+                        <span className={`px-2 py-0.5 rounded text-[10px] font-mono font-semibold ${
+                          formattedTagsString.length <= 500
+                            ? 'bg-[#22C55E]/15 border border-[#22C55E]/30 text-[#22C55E]'
+                            : 'bg-red-500/15 border border-red-500/30 text-red-400'
+                        }`}>
+                          {formattedTagsString.length}/500 chars
+                        </span>
+                      </div>
+
+                      <button
+                        onClick={() => copyToClipboard(formattedTagsString, 'YouTube Tags', 'yt-tags')}
+                        className="px-3 py-1 rounded-lg bg-[#09090B] hover:bg-[#1C1C20] text-[#A1A1AA] hover:text-white border border-[#27272A] text-xs font-mono transition-colors flex items-center gap-1 cursor-pointer"
+                      >
+                        {activeCopiedKey === 'yt-tags' ? <Check className="w-3 h-3 text-[#22C55E]" /> : <Copy className="w-3 h-3" />}
+                        <span>Copy Tags</span>
+                      </button>
+                    </div>
+                    <div className="bg-[#09090B] border border-[#27272A]/80 p-4 rounded-xl text-xs font-mono text-[#FAFAFA] leading-relaxed selection:bg-[#8B5CF6]/40">
+                      {formattedTagsString}
+                    </div>
+                  </div>
+                );
+              })()}
 
               {/* Thumbnail Prompt Card */}
               <div className="bg-[#111113] border border-[#27272A] p-5 rounded-2xl space-y-2">
