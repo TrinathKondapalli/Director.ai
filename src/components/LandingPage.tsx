@@ -167,7 +167,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
       </section>
 
       {/* INFINITE MARQUEE PLATFORMS */}
-      <section className="py-12 border-t border-[#27272A] overflow-hidden bg-[#07090E]">
+      <section className="py-12 overflow-hidden bg-[#07090E]">
         <div className="text-center mb-8">
           <span className="font-inter text-[14px] text-[#A1A1AA] font-medium">
             Works with leading AI video generators
@@ -204,7 +204,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
       </section>
 
       {/* 3. HOW IT WORKS (TIMELINE) */}
-      <section id="how-it-works" className="py-24 px-4 sm:px-6 max-w-6xl mx-auto border-t border-[#27272A]">
+      <section id="how-it-works" className="py-24 px-4 sm:px-6 max-w-6xl mx-auto">
         <div className="text-center max-w-2xl mx-auto mb-16">
           <span className="font-inter text-[14px] uppercase tracking-widest text-[#A78BFA] font-medium block mb-3">
             The Streamlined Workflow
@@ -266,7 +266,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
       </section>
 
       {/* 4. TRENDING UGC CONCEPTS PREVIEW */}
-      <section className="py-24 px-4 sm:px-6 max-w-6xl mx-auto border-t border-[#27272A]">
+      <section className="py-24 px-4 sm:px-6 max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#8B5CF6]/15 border border-[#8B5CF6]/30 text-[#A78BFA] text-[14px] font-inter font-medium mb-3">
@@ -330,7 +330,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
       </section>
 
       {/* 5. WHY DIRECTOR.AI */}
-      <section className="py-24 px-4 sm:px-6 max-w-6xl mx-auto border-t border-[#27272A]">
+      <section className="py-24 px-4 sm:px-6 max-w-6xl mx-auto">
         <div className="text-center max-w-2xl mx-auto mb-16">
           <span className="font-inter text-[14px] uppercase tracking-widest text-[#A78BFA] font-medium block mb-3">
             Built For Modern Creators & Marketers
@@ -374,7 +374,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
       </section>
 
       {/* 6. PRIVACY SECTION */}
-      <section className="py-24 px-4 sm:px-6 max-w-6xl mx-auto border-t border-[#27272A]">
+      <section className="py-24 px-4 sm:px-6 max-w-6xl mx-auto">
         <div className="bg-[#111113] border border-[#27272A] rounded-3xl p-8 sm:p-14 text-center relative overflow-hidden shadow-2xl">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#22C55E]/15 border border-[#22C55E]/30 text-[#22C55E] text-xs font-mono mb-6">
             <ShieldCheck className="w-4 h-4" />
@@ -415,7 +415,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
       </section>
 
       {/* 7. PRICING */}
-      <section className="py-24 px-4 sm:px-6 max-w-6xl mx-auto border-t border-[#27272A]">
+      <section className="py-24 px-4 sm:px-6 max-w-6xl mx-auto">
         <div className="text-center max-w-2xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#8B5CF6]/15 border border-[#8B5CF6]/30 text-[#A78BFA] text-[14px] font-inter font-medium mb-4">
             <Zap className="w-4 h-4 text-[#A78BFA]" />
@@ -519,7 +519,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
       </section>
 
       {/* 8. FAQ SECTION */}
-      <section className="py-24 px-4 sm:px-6 max-w-4xl mx-auto border-t border-[#27272A]">
+      <section className="py-24 px-4 sm:px-6 max-w-4xl mx-auto">
         <div className="text-center max-w-2xl mx-auto mb-16">
           <span className="font-inter text-[14px] uppercase tracking-widest text-[#A78BFA] font-medium block mb-2">
             Got Questions?
