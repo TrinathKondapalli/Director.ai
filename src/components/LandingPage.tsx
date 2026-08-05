@@ -21,7 +21,9 @@ import {
   LayoutTemplate,
   Target,
   Code,
-  Play
+  Play,
+  MessageSquare,
+  ShoppingBag
 } from 'lucide-react';
 import { DirectorLogoBanner } from './DirectorLogo';
 import { TRENDING_UGC_CONCEPTS } from '../data/conceptsData';
@@ -687,41 +689,70 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
       </section>
 
       {/* 8. FAQ SECTION */}
-      <section className="py-24 px-4 sm:px-6 max-w-4xl mx-auto">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="font-inter text-[14px] uppercase tracking-widest text-[#A78BFA] font-medium block mb-2">
-            Got Questions?
-          </span>
-          <h2 className="font-sora text-[40px] md:text-[48px] font-bold text-[#FAFAFA] tracking-tight">
-            Frequently Asked Questions
-          </h2>
+      <section className="py-32 px-4 sm:px-6 relative overflow-hidden bg-[#09090B]">
+        {/* Immersive Background Glows & Grid */}
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
+          <div className="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#8B5CF6]/15 blur-[120px] rounded-full" />
+          <div className="absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#8B5CF6]/15 blur-[120px] rounded-full" />
+          
+          <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at center, #FAFAFA 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
         </div>
 
-        <div className="space-y-4">
-          {faqs.map((faq, idx) => (
-            <div
-              key={idx}
-              className="bg-[#111113] border border-[#27272A] rounded-2xl overflow-hidden transition-colors"
-            >
-              <button
-                onClick={() => toggleFaq(idx)}
-                className="w-full px-6 py-5 text-left flex items-center justify-between font-sora font-semibold text-[18px] text-[#FAFAFA] cursor-pointer hover:text-[#A78BFA] transition-colors"
-              >
-                <span>{faq.q}</span>
-                {openFaq === idx ? (
-                  <ChevronUp className="w-5 h-5 text-[#8B5CF6] shrink-0" />
-                ) : (
-                  <ChevronDown className="w-5 h-5 text-[#A1A1AA] shrink-0" />
-                )}
-              </button>
-
-              {openFaq === idx && (
-                <div className="px-6 pb-6 font-inter text-[16px] text-[#A1A1AA] leading-relaxed border-t border-[#27272A]/50 pt-4">
-                  {faq.a}
-                </div>
-              )}
+        <div className="max-w-4xl mx-auto relative z-10">
+          <div className="text-center mb-16 flex flex-col items-center">
+            <span className="font-inter text-[12px] uppercase tracking-[0.3em] text-[#A78BFA] font-bold block mb-4">
+              GOT QUESTIONS?
+            </span>
+            <h2 className="font-sora text-[40px] md:text-[48px] font-bold text-[#FAFAFA] tracking-tight mb-6">
+              Frequently Asked Questions
+            </h2>
+            <p className="font-inter text-[16px] text-[#A1A1AA] leading-relaxed max-w-lg mx-auto mb-8">
+              Everything you need to know about Director.ai and how it helps you create better UGC ads.
+            </p>
+            
+            <div className="flex items-center justify-center gap-3">
+              <div className="h-[1px] w-12 bg-gradient-to-l from-[#8B5CF6]/60 to-transparent" />
+              <Sparkles className="w-3.5 h-3.5 text-[#C084FC]" />
+              <div className="h-[1px] w-12 bg-gradient-to-r from-[#8B5CF6]/60 to-transparent" />
             </div>
-          ))}
+          </div>
+
+          <div className="space-y-4">
+            {faqs.map((faq, idx) => {
+              const Icon = [MessageSquare, Sparkles, Lock, ShoppingBag, Terminal][idx] || MessageSquare;
+              return (
+                <div
+                  key={idx}
+                  className="bg-[#09090B] border border-[#8B5CF6]/20 rounded-2xl overflow-hidden transition-all hover:border-[#8B5CF6]/40 shadow-lg"
+                >
+                  <button
+                    onClick={() => toggleFaq(idx)}
+                    className="w-full px-6 py-5 text-left flex items-center justify-between cursor-pointer group"
+                  >
+                    <div className="flex items-center gap-5">
+                      <div className="w-10 h-10 rounded-xl bg-[#8B5CF6]/5 border border-[#8B5CF6]/20 flex items-center justify-center shrink-0 group-hover:bg-[#8B5CF6]/10 transition-colors">
+                        <Icon className="w-4 h-4 text-[#A78BFA]" />
+                      </div>
+                      <span className="font-sora font-semibold text-[16px] sm:text-[17px] text-[#FAFAFA] group-hover:text-[#A78BFA] transition-colors">
+                        {faq.q}
+                      </span>
+                    </div>
+                    {openFaq === idx ? (
+                      <ChevronUp className="w-5 h-5 text-[#8B5CF6] shrink-0 ml-4" />
+                    ) : (
+                      <ChevronDown className="w-5 h-5 text-[#A1A1AA] shrink-0 ml-4 group-hover:text-[#8B5CF6] transition-colors" />
+                    )}
+                  </button>
+
+                  {openFaq === idx && (
+                    <div className="px-6 pb-6 pl-[84px] font-inter text-[15px] text-[#A1A1AA] leading-relaxed">
+                      {faq.a}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
         </div>
       </section>
     </div>
