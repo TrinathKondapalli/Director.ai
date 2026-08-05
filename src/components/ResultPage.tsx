@@ -61,6 +61,7 @@ export const ResultPage: React.FC<ResultPageProps> = ({ result, onCreateAnother 
   // Copy All YouTube Package
   const handleCopyYouTubeAll = () => {
     if (!yt) return;
+    const formattedTags = yt.hashtags.map((tag) => tag.replace(/^#/, '').trim()).join(', ');
     const structured = `--- YOUTUBE PUBLISHING PACKAGE ---
 TITLE:
 ${yt.title}
@@ -68,8 +69,8 @@ ${yt.title}
 DESCRIPTION:
 ${yt.description}
 
-HASHTAGS:
-${yt.hashtags.join(' ')}
+YOUTUBE TAGS:
+${formattedTags}
 
 THUMBNAIL PROMPT:
 ${yt.thumbnailPrompt}
@@ -414,27 +415,28 @@ ${(fb?.hashtags || []).join(' ')}`;
                 </div>
               </div>
 
-              {/* Hashtags Card */}
+              {/* YouTube Search Tags Card (Comma Separated) */}
               <div className="bg-[#111113] border border-[#27272A] p-5 rounded-2xl space-y-2">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-mono uppercase tracking-wider text-[#A1A1AA] font-bold flex items-center gap-1.5">
                     <Tag className="w-3.5 h-3.5 text-red-400" />
-                    <span>Hashtags (10–15 Broad & Niche)</span>
+                    <span>YouTube Tags (Comma-Separated for YouTube Studio)</span>
                   </span>
                   <button
-                    onClick={() => copyToClipboard(yt.hashtags.join(' '), 'YouTube Hashtags', 'yt-tags')}
+                    onClick={() => {
+                      const tagsFormatted = yt.hashtags
+                        .map((tag) => tag.replace(/^#/, '').trim())
+                        .join(', ');
+                      copyToClipboard(tagsFormatted, 'YouTube Tags', 'yt-tags');
+                    }}
                     className="px-3 py-1 rounded-lg bg-[#09090B] hover:bg-[#1C1C20] text-[#A1A1AA] hover:text-white border border-[#27272A] text-xs font-mono transition-colors flex items-center gap-1 cursor-pointer"
                   >
                     {activeCopiedKey === 'yt-tags' ? <Check className="w-3 h-3 text-[#22C55E]" /> : <Copy className="w-3 h-3" />}
-                    <span>Copy</span>
+                    <span>Copy Tags</span>
                   </button>
                 </div>
-                <div className="bg-[#09090B] border border-[#27272A]/80 p-3.5 rounded-xl text-xs font-mono text-red-400 flex flex-wrap gap-2">
-                  {yt.hashtags.map((tag, tIdx) => (
-                    <span key={tIdx} className="px-2.5 py-1 rounded-lg bg-red-500/10 border border-red-500/20">
-                      {tag}
-                    </span>
-                  ))}
+                <div className="bg-[#09090B] border border-[#27272A]/80 p-4 rounded-xl text-xs font-mono text-[#FAFAFA] leading-relaxed selection:bg-[#8B5CF6]/40">
+                  {yt.hashtags.map((tag) => tag.replace(/^#/, '').trim()).join(', ')}
                 </div>
               </div>
 
