@@ -542,41 +542,41 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
       </section>
 
       {/* 6. PRIVACY SECTION */}
-      <section className="py-24 px-4 sm:px-6 max-w-6xl mx-auto">
-        <div className="bg-[#111113] border border-[#27272A] rounded-3xl p-8 sm:p-14 text-center relative overflow-hidden shadow-2xl">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#22C55E]/15 border border-[#22C55E]/30 text-[#22C55E] text-xs font-mono mb-6">
+      <section className="py-32 px-4 sm:px-6 bg-[#09090B] relative z-10">
+        <div className="max-w-6xl mx-auto bg-[#111113] border border-[#27272A] rounded-[32px] p-8 sm:p-16 text-center relative overflow-hidden shadow-2xl">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#22C55E]/10 border border-[#22C55E]/20 text-[#4ADE80] text-[13px] font-inter font-medium mb-8 shadow-sm">
             <ShieldCheck className="w-4 h-4" />
             <span>Zero Data Retention</span>
           </div>
 
-          <h2 className="font-sora text-[40px] md:text-[48px] font-bold text-[#FAFAFA] tracking-tight mb-6">
+          <h2 className="font-sora text-[40px] md:text-[56px] font-bold text-white tracking-tight mb-6 leading-tight">
             Your Ideas Stay Yours.
           </h2>
 
-          <p className="font-inter text-[16px] sm:text-[18px] text-[#A1A1AA] max-w-2xl mx-auto leading-relaxed mb-10">
+          <p className="font-inter text-[16px] sm:text-[18px] text-[#A1A1AA] max-w-3xl mx-auto leading-relaxed mb-14">
             Director.ai never stores prompts, products, or generated content. Everything exists only while you're using the application. Once you refresh or leave the page, it's gone forever.
           </p>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto text-left">
-            <div className="bg-[#09090B] border border-[#27272A] p-5 rounded-2xl">
-              <Lock className="w-5 h-5 text-[#22C55E] mb-3" />
-              <div className="text-sm font-bold text-[#FAFAFA] mb-1">No Database</div>
-              <div className="text-xs text-[#A1A1AA]">Zero persistent records</div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-5 max-w-4xl mx-auto text-left">
+            <div className="bg-[#09090B] border border-[#27272A] p-6 rounded-[24px] hover:border-[#22C55E]/30 transition-colors">
+              <Lock className="w-5 h-5 text-[#4ADE80] mb-4" />
+              <div className="text-[15px] font-bold text-[#FAFAFA] mb-1.5">No Database</div>
+              <div className="text-[13px] text-[#A1A1AA]">Zero persistent records</div>
             </div>
-            <div className="bg-[#09090B] border border-[#27272A] p-5 rounded-2xl">
-              <Lock className="w-5 h-5 text-[#22C55E] mb-3" />
-              <div className="text-sm font-bold text-[#FAFAFA] mb-1">No History</div>
-              <div className="text-xs text-[#A1A1AA]">No prompts saved</div>
+            <div className="bg-[#09090B] border border-[#27272A] p-6 rounded-[24px] hover:border-[#22C55E]/30 transition-colors">
+              <Lock className="w-5 h-5 text-[#4ADE80] mb-4" />
+              <div className="text-[15px] font-bold text-[#FAFAFA] mb-1.5">No History</div>
+              <div className="text-[13px] text-[#A1A1AA]">No prompts saved</div>
             </div>
-            <div className="bg-[#09090B] border border-[#27272A] p-5 rounded-2xl">
-              <Lock className="w-5 h-5 text-[#22C55E] mb-3" />
-              <div className="text-sm font-bold text-[#FAFAFA] mb-1">No Cookies</div>
-              <div className="text-xs text-[#A1A1AA]">Clean browser session</div>
+            <div className="bg-[#09090B] border border-[#27272A] p-6 rounded-[24px] hover:border-[#22C55E]/30 transition-colors">
+              <Lock className="w-5 h-5 text-[#4ADE80] mb-4" />
+              <div className="text-[15px] font-bold text-[#FAFAFA] mb-1.5">No Cookies</div>
+              <div className="text-[13px] text-[#A1A1AA]">Clean browser session</div>
             </div>
-            <div className="bg-[#09090B] border border-[#27272A] p-5 rounded-2xl">
-              <Lock className="w-5 h-5 text-[#22C55E] mb-3" />
-              <div className="text-sm font-bold text-[#FAFAFA] mb-1">Memory Only</div>
-              <div className="text-xs text-[#A1A1AA]">Clears on refresh</div>
+            <div className="bg-[#09090B] border border-[#27272A] p-6 rounded-[24px] hover:border-[#22C55E]/30 transition-colors">
+              <Lock className="w-5 h-5 text-[#4ADE80] mb-4" />
+              <div className="text-[15px] font-bold text-[#FAFAFA] mb-1.5">Memory Only</div>
+              <div className="text-[13px] text-[#A1A1AA]">Clears on refresh</div>
             </div>
           </div>
         </div>
