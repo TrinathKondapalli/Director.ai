@@ -24,7 +24,11 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
           onClick={() => handleMobileNav('/')}
           className="cursor-pointer focus:outline-none flex items-center group active:scale-95 transition-transform"
         >
-          <DirectorLogoBanner size="sm" showBadge={true} />
+          <img 
+            src="/Horizontal_Logo.png" 
+            alt="Director.ai" 
+            className="h-10 sm:h-12 w-auto object-contain"
+          />
         </button>
 
         {/* Desktop Nav Links */}
