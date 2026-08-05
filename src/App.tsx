@@ -12,6 +12,7 @@ import { ContactPage } from './components/ContactPage';
 import { DirectorLogoIcon } from './components/DirectorLogo';
 import { MasterPromptInput, MasterPromptResult, AiConceptCard } from './types';
 import { generateLocalMasterPrompt } from './data/generatorEngine';
+import { PageCurtain } from './components/PageCurtain';
 
 export default function App() {
   const [currentPath, setCurrentPath] = useState<string>(() => {
@@ -30,6 +31,9 @@ export default function App() {
   const [activeResult, setActiveResult] = useState<MasterPromptResult | null>(null);
   const [initialGeneratorValues, setInitialGeneratorValues] = useState<Partial<MasterPromptInput>>({});
 
+  const [isTransitioning, setIsTransitioning] = useState<boolean>(false);
+  const [incomingPageName, setIncomingPageName] = useState<string>('');
+
   // Sync route with browser popstate
   useEffect(() => {
     const handlePopState = () => {
@@ -41,9 +45,31 @@ export default function App() {
   }, []);
 
   const navigateTo = (path: string) => {
-    window.history.pushState({}, '', path);
-    setCurrentPath(path);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (path === currentPath) return;
+
+    let pageName = 'Home';
+    if (path === '/generate') pageName = 'Generate';
+    if (path === '/ideas') pageName = 'Trending Concepts';
+    if (path === '/pricing') pageName = 'Pricing';
+    if (path === '/privacy') pageName = 'Privacy Policy';
+    if (path === '/terms') pageName = 'Terms of Service';
+    if (path === '/contact') pageName = 'Contact Us';
+    if (path === '/result') pageName = 'Master Prompt';
+
+    setIncomingPageName(pageName);
+    setIsTransitioning(true);
+
+    // Wait for the curtain to fully cover the screen (matches animation duration)
+    setTimeout(() => {
+      window.history.pushState({}, '', path);
+      setCurrentPath(path);
+      window.scrollTo({ top: 0, behavior: 'instant' });
+
+      // After route changes, pull the curtain away
+      setTimeout(() => {
+        setIsTransitioning(false);
+      }, 50);
+    }, 600);
   };
 
   const handleGeneratePrompt = async (input: MasterPromptInput) => {
@@ -118,6 +144,8 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#09090B] text-[#FAFAFA] flex flex-col font-sans selection:bg-[#8B5CF6]/30">
+      <PageCurtain isVisible={isTransitioning} title={incomingPageName} />
+      
       <Navbar currentPath={currentPath} onNavigate={navigateTo} />
 
       <main className="flex-1">
