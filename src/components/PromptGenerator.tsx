@@ -64,7 +64,7 @@ export const PromptGenerator: React.FC<PromptGeneratorProps> = ({
             <button
               type="button"
               onClick={() => handlePreFillSample('serum')}
-              className="text-[11px] text-[#8B5CF6] hover:text-white transition-colors underline cursor-pointer"
+              className="text-[11px] text-[#6615F6] hover:text-white transition-colors underline cursor-pointer"
             >
               Skincare
             </button>
@@ -72,7 +72,7 @@ export const PromptGenerator: React.FC<PromptGeneratorProps> = ({
             <button
               type="button"
               onClick={() => handlePreFillSample('ring')}
-              className="text-[11px] text-[#8B5CF6] hover:text-white transition-colors underline cursor-pointer"
+              className="text-[11px] text-[#6615F6] hover:text-white transition-colors underline cursor-pointer"
             >
               Smart Ring
             </button>
@@ -87,7 +87,7 @@ export const PromptGenerator: React.FC<PromptGeneratorProps> = ({
           className="bg-[#111113] border border-[#27272A] rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden"
         >
           <div className="mb-6">
-            <div className="w-10 h-10 rounded-xl bg-[#6615F6]/20 border border-[#6615F6]/40 flex items-center justify-center text-[#8B5CF6] mb-4">
+            <div className="w-10 h-10 rounded-xl bg-[#6615F6]/20 border border-[#6615F6]/40 flex items-center justify-center text-[#6615F6] mb-4">
               <Clapperboard className="w-5 h-5" />
             </div>
             <h1 className="text-2xl font-extrabold text-[#FAFAFA] mb-1.5 tracking-tight">
@@ -152,7 +152,7 @@ export const PromptGenerator: React.FC<PromptGeneratorProps> = ({
 
             {/* Auto-Determined AI Callout */}
             <div className="bg-[#09090B] border border-[#27272A]/80 p-3.5 rounded-xl text-[11px] text-[#A1A1AA] flex items-center gap-2 font-mono">
-              <Sparkles className="w-4 h-4 text-[#8B5CF6] shrink-0" />
+              <Sparkles className="w-4 h-4 text-[#6615F6] shrink-0" />
               <span>
                 Director.ai auto-calculates viral hooks, marketing angles, voiceover scripts, camera movements & lighting setups.
               </span>
@@ -162,7 +162,7 @@ export const PromptGenerator: React.FC<PromptGeneratorProps> = ({
             <button
               type="submit"
               disabled={isGenerating || !formData.productName?.trim() || !formData.targetAudience?.trim()}
-              className="w-full py-4 bg-[#6615F6] hover:bg-[#8B5CF6] disabled:opacity-50 disabled:cursor-not-allowed text-white text-base font-semibold rounded-2xl transition-all shadow-xl shadow-[#6615F6]/25 hover:shadow-[#8B5CF6]/30 flex items-center justify-center gap-2.5 cursor-pointer active:scale-[0.99]"
+              className="w-full py-4 bg-[#6615F6] hover:bg-[#6615F6] disabled:opacity-50 disabled:cursor-not-allowed text-white text-base font-semibold rounded-2xl transition-all shadow-xl shadow-[#6615F6]/25 hover:shadow-[#6615F6]/30 flex items-center justify-center gap-2.5 cursor-pointer active:scale-[0.99]"
             >
               <Sparkles className="w-5 h-5 fill-current" />
               <span>Generate Master Prompt</span>

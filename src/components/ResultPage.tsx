@@ -177,7 +177,7 @@ ${(fb?.hashtags || []).join(' ')}`;
               <h1 className="text-2xl sm:text-3xl font-extrabold text-[#FAFAFA] tracking-tight">
                 {result.productName}
               </h1>
-              <span className="px-3 py-1 rounded-full bg-[#6615F6]/15 border border-[#6615F6]/30 text-[#8B5CF6] text-xs font-mono font-semibold">
+              <span className="px-3 py-1 rounded-full bg-[#6615F6]/15 border border-[#6615F6]/30 text-[#6615F6] text-xs font-mono font-semibold">
                 Complete Publishing Package
               </span>
             </div>
@@ -191,7 +191,7 @@ ${(fb?.hashtags || []).join(' ')}`;
             className={`w-full sm:w-auto px-6 py-3.5 rounded-2xl text-xs sm:text-sm font-semibold transition-all flex items-center justify-center gap-2.5 cursor-pointer shadow-xl active:scale-95 shrink-0 ${
               activeCopiedKey === 'everything'
                 ? 'bg-[#22C55E] text-white shadow-[#22C55E]/25'
-                : 'bg-[#6615F6] hover:bg-[#8B5CF6] text-white shadow-[#6615F6]/30'
+                : 'bg-[#6615F6] hover:bg-[#6615F6] text-white shadow-[#6615F6]/30'
             }`}
           >
             {activeCopiedKey === 'everything' ? (
@@ -212,7 +212,7 @@ ${(fb?.hashtags || []).join(' ')}`;
         <section className="space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-xl bg-[#6615F6]/15 border border-[#6615F6]/30 text-[#8B5CF6] flex items-center justify-center font-mono text-xs font-bold">
+              <div className="w-8 h-8 rounded-xl bg-[#6615F6]/15 border border-[#6615F6]/30 text-[#6615F6] flex items-center justify-center font-mono text-xs font-bold">
                 01
               </div>
               <h2 className="text-xl font-bold text-[#FAFAFA] tracking-tight">
@@ -264,7 +264,7 @@ ${(fb?.hashtags || []).join(' ')}`;
                   className={`px-3.5 py-1.5 rounded-lg text-xs font-mono transition-all flex items-center gap-1.5 cursor-pointer ${
                     activeCopiedKey === 'master-prompt'
                       ? 'bg-[#22C55E] text-white'
-                      : 'bg-[#6615F6] hover:bg-[#8B5CF6] text-white'
+                      : 'bg-[#6615F6] hover:bg-[#6615F6] text-white'
                   }`}
                 >
                   {activeCopiedKey === 'master-prompt' ? (
@@ -324,7 +324,7 @@ ${(fb?.hashtags || []).join(' ')}`;
               className={`px-5 py-2.5 rounded-xl text-xs font-semibold transition-all flex items-center gap-2 cursor-pointer ${
                 activeCopiedKey === 'master-prompt-btn'
                   ? 'bg-[#22C55E] text-white'
-                  : 'bg-[#6615F6] hover:bg-[#8B5CF6] text-white shadow-md shadow-[#6615F6]/20'
+                  : 'bg-[#6615F6] hover:bg-[#6615F6] text-white shadow-md shadow-[#6615F6]/20'
               }`}
             >
               <Copy className="w-4 h-4" />
@@ -630,7 +630,7 @@ ${(fb?.hashtags || []).join(' ')}`;
             className={`w-full sm:w-auto px-8 py-4 rounded-2xl text-sm sm:text-base font-semibold transition-all shadow-xl flex items-center justify-center gap-2.5 cursor-pointer active:scale-[0.98] ${
               activeCopiedKey === 'everything'
                 ? 'bg-[#22C55E] text-white shadow-[#22C55E]/20'
-                : 'bg-[#6615F6] hover:bg-[#8B5CF6] text-white shadow-[#6615F6]/30'
+                : 'bg-[#6615F6] hover:bg-[#6615F6] text-white shadow-[#6615F6]/30'
             }`}
           >
             {activeCopiedKey === 'everything' ? (

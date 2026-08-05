@@ -67,7 +67,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
           {/* Primary Action Button */}
           <button
             onClick={() => onNavigate('/generate')}
-            className="ml-4 px-5 py-2.5 bg-[#6615F6] hover:bg-[#8B5CF6] text-white text-[16px] font-semibold rounded-xl transition-all shadow-md shadow-[#6615F6]/20 hover:shadow-[#8B5CF6]/30 flex items-center gap-2 cursor-pointer active:scale-[0.98]"
+            className="ml-4 px-5 py-2.5 bg-[#6615F6] hover:bg-[#6615F6] text-white text-[16px] font-semibold rounded-xl transition-all shadow-md shadow-[#6615F6]/20 hover:shadow-[#6615F6]/30 flex items-center gap-2 cursor-pointer active:scale-[0.98]"
           >
             <Sparkles className="w-4 h-4 fill-current" />
             <span>Generate Master Prompt</span>
@@ -110,7 +110,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
                 onClick={() => handleMobileNav('/')}
                 className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
                   currentPath === '/'
-                    ? 'bg-[#6615F6]/15 text-[#8B5CF6] border border-[#6615F6]/30'
+                    ? 'bg-[#6615F6]/15 text-[#6615F6] border border-[#6615F6]/30'
                     : 'text-[#A1A1AA] hover:text-white bg-[#09090B] border border-transparent'
                 }`}
               >
@@ -124,7 +124,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
                 onClick={() => handleMobileNav('/generate')}
                 className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
                   currentPath === '/generate'
-                    ? 'bg-[#6615F6]/15 text-[#8B5CF6] border border-[#6615F6]/30'
+                    ? 'bg-[#6615F6]/15 text-[#6615F6] border border-[#6615F6]/30'
                     : 'text-[#A1A1AA] hover:text-white bg-[#09090B] border border-transparent'
                 }`}
               >
@@ -138,12 +138,12 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
                 onClick={() => handleMobileNav('/ideas')}
                 className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
                   currentPath === '/ideas'
-                    ? 'bg-[#6615F6]/15 text-[#8B5CF6] border border-[#6615F6]/30'
+                    ? 'bg-[#6615F6]/15 text-[#6615F6] border border-[#6615F6]/30'
                     : 'text-[#A1A1AA] hover:text-white bg-[#09090B] border border-transparent'
                 }`}
               >
                 <div className="flex items-center gap-3">
-                  <Lightbulb className="w-4 h-4 text-[#8B5CF6]" />
+                  <Lightbulb className="w-4 h-4 text-[#6615F6]" />
                   <span>Trending Concepts</span>
                 </div>
               </button>
@@ -152,7 +152,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
                 onClick={() => handleMobileNav('/pricing')}
                 className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
                   currentPath === '/pricing'
-                    ? 'bg-[#6615F6]/15 text-[#8B5CF6] border border-[#6615F6]/30'
+                    ? 'bg-[#6615F6]/15 text-[#6615F6] border border-[#6615F6]/30'
                     : 'text-[#A1A1AA] hover:text-white bg-[#09090B] border border-transparent'
                 }`}
               >
@@ -166,7 +166,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
                 onClick={() => handleMobileNav('/privacy')}
                 className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
                   currentPath === '/privacy'
-                    ? 'bg-[#6615F6]/15 text-[#8B5CF6] border border-[#6615F6]/30'
+                    ? 'bg-[#6615F6]/15 text-[#6615F6] border border-[#6615F6]/30'
                     : 'text-[#A1A1AA] hover:text-white bg-[#09090B] border border-transparent'
                 }`}
               >
@@ -179,7 +179,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
               <div className="pt-2">
                 <button
                   onClick={() => handleMobileNav('/generate')}
-                  className="w-full py-3.5 px-4 bg-[#6615F6] hover:bg-[#8B5CF6] text-white text-sm font-semibold rounded-xl shadow-lg shadow-[#6615F6]/25 flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
+                  className="w-full py-3.5 px-4 bg-[#6615F6] hover:bg-[#6615F6] text-white text-sm font-semibold rounded-xl shadow-lg shadow-[#6615F6]/25 flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
                 >
                   <Sparkles className="w-4 h-4 fill-current" />
                   <span>Generate Master Prompt</span>

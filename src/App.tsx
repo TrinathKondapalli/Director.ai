@@ -183,7 +183,7 @@ export default function App() {
                   </p>
                   <button
                     onClick={() => navigateTo('/generate')}
-                    className="px-6 py-3 bg-[#6615F6] hover:bg-[#8B5CF6] text-white text-xs font-semibold rounded-xl cursor-pointer transition-colors shadow-lg shadow-[#6615F6]/20"
+                    className="px-6 py-3 bg-[#6615F6] hover:bg-[#6615F6] text-white text-xs font-semibold rounded-xl cursor-pointer transition-colors shadow-lg shadow-[#6615F6]/20"
                   >
                     Generate Master Prompt
                   </button>

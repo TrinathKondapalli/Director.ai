@@ -12,8 +12,8 @@ export const PricingPage: React.FC<PricingPageProps> = ({ onNavigate }) => {
       <div className="max-w-5xl mx-auto">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#6615F6]/15 border border-[#6615F6]/30 text-[#8B5CF6] text-xs font-mono mb-4">
-            <Zap className="w-4 h-4 text-[#8B5CF6]" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#6615F6]/15 border border-[#6615F6]/30 text-[#6615F6] text-xs font-mono mb-4">
+            <Zap className="w-4 h-4 text-[#6615F6]" />
             <span>Simple Transparent Pricing</span>
           </div>
           <h1 className="text-3xl sm:text-5xl font-extrabold text-[#FAFAFA] tracking-tight mb-4">
@@ -75,7 +75,7 @@ export const PricingPage: React.FC<PricingPageProps> = ({ onNavigate }) => {
             </div>
 
             <div>
-              <div className="text-xs font-mono uppercase tracking-widest text-[#8B5CF6] mb-2 font-bold">
+              <div className="text-xs font-mono uppercase tracking-widest text-[#6615F6] mb-2 font-bold">
                 Pro Director
               </div>
               <div className="flex items-baseline gap-1 mb-4">
@@ -108,7 +108,7 @@ export const PricingPage: React.FC<PricingPageProps> = ({ onNavigate }) => {
 
             <button
               onClick={() => onNavigate('/generate')}
-              className="w-full py-3.5 px-4 bg-[#6615F6] hover:bg-[#8B5CF6] text-white text-xs font-semibold rounded-xl transition-all shadow-lg shadow-[#6615F6]/25 flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
+              className="w-full py-3.5 px-4 bg-[#6615F6] hover:bg-[#6615F6] text-white text-xs font-semibold rounded-xl transition-all shadow-lg shadow-[#6615F6]/25 flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
             >
               <Sparkles className="w-4 h-4 fill-current" />
               <span>Get Pro Access</span>

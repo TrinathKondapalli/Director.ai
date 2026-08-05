@@ -82,9 +82,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="mb-8 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#27272A] bg-[#111113]/50 backdrop-blur-sm text-[#8B5CF6] text-[11px] font-semibold tracking-wide"
+          className="mb-8 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#27272A] bg-[#111113]/50 backdrop-blur-sm text-[#6615F6] text-[11px] font-semibold tracking-wide"
         >
-          <Sparkles className="w-3.5 h-3.5 text-[#8B5CF6]" />
+          <Sparkles className="w-3.5 h-3.5 text-[#6615F6]" />
           <span>AI UGC AD DIRECTOR</span>
         </motion.div>
 
@@ -96,7 +96,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
           className="font-sora text-[40px] sm:text-[64px] md:text-[72px] font-extrabold tracking-[-0.04em] text-[#FAFAFA] max-w-5xl leading-[0.92] mb-6"
         >
           Create AI UGC Ads <br className="hidden md:block" />
-          <span className="text-[#8B5CF6]">
+          <span className="text-[#6615F6]">
             Without Writing Complex Prompts.
           </span>
         </motion.h1>
@@ -120,7 +120,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
         >
           <button
             onClick={() => onNavigate('/generate')}
-            className="w-full sm:w-auto px-8 py-3.5 bg-[#6615F6] hover:bg-[#8B5CF6] text-white text-[16px] font-semibold font-inter rounded-full transition-all flex items-center justify-center gap-2.5 cursor-pointer"
+            className="w-full sm:w-auto px-8 py-3.5 bg-[#6615F6] hover:bg-[#6615F6] text-white text-[16px] font-semibold font-inter rounded-full transition-all flex items-center justify-center gap-2.5 cursor-pointer"
           >
             <Sparkles className="w-4 h-4 fill-current text-white" />
             <span>Generate Master Prompt</span>
@@ -131,7 +131,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             onClick={() => onNavigate('/ideas')}
             className="w-full sm:w-auto px-8 py-3.5 bg-[#09090B]/50 hover:bg-[#111113] backdrop-blur-sm text-[#A1A1AA] hover:text-white text-[16px] font-medium font-inter rounded-full border border-[#27272A] transition-colors cursor-pointer flex items-center justify-center gap-2.5"
           >
-            <Lightbulb className="w-4 h-4 text-[#8B5CF6]" />
+            <Lightbulb className="w-4 h-4 text-[#6615F6]" />
             <span>See Trending Concepts</span>
           </button>
         </motion.div>
@@ -175,7 +175,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 w-full max-w-5xl mb-20 text-left"
         >
           <div className="flex items-center justify-center lg:justify-start gap-4 lg:border-r border-[#27272A]/80 lg:pr-6">
-            <Zap className="w-8 h-8 text-[#8B5CF6] shrink-0" />
+            <Zap className="w-8 h-8 text-[#6615F6] shrink-0" />
             <div>
               <div className="font-sora text-[15px] md:text-[17px] font-bold text-[#E4E4E7]">10X Faster</div>
               <div className="font-inter text-[13px] md:text-[14px] text-[#71717A]">From idea to prompt</div>
@@ -183,7 +183,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
           </div>
 
           <div className="flex items-center justify-center lg:justify-start gap-4 lg:border-r border-[#27272A]/80 lg:px-6">
-            <Film className="w-8 h-8 text-[#8B5CF6] shrink-0" />
+            <Film className="w-8 h-8 text-[#6615F6] shrink-0" />
             <div>
               <div className="font-sora text-[15px] md:text-[17px] font-bold text-[#E4E4E7]">Production-Ready</div>
               <div className="font-inter text-[13px] md:text-[14px] text-[#71717A]">Made for AI models</div>
@@ -191,7 +191,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
           </div>
 
           <div className="flex items-center justify-center lg:justify-start gap-4 lg:border-r border-[#27272A]/80 lg:px-6">
-            <Eye className="w-8 h-8 text-[#8B5CF6] shrink-0" />
+            <Eye className="w-8 h-8 text-[#6615F6] shrink-0" />
             <div>
               <div className="font-sora text-[15px] md:text-[17px] font-bold text-[#E4E4E7]">Strategy-Driven</div>
               <div className="font-inter text-[13px] md:text-[14px] text-[#71717A]">Hooks that convert</div>
@@ -199,7 +199,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
           </div>
 
           <div className="flex items-center justify-center lg:justify-start gap-4 lg:pl-6">
-            <ShieldCheck className="w-8 h-8 text-[#8B5CF6] shrink-0" />
+            <ShieldCheck className="w-8 h-8 text-[#6615F6] shrink-0" />
             <div>
               <div className="font-sora text-[15px] md:text-[17px] font-bold text-[#E4E4E7]">Zero Storage</div>
               <div className="font-inter text-[13px] md:text-[14px] text-[#71717A]">Your ideas stay yours</div>
@@ -250,7 +250,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
       {/* 3. HOW IT WORKS (TIMELINE) */}
       <section id="how-it-works" className="py-24 px-4 sm:px-6 max-w-6xl mx-auto">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="font-inter text-[14px] uppercase tracking-widest text-[#8B5CF6] font-medium block mb-3">
+          <span className="font-inter text-[14px] uppercase tracking-widest text-[#6615F6] font-medium block mb-3">
             The Streamlined Workflow
           </span>
           <h2 className="font-sora text-[40px] md:text-[48px] font-bold text-[#FAFAFA] tracking-tight">
@@ -296,7 +296,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             >
               <div className="flex items-center justify-between mb-6">
                 <span className="text-4xl font-black text-[#6615F6] font-mono">{item.step}</span>
-                <div className="p-3 rounded-2xl bg-[#1C1C20] border border-[#27272A] text-[#8B5CF6]">
+                <div className="p-3 rounded-2xl bg-[#1C1C20] border border-[#27272A] text-[#6615F6]">
                   <item.icon className="w-5 h-5" />
                 </div>
               </div>
@@ -313,7 +313,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
       <section className="py-24 px-4 sm:px-6 max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#6615F6]/15 border border-[#6615F6]/30 text-[#8B5CF6] text-[14px] font-inter font-medium mb-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#6615F6]/15 border border-[#6615F6]/30 text-[#6615F6] text-[14px] font-inter font-medium mb-3">
               <Flame className="w-3.5 h-3.5 text-[#F59E0B]" />
               <span>Daily Creator Discovery</span>
             </div>
@@ -341,7 +341,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <span className="px-3 py-1 rounded-full bg-[#6615F6]/15 text-[#8B5CF6] text-[14px] font-inter font-medium">
+                  <span className="px-3 py-1 rounded-full bg-[#6615F6]/15 text-[#6615F6] text-[14px] font-inter font-medium">
                     {concept.nicheCategory}
                   </span>
                   <div className="flex items-center gap-1 font-inter text-[14px] text-[#22C55E]">
@@ -376,7 +376,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
       {/* 5. WHY DIRECTOR.AI */}
       <section className="py-24 px-4 sm:px-6 max-w-6xl mx-auto">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="font-inter text-[14px] uppercase tracking-widest text-[#8B5CF6] font-medium block mb-3">
+          <span className="font-inter text-[14px] uppercase tracking-widest text-[#6615F6] font-medium block mb-3">
             Built For Modern Creators & Marketers
           </span>
           <h2 className="font-sora text-[40px] md:text-[48px] font-bold text-[#FAFAFA] tracking-tight">
@@ -386,7 +386,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="bg-[#111113] border border-[#27272A] p-8 rounded-3xl shadow-xl">
-            <div className="w-12 h-12 rounded-2xl bg-[#6615F6]/15 border border-[#6615F6]/30 flex items-center justify-center text-[#8B5CF6] mb-6">
+            <div className="w-12 h-12 rounded-2xl bg-[#6615F6]/15 border border-[#6615F6]/30 flex items-center justify-center text-[#6615F6] mb-6">
               <Zap className="w-6 h-6" />
             </div>
             <h3 className="font-sora text-[24px] font-semibold text-[#FAFAFA] mb-3">Creative Strategy</h3>
@@ -396,7 +396,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
           </div>
 
           <div className="bg-[#111113] border border-[#27272A] p-8 rounded-3xl shadow-xl">
-            <div className="w-12 h-12 rounded-2xl bg-[#6615F6]/15 border border-[#6615F6]/30 flex items-center justify-center text-[#8B5CF6] mb-6">
+            <div className="w-12 h-12 rounded-2xl bg-[#6615F6]/15 border border-[#6615F6]/30 flex items-center justify-center text-[#6615F6] mb-6">
               <Film className="w-6 h-6" />
             </div>
             <h3 className="font-sora text-[24px] font-semibold text-[#FAFAFA] mb-3">Production Ready</h3>
@@ -461,8 +461,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
       {/* 7. PRICING */}
       <section className="py-24 px-4 sm:px-6 max-w-6xl mx-auto">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#6615F6]/15 border border-[#6615F6]/30 text-[#8B5CF6] text-[14px] font-inter font-medium mb-4">
-            <Zap className="w-4 h-4 text-[#8B5CF6]" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#6615F6]/15 border border-[#6615F6]/30 text-[#6615F6] text-[14px] font-inter font-medium mb-4">
+            <Zap className="w-4 h-4 text-[#6615F6]" />
             <span>Transparent Plans</span>
           </div>
           <h2 className="font-sora text-[40px] md:text-[48px] font-bold text-[#FAFAFA] tracking-tight">
@@ -520,7 +520,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             </div>
 
             <div>
-              <div className="text-[14px] font-inter uppercase tracking-widest text-[#8B5CF6] mb-2 font-medium">
+              <div className="text-[14px] font-inter uppercase tracking-widest text-[#6615F6] mb-2 font-medium">
                 Pro Plan
               </div>
               <div className="flex items-baseline gap-1 mb-4">
@@ -553,7 +553,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
 
             <button
               onClick={() => onNavigate('/generate')}
-              className="w-full py-4 px-6 bg-[#6615F6] hover:bg-[#8B5CF6] text-white text-[16px] font-semibold font-inter rounded-2xl transition-all shadow-xl shadow-[#6615F6]/30 flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
+              className="w-full py-4 px-6 bg-[#6615F6] hover:bg-[#6615F6] text-white text-[16px] font-semibold font-inter rounded-2xl transition-all shadow-xl shadow-[#6615F6]/30 flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
             >
               <Sparkles className="w-5 h-5 fill-current" />
               <span>Get Pro Access</span>
@@ -565,7 +565,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
       {/* 8. FAQ SECTION */}
       <section className="py-24 px-4 sm:px-6 max-w-4xl mx-auto">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="font-inter text-[14px] uppercase tracking-widest text-[#8B5CF6] font-medium block mb-2">
+          <span className="font-inter text-[14px] uppercase tracking-widest text-[#6615F6] font-medium block mb-2">
             Got Questions?
           </span>
           <h2 className="font-sora text-[40px] md:text-[48px] font-bold text-[#FAFAFA] tracking-tight">
@@ -581,7 +581,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             >
               <button
                 onClick={() => toggleFaq(idx)}
-                className="w-full px-6 py-5 text-left flex items-center justify-between font-sora font-semibold text-[18px] text-[#FAFAFA] cursor-pointer hover:text-[#8B5CF6] transition-colors"
+                className="w-full px-6 py-5 text-left flex items-center justify-between font-sora font-semibold text-[18px] text-[#FAFAFA] cursor-pointer hover:text-[#6615F6] transition-colors"
               >
                 <span>{faq.q}</span>
                 {openFaq === idx ? (

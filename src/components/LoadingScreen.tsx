@@ -48,7 +48,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
         {/* Glow pulsing ring */}
         <div className="relative w-20 h-20 mx-auto mb-6 flex items-center justify-center">
           <div className="absolute inset-0 rounded-full bg-[#6615F6]/20 animate-ping" />
-          <div className="w-16 h-16 rounded-2xl bg-[#09090B] border border-[#6615F6]/50 flex items-center justify-center shadow-lg shadow-[#6615F6]/30 relative z-10 text-[#8B5CF6]">
+          <div className="w-16 h-16 rounded-2xl bg-[#09090B] border border-[#6615F6]/50 flex items-center justify-center shadow-lg shadow-[#6615F6]/30 relative z-10 text-[#6615F6]">
             <Clapperboard className="w-8 h-8" />
           </div>
         </div>
@@ -60,7 +60,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
         {/* Progress Bar */}
         <div className="w-full bg-[#09090B] border border-[#27272A] h-2.5 rounded-full overflow-hidden mb-6">
           <motion.div
-            className="h-full bg-gradient-to-r from-[#6615F6] to-[#8B5CF6] rounded-full"
+            className="h-full bg-gradient-to-r from-[#6615F6] to-[#6615F6] rounded-full"
             initial={{ width: '0%' }}
             animate={{ width: `${progressPercent}%` }}
             transition={{ duration: 0.2, ease: 'easeOut' }}

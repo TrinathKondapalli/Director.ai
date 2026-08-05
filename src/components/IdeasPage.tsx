@@ -66,8 +66,8 @@ export const IdeasPage: React.FC<IdeasPageProps> = ({ onSelectConcept }) => {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#6615F6]/15 border border-[#6615F6]/30 text-[#8B5CF6] text-xs font-mono mb-4">
-            <Flame className="w-4 h-4 text-[#8B5CF6]" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#6615F6]/15 border border-[#6615F6]/30 text-[#6615F6] text-xs font-mono mb-4">
+            <Flame className="w-4 h-4 text-[#6615F6]" />
             <span>Updated Real-Time • High-Converting UGC Ad Frameworks</span>
           </div>
           <h1 className="text-3xl sm:text-5xl font-extrabold text-[#FAFAFA] tracking-tight mb-4">
@@ -158,8 +158,8 @@ export const IdeasPage: React.FC<IdeasPageProps> = ({ onSelectConcept }) => {
                   <div>
                     {/* Top Badge Row */}
                     <div className="flex items-center justify-between gap-2 mb-4">
-                      <span className="px-2.5 py-1 rounded-full bg-[#6615F6]/15 border border-[#6615F6]/30 text-[#8B5CF6] text-[11px] font-mono font-semibold flex items-center gap-1">
-                        <Flame className="w-3 h-3 text-[#8B5CF6]" />
+                      <span className="px-2.5 py-1 rounded-full bg-[#6615F6]/15 border border-[#6615F6]/30 text-[#6615F6] text-[11px] font-mono font-semibold flex items-center gap-1">
+                        <Flame className="w-3 h-3 text-[#6615F6]" />
                         <span>Trend Score: {concept.trendScore}/100</span>
                       </span>
 
@@ -170,12 +170,12 @@ export const IdeasPage: React.FC<IdeasPageProps> = ({ onSelectConcept }) => {
                     </div>
 
                     {/* Niche Tag */}
-                    <div className="text-[10px] font-mono uppercase text-[#8B5CF6] font-bold tracking-wider mb-1">
+                    <div className="text-[10px] font-mono uppercase text-[#6615F6] font-bold tracking-wider mb-1">
                       {concept.nicheCategory}
                     </div>
 
                     {/* Concept Title */}
-                    <h2 className="text-lg font-bold text-[#FAFAFA] mb-2 group-hover:text-[#8B5CF6] transition-colors leading-snug">
+                    <h2 className="text-lg font-bold text-[#FAFAFA] mb-2 group-hover:text-[#6615F6] transition-colors leading-snug">
                       {concept.conceptTitle}
                     </h2>
 
@@ -204,7 +204,7 @@ export const IdeasPage: React.FC<IdeasPageProps> = ({ onSelectConcept }) => {
                       <div className="pt-1 border-t border-[#27272A] flex justify-between">
                         <div>
                           <span className="text-[#A1A1AA]/60 block text-[10px] uppercase">Angle</span>
-                          <span className="text-[#8B5CF6]">{concept.marketingAngle}</span>
+                          <span className="text-[#6615F6]">{concept.marketingAngle}</span>
                         </div>
                         <div className="text-right">
                           <span className="text-[#A1A1AA]/60 block text-[10px] uppercase">Emotional Trigger</span>
@@ -217,7 +217,7 @@ export const IdeasPage: React.FC<IdeasPageProps> = ({ onSelectConcept }) => {
                   {/* Primary CTA */}
                   <button
                     onClick={() => onSelectConcept(concept)}
-                    className="w-full py-3 px-4 bg-[#6615F6] hover:bg-[#8B5CF6] text-white text-xs font-semibold rounded-xl transition-all shadow-md shadow-[#6615F6]/20 flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
+                    className="w-full py-3 px-4 bg-[#6615F6] hover:bg-[#6615F6] text-white text-xs font-semibold rounded-xl transition-all shadow-md shadow-[#6615F6]/20 flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
                   >
                     <Sparkles className="w-4 h-4 fill-current" />
                     <span>{concept.primaryCta}</span>
