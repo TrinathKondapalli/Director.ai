@@ -11,6 +11,32 @@ export interface PromptChunk {
   text: string;
 }
 
+export interface YouTubePublishingPackage {
+  title: string;
+  description: string;
+  hashtags: string[];
+  thumbnailIdea: string;
+  thumbnailPrompt: string;
+  keywords: string[];
+  categoryRecommendation: string;
+  seoScore: number;
+}
+
+export interface InstagramPublishingPackage {
+  caption: string;
+  hashtags: string[];
+  hook: string;
+  callToAction: string;
+  emojiSuggestions: string[];
+}
+
+export interface FacebookPublishingPackage {
+  caption: string;
+  hashtags: string[];
+  hook: string;
+  callToAction: string;
+}
+
 export interface MasterPromptResult {
   title: string;
   subtitle: string;
@@ -24,6 +50,9 @@ export interface MasterPromptResult {
     desiredEmotion: string;
     marketingAngle: string;
   };
+  youtubePackage?: YouTubePublishingPackage;
+  instagramPackage?: InstagramPublishingPackage;
+  facebookPackage?: FacebookPublishingPackage;
 }
 
 export interface AiConceptCard {
@@ -42,4 +71,3 @@ export interface AiConceptCard {
   primaryCta: string;
   productNameExample: string;
 }
-

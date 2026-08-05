@@ -37,8 +37,8 @@ app.post('/api/generate-master-prompt', async (req, res) => {
       },
     });
 
-    const systemPrompt = `You are Director.ai, an elite AI Creative Director specialized ONLY for creating high-converting AI UGC advertisements.
-Your goal is to output ONE production-ready MASTER PROMPT that users can directly paste into Google Veo, Google Flow, Kling AI, Runway, Pika, Hailuo, or Luma.
+    const systemPrompt = `You are Director.ai, an elite AI Creative Director specialized ONLY for creating high-converting AI UGC advertisements and complete publishing packages.
+Your goal is to output ONE production-ready MASTER PROMPT that users can directly paste into Google Veo, Google Flow, Kling AI, Runway, Pika, Hailuo, or Luma, ALONG WITH a complete publishing package for YouTube, Instagram, and Facebook.
 
 STRICT GUIDELINES:
 1. Automatically determine the ideal: Platform, Marketing Goal, Tone, Target Emotion, Hook, Marketing Angle, CTA, Story Structure, Visual Style, Camera, Lighting, and Sound Design.
@@ -50,24 +50,19 @@ STRICT GUIDELINES:
 3. The Master Prompt MUST internally contain:
    - Creative Strategy & Marketing Blueprint
    - Viral Hook & Storytelling Structure
-   - CHARACTER CONSISTENCY LOCK:
-     • Mode: (Single Creator vs Multi-Actor Montage)
-     • Character Anchors: Face, Age, Gender, Hairstyle, Clothing, Accessories, Expressions, Body Proportions, Voice Style, Background, Lighting, Camera Language
-     • Negative Directives / Anti-Morphing: Strictly prevent face changes, clothing changes, different hairstyles, identity swapping, flickering, morphing, inconsistent skin tones, or changing environments between frames/scenes.
-   - ENVIRONMENT CONSISTENCY LOCK:
-     • Consistent Room, Furniture, Background, Lighting Direction, Time of Day, Camera Style, Color Grading.
-   - PRODUCT CONSISTENCY LOCK:
-     • Consistent Product Shape, Product Color, Logo Placement, Packaging, Label Text, Size, Materials, Texture, Reflections across all shot angles.
+   - CHARACTER CONSISTENCY LOCK
+   - ENVIRONMENT CONSISTENCY LOCK
+   - PRODUCT CONSISTENCY LOCK
    - 10-Second Scene Timeline (0-2s Hook, 2-5s Agitate/Problem, 5-8s Solution, 8-10s CTA)
    - Natural Voice Script (embedded into scene audio)
    - Camera Direction, Lens (e.g. 35mm/85mm), Movement, & Lighting
    - Sound Design & Background Audio
    - Call To Action (CTA)
    - Thumbnail Prompt & Platform Optimization
-4. DO NOT INCLUDE: Subtitle Scripts, Subtitle Timings, Caption Files, or SRT Files. Speech is generated naturally from the prompt.
+4. Also generate matching YouTube (Title max 100 chars, Description 150-300 words with CTA & website mention, 10-15 Hashtags, Thumbnail Idea & Prompt), Instagram (Caption 100-200 words with hook & CTA, 8-12 Hashtags, Emojis), and Facebook package (Conversational Caption, Hashtags, CTA).
 5. Output ONLY a JSON object conforming strictly to the format specified.`;
 
-    const userPrompt = `Generate the Ultimate AI UGC Ad Master Prompt for Director.ai based on:
+    const userPrompt = `Generate the Ultimate AI UGC Ad Master Prompt & Complete Publishing Package for Director.ai based on:
 - Product Name: ${body.productName || 'Featured Product'}
 - Target Audience: ${body.targetAudience || 'Target Consumers'}
 - Product URL: ${body.productUrl || 'N/A'}
@@ -82,6 +77,29 @@ Format JSON with:
     "painPoint": "Frustration with traditional underperforming alternatives",
     "desiredEmotion": "Curiosity, Validation & Urgency",
     "marketingAngle": "Pattern-Interrupt Problem-to-Solution Transformation"
+  },
+  "youtubePackage": {
+    "title": "Natural, high-CTR YouTube title under 100 chars",
+    "description": "Professional 150-300 word description with website mention and CTA",
+    "hashtags": ["#tag1", "#tag2", "#tag3"],
+    "thumbnailIdea": "Brief visual concept for thumbnail",
+    "thumbnailPrompt": "Detailed AI image generator prompt describing expression, lighting, composition, product placement, camera angle, and typography space",
+    "keywords": ["keyword1", "keyword2"],
+    "categoryRecommendation": "Science & Technology",
+    "seoScore": 96
+  },
+  "instagramPackage": {
+    "caption": "Conversational 100-200 word caption with strong hook, short paragraphs, and CTA",
+    "hashtags": ["#igtag1", "#igtag2"],
+    "hook": "Single line pattern interrupt hook",
+    "callToAction": "Direct link in bio CTA",
+    "emojiSuggestions": ["🔥", "✨"]
+  },
+  "facebookPackage": {
+    "caption": "Slightly more conversational Facebook caption",
+    "hashtags": ["#fbtag1", "#fbtag2"],
+    "hook": "Conversational hook line",
+    "callToAction": "Direct offer CTA link"
   }
 }`;
 
