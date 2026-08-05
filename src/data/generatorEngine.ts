@@ -107,7 +107,7 @@ export function buildLocalYouTubePackage(input: MasterPromptInput): YouTubePubli
 
   return {
     title: `I Tested ${product} for 30 Days (Honest Creator Review)`,
-    description: `Struggling with daily friction? In this video, we do an unfiltered breakdown of ${product} designed for ${target}.\n\nSee how ${product} transforms your daily workflow and solves frustration in seconds.\n\n👉 Get ${product} here: ${url}\n\nMake sure to subscribe for daily product reviews and UGC ad concepts!\n\n#${product.replace(/\s+/g, '')} #ProductReview #UGCAd #TechTech #Biohacking`,
+    description: `Struggling with daily friction? In this video, we do an unfiltered breakdown of ${product} designed for ${target}.\n\nSee how ${product} transforms your daily workflow and solves frustration in seconds.\n\nGet ${product} here: ${url}\n\nMake sure to subscribe for daily product reviews and UGC ad concepts!\n\n#${product.replace(/\s+/g, '')} #ProductReview #UGCAd #TechTech #Biohacking`,
     hashtags: [
       `#${product.replace(/\s+/g, '')}`,
       '#ProductReview',
@@ -136,8 +136,8 @@ export function buildLocalInstagramPackage(input: MasterPromptInput): InstagramP
   const url = input.productUrl?.trim() || 'link in bio';
 
   return {
-    hook: `Stop scrolling if you struggle with daily friction! 🛑`,
-    caption: `Stop scrolling if you struggle with daily friction! 🛑\n\nI’ve been testing ${product} for a week now, and honestly? It completely changed my routine.\n\nIf you're a ${target}, you know how annoying it is when traditional options fail. ${product} delivers instant results without the stress.\n\n🔥 Why creators are loving it:\n• Instant problem-to-solution transformation\n• Designed for real everyday performance\n• Sleek, effortless user experience\n\nDrop a comment or check the ${url} to grab yours before stock runs out! 👇`,
+    hook: `Stop scrolling if you struggle with daily friction!`,
+    caption: `Stop scrolling if you struggle with daily friction!\n\nI’ve been testing ${product} for a week now, and honestly? It completely changed my routine.\n\nIf you're a ${target}, you know how annoying it is when traditional options fail. ${product} delivers instant results without the stress.\n\nWhy creators are loving it:\n• Instant problem-to-solution transformation\n• Designed for real everyday performance\n• Sleek, effortless user experience\n\nDrop a comment or check the ${url} to grab yours before stock runs out!`,
     hashtags: [
       `#${product.replace(/\s+/g, '')}`,
       '#UGC',
@@ -151,7 +151,7 @@ export function buildLocalInstagramPackage(input: MasterPromptInput): InstagramP
       '#MustHave'
     ],
     callToAction: `Tap the link in bio to shop ${product} now!`,
-    emojiSuggestions: ['🛑', '🔥', '✨', '👇', '⚡', '💯'],
+    emojiSuggestions: [],
   };
 }
 
@@ -161,8 +161,8 @@ export function buildLocalFacebookPackage(input: MasterPromptInput): FacebookPub
   const url = input.productUrl?.trim() || 'https://example.com';
 
   return {
-    hook: `If you’ve been looking for a better solution, you need to see this... 👀`,
-    caption: `If you’ve been looking for a better solution, you need to see this... 👀\n\nWe tested ${product} with ${target} in mind, and the feedback has been insane.\n\nNo more wasting time or dealing with clunky alternatives. ${product} gives you a smooth, high-performance experience from day one.\n\nCheck out the full details and get yours today:\n👉 ${url}`,
+    hook: `If you’ve been looking for a better solution, you need to see this...`,
+    caption: `If you’ve been looking for a better solution, you need to see this...\n\nWe tested ${product} with ${target} in mind, and the feedback has been insane.\n\nNo more wasting time or dealing with clunky alternatives. ${product} gives you a smooth, high-performance experience from day one.\n\nCheck out the full details and get yours today:\n${url}`,
     hashtags: [
       `#${product.replace(/\s+/g, '')}`,
       '#FacebookReels',
