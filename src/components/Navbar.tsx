@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, ShieldCheck, Menu, X, Home, Lightbulb, Tag } from 'lucide-react';
+import { Sparkles, ShieldCheck, Menu, X, Home, Lightbulb, Tag, ArrowRight } from 'lucide-react';
 import { DirectorLogoBanner } from './DirectorLogo';
 
 interface NavbarProps {
@@ -32,7 +32,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
         </button>
 
         {/* Desktop Nav Links */}
-        <nav className="hidden md:flex items-center gap-6 text-sm">
+        <nav className="hidden md:flex items-center gap-8 text-xs font-semibold tracking-wide">
           <a
             href="#how-it-works"
             className="text-[#A1A1AA] hover:text-white transition-colors cursor-pointer"
@@ -41,38 +41,37 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
           </a>
           <button
             onClick={() => onNavigate('/ideas')}
-            className={`px-3 py-1.5 rounded-lg transition-colors cursor-pointer flex items-center gap-1.5 ${
-              currentPath === '/ideas' ? 'text-white font-medium bg-[#111113]' : 'text-[#A1A1AA] hover:text-white'
+            className={`transition-colors cursor-pointer ${
+              currentPath === '/ideas' ? 'text-white' : 'text-[#A1A1AA] hover:text-white'
             }`}
           >
-            <Lightbulb className="w-4 h-4 text-[#A78BFA]" />
-            <span>Trending Concepts</span>
+            Trending Concepts
           </button>
           <button
             onClick={() => onNavigate('/pricing')}
-            className={`px-3 py-1.5 rounded-lg transition-colors cursor-pointer ${
-              currentPath === '/pricing' ? 'text-white font-medium bg-[#111113]' : 'text-[#A1A1AA] hover:text-white'
+            className={`transition-colors cursor-pointer ${
+              currentPath === '/pricing' ? 'text-white' : 'text-[#A1A1AA] hover:text-white'
             }`}
           >
             Pricing
           </button>
           <button
             onClick={() => onNavigate('/privacy')}
-            className={`px-3 py-1.5 rounded-lg transition-colors cursor-pointer flex items-center gap-1.5 ${
-              currentPath === '/privacy' ? 'text-white font-medium bg-[#111113]' : 'text-[#A1A1AA] hover:text-white'
+            className={`transition-colors cursor-pointer ${
+              currentPath === '/privacy' ? 'text-white' : 'text-[#A1A1AA] hover:text-white'
             }`}
           >
-            <ShieldCheck className="w-4 h-4 text-[#22C55E]" />
-            <span>Privacy</span>
+            Privacy
           </button>
 
           {/* Primary Action Button */}
           <button
             onClick={() => onNavigate('/generate')}
-            className="ml-2 px-4.5 py-2.5 bg-[#8B5CF6] hover:bg-[#A78BFA] text-white text-sm font-semibold rounded-xl transition-all shadow-md shadow-[#8B5CF6]/20 hover:shadow-[#A78BFA]/30 flex items-center gap-2 cursor-pointer active:scale-[0.98]"
+            className="ml-4 px-4.5 py-2.5 bg-[#8B5CF6] hover:bg-[#A78BFA] text-white text-xs rounded-xl transition-all shadow-md shadow-[#8B5CF6]/20 hover:shadow-[#A78BFA]/30 flex items-center gap-2 cursor-pointer active:scale-[0.98]"
           >
-            <Sparkles className="w-4 h-4 fill-current" />
+            <Sparkles className="w-3.5 h-3.5 fill-current" />
             <span>Generate Master Prompt</span>
+            <ArrowRight className="w-3.5 h-3.5 ml-1" />
           </button>
         </nav>
 
