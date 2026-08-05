@@ -441,45 +441,102 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
       </section>
 
       {/* 5. WHY DIRECTOR.AI */}
-      <section className="py-24 px-4 sm:px-6 max-w-6xl mx-auto">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="font-inter text-[14px] uppercase tracking-widest text-[#A78BFA] font-medium block mb-3">
-            Built For Modern Creators & Marketers
-          </span>
-          <h2 className="font-sora text-[40px] md:text-[48px] font-bold text-[#FAFAFA] tracking-tight">
-            Why Creators Choose Director.ai
-          </h2>
+      <section className="py-32 px-4 sm:px-6 relative overflow-hidden bg-[#09090B]">
+        {/* Immersive Background Glows & Grid */}
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
+          <div className="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#8B5CF6]/15 blur-[120px] rounded-full" />
+          <div className="absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#8B5CF6]/15 blur-[120px] rounded-full" />
+          
+          {/* Subtle Dotted Grid Pattern */}
+          <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at center, #FAFAFA 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="bg-[#111113] border border-[#27272A] p-8 rounded-3xl shadow-xl">
-            <div className="w-12 h-12 rounded-2xl bg-[#8B5CF6]/15 border border-[#8B5CF6]/30 flex items-center justify-center text-[#A78BFA] mb-6">
-              <Zap className="w-6 h-6" />
+        <div className="max-w-6xl mx-auto relative z-10">
+          <div className="text-center max-w-2xl mx-auto mb-20 flex flex-col items-center">
+            {/* Overline with decorative element */}
+            <div className="mb-8">
+              <span className="font-inter text-[12px] uppercase tracking-[0.3em] text-[#A78BFA] font-bold block mb-4">
+                BUILT FOR MODERN CREATORS & MARKETERS
+              </span>
+              <div className="flex items-center justify-center gap-3">
+                <div className="h-[1px] w-12 bg-gradient-to-l from-[#8B5CF6]/60 to-transparent" />
+                <Sparkles className="w-3.5 h-3.5 text-[#C084FC]" />
+                <div className="h-[1px] w-12 bg-gradient-to-r from-[#8B5CF6]/60 to-transparent" />
+              </div>
             </div>
-            <h3 className="font-sora text-[24px] font-semibold text-[#FAFAFA] mb-3">Creative Strategy</h3>
-            <p className="font-inter text-[16px] text-[#A1A1AA] leading-relaxed">
-              AI thinks like a veteran marketing director — injecting proven hooks, visual framing, and emotional triggers automatically.
+
+            <h2 className="font-sora text-[48px] md:text-[56px] font-bold tracking-tight leading-[1.1] mb-6">
+              <span className="text-white">Why Creators Choose</span><br />
+              <span className="text-[#8B5CF6]">Director.ai</span>
+            </h2>
+            <p className="font-inter text-[16px] md:text-[18px] text-[#A1A1AA] leading-relaxed max-w-lg mx-auto">
+              Everything you need to create high-performing UGC ads, faster, smarter, and more securely.
             </p>
           </div>
 
-          <div className="bg-[#111113] border border-[#27272A] p-8 rounded-3xl shadow-xl">
-            <div className="w-12 h-12 rounded-2xl bg-[#8B5CF6]/15 border border-[#8B5CF6]/30 flex items-center justify-center text-[#A78BFA] mb-6">
-              <Film className="w-6 h-6" />
-            </div>
-            <h3 className="font-sora text-[24px] font-semibold text-[#FAFAFA] mb-3">Production Ready</h3>
-            <p className="font-inter text-[16px] text-[#A1A1AA] leading-relaxed">
-              Formatted specifically for next-gen models. Paste directly into Google Veo, Kling, Runway, or Luma without tweaking camera terms.
-            </p>
-          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Card 1: Creative Strategy */}
+            <div className="group relative bg-[#09090B] rounded-[24px] overflow-hidden p-10 h-full flex flex-col">
+              {/* Gradient Border Wrap */}
+              <div className="absolute inset-0 rounded-[24px] border border-[#27272A] group-hover:border-transparent transition-colors z-0" />
+              <div className="absolute inset-0 rounded-[24px] bg-gradient-to-b from-[#8B5CF6]/30 via-[#27272A]/50 to-[#27272A]/20 opacity-0 group-hover:opacity-100 p-[1px] -z-10 transition-opacity pointer-events-none">
+                <div className="w-full h-full bg-[#09090B] rounded-[23px]" />
+              </div>
+              
+              {/* Top Flare Light */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[120px] h-[1px] bg-gradient-to-r from-transparent via-[#C084FC] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 shadow-[0_0_20px_rgba(192,132,252,1)]" />
 
-          <div className="bg-[#111113] border border-[#27272A] p-8 rounded-3xl shadow-xl">
-            <div className="w-12 h-12 rounded-2xl bg-[#22C55E]/15 border border-[#22C55E]/30 flex items-center justify-center text-[#22C55E] mb-6">
-              <ShieldCheck className="w-6 h-6" />
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#8B5CF6]/15 to-[#8B5CF6]/5 border border-[#8B5CF6]/20 flex items-center justify-center text-[#C084FC] mb-8 shadow-[inset_0_0_12px_rgba(139,92,246,0.1)]">
+                  <Zap className="w-6 h-6" />
+                </div>
+                <h3 className="font-sora text-[26px] font-bold text-[#FAFAFA] mb-4">Creative Strategy</h3>
+                <div className="h-[2px] w-8 bg-[#27272A] mb-6 group-hover:bg-[#8B5CF6]/50 transition-colors" />
+                <p className="font-inter text-[15px] text-[#A1A1AA] leading-relaxed">
+                  AI thinks like a veteran marketing director — injecting proven hooks, visual framing, and emotional triggers automatically.
+                </p>
+              </div>
             </div>
-            <h3 className="font-sora text-[24px] font-semibold text-[#FAFAFA] mb-3">Privacy First</h3>
-            <p className="font-inter text-[16px] text-[#A1A1AA] leading-relaxed">
-              Your prompts, products, and campaign strategies are never stored in databases. Refresh the page and your session data is wiped clean.
-            </p>
+
+            {/* Card 2: Production Ready */}
+            <div className="group relative bg-[#09090B] rounded-[24px] overflow-hidden p-10 h-full flex flex-col">
+              <div className="absolute inset-0 rounded-[24px] border border-[#27272A] group-hover:border-transparent transition-colors z-0" />
+              <div className="absolute inset-0 rounded-[24px] bg-gradient-to-b from-[#8B5CF6]/30 via-[#27272A]/50 to-[#27272A]/20 opacity-0 group-hover:opacity-100 p-[1px] -z-10 transition-opacity pointer-events-none">
+                <div className="w-full h-full bg-[#09090B] rounded-[23px]" />
+              </div>
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[120px] h-[1px] bg-gradient-to-r from-transparent via-[#C084FC] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 shadow-[0_0_20px_rgba(192,132,252,1)]" />
+
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#8B5CF6]/15 to-[#8B5CF6]/5 border border-[#8B5CF6]/20 flex items-center justify-center text-[#C084FC] mb-8 shadow-[inset_0_0_12px_rgba(139,92,246,0.1)]">
+                  <Film className="w-6 h-6" />
+                </div>
+                <h3 className="font-sora text-[26px] font-bold text-[#FAFAFA] mb-4">Production Ready</h3>
+                <div className="h-[2px] w-8 bg-[#27272A] mb-6 group-hover:bg-[#8B5CF6]/50 transition-colors" />
+                <p className="font-inter text-[15px] text-[#A1A1AA] leading-relaxed">
+                  Formatted specifically for next-gen models. Paste directly into Google Veo, Kling, Runway, or Luma without tweaking camera terms.
+                </p>
+              </div>
+            </div>
+
+            {/* Card 3: Privacy First (Green glow) */}
+            <div className="group relative bg-[#09090B] rounded-[24px] overflow-hidden p-10 h-full flex flex-col">
+              <div className="absolute inset-0 rounded-[24px] border border-[#27272A] group-hover:border-transparent transition-colors z-0" />
+              <div className="absolute inset-0 rounded-[24px] bg-gradient-to-b from-[#22C55E]/30 via-[#27272A]/50 to-[#27272A]/20 opacity-0 group-hover:opacity-100 p-[1px] -z-10 transition-opacity pointer-events-none">
+                <div className="w-full h-full bg-[#09090B] rounded-[23px]" />
+              </div>
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[120px] h-[1px] bg-gradient-to-r from-transparent via-[#4ADE80] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 shadow-[0_0_20px_rgba(74,222,128,1)]" />
+
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#22C55E]/15 to-[#22C55E]/5 border border-[#22C55E]/20 flex items-center justify-center text-[#4ADE80] mb-8 shadow-[inset_0_0_12px_rgba(34,197,94,0.1)]">
+                  <ShieldCheck className="w-6 h-6" />
+                </div>
+                <h3 className="font-sora text-[26px] font-bold text-[#FAFAFA] mb-4">Privacy First</h3>
+                <div className="h-[2px] w-8 bg-[#27272A] mb-6 group-hover:bg-[#22C55E]/50 transition-colors" />
+                <p className="font-inter text-[15px] text-[#A1A1AA] leading-relaxed">
+                  Your prompts, products, and campaign strategies are never stored in databases. Refresh the page and your session data is wiped clean.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
