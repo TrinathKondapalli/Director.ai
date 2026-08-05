@@ -62,19 +62,20 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
 
   return (
     <div className="w-full bg-[#09090B] text-white selection:bg-[#8B5CF6]/30 overflow-hidden relative">
-      {/* 1. HERO SECTION */}
-      <section className="relative pt-12 sm:pt-16 pb-24 px-4 sm:px-6 max-w-6xl mx-auto text-center flex flex-col items-center">
+      {/* 1. HERO SECTION WRAPPER (Edge-to-edge) */}
+      <div className="relative w-full overflow-hidden">
         {/* Background Image from user */}
-        <div className="absolute top-0 left-0 w-full h-[150%] pointer-events-none z-0 overflow-hidden">
+        <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
           <img 
             src="/HEROBG.png" 
             alt="Hero Background" 
-            className="w-full h-full object-cover object-top opacity-90"
+            className="w-full h-full object-cover object-center opacity-90"
           />
         </div>
-        
-        {/* We need a relative z-10 wrapper for all the hero content to sit above the z-0 background image */}
-        <div className="relative z-10 flex flex-col items-center w-full">
+
+        {/* HERO CONTENT */}
+        <section className="relative pt-12 sm:pt-16 pb-24 px-4 sm:px-6 max-w-6xl mx-auto text-center flex flex-col items-center z-10">
+          <div className="relative flex flex-col items-center w-full">
 
         {/* Announcement Badge */}
         <motion.div
@@ -207,6 +208,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
         </motion.div>
         </div>
       </section>
+      </div>
 
       {/* INFINITE MARQUEE PLATFORMS */}
       <section className="py-12 overflow-hidden bg-[#07090E]">
