@@ -168,10 +168,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
 
       {/* INFINITE MARQUEE PLATFORMS */}
       <section className="py-12 overflow-hidden bg-[#07090E]">
-        <div className="text-center mb-8">
-          <span className="font-inter text-[14px] text-[#A1A1AA] font-medium">
+        <div className="text-center mb-10">
+          <h3 className="font-sora text-[20px] sm:text-[24px] text-[#A1A1AA] font-semibold">
             Works with leading AI video generators
-          </span>
+          </h3>
         </div>
         <div className="relative w-full overflow-hidden flex items-center">
           {/* Fade edges */}
