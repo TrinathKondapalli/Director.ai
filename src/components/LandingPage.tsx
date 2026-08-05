@@ -16,7 +16,8 @@ import {
   Eye,
   Film,
   Flame,
-  ArrowDown
+  ArrowDown,
+  Terminal
 } from 'lucide-react';
 import { DirectorLogoBanner } from './DirectorLogo';
 import { TRENDING_UGC_CONCEPTS } from '../data/conceptsData';
