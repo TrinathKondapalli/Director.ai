@@ -327,11 +327,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                   {/* Bottom Content */}
                   <div className="relative z-10">
                     <h3 className="font-sora text-[22px] font-bold text-[#FAFAFA] mb-3 leading-tight">{item.title}</h3>
-                    <p className="font-inter text-[14px] text-[#A1A1AA] leading-relaxed mb-6">{item.desc}</p>
-                    
-                    <button className="w-10 h-10 rounded-full border border-[#27272A] flex items-center justify-center bg-[#09090B] group-hover:border-[#8B5CF6]/50 transition-colors">
-                      <ArrowRight className="w-4 h-4 text-[#A1A1AA] group-hover:text-[#FAFAFA]" />
-                    </button>
+                    <p className="font-inter text-[14px] text-[#A1A1AA] leading-relaxed">{item.desc}</p>
                   </div>
                 </motion.div>
               </div>
