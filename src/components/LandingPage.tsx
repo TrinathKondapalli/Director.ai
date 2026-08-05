@@ -213,7 +213,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
       {/* INFINITE MARQUEE PLATFORMS */}
       <section className="py-12 overflow-hidden bg-[#07090E]">
         <div className="text-center mb-10">
-          <h3 className="font-sora text-[20px] sm:text-[24px] text-[#A1A1AA] font-semibold">
+          <h3 className="font-sora text-[13px] sm:text-[14px] uppercase tracking-[0.2em] text-transparent bg-clip-text bg-gradient-to-r from-[#A1A1AA] via-[#E4E4E7] to-[#A1A1AA] font-bold">
             Works with leading AI video generators
           </h3>
         </div>
