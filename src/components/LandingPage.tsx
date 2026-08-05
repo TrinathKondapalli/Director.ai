@@ -17,7 +17,8 @@ import {
   Film,
   Flame,
   ArrowDown,
-  Terminal
+  Terminal,
+  Star
 } from 'lucide-react';
 import { DirectorLogoBanner } from './DirectorLogo';
 import { TRENDING_UGC_CONCEPTS } from '../data/conceptsData';
@@ -63,15 +64,21 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
     <div className="w-full bg-[#09090B] text-white selection:bg-[#8B5CF6]/30 overflow-hidden">
       {/* 1. HERO SECTION */}
       <section className="relative pt-12 sm:pt-16 pb-24 px-4 sm:px-6 max-w-6xl mx-auto text-center flex flex-col items-center">
-        {/* Subtle Background Lighting matching screenshot */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-gradient-to-b from-[#8B5CF6]/15 to-transparent blur-[120px] pointer-events-none -z-10" />
+        {/* Background Image from user */}
+        <div className="absolute top-0 left-0 w-full h-[150%] pointer-events-none -z-10 overflow-hidden">
+          <img 
+            src="/HEROBG.png" 
+            alt="Hero Background" 
+            className="w-full h-full object-cover object-top opacity-90"
+          />
+        </div>
 
         {/* Announcement Badge */}
         <motion.div
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="mb-8 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#27272A] text-[#A1A1AA] text-[11px] font-semibold tracking-wide"
+          className="mb-8 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#27272A] bg-[#111113]/50 backdrop-blur-sm text-[#A78BFA] text-[11px] font-semibold tracking-wide"
         >
           <Sparkles className="w-3.5 h-3.5 text-[#A78BFA]" />
           <span>AI UGC AD DIRECTOR</span>
@@ -85,7 +92,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
           className="font-sora text-[40px] sm:text-[64px] md:text-[72px] font-extrabold tracking-[-0.04em] text-[#FAFAFA] max-w-5xl leading-[0.92] mb-6"
         >
           Create AI UGC Ads <br className="hidden md:block" />
-          <span className="bg-gradient-to-r from-[#A78BFA] to-[#C084FC] bg-clip-text text-transparent">
+          <span className="text-[#A78BFA]">
             Without Writing Complex Prompts.
           </span>
         </motion.h1>
@@ -105,11 +112,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mb-16"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mb-8"
         >
           <button
             onClick={() => onNavigate('/generate')}
-            className="w-full sm:w-auto px-8 py-3.5 bg-[#8B5CF6] hover:bg-[#A78BFA] text-white text-[16px] font-semibold font-inter rounded-2xl transition-all flex items-center justify-center gap-2.5 cursor-pointer"
+            className="w-full sm:w-auto px-8 py-3.5 bg-[#8B5CF6] hover:bg-[#A78BFA] text-white text-[16px] font-semibold font-inter rounded-full transition-all flex items-center justify-center gap-2.5 cursor-pointer"
           >
             <Sparkles className="w-4 h-4 fill-current text-white" />
             <span>Generate Master Prompt</span>
@@ -118,49 +125,80 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
 
           <button
             onClick={() => onNavigate('/ideas')}
-            className="w-full sm:w-auto px-8 py-3.5 bg-[#09090B] hover:bg-[#111113] text-white text-[16px] font-medium font-inter rounded-2xl border border-[#27272A] transition-colors cursor-pointer flex items-center justify-center gap-2.5"
+            className="w-full sm:w-auto px-8 py-3.5 bg-[#09090B]/50 hover:bg-[#111113] backdrop-blur-sm text-[#A1A1AA] hover:text-white text-[16px] font-medium font-inter rounded-full border border-[#27272A] transition-colors cursor-pointer flex items-center justify-center gap-2.5"
           >
             <Lightbulb className="w-4 h-4 text-[#A78BFA]" />
             <span>See Trending Concepts</span>
           </button>
         </motion.div>
 
-        {/* TRUST INDICATORS (4 CAPABILITY BADGES WITHOUT BOXES) */}
+        {/* Social Proof */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.32 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-20"
+        >
+          <div className="flex items-center gap-3">
+            <div className="flex -space-x-2">
+              <img src="https://i.pravatar.cc/100?img=1" className="w-8 h-8 rounded-full border-2 border-[#09090B] relative z-40" alt="Creator" />
+              <img src="https://i.pravatar.cc/100?img=2" className="w-8 h-8 rounded-full border-2 border-[#09090B] relative z-30" alt="Creator" />
+              <img src="https://i.pravatar.cc/100?img=3" className="w-8 h-8 rounded-full border-2 border-[#09090B] relative z-20" alt="Creator" />
+              <img src="https://i.pravatar.cc/100?img=4" className="w-8 h-8 rounded-full border-2 border-[#09090B] relative z-10" alt="Creator" />
+            </div>
+            <span className="text-[#A1A1AA] text-sm font-medium">
+              Loved by <strong className="text-[#FAFAFA]">10,000+</strong> creators
+            </span>
+          </div>
+          <div className="hidden sm:block w-1 h-1 rounded-full bg-[#27272A]"></div>
+          <div className="flex items-center gap-2">
+            <div className="flex gap-1">
+              <Star className="w-4 h-4 fill-[#EAB308] text-[#EAB308]" />
+              <Star className="w-4 h-4 fill-[#EAB308] text-[#EAB308]" />
+              <Star className="w-4 h-4 fill-[#EAB308] text-[#EAB308]" />
+              <Star className="w-4 h-4 fill-[#EAB308] text-[#EAB308]" />
+              <Star className="w-4 h-4 fill-[#EAB308] text-[#EAB308]" />
+            </div>
+            <span className="text-[#A1A1AA] text-sm font-medium">4.9/5</span>
+          </div>
+        </motion.div>
+
+        {/* TRUST INDICATORS (DIVIDED COLUMNS) */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.35 }}
-          className="flex flex-wrap items-center justify-center gap-8 md:gap-14 w-full max-w-5xl mb-20 text-left"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 w-full max-w-5xl mb-20 text-left"
         >
-          <div className="flex items-start gap-3">
-            <Zap className="w-7 h-7 text-[#A78BFA] shrink-0 mt-0.5" />
+          <div className="flex items-center justify-center lg:justify-start gap-4 lg:border-r border-[#27272A]/80 lg:pr-6">
+            <Zap className="w-8 h-8 text-[#A78BFA] shrink-0" />
             <div>
-              <div className="font-sora text-[18px] md:text-[20px] font-semibold text-[#E4E4E7]">10X Faster</div>
-              <div className="font-inter text-[14px] md:text-[16px] text-[#71717A]">From idea to prompt</div>
+              <div className="font-sora text-[15px] md:text-[17px] font-bold text-[#E4E4E7]">10X Faster</div>
+              <div className="font-inter text-[13px] md:text-[14px] text-[#71717A]">From idea to prompt</div>
             </div>
           </div>
 
-          <div className="flex items-start gap-3">
-            <Film className="w-7 h-7 text-[#A78BFA] shrink-0 mt-0.5" />
+          <div className="flex items-center justify-center lg:justify-start gap-4 lg:border-r border-[#27272A]/80 lg:px-6">
+            <Film className="w-8 h-8 text-[#A78BFA] shrink-0" />
             <div>
-              <div className="font-sora text-[18px] md:text-[20px] font-semibold text-[#E4E4E7]">Production-Ready</div>
-              <div className="font-inter text-[14px] md:text-[16px] text-[#71717A]">Made for AI models</div>
+              <div className="font-sora text-[15px] md:text-[17px] font-bold text-[#E4E4E7]">Production-Ready</div>
+              <div className="font-inter text-[13px] md:text-[14px] text-[#71717A]">Made for AI models</div>
             </div>
           </div>
 
-          <div className="flex items-start gap-3">
-            <Eye className="w-7 h-7 text-[#A78BFA] shrink-0 mt-0.5" />
+          <div className="flex items-center justify-center lg:justify-start gap-4 lg:border-r border-[#27272A]/80 lg:px-6">
+            <Eye className="w-8 h-8 text-[#A78BFA] shrink-0" />
             <div>
-              <div className="font-sora text-[18px] md:text-[20px] font-semibold text-[#E4E4E7]">Strategy-Driven</div>
-              <div className="font-inter text-[14px] md:text-[16px] text-[#71717A]">Hooks that convert</div>
+              <div className="font-sora text-[15px] md:text-[17px] font-bold text-[#E4E4E7]">Strategy-Driven</div>
+              <div className="font-inter text-[13px] md:text-[14px] text-[#71717A]">Hooks that convert</div>
             </div>
           </div>
 
-          <div className="flex items-start gap-3">
-            <ShieldCheck className="w-7 h-7 text-[#A78BFA] shrink-0 mt-0.5" />
+          <div className="flex items-center justify-center lg:justify-start gap-4 lg:pl-6">
+            <ShieldCheck className="w-8 h-8 text-[#A78BFA] shrink-0" />
             <div>
-              <div className="font-sora text-[18px] md:text-[20px] font-semibold text-[#E4E4E7]">Zero Storage</div>
-              <div className="font-inter text-[14px] md:text-[16px] text-[#71717A]">Your ideas stay yours</div>
+              <div className="font-sora text-[15px] md:text-[17px] font-bold text-[#E4E4E7]">Zero Storage</div>
+              <div className="font-inter text-[13px] md:text-[14px] text-[#71717A]">Your ideas stay yours</div>
             </div>
           </div>
         </motion.div>
