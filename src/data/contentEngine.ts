@@ -173,7 +173,17 @@ export const generateContent = async (format: 'single' | 'carousel'): Promise<De
       required: ["format", "topicTitle", "coverTitle", "caption", "slides", "cta", "hashtags", "keywords"]
     };
 
-    const prompt = \`Format requested: \${format.toUpperCase()}.\nGenerate a brand new, highly educational, timeless post about UX/UI or Product Design.\`;
+    const designTopics = [
+      "Color Theory & Accessibility", "Micro-interactions & Delight", "Advanced Form Design",
+      "Typography Hierarchy", "Designing Empty States", "User Onboarding Flows",
+      "Perfecting Dark Mode", "Mobile Navigation Patterns", "Call to Action Placement",
+      "Error Handling & Validation", "Spacing, Padding & Grids", "Dashboard Data Visualization",
+      "Skeuomorphism vs Flat Design", "Designing for Trust", "Iconography Best Practices"
+    ];
+    const randomTopic = designTopics[Math.floor(Math.random() * designTopics.length)];
+    const seed = Math.random().toString(36).substring(2, 9);
+
+    const prompt = `Format requested: ${format.toUpperCase()}.\nGenerate a brand new, highly educational, timeless post about ${randomTopic} (or a deeply related UX/UI/Product Design concept). It MUST be completely unique and different from standard advice. [Seed: ${seed}]`;
 
     const response = await ai.models.generateContent({
       model: 'gemini-2.5-flash',
