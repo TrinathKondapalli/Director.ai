@@ -218,7 +218,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
       </div>
 
       {/* INFINITE MARQUEE PLATFORMS */}
-      <section className="py-12 overflow-hidden bg-[#07090E]">
+      <motion.section 
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+        className="py-12 overflow-hidden bg-[#07090E]"
+      >
         <div className="text-center mb-10">
           <h3 className="font-sora text-[20px] sm:text-[24px] text-[#A1A1AA] font-semibold">
             Works with leading AI video generators
@@ -252,10 +258,17 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* 3. HOW IT WORKS (TIMELINE) */}
-      <section id="how-it-works" className="py-32 px-4 sm:px-6 max-w-6xl mx-auto relative">
+      <motion.section 
+        id="how-it-works" 
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+        className="py-32 px-4 sm:px-6 max-w-6xl mx-auto relative"
+      >
         <div className="text-center max-w-3xl mx-auto mb-20">
           <span className="font-inter text-[12px] uppercase tracking-[0.2em] text-[#A78BFA] font-bold block mb-4">
             THE STREAMLINED WORKFLOW
@@ -354,10 +367,16 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             </span>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* 4. TRENDING UGC CONCEPTS PREVIEW */}
-      <section className="py-32 px-4 sm:px-6 max-w-6xl mx-auto">
+      <motion.section 
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+        className="py-32 px-4 sm:px-6 max-w-6xl mx-auto"
+      >
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
           <div>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#09090B] border border-[#8B5CF6]/50 shadow-[0_0_15px_rgba(139,92,246,0.2)] text-[#E4E4E7] text-[12px] font-inter font-semibold uppercase tracking-wider mb-6">
@@ -442,10 +461,16 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             </span>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* 5. WHY DIRECTOR.AI */}
-      <section className="py-32 px-4 sm:px-6 relative overflow-hidden bg-[#09090B]">
+      <motion.section 
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+        className="py-32 px-4 sm:px-6 relative overflow-hidden bg-[#09090B]"
+      >
         {/* Immersive Background Glows & Grid */}
         <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
           <div className="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#8B5CF6]/15 blur-[120px] rounded-full" />
@@ -543,10 +568,16 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* 6. PRIVACY SECTION */}
-      <section className="py-32 px-4 sm:px-6 bg-[#09090B] relative z-10">
+      <motion.section 
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+        className="py-32 px-4 sm:px-6 bg-[#09090B] relative z-10"
+      >
         <div className="max-w-6xl mx-auto bg-[#111113] border border-[#27272A] rounded-[32px] p-8 sm:p-16 text-center relative overflow-hidden shadow-2xl">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#22C55E]/10 border border-[#22C55E]/20 text-[#4ADE80] text-[13px] font-inter font-medium mb-8 shadow-sm">
             <ShieldCheck className="w-4 h-4" />
@@ -584,12 +615,18 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
 
 
       {/* 8. FAQ SECTION */}
-      <section className="py-32 px-4 sm:px-6 relative overflow-hidden bg-[#09090B]">
+      <motion.section 
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+        className="py-32 px-4 sm:px-6 relative overflow-hidden bg-[#09090B]"
+      >
         {/* Immersive Background Glows & Grid */}
         <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
           <div className="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#8B5CF6]/15 blur-[120px] rounded-full" />
@@ -654,7 +691,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             })}
           </div>
         </div>
-      </section>
+      </motion.section>
     </div>
   );
 };
