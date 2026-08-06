@@ -16,6 +16,15 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
     setIsMobileMenuOpen(false);
   };
 
+  const handleLogoClick = () => {
+    if (currentPath === '/') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      onNavigate('/');
+    }
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <div className="sticky top-4 z-50 px-4 w-full flex justify-center mb-4">
       <header className="glass-panel rounded-[20px] md:rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.25)] w-full md:w-auto transition-all duration-300">
@@ -23,7 +32,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
           {/* Left: Brand Logo Banner */}
           <div className="flex items-center">
             <button
-              onClick={() => handleMobileNav('/')}
+              onClick={handleLogoClick}
               className="cursor-pointer focus:outline-none flex items-center group active:scale-95 transition-transform"
             >
               <img 
