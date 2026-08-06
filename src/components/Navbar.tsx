@@ -20,73 +20,78 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
     <div className="sticky top-4 z-50 px-4 sm:px-6 max-w-6xl mx-auto mb-4">
       <header className="glass-panel rounded-[20px] shadow-[0_20px_50px_rgba(0,0,0,0.25)]">
         <div className="px-4 sm:px-6 h-16 flex items-center justify-between">
-        {/* Brand Logo Banner */}
-        <button
-          onClick={() => handleMobileNav('/')}
-          className="cursor-pointer focus:outline-none flex items-center group active:scale-95 transition-transform"
-        >
-          <img 
-            src="/Horizontal_Logo.png" 
-            alt="Director.ai" 
-            className="h-7 sm:h-9 w-auto object-contain"
-          />
-        </button>
+          {/* Left: Brand Logo Banner */}
+          <div className="flex-1 flex items-center justify-start">
+            <button
+              onClick={() => handleMobileNav('/')}
+              className="cursor-pointer focus:outline-none flex items-center group active:scale-95 transition-transform"
+            >
+              <img 
+                src="/Horizontal_Logo.png" 
+                alt="Director.ai" 
+                className="h-7 sm:h-9 w-auto object-contain"
+              />
+            </button>
+          </div>
 
-        {/* Desktop Nav Links */}
-        <nav className="hidden md:flex items-center gap-8 text-[14px] font-medium tracking-wide">
-          <a
-            href="#how-it-works"
-            className="text-[var(--color-text-secondary)] hover:text-white transition-colors cursor-pointer"
-          >
-            How It Works
-          </a>
-          <button
-            onClick={() => onNavigate('/ideas')}
-            className={`transition-colors cursor-pointer ${
-              currentPath === '/ideas' ? 'text-white' : 'text-[var(--color-text-secondary)] hover:text-white'
-            }`}
-          >
-            Trending Concepts
-          </button>
-          <button
-            onClick={() => onNavigate('/pricing')}
-            className={`transition-colors cursor-pointer ${
-              currentPath === '/pricing' ? 'text-white' : 'text-[var(--color-text-secondary)] hover:text-white'
-            }`}
-          >
-            Pricing
-          </button>
+          {/* Center: Desktop Nav Links */}
+          <nav className="hidden md:flex flex-1 items-center justify-center gap-8 text-[14px] font-medium tracking-wide">
+            <a
+              href="#how-it-works"
+              className="text-[var(--color-text-secondary)] hover:text-white transition-colors cursor-pointer"
+            >
+              How It Works
+            </a>
+            <button
+              onClick={() => onNavigate('/ideas')}
+              className={`transition-colors cursor-pointer ${
+                currentPath === '/ideas' ? 'text-white' : 'text-[var(--color-text-secondary)] hover:text-white'
+              }`}
+            >
+              Trending Concepts
+            </button>
+            <button
+              onClick={() => onNavigate('/pricing')}
+              className={`transition-colors cursor-pointer ${
+                currentPath === '/pricing' ? 'text-white' : 'text-[var(--color-text-secondary)] hover:text-white'
+              }`}
+            >
+              Pricing
+            </button>
+          </nav>
 
-          {/* Primary Action Button */}
-          <button
-            onClick={() => onNavigate('/generate')}
-            className="ml-4 px-6 py-2.5 btn-primary text-[14px] flex items-center gap-2 cursor-pointer"
-          >
-            <Sparkles className="w-4 h-4 fill-current" />
-            <span>Generate Master Prompt</span>
-            <ArrowRight className="w-4 h-4 ml-1" />
-          </button>
-        </nav>
+          {/* Right: Actions */}
+          <div className="flex-1 flex items-center justify-end">
+            {/* Desktop Primary Action Button */}
+            <button
+              onClick={() => onNavigate('/generate')}
+              className="hidden md:flex px-6 py-2.5 btn-primary text-[14px] items-center gap-2 cursor-pointer"
+            >
+              <Sparkles className="w-4 h-4 fill-current" />
+              <span>Generate Master Prompt</span>
+              <ArrowRight className="w-4 h-4 ml-1" />
+            </button>
 
-        {/* Mobile Hamburger Toggle Button */}
-        <div className="flex items-center gap-2 md:hidden">
-          <button
-            onClick={() => onNavigate('/generate')}
-            className="px-4 py-2 btn-primary text-xs flex items-center gap-1.5 cursor-pointer"
-          >
-            <Sparkles className="w-3.5 h-3.5 fill-current" />
-            <span>Generate</span>
-          </button>
+            {/* Mobile Actions */}
+            <div className="flex items-center gap-2 md:hidden">
+              <button
+                onClick={() => onNavigate('/generate')}
+                className="px-4 py-2 btn-primary text-xs flex items-center gap-1.5 cursor-pointer"
+              >
+                <Sparkles className="w-3.5 h-3.5 fill-current" />
+                <span>Generate</span>
+              </button>
 
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle navigation menu"
-            className="p-2 text-[var(--color-text-secondary)] hover:text-white bg-[var(--color-bg-surface)] hover:bg-[var(--color-bg-elevated)] border border-[var(--color-border-primary)] rounded-[14px] transition-colors cursor-pointer focus:outline-none"
-          >
-            {isMobileMenuOpen ? <X className="w-5 h-5 text-white" /> : <Menu className="w-5 h-5" />}
-          </button>
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                aria-label="Toggle navigation menu"
+                className="p-2 text-[var(--color-text-secondary)] hover:text-white bg-[var(--color-bg-surface)] hover:bg-[var(--color-bg-elevated)] border border-[var(--color-border-primary)] rounded-[14px] transition-colors cursor-pointer focus:outline-none"
+              >
+                {isMobileMenuOpen ? <X className="w-5 h-5 text-white" /> : <Menu className="w-5 h-5" />}
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
       </header>
 
       {/* Mobile Navigation Drawer */}
