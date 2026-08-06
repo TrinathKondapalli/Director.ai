@@ -199,3 +199,113 @@ export function generateLocalMasterPrompt(input: MasterPromptInput): MasterPromp
     facebookPackage: buildLocalFacebookPackage(input),
   };
 }
+
+import { GoogleGenAI } from '@google/genai';
+
+export const generateMasterPrompt = async (input: MasterPromptInput): Promise<MasterPromptResult> => {
+  try {
+    const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+    if (!apiKey) {
+      console.warn("No Gemini API Key found. Falling back to mock data.");
+      return generateLocalMasterPrompt(input);
+    }
+
+    const ai = new GoogleGenAI({ apiKey });
+    
+    const SYSTEM_PROMPT = `You are an elite UGC Video Director and AI Prompt Engineer with a massive track record of scaling consumer brands via TikTok and Reels. 
+Your objective is to take a given product and target audience, and generate a hyper-specific, production-ready UGC Master Prompt (which is a detailed brief given to AI video generators or human creators).
+
+The "masterPromptText" must be a long, highly detailed string formatted EXACTLY like the local example, with sections:
+1. CREATIVE STRATEGY & MARKETING BLUEPRINT
+2. VIRAL HOOK & STORYTELLING STRUCTURE
+3. CHARACTER & ENVIRONMENT DIRECTION
+4. CONSISTENCY & CONTINUITY LOCKS
+5. SCENE TIMELINE (10-SECOND CINEMATIC FLOW)
+6. CAMERA, LIGHTING & VISUAL STYLE
+7. SOUND DESIGN & AUDIO ENGINE
+8. CALL TO ACTION & THUMBNAIL PROMPT
+
+Also generate the accompanying Social Media packages (YouTube, Instagram, Facebook) perfectly formatted for that product.`;
+
+    const schemaObj = {
+      type: 'OBJECT',
+      properties: {
+        title: { type: 'STRING' },
+        subtitle: { type: 'STRING' },
+        productName: { type: 'STRING' },
+        masterPromptText: { type: 'STRING' },
+        generatedAt: { type: 'STRING' },
+        creativeStrategy: {
+          type: 'OBJECT',
+          properties: {
+            objective: { type: 'STRING' },
+            targetAudience: { type: 'STRING' },
+            painPoint: { type: 'STRING' },
+            desiredEmotion: { type: 'STRING' },
+            marketingAngle: { type: 'STRING' }
+          },
+          required: ["objective", "targetAudience", "painPoint", "desiredEmotion", "marketingAngle"]
+        },
+        youtubePackage: {
+          type: 'OBJECT',
+          properties: {
+            title: { type: 'STRING' },
+            description: { type: 'STRING' },
+            hashtags: { type: 'ARRAY', items: { type: 'STRING' } },
+            thumbnailIdea: { type: 'STRING' },
+            thumbnailPrompt: { type: 'STRING' },
+            keywords: { type: 'ARRAY', items: { type: 'STRING' } },
+            categoryRecommendation: { type: 'STRING' },
+            seoScore: { type: 'NUMBER' }
+          },
+          required: ["title", "description", "hashtags", "thumbnailIdea", "thumbnailPrompt", "keywords", "categoryRecommendation", "seoScore"]
+        },
+        instagramPackage: {
+          type: 'OBJECT',
+          properties: {
+            caption: { type: 'STRING' },
+            hashtags: { type: 'ARRAY', items: { type: 'STRING' } },
+            hook: { type: 'STRING' },
+            callToAction: { type: 'STRING' },
+            emojiSuggestions: { type: 'ARRAY', items: { type: 'STRING' } }
+          },
+          required: ["caption", "hashtags", "hook", "callToAction", "emojiSuggestions"]
+        },
+        facebookPackage: {
+          type: 'OBJECT',
+          properties: {
+            caption: { type: 'STRING' },
+            hashtags: { type: 'ARRAY', items: { type: 'STRING' } },
+            hook: { type: 'STRING' },
+            callToAction: { type: 'STRING' }
+          },
+          required: ["caption", "hashtags", "hook", "callToAction"]
+        }
+      },
+      required: ["title", "subtitle", "productName", "masterPromptText", "generatedAt", "creativeStrategy", "youtubePackage", "instagramPackage", "facebookPackage"]
+    };
+
+    const promptText = `Product Name: ${input.productName}\nTarget Audience: ${input.targetAudience}\nProduct URL: ${input.productUrl || 'None'}\n\nGenerate the complete Master Prompt Result for this product.`;
+
+    const response = await ai.models.generateContent({
+      model: 'gemini-2.5-flash',
+      contents: promptText,
+      config: {
+        systemInstruction: SYSTEM_PROMPT,
+        responseMimeType: 'application/json',
+        responseSchema: schemaObj as any,
+        temperature: 0.7,
+      }
+    });
+
+    if (response.text) {
+      return JSON.parse(response.text) as MasterPromptResult;
+    }
+    throw new Error("No text in response");
+
+  } catch (error) {
+    console.error("Gemini API Error:", error);
+    console.warn("Falling back to mock local data.");
+    return generateLocalMasterPrompt(input);
+  }
+};
