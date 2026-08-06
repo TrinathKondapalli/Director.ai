@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, Layers, PenTool, LayoutTemplate, Newspaper } from 'lucide-react';
 import { generateContentMock } from '../data/contentEngine';
 import { DesignContentResult } from '../types';
-import { ContentLoadingScreen } from './ContentLoadingScreen';
+import { ContentLoadingScreen } from './ContentLoadingScreen'; // Force TS refresh
 import { ContentResultPage } from './ContentResultPage';
 import { AnimatedText } from './AnimatedText';
 
@@ -14,13 +14,14 @@ interface ContentStudioProps {
 export const ContentStudio: React.FC<ContentStudioProps> = ({ onNavigate }) => {
   const [isGenerating, setIsGenerating] = useState(false);
   const [result, setResult] = useState<DesignContentResult | null>(null);
+  const [format, setFormat] = useState<'single' | 'carousel'>('single');
 
   const handleGenerate = async () => {
     setIsGenerating(true);
     setResult(null);
     try {
       // In a real app, this would call an API
-      const mockResult = await generateContentMock();
+      const mockResult = await generateContentMock(format);
       setResult(mockResult);
     } catch (error) {
       console.error(error);
@@ -75,13 +76,37 @@ export const ContentStudio: React.FC<ContentStudioProps> = ({ onNavigate }) => {
           Click one button to instantly research today's top design news and generate a complete, professional, 17-section social media publishing package.
         </motion.p>
 
-        {/* Primary CTA */}
+        {/* Primary CTA & Toggle */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="mb-20"
+          className="mb-20 flex flex-col items-center gap-6"
         >
+          {/* Format Toggle */}
+          <div className="flex bg-[var(--color-bg-primary)] border border-[var(--color-border-primary)] rounded-full p-1 w-fit">
+            <button
+              onClick={() => setFormat('single')}
+              className={`px-6 py-2.5 rounded-full text-[13px] font-semibold transition-all duration-300 ${
+                format === 'single'
+                  ? 'bg-[var(--color-bg-elevated)] text-white shadow-[0_2px_10px_rgba(0,0,0,0.2)]'
+                  : 'text-[#A1A1AA] hover:text-[#FAFAFA]'
+              }`}
+            >
+              Single Post
+            </button>
+            <button
+              onClick={() => setFormat('carousel')}
+              className={`px-6 py-2.5 rounded-full text-[13px] font-semibold transition-all duration-300 ${
+                format === 'carousel'
+                  ? 'bg-[var(--color-bg-elevated)] text-white shadow-[0_2px_10px_rgba(0,0,0,0.2)]'
+                  : 'text-[#A1A1AA] hover:text-[#FAFAFA]'
+              }`}
+            >
+              Carousel
+            </button>
+          </div>
+
           <button
             onClick={handleGenerate}
             className="btn-primary px-10 py-5 text-[16px] sm:text-[18px] flex items-center justify-center gap-3 cursor-pointer shadow-[0_0_30px_rgba(139,92,246,0.3)] hover:shadow-[0_0_45px_rgba(139,92,246,0.5)] transition-all duration-300"

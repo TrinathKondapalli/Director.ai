@@ -4,21 +4,13 @@ import {
   Copy,
   CheckCircle2,
   RefreshCw,
-  Search,
-  Linkedin,
-  Instagram,
-  Facebook,
-  Twitter,
-  Image as ImageIcon,
+  ImageIcon,
   Hash,
-  Wand2,
+  MessageSquare,
   List,
-  Video,
-  FileText,
-  Mail,
-  Briefcase
+  Target
 } from 'lucide-react';
-import { DesignContentResult } from '../types';
+import { DesignContentResult, DesignContentResultV2Single, DesignContentResultV2Carousel } from '../types';
 
 interface ContentResultPageProps {
   result: DesignContentResult;
@@ -44,21 +36,37 @@ export const ContentResultPage: React.FC<ContentResultPageProps> = ({ result, on
   };
 
   const copyAll = () => {
-    const fullText = `
---- ${result.researchSummary.topicTitle} ---
-${result.researchSummary.summary}
+    let fullText = '';
+    if (result.format === 'single') {
+      fullText = `
+--- ${result.topicTitle} ---
 
-LINKEDIN:
-${result.linkedInPost}
+${result.hook}
 
-TWITTER THREAD:
-${result.twitter.thread.join('\n\n')}
-    `.trim();
+${result.postContent}
+
+${result.cta}
+
+---
+IMAGE PROMPT:
+${result.imagePrompt}
+      `.trim();
+    } else {
+      fullText = `
+--- ${result.topicTitle} ---
+COVER: ${result.coverTitle}
+
+${result.slides.map((s, i) => `SLIDE ${i + 1}: ${s.heading}\n${s.description}\nIMAGE PROMPT: ${s.imagePrompt}`).join('\n\n')}
+
+CTA: ${result.cta}
+      `.trim();
+    }
+    
     copyToClipboard(fullText, 'All Content', 'all');
   };
 
   const SectionCard = ({ title, icon: Icon, children, copyText, copyLabel, copyKey }: any) => (
-    <div className="bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] rounded-2xl shadow-xl overflow-hidden flex flex-col">
+    <div className="bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] rounded-2xl shadow-xl overflow-hidden flex flex-col h-full">
       <div className="bg-[var(--color-bg-primary)] border-b border-[var(--color-border-primary)] px-5 py-4 flex items-center justify-between">
         <div className="flex items-center gap-2.5">
           <Icon className="w-5 h-5 text-[var(--color-brand-violet)]" />
@@ -76,6 +84,115 @@ ${result.twitter.thread.join('\n\n')}
       </div>
       <div className="p-5 flex-1 text-sm text-[#A1A1AA] whitespace-pre-wrap font-inter leading-relaxed">
         {children}
+      </div>
+    </div>
+  );
+
+  const renderSinglePost = (res: DesignContentResultV2Single) => (
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      {/* Main Post Content */}
+      <div className="lg:col-span-2">
+        <SectionCard title="Post Content" icon={MessageSquare} copyText={`${res.hook}\n\n${res.postContent}\n\n${res.cta}`} copyLabel="Post" copyKey="post">
+          <div className="space-y-4 text-[15px] leading-relaxed text-[#D4D4D8]">
+            <p className="font-semibold text-white">{res.hook}</p>
+            <p>{res.postContent}</p>
+            <p className="font-semibold text-[var(--color-brand-lavender)] italic">{res.cta}</p>
+          </div>
+        </SectionCard>
+      </div>
+
+      {/* Sidebar: Image & SEO */}
+      <div className="flex flex-col gap-6">
+        <SectionCard title="AI Image Prompt" icon={ImageIcon} copyText={res.imagePrompt} copyLabel="Prompt" copyKey="prompt">
+          <div className="p-4 bg-[var(--color-bg-primary)] border border-[var(--color-border-primary)] rounded-xl font-mono text-[12px] text-[var(--color-brand-violet)] leading-relaxed">
+            {res.imagePrompt}
+          </div>
+        </SectionCard>
+
+        <SectionCard title="SEO & Tags" icon={Hash} copyText={res.hashtags.join(' ')} copyLabel="Tags" copyKey="tags">
+          <strong className="text-white text-xs uppercase tracking-wider block mb-2">Keywords</strong>
+          <div className="flex flex-wrap gap-2 mb-6">
+            {res.keywords.map((k, i) => (
+              <span key={i} className="px-2.5 py-1 bg-[var(--color-bg-primary)] border border-[var(--color-border-primary)] rounded-md text-[11px] font-mono text-[#A1A1AA]">{k}</span>
+            ))}
+          </div>
+          <strong className="text-white text-xs uppercase tracking-wider block mb-2">Hashtags</strong>
+          <div className="font-mono text-[12px] text-[var(--color-brand-magenta)]">
+            {res.hashtags.join(' ')}
+          </div>
+        </SectionCard>
+      </div>
+    </div>
+  );
+
+  const renderCarousel = (res: DesignContentResultV2Carousel) => (
+    <div className="flex flex-col gap-6">
+      {/* Overview */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <SectionCard title="Carousel Overview" icon={List} copyText={`Title: ${res.coverTitle}\n\nCTA: ${res.cta}`} copyLabel="Overview" copyKey="overview">
+          <div className="mb-4">
+            <strong className="text-white text-xs font-mono uppercase tracking-wider">Slide 1 (Cover Title)</strong>
+            <p className="text-lg font-bold text-white mt-1">{res.coverTitle}</p>
+          </div>
+          <div>
+            <strong className="text-white text-xs font-mono uppercase tracking-wider">Final Slide (Call to Action)</strong>
+            <p className="text-[var(--color-brand-lavender)] italic mt-1">{res.cta}</p>
+          </div>
+        </SectionCard>
+        
+        <SectionCard title="SEO & Tags" icon={Hash} copyText={res.hashtags.join(' ')} copyLabel="Tags" copyKey="tags">
+          <strong className="text-white text-xs uppercase tracking-wider block mb-2">Keywords</strong>
+          <div className="flex flex-wrap gap-2 mb-6">
+            {res.keywords.map((k, i) => (
+              <span key={i} className="px-2.5 py-1 bg-[var(--color-bg-primary)] border border-[var(--color-border-primary)] rounded-md text-[11px] font-mono text-[#A1A1AA]">{k}</span>
+            ))}
+          </div>
+          <strong className="text-white text-xs uppercase tracking-wider block mb-2">Hashtags</strong>
+          <div className="font-mono text-[12px] text-[var(--color-brand-magenta)]">
+            {res.hashtags.join(' ')}
+          </div>
+        </SectionCard>
+      </div>
+
+      {/* Individual Slides */}
+      <div className="space-y-6">
+        <h3 className="font-sora font-bold text-xl text-white mt-4 border-b border-[var(--color-border-primary)] pb-4 flex items-center gap-2">
+          <Target className="w-5 h-5 text-[var(--color-brand-violet)]" />
+          Carousel Slides
+        </h3>
+        {res.slides.map((slide, index) => (
+          <div key={index} className="bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] rounded-2xl shadow-lg p-6 flex flex-col lg:flex-row gap-6 relative group">
+            {/* Slide Content */}
+            <div className="flex-1">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-8 h-8 rounded-lg bg-[var(--color-brand-violet)]/15 border border-[var(--color-brand-violet)]/30 text-[var(--color-brand-violet)] font-bold flex items-center justify-center text-sm font-mono shrink-0">
+                  {index + 1}
+                </div>
+                <h4 className="font-sora font-bold text-lg text-white">{slide.heading}</h4>
+              </div>
+              <p className="text-[#D4D4D8] leading-relaxed ml-11">{slide.description}</p>
+            </div>
+            
+            {/* Image Prompt */}
+            <div className="flex-1 bg-[var(--color-bg-primary)] rounded-xl p-5 border border-[var(--color-border-primary)] relative">
+              <div className="flex items-center justify-between mb-3">
+                <strong className="text-white text-xs font-mono uppercase tracking-wider flex items-center gap-2">
+                  <ImageIcon className="w-4 h-4 text-[var(--color-brand-magenta)]" />
+                  Image Prompt
+                </strong>
+                <button
+                  onClick={() => copyToClipboard(slide.imagePrompt, `Slide ${index + 1} Prompt`, `prompt-${index}`)}
+                  className="text-[#A1A1AA] hover:text-white transition-colors"
+                >
+                  {activeCopiedKey === `prompt-${index}` ? <CheckCircle2 className="w-4 h-4 text-[#22C55E]" /> : <Copy className="w-4 h-4" />}
+                </button>
+              </div>
+              <div className="font-mono text-[12px] text-[var(--color-brand-violet)] leading-relaxed">
+                {slide.imagePrompt}
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -104,14 +221,11 @@ ${result.twitter.thread.join('\n\n')}
           <div>
             <div className="flex items-center gap-3 mb-2">
               <span className="px-3 py-1 rounded-full bg-[var(--color-brand-violet)]/15 border border-[var(--color-brand-violet)]/30 text-[var(--color-brand-violet)] text-[11px] font-mono font-semibold tracking-wide uppercase">
-                {result.researchSummary.source} • {result.researchSummary.date}
-              </span>
-              <span className="px-3 py-1 rounded-full bg-[var(--color-brand-magenta)]/10 border border-[var(--color-brand-magenta)]/20 text-[var(--color-brand-magenta)] text-[11px] font-mono font-semibold tracking-wide uppercase">
-                {result.researchSummary.difficultyLevel}
+                {result.format === 'single' ? 'SINGLE POST' : 'CAROUSEL'}
               </span>
             </div>
             <h1 className="text-2xl sm:text-4xl font-sora font-extrabold text-[#FAFAFA] tracking-tight leading-snug">
-              {result.researchSummary.topicTitle}
+              {result.topicTitle}
             </h1>
           </div>
           
@@ -127,111 +241,9 @@ ${result.twitter.thread.join('\n\n')}
           </div>
         </div>
 
-        {/* MASONRY GRID FOR SECTIONS */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-          
-          {/* Research Summary */}
-          <SectionCard title="Research Summary" icon={Search}>
-            <strong className="text-white">Summary:</strong><br/>
-            {result.researchSummary.summary}<br/><br/>
-            <strong className="text-white">Why It Matters:</strong><br/>
-            {result.researchSummary.whyItMatters}<br/><br/>
-            <strong className="text-white">Key Takeaways:</strong>
-            <ul className="list-disc pl-5 mt-1 space-y-1">
-              {result.researchSummary.keyTakeaways.map((k, i) => <li key={i}>{k}</li>)}
-            </ul>
-          </SectionCard>
+        {/* DYNAMIC RENDERING BASED ON FORMAT */}
+        {result.format === 'single' ? renderSinglePost(result) : renderCarousel(result)}
 
-          {/* LinkedIn */}
-          <SectionCard title="LinkedIn Post" icon={Linkedin} copyText={result.linkedInPost} copyLabel="LinkedIn" copyKey="linkedin">
-            {result.linkedInPost}
-          </SectionCard>
-
-          {/* Twitter */}
-          <SectionCard title="Twitter Thread" icon={Twitter} copyText={result.twitter.thread.join('\n\n')} copyLabel="Twitter Thread" copyKey="twitter">
-            {result.twitter.thread.map((tweet, i) => (
-              <div key={i} className="mb-4 pb-4 border-b border-[var(--color-border-primary)] last:border-0 last:mb-0 last:pb-0">
-                {tweet}
-              </div>
-            ))}
-          </SectionCard>
-
-          {/* Instagram */}
-          <SectionCard title="Instagram Caption" icon={Instagram} copyText={result.instagramCaption} copyLabel="Instagram" copyKey="instagram">
-            {result.instagramCaption}
-          </SectionCard>
-
-          {/* AI Prompts */}
-          <SectionCard title="AI Image & Thumbnail" icon={ImageIcon} copyText={`IMAGE:\n${result.imagePrompt}\n\nTHUMBNAIL:\n${result.thumbnailPrompt}`} copyLabel="Prompts" copyKey="prompts">
-            <strong className="text-white text-xs font-mono uppercase">Editorial Image Prompt</strong><br/>
-            <div className="bg-[var(--color-bg-primary)] p-3 rounded-lg border border-[var(--color-border-primary)] font-mono text-[11px] text-[var(--color-brand-violet)] mt-2 mb-4">
-              {result.imagePrompt}
-            </div>
-            <strong className="text-white text-xs font-mono uppercase">Thumbnail Prompt</strong><br/>
-            <div className="bg-[var(--color-bg-primary)] p-3 rounded-lg border border-[var(--color-border-primary)] font-mono text-[11px] text-[var(--color-brand-magenta)] mt-2">
-              {result.thumbnailPrompt}
-            </div>
-          </SectionCard>
-
-          {/* Video Script */}
-          <SectionCard title="Short Video Scripts" icon={Video} copyText={result.shortVideoScript.sec60} copyLabel="Video Script" copyKey="script">
-            <strong className="text-white">60-Second Hook & Script:</strong><br/><br/>
-            {result.shortVideoScript.sec60}
-          </SectionCard>
-
-          {/* Carousel */}
-          <SectionCard title="Carousel Content" icon={List} copyText={result.carouselContent.map(c => `${c.slideName}\n${c.text}\nImage Prompt: ${c.imagePrompt}`).join('\n\n')} copyLabel="Carousel" copyKey="carousel">
-            <div className="space-y-6">
-              {result.carouselContent.map((slide, i) => (
-                <div key={i} className="flex flex-col gap-2">
-                  <div className="flex gap-3">
-                    <div className="w-6 h-6 rounded-md bg-[var(--color-bg-primary)] border border-[var(--color-border-primary)] flex items-center justify-center font-mono text-[10px] shrink-0 text-white font-bold">{i+1}</div>
-                    <div className="text-sm font-semibold text-white">{slide.slideName}</div>
-                  </div>
-                  <div className="text-sm ml-9 mb-1">{slide.text}</div>
-                  <div className="ml-9 p-3 bg-[var(--color-bg-primary)] border border-[var(--color-border-primary)] rounded-lg font-mono text-[11px] text-[var(--color-brand-magenta)]">
-                    <strong className="text-white uppercase">Image Prompt:</strong><br/>
-                    {slide.imagePrompt}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </SectionCard>
-
-          {/* Post Variations */}
-          <SectionCard title="Post Variations" icon={Wand2} copyText={Object.values(result.postVariations).join('\n\n')} copyLabel="Variations" copyKey="variations">
-            <strong className="text-white">Minimal Version:</strong><br/>
-            {result.postVariations.minimal}<br/><br/>
-            <strong className="text-white">Storytelling Version:</strong><br/>
-            {result.postVariations.storytelling}
-          </SectionCard>
-
-          {/* Blog & Newsletter */}
-          <SectionCard title="Newsletter & Blog" icon={Mail} copyText={result.newsletterVersion} copyLabel="Newsletter" copyKey="newsletter">
-            <strong className="text-white">Email Subject:</strong><br/>
-            {result.newsletterVersion.split('\n')[0]}<br/><br/>
-            <strong className="text-white">Blog SEO Title:</strong><br/>
-            {result.blogOutline.seoTitle}
-          </SectionCard>
-
-          {/* Portfolio Insight */}
-          <SectionCard title="Portfolio Insight" icon={Briefcase} copyText={result.portfolioInsight} copyLabel="Portfolio Insight" copyKey="portfolio">
-            {result.portfolioInsight}
-          </SectionCard>
-
-          {/* SEO & Hashtags */}
-          <SectionCard title="Keywords & Hashtags" icon={Hash} copyText={result.seoKeywords.primary.join(', ')} copyLabel="SEO" copyKey="seo">
-            <strong className="text-white">Primary Keywords:</strong><br/>
-            <div className="flex flex-wrap gap-2 mt-2 mb-4">
-              {result.seoKeywords.primary.map((k, i) => <span key={i} className="px-2 py-1 bg-[var(--color-bg-primary)] border border-[var(--color-border-primary)] rounded-md text-[11px] font-mono">{k}</span>)}
-            </div>
-            <strong className="text-white">LinkedIn Hashtags:</strong><br/>
-            <div className="text-[12px] mt-2 font-mono text-[var(--color-brand-violet)]">
-              {result.seoHashtags.linkedin.slice(0, 10).join(' ')}
-            </div>
-          </SectionCard>
-
-        </div>
       </div>
     </div>
   );

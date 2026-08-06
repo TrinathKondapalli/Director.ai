@@ -72,63 +72,29 @@ export interface AiConceptCard {
   productNameExample: string;
 }
 
-export interface DesignContentResult {
-  researchSummary: {
-    topicTitle: string;
-    source: string;
-    date: string;
-    summary: string;
-    whyItMatters: string;
-    keyTakeaways: string[];
-    futureImpact: string;
-    difficultyLevel: string;
-    estimatedReadingTime: string;
-  };
-  linkedInPost: string;
-  instagramCaption: string;
-  facebookPost: string;
-  twitter: {
-    singleTweet: string;
-    thread: string[];
-  };
+export interface DesignContentResultV2Single {
+  format: 'single';
+  topicTitle: string;
+  hook: string;
+  postContent: string;
+  cta: string;
   imagePrompt: string;
-  thumbnailPrompt: string;
-  seoHashtags: {
-    linkedin: string[];
-    instagram: string[];
-    twitter: string[];
-  };
-  seoKeywords: {
-    primary: string[];
-    secondary: string[];
-    longTail: string[];
-  };
-  postVariations: {
-    professional: string;
-    storytelling: string;
-    minimal: string;
-    technical: string;
-    educational: string;
-  };
-  hooks: string[];
-  ctas: string[];
-  carouselContent: {
-    slideName: string;
-    text: string;
+  hashtags: string[];
+  keywords: string[];
+}
+
+export interface DesignContentResultV2Carousel {
+  format: 'carousel';
+  topicTitle: string;
+  coverTitle: string;
+  slides: {
+    heading: string;
+    description: string;
     imagePrompt: string;
   }[];
-  shortVideoScript: {
-    sec30: string;
-    sec60: string;
-    sec90: string;
-  };
-  blogOutline: {
-    seoTitle: string;
-    introduction: string;
-    headings: string[];
-    subheadings: string[];
-    conclusion: string;
-  };
-  newsletterVersion: string;
-  portfolioInsight: string;
+  cta: string;
+  hashtags: string[];
+  keywords: string[];
 }
+
+export type DesignContentResult = DesignContentResultV2Single | DesignContentResultV2Carousel;
