@@ -17,8 +17,9 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-[#09090B]/95 backdrop-blur-md border-b border-[#27272A]">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+    <div className="sticky top-4 z-50 px-4 sm:px-6 max-w-6xl mx-auto mb-4">
+      <header className="glass-panel rounded-[20px] shadow-[0_20px_50px_rgba(0,0,0,0.25)]">
+        <div className="px-4 sm:px-6 h-16 flex items-center justify-between">
         {/* Brand Logo Banner */}
         <button
           onClick={() => handleMobileNav('/')}
@@ -32,17 +33,17 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
         </button>
 
         {/* Desktop Nav Links */}
-        <nav className="hidden md:flex items-center gap-8 text-[15px] font-medium tracking-wide">
+        <nav className="hidden md:flex items-center gap-8 text-[14px] font-medium tracking-wide">
           <a
             href="#how-it-works"
-            className="text-[#A1A1AA] hover:text-[#FAFAFA] transition-colors cursor-pointer"
+            className="text-[var(--color-text-secondary)] hover:text-white transition-colors cursor-pointer"
           >
             How It Works
           </a>
           <button
             onClick={() => onNavigate('/ideas')}
             className={`transition-colors cursor-pointer ${
-              currentPath === '/ideas' ? 'text-[#FAFAFA]' : 'text-[#A1A1AA] hover:text-[#FAFAFA]'
+              currentPath === '/ideas' ? 'text-white' : 'text-[var(--color-text-secondary)] hover:text-white'
             }`}
           >
             Trending Concepts
@@ -50,24 +51,16 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
           <button
             onClick={() => onNavigate('/pricing')}
             className={`transition-colors cursor-pointer ${
-              currentPath === '/pricing' ? 'text-[#FAFAFA]' : 'text-[#A1A1AA] hover:text-[#FAFAFA]'
+              currentPath === '/pricing' ? 'text-white' : 'text-[var(--color-text-secondary)] hover:text-white'
             }`}
           >
             Pricing
-          </button>
-          <button
-            onClick={() => onNavigate('/privacy')}
-            className={`transition-colors cursor-pointer ${
-              currentPath === '/privacy' ? 'text-[#FAFAFA]' : 'text-[#A1A1AA] hover:text-[#FAFAFA]'
-            }`}
-          >
-            Privacy
           </button>
 
           {/* Primary Action Button */}
           <button
             onClick={() => onNavigate('/generate')}
-            className="ml-4 px-5 py-2.5 bg-[#6615F6] hover:bg-[#6615F6] text-white text-[16px] font-semibold rounded-xl transition-all shadow-md shadow-[#6615F6]/20 hover:shadow-[#6615F6]/30 flex items-center gap-2 cursor-pointer active:scale-[0.98]"
+            className="ml-4 px-6 py-2.5 btn-primary text-[14px] flex items-center gap-2 cursor-pointer"
           >
             <Sparkles className="w-4 h-4 fill-current" />
             <span>Generate Master Prompt</span>
@@ -79,7 +72,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
         <div className="flex items-center gap-2 md:hidden">
           <button
             onClick={() => onNavigate('/generate')}
-            className="px-3 py-1.5 bg-[#6615F6] text-white text-xs font-semibold rounded-lg flex items-center gap-1.5 shadow-sm active:scale-95 transition-transform cursor-pointer"
+            className="px-4 py-2 btn-primary text-xs flex items-center gap-1.5 cursor-pointer"
           >
             <Sparkles className="w-3.5 h-3.5 fill-current" />
             <span>Generate</span>
@@ -88,30 +81,31 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle navigation menu"
-            className="p-2 text-[#A1A1AA] hover:text-white bg-[#111113] hover:bg-[#1C1C20] border border-[#27272A] rounded-xl transition-colors cursor-pointer focus:outline-none"
+            className="p-2 text-[var(--color-text-secondary)] hover:text-white bg-[var(--color-bg-surface)] hover:bg-[var(--color-bg-elevated)] border border-[var(--color-border-primary)] rounded-[14px] transition-colors cursor-pointer focus:outline-none"
           >
             {isMobileMenuOpen ? <X className="w-5 h-5 text-white" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
+      </header>
 
       {/* Mobile Navigation Drawer */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2, ease: 'easeInOut' }}
-            className="md:hidden overflow-hidden bg-[#111113] border-b border-[#27272A] shadow-2xl"
+            className="md:hidden absolute top-20 left-0 right-0 bg-[var(--color-bg-card)] border border-[var(--color-border-primary)] rounded-[20px] shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden"
           >
-            <div className="px-4 py-5 space-y-2.5 max-w-6xl mx-auto">
+            <div className="px-4 py-5 space-y-2.5">
               <button
                 onClick={() => handleMobileNav('/')}
-                className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
+                className={`w-full flex items-center justify-between px-4 py-3 rounded-[14px] text-sm font-medium transition-colors ${
                   currentPath === '/'
-                    ? 'bg-[#6615F6]/15 text-[#6615F6] border border-[#6615F6]/30'
-                    : 'text-[#A1A1AA] hover:text-white bg-[#09090B] border border-transparent'
+                    ? 'bg-[var(--color-brand-violet)]/15 text-[var(--color-brand-lavender)] border border-[var(--color-brand-violet)]/30'
+                    : 'text-[var(--color-text-secondary)] hover:text-white bg-[var(--color-bg-primary)] border border-transparent'
                 }`}
               >
                 <div className="flex items-center gap-3">
@@ -122,73 +116,49 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
 
               <button
                 onClick={() => handleMobileNav('/generate')}
-                className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
+                className={`w-full flex items-center justify-between px-4 py-3 rounded-[14px] text-sm font-medium transition-colors ${
                   currentPath === '/generate'
-                    ? 'bg-[#6615F6]/15 text-[#6615F6] border border-[#6615F6]/30'
-                    : 'text-[#A1A1AA] hover:text-white bg-[#09090B] border border-transparent'
+                    ? 'bg-[var(--color-brand-violet)]/15 text-[var(--color-brand-lavender)] border border-[var(--color-brand-violet)]/30'
+                    : 'text-[var(--color-text-secondary)] hover:text-white bg-[var(--color-bg-primary)] border border-transparent'
                 }`}
               >
                 <div className="flex items-center gap-3">
-                  <Sparkles className="w-4 h-4 text-[#6615F6]" />
+                  <Sparkles className="w-4 h-4 text-[var(--color-brand-violet)]" />
                   <span>Generate Master Prompt</span>
                 </div>
               </button>
 
               <button
                 onClick={() => handleMobileNav('/ideas')}
-                className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
+                className={`w-full flex items-center justify-between px-4 py-3 rounded-[14px] text-sm font-medium transition-colors ${
                   currentPath === '/ideas'
-                    ? 'bg-[#6615F6]/15 text-[#6615F6] border border-[#6615F6]/30'
-                    : 'text-[#A1A1AA] hover:text-white bg-[#09090B] border border-transparent'
+                    ? 'bg-[var(--color-brand-violet)]/15 text-[var(--color-brand-lavender)] border border-[var(--color-brand-violet)]/30'
+                    : 'text-[var(--color-text-secondary)] hover:text-white bg-[var(--color-bg-primary)] border border-transparent'
                 }`}
               >
                 <div className="flex items-center gap-3">
-                  <Lightbulb className="w-4 h-4 text-[#6615F6]" />
+                  <Lightbulb className="w-4 h-4 text-[var(--color-brand-violet)]" />
                   <span>Trending Concepts</span>
                 </div>
               </button>
 
               <button
                 onClick={() => handleMobileNav('/pricing')}
-                className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
+                className={`w-full flex items-center justify-between px-4 py-3 rounded-[14px] text-sm font-medium transition-colors ${
                   currentPath === '/pricing'
-                    ? 'bg-[#6615F6]/15 text-[#6615F6] border border-[#6615F6]/30'
-                    : 'text-[#A1A1AA] hover:text-white bg-[#09090B] border border-transparent'
+                    ? 'bg-[var(--color-brand-violet)]/15 text-[var(--color-brand-lavender)] border border-[var(--color-brand-violet)]/30'
+                    : 'text-[var(--color-text-secondary)] hover:text-white bg-[var(--color-bg-primary)] border border-transparent'
                 }`}
               >
                 <div className="flex items-center gap-3">
-                  <Tag className="w-4 h-4 text-[#A1A1AA]" />
+                  <Tag className="w-4 h-4 text-[var(--color-brand-violet)]" />
                   <span>Pricing</span>
                 </div>
               </button>
-
-              <button
-                onClick={() => handleMobileNav('/privacy')}
-                className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
-                  currentPath === '/privacy'
-                    ? 'bg-[#6615F6]/15 text-[#6615F6] border border-[#6615F6]/30'
-                    : 'text-[#A1A1AA] hover:text-white bg-[#09090B] border border-transparent'
-                }`}
-              >
-                <div className="flex items-center gap-3">
-                  <ShieldCheck className="w-4 h-4 text-[#22C55E]" />
-                  <span>Privacy Policy</span>
-                </div>
-              </button>
-
-              <div className="pt-2">
-                <button
-                  onClick={() => handleMobileNav('/generate')}
-                  className="w-full py-3.5 px-4 bg-[#6615F6] hover:bg-[#6615F6] text-white text-sm font-semibold rounded-xl shadow-lg shadow-[#6615F6]/25 flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
-                >
-                  <Sparkles className="w-4 h-4 fill-current" />
-                  <span>Generate Master Prompt</span>
-                </button>
-              </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </div>
   );
 };
