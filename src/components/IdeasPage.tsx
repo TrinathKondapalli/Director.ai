@@ -52,6 +52,7 @@ export const IdeasPage: React.FC<IdeasPageProps> = ({ onSelectConcept }) => {
       // Shuffle array and randomly increment trend score slightly to simulate live feed update
       const shuffled = [...concepts].map((item) => ({
         ...item,
+        id: item.id.split('-')[0] + '-' + Math.random().toString(36).substring(2, 7), // Generate new ID so animation replays
         trendScore: Math.min(99, Math.max(92, Math.floor(92 + Math.random() * 8))),
       }));
       for (let i = shuffled.length - 1; i > 0; i--) {
@@ -60,7 +61,7 @@ export const IdeasPage: React.FC<IdeasPageProps> = ({ onSelectConcept }) => {
       }
       setConcepts(shuffled);
       setIsRefreshing(false);
-    }, 500);
+    }, 800);
   };
 
   return (
