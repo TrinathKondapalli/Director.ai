@@ -288,7 +288,7 @@ Also generate the accompanying Social Media packages (YouTube, Instagram, Facebo
     const promptText = `Product Name: ${input.productName}\nTarget Audience: ${input.targetAudience}\nProduct URL: ${input.productUrl || 'None'}\n\nGenerate the complete Master Prompt Result for this product.`;
 
     const response = await ai.models.generateContent({
-      model: 'gemini-2.0-flash',
+      model: 'gemini-3.6-flash',
       contents: promptText,
       config: {
         systemInstruction: SYSTEM_PROMPT,
@@ -356,7 +356,7 @@ Make the concepts incredibly specific, emotional, and compelling. Ensure the dif
     const promptText = `Niche requested: ${niche === 'All Niches' ? 'A mix of highly viral niches (e.g. Biohacking, Skincare, SaaS, Smart Home, etc)' : niche}. Generate 6 fresh trending UGC concepts.`;
 
     const response = await ai.models.generateContent({
-      model: 'gemini-2.0-flash',
+      model: 'gemini-3.6-flash',
       contents: promptText,
       config: {
         systemInstruction: SYSTEM_PROMPT,
