@@ -66,15 +66,43 @@ export const generateContentMock = async (): Promise<DesignContentResult> => {
       "Tag a designer who needs to see this.",
       "Do you think AI is helping or hurting junior designers? Discuss below."
     ],
-    carouselContent: {
-      slide1Cover: "Figma Just Killed Manual Auto Layout 🤯",
-      slide2Problem: "We all know the pain: Nested frames. Broken constraints. Hours spent fixing responsive behavior instead of designing.",
-      slide3Insight: "Enter: Figma 'AI Layouts'. A new beta feature that uses machine learning to automatically structure your messy canvas.",
-      slide4Example: "How it works: 1. Select raw layers. 2. Click 'AI Layout'. 3. The AI instantly creates perfectly nested, responsive components.",
-      slide5Solution: "The Result? A 40% reduction in production time. No more technical pixel-pushing. Instant developer-ready structure.",
-      slide6Takeaway: "The Takeaway: Execution is commoditized. Your value as a designer is no longer 'knowing Figma'. It's Strategy, Psychology, and Business Impact.",
-      slide7Cta: "Are you worried or excited about AI taking over execution? Let me know in the comments! 👇"
-    },
+    carouselContent: [
+      {
+        slideName: "Slide 1: Cover",
+        text: "Figma Just Killed Manual Auto Layout 🤯",
+        imagePrompt: "A sleek, cinematic close-up of a laptop screen showing the Figma interface. The words 'Auto Layout' are fading away, replaced by a glowing, futuristic AI icon. High contrast, dark mode, purple and blue ambient lighting. --ar 4:5"
+      },
+      {
+        slideName: "Slide 2: Problem",
+        text: "We all know the pain: Nested frames. Broken constraints. Hours spent fixing responsive behavior instead of designing.",
+        imagePrompt: "A frustrated product designer sitting in a dark, moody studio, face illuminated by the screen. The screen shows a chaotic web of red nested Figma frames. Dramatic lighting, cinematic depth of field. --ar 4:5"
+      },
+      {
+        slideName: "Slide 3: Insight",
+        text: "Enter: Figma 'AI Layouts'. A new beta feature that uses machine learning to automatically structure your messy canvas.",
+        imagePrompt: "A glowing, ethereal neural network graphic merging with a clean, structured UI wireframe. Minimalist, premium aesthetic, glassmorphism elements, soft lavender glow. --ar 4:5"
+      },
+      {
+        slideName: "Slide 4: Example",
+        text: "How it works: 1. Select raw layers. 2. Click 'AI Layout'. 3. The AI instantly creates perfectly nested, responsive components.",
+        imagePrompt: "A highly detailed macro shot of a sleek mouse clicking a vibrant, neon purple 'AI Layout' button on a premium dark mode UI. Sharp focus, editorial style. --ar 4:5"
+      },
+      {
+        slideName: "Slide 5: Solution",
+        text: "The Result? A 40% reduction in production time. No more technical pixel-pushing. Instant developer-ready structure.",
+        imagePrompt: "A futuristic digital clock hovering over a clean, finished dashboard design. The time is moving rapidly, symbolizing time saved. Sleek, premium 3D render, dark background. --ar 4:5"
+      },
+      {
+        slideName: "Slide 6: Takeaway",
+        text: "The Takeaway: Execution is commoditized. Your value as a designer is no longer 'knowing Figma'. It's Strategy, Psychology, and Business Impact.",
+        imagePrompt: "A beautiful, abstract representation of a human brain merging with a business chart. High-end 3D glass rendering, neon blue and purple accents, profound and conceptual. --ar 4:5"
+      },
+      {
+        slideName: "Slide 7: CTA",
+        text: "Are you worried or excited about AI taking over execution? Let me know in the comments! 👇",
+        imagePrompt: "A stylish, minimal typography composition on a dark textured background. A subtle, glowing chat bubble icon hovering in the center, inviting discussion. Cinematic studio lighting. --ar 4:5"
+      }
+    ],
     shortVideoScript: {
       sec30: "Figma just dropped a massive update that might change UI design forever. It's called AI Layouts. Instead of spending hours manually nesting frames and fixing responsive constraints, the AI analyzes your messy design and instantly converts it into a perfect Auto Layout structure. Execution is becoming automated, which means your value as a designer now relies purely on strategy and user psychology. What do you think?",
       sec60: "If you hate setting up Auto Layout in Figma, you're going to love this. Figma just introduced AI Layouts in beta. Here's how it works: you take a bunch of raw text, shapes, and images on a canvas. You select them all, hit the new AI button, and boom—it instantly calculates the spatial relationships and wraps everything in perfectly responsive, nested Auto Layout frames. I've tested it, and it's about 90% accurate. This is a massive timesaver, but it also means the technical skill of 'knowing how to build UI' is becoming a commodity. To survive the next wave of design, you need to double down on user research, business strategy, and complex problem solving. What are your thoughts on AI taking over execution?",

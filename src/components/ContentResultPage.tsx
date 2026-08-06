@@ -180,12 +180,19 @@ ${result.twitter.thread.join('\n\n')}
           </SectionCard>
 
           {/* Carousel */}
-          <SectionCard title="Carousel Content" icon={List} copyText={Object.values(result.carouselContent).join('\n')} copyLabel="Carousel" copyKey="carousel">
-            <div className="space-y-3">
-              {Object.entries(result.carouselContent).map(([k, v], i) => (
-                <div key={k} className="flex gap-3">
-                  <div className="w-6 h-6 rounded-md bg-[var(--color-bg-primary)] border border-[var(--color-border-primary)] flex items-center justify-center font-mono text-[10px] shrink-0">{i+1}</div>
-                  <div className="text-sm">{v}</div>
+          <SectionCard title="Carousel Content" icon={List} copyText={result.carouselContent.map(c => `${c.slideName}\n${c.text}\nImage Prompt: ${c.imagePrompt}`).join('\n\n')} copyLabel="Carousel" copyKey="carousel">
+            <div className="space-y-6">
+              {result.carouselContent.map((slide, i) => (
+                <div key={i} className="flex flex-col gap-2">
+                  <div className="flex gap-3">
+                    <div className="w-6 h-6 rounded-md bg-[var(--color-bg-primary)] border border-[var(--color-border-primary)] flex items-center justify-center font-mono text-[10px] shrink-0 text-white font-bold">{i+1}</div>
+                    <div className="text-sm font-semibold text-white">{slide.slideName}</div>
+                  </div>
+                  <div className="text-sm ml-9 mb-1">{slide.text}</div>
+                  <div className="ml-9 p-3 bg-[var(--color-bg-primary)] border border-[var(--color-border-primary)] rounded-lg font-mono text-[11px] text-[var(--color-brand-magenta)]">
+                    <strong className="text-white uppercase">Image Prompt:</strong><br/>
+                    {slide.imagePrompt}
+                  </div>
                 </div>
               ))}
             </div>

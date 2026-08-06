@@ -113,14 +113,10 @@ export interface DesignContentResult {
   hooks: string[];
   ctas: string[];
   carouselContent: {
-    slide1Cover: string;
-    slide2Problem: string;
-    slide3Insight: string;
-    slide4Example: string;
-    slide5Solution: string;
-    slide6Takeaway: string;
-    slide7Cta: string;
-  };
+    slideName: string;
+    text: string;
+    imagePrompt: string;
+  }[];
   shortVideoScript: {
     sec30: string;
     sec60: string;
