@@ -47,19 +47,19 @@ export const ContentStudio: React.FC<ContentStudioProps> = ({ onNavigate }) => {
       {/* Immersive Animated Background Glows */}
       <motion.div
         animate={{
-          scale: [1, 1.1, 1],
-          opacity: [0.1, 0.15, 0.1],
+          scale: [1, 1.2, 1],
+          opacity: [0.25, 0.4, 0.25],
         }}
         transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-[var(--color-brand-violet)] blur-[120px] rounded-full pointer-events-none z-0"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-[var(--color-brand-violet)] blur-[120px] rounded-full pointer-events-none z-0 mix-blend-screen"
       />
       <motion.div
         animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.05, 0.1, 0.05],
+          scale: [1, 1.3, 1],
+          opacity: [0.15, 0.3, 0.15],
         }}
         transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-        className="absolute top-0 right-0 w-[500px] h-[500px] bg-[var(--color-brand-magenta)] blur-[120px] rounded-full pointer-events-none z-0"
+        className="absolute top-0 right-0 w-[500px] h-[500px] bg-[var(--color-brand-magenta)] blur-[120px] rounded-full pointer-events-none z-0 mix-blend-screen"
       />
 
       <div className="w-full max-w-4xl relative z-10 flex flex-col items-center text-center">
