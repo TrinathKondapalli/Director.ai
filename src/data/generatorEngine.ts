@@ -1,291 +1,155 @@
-import {
-  MasterPromptInput,
-  MasterPromptResult,
-  YouTubePublishingPackage,
-  InstagramPublishingPackage,
-  FacebookPublishingPackage
-} from '../types';
-
-export function buildUgcMasterPromptText(input: MasterPromptInput): string {
-  const productName = input.productName?.trim() || 'Smart Productivity Tool';
-  const targetAudience = input.targetAudience?.trim() || 'Tech-savvy creators and busy professionals';
-  const productUrl = input.productUrl?.trim() || '';
-
-  return `[DIRECTOR.AI - PRODUCTION-READY MASTER PROMPT FOR AI UGC ADS]
-
-# 1. CREATIVE STRATEGY & MARKETING BLUEPRINT
-- Product Name: ${productName}${productUrl ? ` (${productUrl})` : ''}
-- Target Audience: ${targetAudience}
-- Marketing Objective: High-Converting E-Commerce / Lead Conversion
-- Core Marketing Angle: Unfiltered "I wish I knew this earlier" problem-to-solution revelation
-- Primary Pain Point: Persistent daily friction and frustration with traditional options
-- Desired Emotion: Instant relief, intrigue, and urgent buy-intent
-- Platform Optimization: TikTok, Instagram Reels, YouTube Shorts (9:16 Vertical)
-
-# 2. VIRAL HOOK & STORYTELLING STRUCTURE
-- Unfiltered Hook (0-2s): "Stop scrolling right now if you struggle with [Pain Point]!"
-- Storytelling Concept: Candid, handheld selfie-style video. Creator holds ${productName} in authentic lighting, demonstrating immediate value and relatable awe.
-- Call To Action (8-10s): "Tap below right now to get ${productName} before stock sells out!"
-
-# 3. CHARACTER & ENVIRONMENT DIRECTION
-- Character Profile: Relatable 24-30 year old creator, casual modern streetwear, natural expressive facial features, highly authentic eye contact with camera lens.
-- Setting: Bright, natural cozy room with soft daylight filtering in, clean clutter-free background.
-- Performance: Energetic, candid, trustworthy, zero artificial infomercial vibes.
-
-# 4. CONSISTENCY & CONTINUITY LOCKS
-[A] CHARACTER CONSISTENCY LOCK:
-- Evaluation Mode: Single Creator Testimonial / Product Review (Strict 100% Identity Continuity)
-- Preserved Identity Anchors:
-  • Face & Facial Structure: Unchanged throughout all 10s video sequence
-  • Age & Gender: Consistent 26-year-old female/male actor
-  • Hairstyle & Color: Locked texture, length, and hair parting
-  • Clothing & Style: Identical casual modern hoodie/tee across all shot changes
-  • Accessories & Details: Matching delicate ring/earrings, identical skin tone
-  • Expressions & Body Language: Natural authentic micro-expressions & movement
-  • Voice Style & Tone: Uniform natural conversational acoustic cadence
-- Anti-Morphing Negative Directives:
-  • STRICTLY PREVENT: Face swapping, clothing changes, hairstyle shifts, identity flickering, AI skin-smoothing morphing, inconsistent eye colors, or frame-to-frame body proportion drift.
-
-[B] ENVIRONMENT CONSISTENCY LOCK:
-- Locked Spatial Elements:
-  • Room Architecture: Identical modern aesthetic living space / bedroom corner
-  • Furniture & Props: Consistent desk, planter, and wall decor placement
-  • Lighting & Time of Day: Steady 5600K soft daylight filtering from camera-left window
-  • Color Grading & Camera Style: Matching 35mm filmic tone, zero sudden white-balance or contrast shifts
-
-[C] PRODUCT CONSISTENCY LOCK:
-- Locked Physical Attributes for ${productName}:
-  • Product Geometry & Size: Identical scale relative to creator's hand in all angles
-  • Color & Finish: Exact Pantone shade, satin/matte finish with matching specular highlights
-  • Branding & Packaging: Crisp high-contrast logo placement, clear legible label typography
-  • Texture & Reflections: Photorealistic material reflections, zero warping or AI geometry melting
-
-# 5. SCENE TIMELINE (10-SECOND CINEMATIC FLOW)
-[0.0s - 2.0s] Phase: Pattern Interrupt Hook
-• Camera: Close-up handheld selfie angle, 24mm prime lens, slight natural micro-wobble.
-• Visual: Creator looks directly into camera with shocked facial expression, holding ${productName}.
-• Voice Audio: "Stop scrolling right now!"
-
-[2.0s - 5.0s] Phase: Problem Agitation & Discovery
-• Camera: Quick snap zoom to medium shot.
-• Visual: Creator demonstrates the common struggle vs how ${productName} effortlessly solves it.
-• Voice Audio: "I tested ${productName} for a week, and it literally solved everything."
-
-[5.0s - 8.0s] Phase: Macro Benefit Reveal
-• Camera: Macro 85mm close-up, shallow depth of field (f/1.8), smooth pan over product texture.
-• Visual: Close-up of ${productName} in action showing instant high-end finish and transformation.
-• Voice Audio: "Look at how incredible this actually works!"
-
-[8.0s - 10.0s] Phase: High-Converting Call To Action
-• Camera: Front-facing close-up, creator points down toward link overlay.
-• Visual: Creator smiles, pointing toward bottom CTA area with ${productName} in frame.
-• Voice Audio: "Tap below right now to grab yours today!"
-
-# 6. CAMERA, LIGHTING & VISUAL STYLE
-- Lens: 24mm f/1.8 wide for selfie scenes | 85mm f/1.8 macro for product close-up
-- Camera Movement: Handheld organic tracking with natural movement
-- Lighting: Soft warm window key light (5600K) + subtle ambient fill
-- Visual Grade: Photorealistic 4K 60fps render, natural skin tones, zero AI plastic smoothing
-- Color Palette: Punchy vibrant product tones with clean neutral backdrop
-
-# 7. SOUND DESIGN & AUDIO ENGINE
-- Natural Voice Script: "Stop scrolling right now! I tested ${productName} for a week, and it literally solved everything. Look at how incredible this actually works! Tap below right now to grab yours today!"
-- Background Music: Upbeat trending lo-fi / indie pop instrumental, mixed cleanly under voiceover
-- Sound Effects (SFX): Soft whoosh on snap zoom (2.0s), crisp pop sound effect on product reveal (5.0s), subtle chime on CTA (8.0s)
-
-# 8. CALL TO ACTION & THUMBNAIL PROMPT
-- Primary CTA: "Tap Below To Shop ${productName} Now"
-- Thumbnail Prompt: High-contrast close-up shot of creator holding ${productName} with shocked facial expression in bright natural sunlight, 4K render.
-
-[GENERATED BY DIRECTOR.AI - ZERO DATA FOOTPRINT / PRIVACY PROTECTED]`;
-}
-
-export function buildLocalYouTubePackage(input: MasterPromptInput): YouTubePublishingPackage {
-  const product = input.productName?.trim() || 'Featured Product';
-  const target = input.targetAudience?.trim() || 'everyone';
-  const url = input.productUrl?.trim() || 'https://example.com';
-
-  return {
-    title: `I Tested ${product} for 30 Days (Honest Creator Review)`,
-    description: `Struggling with daily friction? In this video, we do an unfiltered breakdown of ${product} designed for ${target}.\n\nSee how ${product} transforms your daily workflow and solves frustration in seconds.\n\nGet ${product} here: ${url}\n\nMake sure to subscribe for daily product reviews and UGC ad concepts!\n\n#${product.replace(/\s+/g, '')} #ProductReview #UGCAd #TechTech #Biohacking`,
-    hashtags: [
-      `#${product.replace(/\s+/g, '')}`,
-      '#ProductReview',
-      '#UGCAd',
-      '#ViralTech',
-      '#HonestReview',
-      '#LifeHack',
-      '#ProblemSolved',
-      '#CreatorPick',
-      '#DailyMustHave',
-      '#MustTry',
-      '#TrendingProduct',
-      '#TechReview'
-    ],
-    thumbnailIdea: `Shocked creator holding ${product} close to camera under warm sunlight with bold visual contrast.`,
-    thumbnailPrompt: `Photorealistic 4K vertical shot of a relatable creator holding ${product} with an amazed, shocked facial expression in a cozy modern room. Warm 5600K soft daylighting, high contrast product framing, shallow depth of field, 85mm portrait lens. Space left open on top right for bold typography overlay.`,
-    keywords: [product, 'UGC ad', 'honest review', 'unboxing', 'product demo', 'how it works', 'top recommendation'],
-    categoryRecommendation: 'Science & Technology / Howto & Style',
-    seoScore: 96,
-  };
-}
-
-export function buildLocalInstagramPackage(input: MasterPromptInput): InstagramPublishingPackage {
-  const product = input.productName?.trim() || 'Featured Product';
-  const target = input.targetAudience?.trim() || 'creators';
-  const url = input.productUrl?.trim() || 'link in bio';
-
-  return {
-    hook: `Stop scrolling if you struggle with daily friction!`,
-    caption: `Stop scrolling if you struggle with daily friction!\n\nI’ve been testing ${product} for a week now, and honestly? It completely changed my routine.\n\nIf you're a ${target}, you know how annoying it is when traditional options fail. ${product} delivers instant results without the stress.\n\nWhy creators are loving it:\n• Instant problem-to-solution transformation\n• Designed for real everyday performance\n• Sleek, effortless user experience\n\nDrop a comment or check the ${url} to grab yours before stock runs out!`,
-    hashtags: [
-      `#${product.replace(/\s+/g, '')}`,
-      '#UGC',
-      '#ReelsDaily',
-      '#ProductMustHave',
-      '#ContentCreator',
-      '#ViralReels',
-      '#LifeHacks',
-      '#ProductSpotlight',
-      '#DailyEssentials',
-      '#MustHave'
-    ],
-    callToAction: `Tap the link in bio to shop ${product} now!`,
-    emojiSuggestions: [],
-  };
-}
-
-export function buildLocalFacebookPackage(input: MasterPromptInput): FacebookPublishingPackage {
-  const product = input.productName?.trim() || 'Featured Product';
-  const target = input.targetAudience?.trim() || 'everyone';
-  const url = input.productUrl?.trim() || 'https://example.com';
-
-  return {
-    hook: `If you’ve been looking for a better solution, you need to see this...`,
-    caption: `If you’ve been looking for a better solution, you need to see this...\n\nWe tested ${product} with ${target} in mind, and the feedback has been insane.\n\nNo more wasting time or dealing with clunky alternatives. ${product} gives you a smooth, high-performance experience from day one.\n\nCheck out the full details and get yours today:\n${url}`,
-    hashtags: [
-      `#${product.replace(/\s+/g, '')}`,
-      '#FacebookReels',
-      '#ProductReview',
-      '#SmartLiving',
-      '#MustHave',
-      '#DailyHack',
-      '#TrendingNow',
-      '#QualityTech'
-    ],
-    callToAction: `Click the link below to get ${product} today!`,
-  };
-}
-
-export function generateLocalMasterPrompt(input: MasterPromptInput): MasterPromptResult {
-  const productName = input.productName?.trim() || 'Featured Product';
-  const masterPromptText = buildUgcMasterPromptText(input);
-
-  return {
-    title: `${productName} — Production-Ready Master Prompt & Publishing Package`,
-    subtitle: 'Generated by Director.ai • Complete Multi-Platform UGC Campaign Asset Pack',
-    productName,
-    masterPromptText,
-    generatedAt: new Date().toISOString(),
-    creativeStrategy: {
-      objective: 'High-Converting UGC Sales Campaign',
-      targetAudience: input.targetAudience || 'Target Consumers',
-      painPoint: 'Frustration with traditional underperforming alternatives',
-      desiredEmotion: 'Urgent curiosity & instant trust',
-      marketingAngle: 'Pattern-Interrupt Problem-to-Solution Transformation',
-    },
-    youtubePackage: buildLocalYouTubePackage(input),
-    instagramPackage: buildLocalInstagramPackage(input),
-    facebookPackage: buildLocalFacebookPackage(input),
-  };
-}
-
 import { GoogleGenAI } from '@google/genai';
+import { UgcStudioInput, UgcStudioResult } from '../types';
 
-export const generateMasterPrompt = async (input: MasterPromptInput): Promise<MasterPromptResult> => {
+const SYSTEM_PROMPT = `You are DIRECTOR.AI's AI UGC Studio Director.
+Your purpose is to generate authentic User Generated Content (UGC) ad ideas that feel natural, trustworthy, and engaging rather than promotional.
+
+Before generating content, you must research and identify:
+- Current market trends
+- Customer problems
+- Emotional triggers
+- Buying motivations
+
+Never repeat previous concepts.
+
+Generate captions for LinkedIn, Instagram, Facebook, and Twitter/X. Each platform should have different writing styles. Do NOT copy the same caption.
+
+Generate a cinematic AI video prompt suitable for Veo 3, Runway, Pika, Kling, or Sora.
+Prompt must include Scene, Camera Movement, Lighting, Environment, Subject, Emotion, Color Palette, Composition, Transitions, Lens, Frame Rate, Duration, Negative Prompt.`;
+
+export function generateLocalUgcMock(input: UgcStudioInput): UgcStudioResult {
+  const prod = input.isRandom ? "Random Trending Concept" : (input.product || "Featured Product");
+  
+  return {
+    dailySuggestedTopic: `Why ${prod} is taking over TikTok`,
+    hook: `Stop scrolling if you struggle with [Pain Point]!`,
+    problem: `Most people waste hours dealing with inefficient workflows.`,
+    story: `I tested this for a week and couldn't believe the difference it made.`,
+    solution: `${prod} completely automates the process and gives you back your time.`,
+    callToAction: `Tap the link in my bio to get yours before it sells out!`,
+    captions: {
+      linkedin: `I've been experimenting with ${prod} recently to optimize my daily workflow. The results have been surprisingly profound.\n\nEfficiency isn't just about doing more; it's about doing what matters. How do you optimize your deep work sessions? #Productivity #Workflow #Tech`,
+      instagram: `Stop what you're doing! 🛑 I found the ultimate hack for your daily routine. ${prod} changed everything for me. Link in bio to grab yours! ✨ #DailyHack #MustHave`,
+      facebook: `If you're tired of dealing with the same old problems every day, you need to see this. We've been using ${prod} and it's a game-changer. Click the link below to check it out!`,
+      twitter: `Just hit a new productivity record using ${prod}. If you aren't automating this yet, you're falling behind. 🚀 #Tech #ProductivityHack`
+    },
+    seoHashtags: ["#UGC", "#TechTrend", "#ProductivityHack", "#MustHave", "#DailyEssentials", "#TikTokMadeMeBuyIt", "#ViralProduct", "#LifeHack", "#SmartLiving", "#CreatorTips", "#GrowthHack", "#WorkSmarter", "#TechGadget", "#RoutineRefresh", "#GameChanger", "#Efficiency", "#SetupTour", "#TechReview", "#Unboxing", "#Aesthetic"],
+    primaryKeywords: [prod, "productivity tool", "daily routine hack"],
+    secondaryKeywords: ["how to save time", "best tools for creators"],
+    longTailKeywords: [`is ${prod} worth it`, `honest review of ${prod}`],
+    videoPrompt: {
+      scene: `A cozy, modern home office setup with natural sunlight filtering through a window.`,
+      cameraMovement: `Slow tracking shot pushing in on the subject.`,
+      lighting: `Warm golden hour daylight, soft shadows.`,
+      environment: `Clean desk, minimalist aesthetic, glowing screen in the background.`,
+      subject: `A relatable 20-something creator holding ${prod} and looking genuinely amazed.`,
+      emotion: `Shock, delight, realization.`,
+      colorPalette: `Warm neutrals, sage green, and soft amber.`,
+      composition: `Rule of thirds, subject framed slightly to the right.`,
+      transitions: `None, single continuous take.`,
+      lens: `35mm prime lens.`,
+      frameRate: `24fps.`,
+      duration: `10 seconds.`,
+      negativePrompt: `Poor lighting, messy room, artificial studio lights, stiff acting, robotic, low resolution.`
+    },
+    videoHook: `You won't believe what this little thing can do...`,
+    voiceoverScript: `I used to waste 3 hours a day until I found this. It's called ${prod}, and it completely changed how I work. Just look at this...`,
+    shotList: [
+      `Wide shot of creator looking frustrated at desk.`,
+      `Close-up of ${prod} being activated.`,
+      `Macro shot of the product texture/interface.`,
+      `Creator smiling and pointing to the CTA.`
+    ],
+    bRollIdeas: [
+      `Coffee steaming next to the product.`,
+      `Typing quickly on a keyboard.`,
+      `Sunset lighting changing over the room.`
+    ],
+    thumbnailPrompt: `Close-up shot of creator holding ${prod} with a shocked expression. Bright lighting, high contrast.`,
+    generatedAt: new Date().toISOString()
+  };
+}
+
+export const generateUgcContent = async (input: UgcStudioInput): Promise<UgcStudioResult> => {
   try {
     const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
     if (!apiKey) {
-      console.warn("No Gemini API Key found. Falling back to mock data.");
-      return generateLocalMasterPrompt(input);
+      console.warn("No Gemini API Key found. Falling back to local data.");
+      return generateLocalUgcMock(input);
     }
 
     const ai = new GoogleGenAI({ apiKey });
-    
-    const SYSTEM_PROMPT = `You are an elite UGC Video Director and AI Prompt Engineer with a massive track record of scaling consumer brands via TikTok and Reels. 
-Your objective is to take a given product and target audience, and generate a hyper-specific, production-ready UGC Master Prompt (which is a detailed brief given to AI video generators or human creators).
-
-The "masterPromptText" must be a long, highly detailed string formatted EXACTLY like the local example, with sections:
-1. CREATIVE STRATEGY & MARKETING BLUEPRINT
-2. VIRAL HOOK & STORYTELLING STRUCTURE
-3. CHARACTER & ENVIRONMENT DIRECTION
-4. CONSISTENCY & CONTINUITY LOCKS
-5. SCENE TIMELINE (10-SECOND CINEMATIC FLOW)
-6. CAMERA, LIGHTING & VISUAL STYLE
-7. SOUND DESIGN & AUDIO ENGINE
-8. CALL TO ACTION & THUMBNAIL PROMPT
-
-Also generate the accompanying Social Media packages (YouTube, Instagram, Facebook) perfectly formatted for that product.`;
 
     const schemaObj = {
       type: 'OBJECT',
       properties: {
-        title: { type: 'STRING' },
-        subtitle: { type: 'STRING' },
-        productName: { type: 'STRING' },
-        masterPromptText: { type: 'STRING' },
-        generatedAt: { type: 'STRING' },
-        creativeStrategy: {
+        dailySuggestedTopic: { type: 'STRING' },
+        hook: { type: 'STRING' },
+        problem: { type: 'STRING' },
+        story: { type: 'STRING' },
+        solution: { type: 'STRING' },
+        callToAction: { type: 'STRING' },
+        captions: {
           type: 'OBJECT',
           properties: {
-            objective: { type: 'STRING' },
-            targetAudience: { type: 'STRING' },
-            painPoint: { type: 'STRING' },
-            desiredEmotion: { type: 'STRING' },
-            marketingAngle: { type: 'STRING' }
+            linkedin: { type: 'STRING' },
+            instagram: { type: 'STRING' },
+            facebook: { type: 'STRING' },
+            twitter: { type: 'STRING' }
           },
-          required: ["objective", "targetAudience", "painPoint", "desiredEmotion", "marketingAngle"]
+          required: ["linkedin", "instagram", "facebook", "twitter"]
         },
-        youtubePackage: {
+        seoHashtags: { type: 'ARRAY', items: { type: 'STRING' }, description: 'Exactly 20 hashtags' },
+        primaryKeywords: { type: 'ARRAY', items: { type: 'STRING' } },
+        secondaryKeywords: { type: 'ARRAY', items: { type: 'STRING' } },
+        longTailKeywords: { type: 'ARRAY', items: { type: 'STRING' } },
+        videoPrompt: {
           type: 'OBJECT',
           properties: {
-            title: { type: 'STRING' },
-            description: { type: 'STRING' },
-            hashtags: { type: 'ARRAY', items: { type: 'STRING' } },
-            thumbnailIdea: { type: 'STRING' },
-            thumbnailPrompt: { type: 'STRING' },
-            keywords: { type: 'ARRAY', items: { type: 'STRING' } },
-            categoryRecommendation: { type: 'STRING' },
-            seoScore: { type: 'NUMBER' }
+            scene: { type: 'STRING' },
+            cameraMovement: { type: 'STRING' },
+            lighting: { type: 'STRING' },
+            environment: { type: 'STRING' },
+            subject: { type: 'STRING' },
+            emotion: { type: 'STRING' },
+            colorPalette: { type: 'STRING' },
+            composition: { type: 'STRING' },
+            transitions: { type: 'STRING' },
+            lens: { type: 'STRING' },
+            frameRate: { type: 'STRING' },
+            duration: { type: 'STRING' },
+            negativePrompt: { type: 'STRING' }
           },
-          required: ["title", "description", "hashtags", "thumbnailIdea", "thumbnailPrompt", "keywords", "categoryRecommendation", "seoScore"]
+          required: ["scene", "cameraMovement", "lighting", "environment", "subject", "emotion", "colorPalette", "composition", "transitions", "lens", "frameRate", "duration", "negativePrompt"]
         },
-        instagramPackage: {
-          type: 'OBJECT',
-          properties: {
-            caption: { type: 'STRING' },
-            hashtags: { type: 'ARRAY', items: { type: 'STRING' } },
-            hook: { type: 'STRING' },
-            callToAction: { type: 'STRING' },
-            emojiSuggestions: { type: 'ARRAY', items: { type: 'STRING' } }
-          },
-          required: ["caption", "hashtags", "hook", "callToAction", "emojiSuggestions"]
-        },
-        facebookPackage: {
-          type: 'OBJECT',
-          properties: {
-            caption: { type: 'STRING' },
-            hashtags: { type: 'ARRAY', items: { type: 'STRING' } },
-            hook: { type: 'STRING' },
-            callToAction: { type: 'STRING' }
-          },
-          required: ["caption", "hashtags", "hook", "callToAction"]
-        }
+        videoHook: { type: 'STRING' },
+        voiceoverScript: { type: 'STRING' },
+        shotList: { type: 'ARRAY', items: { type: 'STRING' } },
+        bRollIdeas: { type: 'ARRAY', items: { type: 'STRING' } },
+        thumbnailPrompt: { type: 'STRING' },
+        generatedAt: { type: 'STRING' }
       },
-      required: ["title", "subtitle", "productName", "masterPromptText", "generatedAt", "creativeStrategy", "youtubePackage", "instagramPackage", "facebookPackage"]
+      required: ["dailySuggestedTopic", "hook", "problem", "story", "solution", "callToAction", "captions", "seoHashtags", "primaryKeywords", "secondaryKeywords", "longTailKeywords", "videoPrompt", "videoHook", "voiceoverScript", "shotList", "bRollIdeas", "thumbnailPrompt", "generatedAt"]
     };
 
-    const promptText = `Product Name: ${input.productName}\nTarget Audience: ${input.targetAudience}\nProduct URL: ${input.productUrl || 'None'}\n\nGenerate the complete Master Prompt Result for this product.`;
+    let promptText = "";
+    if (input.isRandom) {
+      const seed = Math.random().toString(36).substring(2, 9);
+      promptText = `Generate a random highly viral UGC concept based on current market trends. [Seed: ${seed}]`;
+    } else {
+      promptText = `
+Industry: ${input.industry}
+Product: ${input.product}
+Service: ${input.service}
+Brand: ${input.brand}
+Website URL: ${input.websiteUrl || 'None'}
+Target Audience: ${input.targetAudience}
+Platform: ${input.platform}
+Tone: ${input.tone}
+Goal: ${input.goal}
+
+Generate the complete UGC Studio Result for this exact product configuration.`;
+    }
 
     const response = await ai.models.generateContent({
       model: 'gemini-3.6-flash',
@@ -294,85 +158,17 @@ Also generate the accompanying Social Media packages (YouTube, Instagram, Facebo
         systemInstruction: SYSTEM_PROMPT,
         responseMimeType: 'application/json',
         responseSchema: schemaObj as any,
-        temperature: 0.7,
+        temperature: 0.8,
       }
     });
 
     if (response.text) {
-      return JSON.parse(response.text) as MasterPromptResult;
+      return JSON.parse(response.text) as UgcStudioResult;
     }
     throw new Error("No text in response");
 
   } catch (error) {
     console.error("Gemini API Error:", error);
-    console.warn("Falling back to mock local data.");
-    return generateLocalMasterPrompt(input);
-  }
-};
-
-import { AiConceptCard } from '../types';
-import { TRENDING_UGC_CONCEPTS } from './conceptsData';
-
-export const generateTrendingConcepts = async (niche: string): Promise<AiConceptCard[]> => {
-  try {
-    const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-    if (!apiKey) {
-      console.warn("No Gemini API Key found. Falling back to local trending concepts.");
-      return TRENDING_UGC_CONCEPTS; // fallback
-    }
-
-    const ai = new GoogleGenAI({ apiKey });
-    
-    const SYSTEM_PROMPT = `You are a TikTok/Reels UGC Trend Analyst. Your job is to invent highly viral, brand-new UGC video concepts that convert. 
-Generate exactly 6 unique, highly creative product concepts within the requested niche.
-
-Make the concepts incredibly specific, emotional, and compelling. Ensure the difficulty is either "Easy", "Medium", or "Advanced". Trend score should be a high number between 85 and 99.
-`;
-
-    const schemaObj = {
-      type: 'ARRAY',
-      items: {
-        type: 'OBJECT',
-        properties: {
-          id: { type: 'STRING' },
-          conceptTitle: { type: 'STRING' },
-          whyItWorks: { type: 'STRING' },
-          targetAudience: { type: 'STRING' },
-          recommendedCategory: { type: 'STRING' },
-          nicheCategory: { type: 'STRING' },
-          platformFocus: { type: 'STRING' },
-          marketingAngle: { type: 'STRING' },
-          hookIdea: { type: 'STRING' },
-          emotionalTrigger: { type: 'STRING' },
-          difficulty: { type: 'STRING' },
-          trendScore: { type: 'NUMBER' },
-          primaryCta: { type: 'STRING' },
-          productNameExample: { type: 'STRING' }
-        },
-        required: ["id", "conceptTitle", "whyItWorks", "targetAudience", "recommendedCategory", "nicheCategory", "platformFocus", "marketingAngle", "hookIdea", "emotionalTrigger", "difficulty", "trendScore", "primaryCta", "productNameExample"]
-      }
-    };
-
-    const promptText = `Niche requested: ${niche === 'All Niches' ? 'A mix of highly viral niches (e.g. Biohacking, Skincare, SaaS, Smart Home, etc)' : niche}. Generate 6 fresh trending UGC concepts.`;
-
-    const response = await ai.models.generateContent({
-      model: 'gemini-3.6-flash',
-      contents: promptText,
-      config: {
-        systemInstruction: SYSTEM_PROMPT,
-        responseMimeType: 'application/json',
-        responseSchema: schemaObj as any,
-        temperature: 0.9,
-      }
-    });
-
-    if (response.text) {
-      return JSON.parse(response.text) as AiConceptCard[];
-    }
-    throw new Error("No text in response");
-
-  } catch (error) {
-    console.error("Gemini API Error for Trending Concepts:", error);
-    return TRENDING_UGC_CONCEPTS;
+    return generateLocalUgcMock(input);
   }
 };

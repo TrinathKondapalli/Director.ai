@@ -1,26 +1,18 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import {
-  Copy,
-  CheckCircle2,
-  RefreshCw,
-  ImageIcon,
-  Hash,
-  MessageSquare,
-  List,
-  Target
-} from 'lucide-react';
+import { Copy, CheckCircle2, ImageIcon, Hash, MessageSquare, List, Target } from 'lucide-react';
 import { DesignContentResult, DesignContentResultV2Single, DesignContentResultV2Carousel } from '../types';
 import { BackgroundGlow } from './BackgroundGlow';
 
-interface ContentResultPageProps {
+interface DesignResultPageProps {
   result: DesignContentResult;
   onCreateAnother: () => void;
 }
 
-export const ContentResultPage: React.FC<ContentResultPageProps> = ({ result, onCreateAnother }) => {
+export const DesignResultPage: React.FC<DesignResultPageProps> = ({ result, onCreateAnother }) => {
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [activeCopiedKey, setActiveCopiedKey] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState<'linkedin' | 'instagram' | 'facebook' | 'twitter'>('linkedin');
 
   const showToast = (message: string, key: string) => {
     setActiveCopiedKey(key);
@@ -34,46 +26,6 @@ export const ContentResultPage: React.FC<ContentResultPageProps> = ({ result, on
   const copyToClipboard = (text: string, label: string, key: string) => {
     navigator.clipboard.writeText(text);
     showToast(`${label} copied successfully.`, key);
-  };
-
-  const copyAll = () => {
-    let fullText = '';
-    if (result.format === 'single') {
-      fullText = `
---- ${result.topicTitle} ---
-WHY THIS MATTERS: ${result.whyThisMatters}
-
-${result.hook}
-
-${result.postContent}
-
-ACTIONABLE TAKEAWAYS:
-${result.actionableTakeaways.map(t => `- ${t}`).join('\n')}
-
-${result.cta}
-
----
-IMAGE PROMPT:
-${result.imagePrompt}
-      `.trim();
-    } else {
-      fullText = `
---- ${result.topicTitle} ---
-COVER: ${result.coverTitle}
-WHY THIS MATTERS: ${result.whyThisMatters}
-
-${result.caption}
-
-${result.slides.map((s, i) => `SLIDE ${i + 1}: ${s.heading}\n${s.description}\nIMAGE PROMPT: ${s.imagePrompt}`).join('\n\n')}
-
-ACTIONABLE TAKEAWAYS:
-${result.actionableTakeaways.map(t => `- ${t}`).join('\n')}
-
-CTA: ${result.cta}
-      `.trim();
-    }
-    
-    copyToClipboard(fullText, 'All Content', 'all');
   };
 
   const SectionCard = ({ title, icon: Icon, children, copyText, copyLabel, copyKey }: any) => (
@@ -101,13 +53,12 @@ CTA: ${result.cta}
 
   const renderSinglePost = (res: DesignContentResultV2Single) => (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      {/* Main Post Content */}
-      <div className="lg:col-span-2">
+      <div className="lg:col-span-2 flex flex-col gap-6">
         <SectionCard 
-          title="Social Media Post Caption" 
+          title="Educational Content" 
           icon={MessageSquare} 
-          copyText={`WHY THIS MATTERS: ${res.whyThisMatters}\n\n${res.hook}\n\n${res.postContent}\n\nACTIONABLE TAKEAWAYS:\n${res.actionableTakeaways.map(t => `- ${t}`).join('\n')}\n\n${res.cta}\n\n${res.hashtags.join(' ')}`} 
-          copyLabel="Caption" 
+          copyText={`WHY THIS MATTERS: ${res.whyThisMatters}\n\n${res.hook}\n\n${res.professionalCaption}\n\n${res.cta}`} 
+          copyLabel="Content" 
           copyKey="post"
         >
           <div className="space-y-4 text-[15px] leading-relaxed text-[#D4D4D8]">
@@ -116,24 +67,29 @@ CTA: ${result.cta}
               <p className="text-white italic text-sm">{res.whyThisMatters}</p>
             </div>
             <p className="font-semibold text-white text-lg">{res.hook}</p>
-            <p>{res.postContent}</p>
-            
-            <div className="pt-2">
-              <strong className="text-white text-sm uppercase tracking-wider block mb-2">Actionable Takeaways</strong>
-              <ul className="list-disc pl-5 space-y-1">
-                {res.actionableTakeaways.map((takeaway, idx) => (
-                  <li key={idx} className="text-[#A1A1AA]">{takeaway}</li>
-                ))}
-              </ul>
-            </div>
-
+            <p>{res.professionalCaption}</p>
             <p className="font-semibold text-[var(--color-brand-lavender)] italic">{res.cta}</p>
-            <p className="font-mono text-[13px] text-[var(--color-brand-magenta)] pt-4 border-t border-[var(--color-border-primary)]/50">{res.hashtags.join(' ')}</p>
           </div>
+        </SectionCard>
+
+        <SectionCard title="Platform Captions" icon={List} copyText={res.captions[activeTab]} copyLabel={`${activeTab} Caption`} copyKey="captions">
+          <div className="flex gap-2 mb-4 border-b border-[var(--color-border-primary)] pb-2 overflow-x-auto">
+            {(['linkedin', 'instagram', 'facebook', 'twitter'] as const).map(tab => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`px-3 py-1.5 rounded-lg text-xs font-semibold capitalize transition-colors ${
+                  activeTab === tab ? 'bg-[var(--color-brand-violet)] text-white' : 'text-[#A1A1AA] hover:bg-[var(--color-border-primary)]'
+                }`}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
+          <div className="text-white whitespace-pre-wrap">{res.captions[activeTab]}</div>
         </SectionCard>
       </div>
 
-      {/* Sidebar: Image & SEO */}
       <div className="flex flex-col gap-6">
         <SectionCard title="AI Image Prompt" icon={ImageIcon} copyText={res.imagePrompt} copyLabel="Prompt" copyKey="prompt">
           <div className="p-4 bg-[var(--color-bg-primary)] border border-[var(--color-border-primary)] rounded-xl font-mono text-[12px] text-[var(--color-brand-violet)] leading-relaxed">
@@ -159,46 +115,31 @@ CTA: ${result.cta}
 
   const renderCarousel = (res: DesignContentResultV2Carousel) => (
     <div className="flex flex-col gap-6">
-      {/* Overview & Caption */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2">
           <SectionCard 
-            title="Social Media Post Caption" 
+            title="Carousel Overview" 
             icon={MessageSquare} 
-            copyText={`WHY THIS MATTERS: ${res.whyThisMatters}\n\n${res.caption}\n\nACTIONABLE TAKEAWAYS:\n${res.actionableTakeaways.map(t => `- ${t}`).join('\n')}\n\n${res.cta}\n\n${res.hashtags.join(' ')}`} 
-            copyLabel="Caption" 
+            copyText={`Title: ${res.coverTitle}\n\nWHY THIS MATTERS: ${res.whyThisMatters}\n\n${res.caption}\n\n${res.cta}`} 
+            copyLabel="Overview" 
             copyKey="carousel-caption"
           >
             <div className="space-y-4 text-[15px] leading-relaxed text-[#D4D4D8]">
+              <div className="mb-2">
+                <strong className="text-white text-xs font-mono uppercase tracking-wider">Slide 1 (Cover Title)</strong>
+                <p className="text-2xl font-bold text-white mt-1">{res.coverTitle}</p>
+              </div>
               <div className="bg-[var(--color-brand-violet)]/10 border border-[var(--color-brand-violet)]/20 rounded-lg p-3">
                 <strong className="text-[var(--color-brand-lavender)] text-xs uppercase tracking-wider block mb-1">Why This Matters</strong>
                 <p className="text-white italic text-sm">{res.whyThisMatters}</p>
               </div>
               <p>{res.caption}</p>
-
-              <div className="pt-2">
-                <strong className="text-white text-sm uppercase tracking-wider block mb-2">Actionable Takeaways</strong>
-                <ul className="list-disc pl-5 space-y-1">
-                  {res.actionableTakeaways.map((takeaway, idx) => (
-                    <li key={idx} className="text-[#A1A1AA]">{takeaway}</li>
-                  ))}
-                </ul>
-              </div>
-
               <p className="font-semibold text-[var(--color-brand-lavender)] italic">{res.cta}</p>
-              <p className="font-mono text-[13px] text-[var(--color-brand-magenta)] pt-4 border-t border-[var(--color-border-primary)]/50">{res.hashtags.join(' ')}</p>
             </div>
           </SectionCard>
         </div>
 
         <div className="flex flex-col gap-6">
-          <SectionCard title="Carousel Overview" icon={List} copyText={`Title: ${res.coverTitle}`} copyLabel="Overview" copyKey="overview">
-            <div className="mb-2">
-              <strong className="text-white text-xs font-mono uppercase tracking-wider">Slide 1 (Cover Title)</strong>
-              <p className="text-lg font-bold text-white mt-1">{res.coverTitle}</p>
-            </div>
-          </SectionCard>
-          
           <SectionCard title="SEO & Tags" icon={Hash} copyText={res.hashtags.join(' ')} copyLabel="Tags" copyKey="tags">
             <strong className="text-white text-xs uppercase tracking-wider block mb-2">Keywords</strong>
             <div className="flex flex-wrap gap-2 mb-6">
@@ -214,7 +155,6 @@ CTA: ${result.cta}
         </div>
       </div>
 
-      {/* Individual Slides */}
       <div className="space-y-6">
         <h3 className="font-sora font-bold text-xl text-white mt-4 border-b border-[var(--color-border-primary)] pb-4 flex items-center gap-2">
           <Target className="w-5 h-5 text-[var(--color-brand-violet)]" />
@@ -222,18 +162,16 @@ CTA: ${result.cta}
         </h3>
         {res.slides.map((slide, index) => (
           <div key={index} className="bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] rounded-2xl shadow-lg p-6 flex flex-col lg:flex-row gap-6 relative group">
-            {/* Slide Content */}
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-8 h-8 rounded-lg bg-[var(--color-brand-violet)]/15 border border-[var(--color-brand-violet)]/30 text-[var(--color-brand-violet)] font-bold flex items-center justify-center text-sm font-mono shrink-0">
-                  {index + 1}
+                  {index + 2}
                 </div>
                 <h4 className="font-sora font-bold text-lg text-white">{slide.heading}</h4>
               </div>
               <p className="text-[#D4D4D8] leading-relaxed ml-11">{slide.description}</p>
             </div>
             
-            {/* Image Prompt */}
             <div className="flex-1 bg-[var(--color-bg-primary)] rounded-xl p-5 border border-[var(--color-border-primary)] relative">
               <div className="flex items-center justify-between mb-3">
                 <strong className="text-white text-xs font-mono uppercase tracking-wider flex items-center gap-2">
@@ -241,7 +179,7 @@ CTA: ${result.cta}
                   Image Prompt
                 </strong>
                 <button
-                  onClick={() => copyToClipboard(slide.imagePrompt, `Slide ${index + 1} Prompt`, `prompt-${index}`)}
+                  onClick={() => copyToClipboard(slide.imagePrompt, `Slide ${index + 2} Prompt`, `prompt-${index}`)}
                   className="text-[#A1A1AA] hover:text-white transition-colors"
                 >
                   {activeCopiedKey === `prompt-${index}` ? <CheckCircle2 className="w-4 h-4 text-[#22C55E]" /> : <Copy className="w-4 h-4" />}
@@ -277,34 +215,28 @@ CTA: ${result.cta}
       </AnimatePresence>
 
       <div className="w-full max-w-6xl space-y-8 relative z-10">
-        {/* HEADER */}
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border-b border-[var(--color-border-primary)] pb-8">
           <div>
             <div className="flex items-center gap-3 mb-2">
               <span className="px-3 py-1 rounded-full bg-[var(--color-brand-violet)]/15 border border-[var(--color-brand-violet)]/30 text-[var(--color-brand-violet)] text-[11px] font-mono font-semibold tracking-wide uppercase">
-                {result.format === 'single' ? 'SINGLE POST' : 'CAROUSEL'}
+                MODULE 02 / DESIGN PUBLISHER
               </span>
             </div>
             <h1 className="text-2xl sm:text-4xl font-sora font-extrabold text-[#FAFAFA] tracking-tight leading-snug">
               {result.topicTitle}
             </h1>
           </div>
-          
-          <div className="flex items-center gap-3 w-full md:w-auto">
-            <button onClick={onCreateAnother} className="btn-secondary flex-1 md:flex-none flex items-center justify-center gap-2 px-6 py-3 cursor-pointer">
-              <RefreshCw className="w-4 h-4" />
-              <span>New Topic</span>
-            </button>
-            <button onClick={copyAll} className="btn-primary flex-1 md:flex-none flex items-center justify-center gap-2 px-6 py-3 cursor-pointer">
-              <Copy className="w-4 h-4" />
-              <span>Copy All</span>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={onCreateAnother}
+              className="px-6 py-2.5 bg-[var(--color-bg-surface)] hover:bg-[var(--color-border-primary)] border border-[var(--color-border-primary)] text-white text-sm font-semibold rounded-xl transition-all shadow-sm"
+            >
+              New Content
             </button>
           </div>
         </div>
 
-        {/* DYNAMIC RENDERING BASED ON FORMAT */}
         {result.format === 'single' ? renderSinglePost(result) : renderCarousel(result)}
-
       </div>
     </div>
   );

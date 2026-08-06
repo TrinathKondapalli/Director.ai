@@ -66,20 +66,12 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
               How It Works
             </button>
             <button
-              onClick={() => onNavigate('/ideas')}
+              onClick={() => onNavigate('/design-publisher')}
               className={`transition-colors cursor-pointer ${
-                currentPath === '/ideas' ? 'text-white' : 'text-[var(--color-text-secondary)] hover:text-white'
+                currentPath === '/design-publisher' ? 'text-white' : 'text-[var(--color-text-secondary)] hover:text-white'
               }`}
             >
-              Trending Concepts
-            </button>
-            <button
-              onClick={() => onNavigate('/studio')}
-              className={`transition-colors cursor-pointer ${
-                currentPath === '/studio' ? 'text-white' : 'text-[var(--color-text-secondary)] hover:text-white'
-              }`}
-            >
-              Content Studio
+              AI Design Publisher
             </button>
             <button
               onClick={() => onNavigate('/pricing')}
@@ -95,22 +87,22 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
           <div className="flex items-center gap-2">
             {/* Desktop Primary Action Button */}
             <button
-              onClick={() => onNavigate('/generate')}
+              onClick={() => onNavigate('/ugc-studio')}
               className="hidden md:flex px-6 py-2.5 btn-primary text-[14px] items-center gap-2 cursor-pointer"
             >
               <Sparkles className="w-4 h-4 fill-current" />
-              <span>Generate Master Prompt</span>
+              <span>AI UGC Studio</span>
               <ArrowRight className="w-4 h-4 ml-1" />
             </button>
 
             {/* Mobile Actions */}
             <div className="flex items-center gap-2 md:hidden">
               <button
-                onClick={() => onNavigate('/generate')}
+                onClick={() => onNavigate('/ugc-studio')}
                 className="px-4 py-2 btn-primary text-xs flex items-center gap-1.5 cursor-pointer"
               >
                 <Sparkles className="w-3.5 h-3.5 fill-current" />
-                <span>Generate</span>
+                <span>UGC Studio</span>
               </button>
 
               <button
@@ -161,47 +153,32 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
               </button>
 
               <button
-                onClick={() => handleMobileNav('/generate')}
+                onClick={() => handleMobileNav('/ugc-studio')}
                 className={`w-full flex items-center justify-between px-4 py-3 rounded-[14px] text-sm font-medium transition-colors ${
-                  currentPath === '/generate'
+                  currentPath === '/ugc-studio'
                     ? 'bg-[var(--color-brand-violet)]/15 text-[var(--color-brand-lavender)] border border-[var(--color-brand-violet)]/30'
                     : 'text-[var(--color-text-secondary)] hover:text-white bg-[var(--color-bg-primary)] border border-transparent'
                 }`}
               >
                 <div className="flex items-center gap-3">
                   <Sparkles className="w-4 h-4 text-[var(--color-brand-violet)]" />
-                  <span>Generate Master Prompt</span>
+                  <span>AI UGC Studio</span>
                 </div>
               </button>
 
               <button
-                onClick={() => handleMobileNav('/ideas')}
+                onClick={() => handleMobileNav('/design-publisher')}
                 className={`w-full flex items-center justify-between px-4 py-3 rounded-[14px] text-sm font-medium transition-colors ${
-                  currentPath === '/ideas'
-                    ? 'bg-[var(--color-brand-violet)]/15 text-[var(--color-brand-lavender)] border border-[var(--color-brand-violet)]/30'
-                    : 'text-[var(--color-text-secondary)] hover:text-white bg-[var(--color-bg-primary)] border border-transparent'
-                }`}
-              >
-                <div className="flex items-center gap-3">
-                  <Lightbulb className="w-4 h-4 text-[var(--color-brand-violet)]" />
-                  <span>Trending Concepts</span>
-                </div>
-              </button>
-
-              <button
-                onClick={() => handleMobileNav('/studio')}
-                className={`w-full flex items-center justify-between px-4 py-3 rounded-[14px] text-sm font-medium transition-colors ${
-                  currentPath === '/studio'
+                  currentPath === '/design-publisher'
                     ? 'bg-[var(--color-brand-violet)]/15 text-[var(--color-brand-lavender)] border border-[var(--color-brand-violet)]/30'
                     : 'text-[var(--color-text-secondary)] hover:text-white bg-[var(--color-bg-primary)] border border-transparent'
                 }`}
               >
                 <div className="flex items-center gap-3">
                   <PenTool className="w-4 h-4 text-[var(--color-brand-violet)]" />
-                  <span>Content Studio</span>
+                  <span>AI Design Publisher</span>
                 </div>
               </button>
-
               <button
                 onClick={() => handleMobileNav('/pricing')}
                 className={`w-full flex items-center justify-between px-4 py-3 rounded-[14px] text-sm font-medium transition-colors ${
