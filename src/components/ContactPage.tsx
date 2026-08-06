@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, Send, CheckCircle2, MessageSquare } from 'lucide-react';
+import { AnimatedText } from './AnimatedText';
 
 export const ContactPage: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -21,7 +22,7 @@ export const ContactPage: React.FC = () => {
         </div>
 
         <h1 className="text-2xl sm:text-3xl font-extrabold text-[#FAFAFA] tracking-tight mb-2">
-          Contact Director.ai
+          <AnimatedText text="Contact Director.ai" />
         </h1>
         <p className="text-xs sm:text-sm text-[#A1A1AA] mb-8 leading-relaxed">
           Have feedback or enterprise inquiries regarding Director.ai? Send us a message below.

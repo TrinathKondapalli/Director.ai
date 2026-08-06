@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Flame, Sparkles, ArrowRight, RefreshCw, Search, Layers, ShieldCheck, Video, Lightbulb, Users, ShoppingBag } from 'lucide-react';
+import { AnimatedText } from './AnimatedText';
 import { TRENDING_UGC_CONCEPTS } from '../data/conceptsData';
 import { AiConceptCard } from '../types';
 
@@ -76,7 +77,7 @@ export const IdeasPage: React.FC<IdeasPageProps> = ({ onSelectConcept }) => {
             <span>Updated Real-Time • High-Converting UGC Ad Frameworks</span>
           </div>
           <h1 className="text-3xl sm:text-5xl font-extrabold text-[#FAFAFA] tracking-tight mb-4">
-            Trending Concepts
+            <AnimatedText text="Trending Concepts" className="justify-center" />
           </h1>
           <p className="text-sm sm:text-base text-[#A1A1AA] leading-relaxed">
             Discover viral-proven 9:16 vertical UGC advertisement structures across leading e-commerce niches. Click any concept to load Director.ai immediately.

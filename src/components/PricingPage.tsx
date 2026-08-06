@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check, Sparkles, ShieldCheck, Zap, Info } from 'lucide-react';
+import { AnimatedText } from './AnimatedText';
 
 interface PricingPageProps {
   onNavigate: (path: string) => void;
@@ -49,7 +50,7 @@ export const PricingPage: React.FC<PricingPageProps> = ({ onNavigate }) => {
             <span>Simple Transparent Pricing</span>
           </div>
           <h1 className="text-3xl sm:text-5xl font-extrabold text-[#FAFAFA] tracking-tight mb-4">
-            Unlimited AI UGC Master Prompts
+            <AnimatedText text="Unlimited AI UGC Master Prompts" className="justify-center" />
           </h1>
           <p className="text-sm sm:text-base text-[#A1A1AA] leading-relaxed">
             Choose the plan that fits your creation workflow. Zero hidden fees. Zero data retention.
