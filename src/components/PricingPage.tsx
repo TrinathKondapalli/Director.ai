@@ -108,7 +108,7 @@ export const PricingPage: React.FC<PricingPageProps> = ({ onNavigate }) => {
 
             <button
               onClick={() => onNavigate('/generate')}
-              className="w-full py-3.5 px-4 bg-[#6615F6] hover:bg-[#6615F6] text-white text-xs font-semibold rounded-xl transition-all shadow-lg shadow-[#6615F6]/25 flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
+              className="w-full py-4 btn-primary flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
             >
               <Sparkles className="w-4 h-4 fill-current" />
               <span>Get Pro Access</span>

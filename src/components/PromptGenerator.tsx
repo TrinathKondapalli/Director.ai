@@ -162,7 +162,7 @@ export const PromptGenerator: React.FC<PromptGeneratorProps> = ({
             <button
               type="submit"
               disabled={isGenerating || !formData.productName?.trim() || !formData.targetAudience?.trim()}
-              className="w-full py-4 bg-[#6615F6] hover:bg-[#6615F6] disabled:opacity-50 disabled:cursor-not-allowed text-white text-base font-semibold rounded-2xl transition-all shadow-xl shadow-[#6615F6]/25 hover:shadow-[#6615F6]/30 flex items-center justify-center gap-2.5 cursor-pointer active:scale-[0.99]"
+              className="w-full py-4 btn-primary disabled:opacity-50 disabled:cursor-not-allowed text-base flex items-center justify-center gap-2.5 cursor-pointer active:scale-[0.99]"
             >
               <Sparkles className="w-5 h-5 fill-current" />
               <span>Generate Master Prompt</span>

@@ -67,7 +67,7 @@ export const ContactPage: React.FC = () => {
 
             <button
               type="submit"
-              className="w-full py-3.5 bg-[#6615F6] hover:bg-[#6615F6] text-white text-sm font-semibold rounded-xl transition-all shadow-lg shadow-[#6615F6]/20 flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
+              className="w-full py-4 btn-primary flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
             >
               <Send className="w-4 h-4" />
               <span>Send Message</span>

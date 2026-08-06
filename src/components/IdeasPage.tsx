@@ -227,7 +227,7 @@ export const IdeasPage: React.FC<IdeasPageProps> = ({ onSelectConcept }) => {
                   {/* Primary CTA */}
                   <button
                     onClick={() => onSelectConcept(concept)}
-                    className="w-full py-4 px-4 bg-[#6615F6] hover:bg-[#7C3AED] text-white text-[15px] font-semibold rounded-[14px] transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
+                    className="w-full py-4 btn-primary flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
                   >
                     <Sparkles className="w-4 h-4 fill-current" />
                     <span>Use This Concept</span>
