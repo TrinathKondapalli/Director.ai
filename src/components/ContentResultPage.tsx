@@ -41,10 +41,14 @@ export const ContentResultPage: React.FC<ContentResultPageProps> = ({ result, on
     if (result.format === 'single') {
       fullText = `
 --- ${result.topicTitle} ---
+WHY THIS MATTERS: ${result.whyThisMatters}
 
 ${result.hook}
 
 ${result.postContent}
+
+ACTIONABLE TAKEAWAYS:
+${result.actionableTakeaways.map(t => `- ${t}`).join('\n')}
 
 ${result.cta}
 
@@ -56,8 +60,14 @@ ${result.imagePrompt}
       fullText = `
 --- ${result.topicTitle} ---
 COVER: ${result.coverTitle}
+WHY THIS MATTERS: ${result.whyThisMatters}
+
+${result.caption}
 
 ${result.slides.map((s, i) => `SLIDE ${i + 1}: ${s.heading}\n${s.description}\nIMAGE PROMPT: ${s.imagePrompt}`).join('\n\n')}
+
+ACTIONABLE TAKEAWAYS:
+${result.actionableTakeaways.map(t => `- ${t}`).join('\n')}
 
 CTA: ${result.cta}
       `.trim();
@@ -96,13 +106,27 @@ CTA: ${result.cta}
         <SectionCard 
           title="Social Media Post Caption" 
           icon={MessageSquare} 
-          copyText={`${res.hook}\n\n${res.postContent}\n\n${res.cta}\n\n${res.hashtags.join(' ')}`} 
+          copyText={`WHY THIS MATTERS: ${res.whyThisMatters}\n\n${res.hook}\n\n${res.postContent}\n\nACTIONABLE TAKEAWAYS:\n${res.actionableTakeaways.map(t => `- ${t}`).join('\n')}\n\n${res.cta}\n\n${res.hashtags.join(' ')}`} 
           copyLabel="Caption" 
           copyKey="post"
         >
           <div className="space-y-4 text-[15px] leading-relaxed text-[#D4D4D8]">
-            <p className="font-semibold text-white">{res.hook}</p>
+            <div className="bg-[var(--color-brand-violet)]/10 border border-[var(--color-brand-violet)]/20 rounded-lg p-3">
+              <strong className="text-[var(--color-brand-lavender)] text-xs uppercase tracking-wider block mb-1">Why This Matters</strong>
+              <p className="text-white italic text-sm">{res.whyThisMatters}</p>
+            </div>
+            <p className="font-semibold text-white text-lg">{res.hook}</p>
             <p>{res.postContent}</p>
+            
+            <div className="pt-2">
+              <strong className="text-white text-sm uppercase tracking-wider block mb-2">Actionable Takeaways</strong>
+              <ul className="list-disc pl-5 space-y-1">
+                {res.actionableTakeaways.map((takeaway, idx) => (
+                  <li key={idx} className="text-[#A1A1AA]">{takeaway}</li>
+                ))}
+              </ul>
+            </div>
+
             <p className="font-semibold text-[var(--color-brand-lavender)] italic">{res.cta}</p>
             <p className="font-mono text-[13px] text-[var(--color-brand-magenta)] pt-4 border-t border-[var(--color-border-primary)]/50">{res.hashtags.join(' ')}</p>
           </div>
@@ -141,12 +165,26 @@ CTA: ${result.cta}
           <SectionCard 
             title="Social Media Post Caption" 
             icon={MessageSquare} 
-            copyText={`${res.caption}\n\n${res.cta}\n\n${res.hashtags.join(' ')}`} 
+            copyText={`WHY THIS MATTERS: ${res.whyThisMatters}\n\n${res.caption}\n\nACTIONABLE TAKEAWAYS:\n${res.actionableTakeaways.map(t => `- ${t}`).join('\n')}\n\n${res.cta}\n\n${res.hashtags.join(' ')}`} 
             copyLabel="Caption" 
             copyKey="carousel-caption"
           >
             <div className="space-y-4 text-[15px] leading-relaxed text-[#D4D4D8]">
+              <div className="bg-[var(--color-brand-violet)]/10 border border-[var(--color-brand-violet)]/20 rounded-lg p-3">
+                <strong className="text-[var(--color-brand-lavender)] text-xs uppercase tracking-wider block mb-1">Why This Matters</strong>
+                <p className="text-white italic text-sm">{res.whyThisMatters}</p>
+              </div>
               <p>{res.caption}</p>
+
+              <div className="pt-2">
+                <strong className="text-white text-sm uppercase tracking-wider block mb-2">Actionable Takeaways</strong>
+                <ul className="list-disc pl-5 space-y-1">
+                  {res.actionableTakeaways.map((takeaway, idx) => (
+                    <li key={idx} className="text-[#A1A1AA]">{takeaway}</li>
+                  ))}
+                </ul>
+              </div>
+
               <p className="font-semibold text-[var(--color-brand-lavender)] italic">{res.cta}</p>
               <p className="font-mono text-[13px] text-[var(--color-brand-magenta)] pt-4 border-t border-[var(--color-border-primary)]/50">{res.hashtags.join(' ')}</p>
             </div>

@@ -71,8 +71,14 @@ export const generateContentMock = async (format: 'single' | 'carousel'): Promis
       return {
         format: 'single',
         topicTitle: "Stop using pure black (#000000) in your UI designs.",
+        whyThisMatters: "Using pure black causes extreme retina stimulation on OLED screens, leading to severe user eye fatigue and a 'cheap' brand perception.",
         hook: "If your dark mode looks harsh and causes eye strain, you're probably making this one critical color mistake. 👇",
         postContent: "Pure black (#000000) against pure white (#FFFFFF) creates a massive contrast ratio that actually over-stimulates the retina. This leads to eye fatigue, especially when reading long paragraphs of text.\n\nInstead of absolute black, use a 'tinted dark'. By mixing a tiny amount of your primary brand color (like a deep navy or rich plum) into a dark gray (e.g., #0F172A), you achieve two things:\n\n1. You reduce eye strain significantly.\n2. You create a deeply premium, cohesive aesthetic that feels custom to your brand.\n\nTake a look at companies like Linear, Stripe, or Vercel. None of them use pure black. They use extremely dark, cool-toned grays that feel softer and more sophisticated.\n\nThe next time you set up your design system variables, replace #000000 with something like #09090B. Your users' eyes will thank you.",
+        actionableTakeaways: [
+          "Never use #000000 for backgrounds in dark mode.",
+          "Inject 2-5% of your primary brand color into a dark gray base.",
+          "Check contrast ratios to ensure text remains legible but soft."
+        ],
         cta: "Have you audited your dark mode colors recently? Let me know your favorite dark hex code below! 👇",
         imagePrompt: "A sleek, cinematic macro shot of a designer's workspace. A glowing monitor displaying a sophisticated color palette transitioning from pure black to a premium tinted dark navy. Glassmorphism UI elements floating softly. Luxury, modern, dark mode aesthetic, purple and blue ambient lighting. NO TEXT, NO TYPOGRAPHY, NO LETTERS, NO WORDS, NO NUMBERS, NO LOGOS, NO WATERMARKS, NO SIGNAGE, NO CAPTIONS, NO UI LABELS, NO BRAND NAMES, NO POSTER DESIGN, NO MAGAZINE COVER, NO INFOGRAPHIC, CLEAN VISUAL ONLY. editorial photography, premium composition, ultra realistic, highly detailed, cinematic lighting, clean background, no text, no typography, no letters, no words, no numbers, no logos, no watermark, no branding, background illustration only, 8K, Ultra HD, --ar 16:9",
         hashtags: ["#UIDesign", "#UXDesign", "#ColorTheory", "#ProductDesign", "#DesignSystem", "#Figma", "#DarkMode", "#UXTips"],
@@ -82,8 +88,14 @@ export const generateContentMock = async (format: 'single' | 'carousel'): Promis
       return {
         format: 'single',
         topicTitle: "Why 'White Space' is Your Most Powerful Design Tool",
+        whyThisMatters: "Cognitive overload is the #1 reason users abandon interfaces. Proper white space reduces cognitive load by up to 30%.",
         hook: "If your UI feels cluttered and overwhelming, the solution isn't to make things smaller. It's to add nothing at all. 👇",
         postContent: "White space (or negative space) is often misunderstood by non-designers as 'wasted space'. In reality, it is the active element that binds your layout together.\n\nWhen elements are crammed too closely, the user's brain has to work incredibly hard to parse the visual hierarchy. By intentionally increasing your margins and paddings, you give the content room to breathe.\n\nGenerous white space does three things instantly:\n1. It increases reading comprehension by up to 20%.\n2. It draws the eye naturally to your primary Call to Action.\n3. It elevates the perceived value of your product (think about luxury brands—they always use massive amounts of negative space).\n\nDon't be afraid of emptiness. Use it strategically to guide your user's attention exactly where it needs to go.",
+        actionableTakeaways: [
+          "Double your standard padding around critical CTA buttons.",
+          "Use a 4pt or 8pt grid system to mathematically structure your empty space.",
+          "Group related elements tightly, but separate distinct sections with massive margins."
+        ],
         cta: "Do you struggle with adding enough white space to your designs? Let's discuss below! 👇",
         imagePrompt: "An ultra-minimalist, high-end architectural interior with massive amounts of clean, empty space. A single, beautifully lit sculptural object sitting in the center. Extreme negative space, stark contrast, luxury aesthetic, soft ambient lighting. NO TEXT, NO TYPOGRAPHY, NO LETTERS, NO WORDS, NO NUMBERS, NO LOGOS, NO WATERMARKS, NO SIGNAGE, NO CAPTIONS, NO UI LABELS, NO BRAND NAMES, NO POSTER DESIGN, NO MAGAZINE COVER, NO INFOGRAPHIC, CLEAN VISUAL ONLY. editorial photography, premium composition, ultra realistic, highly detailed, cinematic lighting, clean background, no text, no typography, no letters, no words, no numbers, no logos, no watermark, no branding, background illustration only, 8K, Ultra HD, --ar 16:9",
         hashtags: ["#UIDesign", "#UXDesign", "#WhiteSpace", "#Minimalism", "#DesignTips", "#ProductDesign", "#WebDesign", "#UXPsychology"],
@@ -99,6 +111,7 @@ export const generateContentMock = async (format: 'single' | 'carousel'): Promis
       format: 'carousel',
       topicTitle: "The Psychology of Micro-Interactions in Product Design",
       coverTitle: "Why Your App Feels 'Cheap' (And How to Fix It)",
+      whyThisMatters: "Without purposeful motion, digital products feel broken and robotic. Micro-interactions build immediate subconscious trust.",
       caption: "Have you ever used an app that functioned perfectly, but just felt... cheap? 📱\n\nThe problem usually isn't the visual design. It's the lack of purposeful motion. Micro-interactions are subtle animations that provide immediate visual feedback and recreate the tactile satisfaction of the physical world in a digital space.\n\nSwipe through to see how adding purposeful motion to your core interactions can skyrocket your perceived product value. 👉",
       slides: [
         {
@@ -132,6 +145,11 @@ export const generateContentMock = async (format: 'single' | 'carousel'): Promis
           imagePrompt: "A glowing, levitating diamond shape surrounded by soft, dynamic ripples of light. Symbolizing high value and fluid motion. Dark luxury aesthetic. NO TEXT, NO TYPOGRAPHY, NO LETTERS, NO WORDS, NO NUMBERS, NO LOGOS, NO WATERMARKS, NO SIGNAGE, NO CAPTIONS, NO UI LABELS, NO BRAND NAMES, NO POSTER DESIGN, NO MAGAZINE COVER, NO INFOGRAPHIC, CLEAN VISUAL ONLY. editorial photography, premium composition, ultra realistic, highly detailed, cinematic lighting, clean background, no text, no typography, no letters, no words, no numbers, no logos, no watermark, no branding, background illustration only, 8K, Ultra HD, --ar 16:9"
         }
       ],
+      actionableTakeaways: [
+        "Audit your app for interactions that lack visual feedback.",
+        "Implement spring physics instead of linear animations for natural feel.",
+        "Keep interaction times below 300ms to maintain speed."
+      ],
       cta: "What is your favorite app for micro-interactions? Drop it in the comments! 👇",
       hashtags: ["#ProductDesign", "#MicroInteractions", "#UXDesign", "#MotionDesign", "#UIDesign", "#Figma", "#AppDesign", "#UXPsychology"],
       keywords: ["Micro interactions UI", "UX motion design", "Framer animations", "How to improve app UX", "Perceived value in design"]
@@ -141,6 +159,7 @@ export const generateContentMock = async (format: 'single' | 'carousel'): Promis
       format: 'carousel',
       topicTitle: "How to Design Forms that Actually Convert",
       coverTitle: "Stop Losing Users at the Signup Form",
+      whyThisMatters: "Forms are the ultimate bottleneck. A 10% increase in form completion can double a startup's revenue.",
       caption: "Forms are the highest point of friction in any digital product. Did you know every input field you add drops your conversion rate by roughly 5-10%? 📉\n\nIf you want to stop losing users at the signup form, you need to optimize for vertical momentum, use inline validation, and leverage browser autofill.\n\nSwipe to learn how to design forms that actually convert! 👉",
       slides: [
         {
@@ -163,6 +182,11 @@ export const generateContentMock = async (format: 'single' | 'carousel'): Promis
           description: "Design your inputs with proper HTML autocomplete attributes. If the browser can fill it in for them, you've just saved them 30 seconds of frustration.",
           imagePrompt: "A futuristic AI core seamlessly assembling digital blocks, representing automation and speed. Blue and violet glowing circuits. NO TEXT, NO TYPOGRAPHY, NO LETTERS, NO WORDS, NO NUMBERS, NO LOGOS, NO WATERMARKS, NO SIGNAGE, NO CAPTIONS, NO UI LABELS, NO BRAND NAMES, NO POSTER DESIGN, NO MAGAZINE COVER, NO INFOGRAPHIC, CLEAN VISUAL ONLY. editorial photography, premium composition, ultra realistic, highly detailed, cinematic lighting, clean background, no text, no typography, no letters, no words, no numbers, no logos, no watermark, no branding, background illustration only, 8K, Ultra HD, --ar 16:9"
         }
+      ],
+      actionableTakeaways: [
+        "Remove all non-essential fields (ask later).",
+        "Stack fields in a single column to reduce eye zigzagging.",
+        "Use HTML autocomplete attributes extensively."
       ],
       cta: "What's the worst form you've ever had to fill out? Let's vent in the comments! 😅👇",
       hashtags: ["#UXDesign", "#UIForms", "#ConversionRate", "#WebDesign", "#ProductDesign", "#DesignTips", "#UXResearch", "#UIUX"],
@@ -187,20 +211,23 @@ export const generateContent = async (format: 'single' | 'carousel'): Promise<De
       properties: {
         format: { type: 'STRING', description: 'Always exactly "single"' },
         topicTitle: { type: 'STRING' },
+        whyThisMatters: { type: 'STRING', description: 'A short sentence explaining why this topic is critical to business or psychology' },
         hook: { type: 'STRING' },
         postContent: { type: 'STRING' },
+        actionableTakeaways: { type: 'ARRAY', items: { type: 'STRING' } },
         cta: { type: 'STRING' },
         imagePrompt: { type: 'STRING' },
-        hashtags: { type: 'ARRAY', items: { type: 'STRING' } },
+        hashtags: { type: 'ARRAY', items: { type: 'STRING' }, description: 'Generate exactly 20 hashtags' },
         keywords: { type: 'ARRAY', items: { type: 'STRING' } }
       },
-      required: ["format", "topicTitle", "hook", "postContent", "cta", "imagePrompt", "hashtags", "keywords"]
+      required: ["format", "topicTitle", "whyThisMatters", "hook", "postContent", "actionableTakeaways", "cta", "imagePrompt", "hashtags", "keywords"]
     } : {
       type: 'OBJECT',
       properties: {
         format: { type: 'STRING', description: 'Always exactly "carousel"' },
         topicTitle: { type: 'STRING' },
         coverTitle: { type: 'STRING' },
+        whyThisMatters: { type: 'STRING', description: 'A short sentence explaining why this topic is critical to business or psychology' },
         caption: { type: 'STRING' },
         slides: {
           type: 'ARRAY',
@@ -214,11 +241,12 @@ export const generateContent = async (format: 'single' | 'carousel'): Promise<De
             required: ["heading", "description", "imagePrompt"]
           }
         },
+        actionableTakeaways: { type: 'ARRAY', items: { type: 'STRING' } },
         cta: { type: 'STRING' },
-        hashtags: { type: 'ARRAY', items: { type: 'STRING' } },
+        hashtags: { type: 'ARRAY', items: { type: 'STRING' }, description: 'Generate exactly 20 hashtags' },
         keywords: { type: 'ARRAY', items: { type: 'STRING' } }
       },
-      required: ["format", "topicTitle", "coverTitle", "caption", "slides", "cta", "hashtags", "keywords"]
+      required: ["format", "topicTitle", "coverTitle", "whyThisMatters", "caption", "slides", "actionableTakeaways", "cta", "hashtags", "keywords"]
     };
 
     const designTopics = [
@@ -249,7 +277,7 @@ Requirements:
 [Random Seed to guarantee uniqueness: ${seed}]`;
 
     const response = await ai.models.generateContent({
-      model: 'gemini-2.0-flash',
+      model: 'gemini-3.6-flash',
       contents: prompt,
       config: {
         systemInstruction: SYSTEM_PROMPT,

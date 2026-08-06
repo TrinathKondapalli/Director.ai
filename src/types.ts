@@ -75,8 +75,10 @@ export interface AiConceptCard {
 export interface DesignContentResultV2Single {
   format: 'single';
   topicTitle: string;
+  whyThisMatters: string;
   hook: string;
   postContent: string;
+  actionableTakeaways: string[];
   cta: string;
   imagePrompt: string;
   hashtags: string[];
@@ -87,12 +89,14 @@ export interface DesignContentResultV2Carousel {
   format: 'carousel';
   topicTitle: string;
   coverTitle: string;
+  whyThisMatters: string;
   caption: string;
   slides: {
     heading: string;
     description: string;
     imagePrompt: string;
   }[];
+  actionableTakeaways: string[];
   cta: string;
   hashtags: string[];
   keywords: string[];
