@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, Layers, PenTool, LayoutTemplate, Newspaper } from 'lucide-react';
-import { generateContentMock } from '../data/contentEngine';
+import { Sparkles, Layers, PenTool, LayoutTemplate, Newspaper, FileText } from 'lucide-react';
+import { generateContent } from '../data/contentEngine';
 import { DesignContentResult } from '../types';
-import { ContentLoadingScreen } from './ContentLoadingScreen'; // Force TS refresh
+import { ContentLoadingScreen } from './ContentLoadingScreen';
 import { ContentResultPage } from './ContentResultPage';
 import { BackgroundGlow } from './BackgroundGlow';
 import { AnimatedText } from './AnimatedText';
@@ -21,9 +21,8 @@ export const ContentStudio: React.FC<ContentStudioProps> = ({ onNavigate }) => {
     setIsGenerating(true);
     setResult(null);
     try {
-      // In a real app, this would call an API
-      const mockResult = await generateContentMock(format);
-      setResult(mockResult);
+      const generatedResult = await generateContent(format);
+      setResult(generatedResult);
     } catch (error) {
       console.error(error);
     } finally {

@@ -1,7 +1,19 @@
-import { DesignContentResult } from '../types';
+import { GoogleGenAI } from '@google/genai';
+import { DesignContentResult, DesignContentResultV2Single, DesignContentResultV2Carousel } from '../types';
+
+const SYSTEM_PROMPT = `You are an elite AI Content Strategist, UX Writer, Product Designer, Creative Director, and Social Media Expert with over 20 years of experience creating viral, educational, and professional design content.
+Your expertise includes UX/UI Design, Product Design, Interaction Design, Accessibility, and Design Systems.
+
+Your job is to create educational, high-value, and timeless content for designers. The design tips you generate must be based on fundamental human psychology and core design principles so that they remain highly useful for designers even 20 years from now. Avoid fleeting UI trends.
+You write content that sounds completely human. Never generate robotic text. Never overuse emojis. Never create clickbait. Every post should educate, inspire, or provide practical value.
+
+IMAGE PROMPT GENERATION RULES:
+The AI must generate image prompts that create ONLY visuals. The generated image must NEVER contain Text, Titles, Headings, Quotes, Paragraphs, Captions, Numbers, Letters, Logos, Watermarks, UI labels, Buttons with text, Brand names, Sign boards, or Posters containing typography.
+Treat every generated image as an editorial photograph or cinematic illustration.
+Always append this global negative prompt to EVERY image prompt:
+"NO TEXT, NO TYPOGRAPHY, NO LETTERS, NO WORDS, NO NUMBERS, NO LOGOS, NO WATERMARKS, NO SIGNAGE, NO CAPTIONS, NO UI LABELS, NO BRAND NAMES, NO POSTER DESIGN, NO MAGAZINE COVER, NO INFOGRAPHIC, CLEAN VISUAL ONLY. editorial photography, premium composition, ultra realistic, highly detailed, cinematic lighting, clean background, no text, no typography, no letters, no words, no numbers, no logos, no watermark, no branding, background illustration only, 8K, Ultra HD, --ar 16:9"`;
 
 export const generateContentMock = async (format: 'single' | 'carousel'): Promise<DesignContentResult> => {
-  // Simulate network delay for AI processing
   await new Promise((resolve) => setTimeout(resolve, 3500));
 
   if (format === 'single') {
@@ -32,7 +44,6 @@ export const generateContentMock = async (format: 'single' | 'carousel'): Promis
     }
   }
 
-  // Carousel format
   const isFirstCarousel = Math.random() > 0.5;
 
   if (isFirstCarousel) {
@@ -109,5 +120,80 @@ export const generateContentMock = async (format: 'single' | 'carousel'): Promis
       hashtags: ["#UXDesign", "#UIForms", "#ConversionRate", "#WebDesign", "#ProductDesign", "#DesignTips", "#UXResearch", "#UIUX"],
       keywords: ["Form design best practices", "How to increase form conversions", "UX UI form layout", "Inline validation UI"]
     };
+  }
+};
+
+export const generateContent = async (format: 'single' | 'carousel'): Promise<DesignContentResult> => {
+  try {
+    const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+    if (!apiKey) {
+      console.warn("No Gemini API Key found. Falling back to mock data.");
+      return generateContentMock(format);
+    }
+
+    const ai = new GoogleGenAI({ apiKey });
+    
+    // We request the AI to return JSON using Structured Output
+    const schemaObj = format === 'single' ? {
+      type: 'OBJECT',
+      properties: {
+        format: { type: 'STRING', description: 'Always exactly "single"' },
+        topicTitle: { type: 'STRING' },
+        hook: { type: 'STRING' },
+        postContent: { type: 'STRING' },
+        cta: { type: 'STRING' },
+        imagePrompt: { type: 'STRING' },
+        hashtags: { type: 'ARRAY', items: { type: 'STRING' } },
+        keywords: { type: 'ARRAY', items: { type: 'STRING' } }
+      },
+      required: ["format", "topicTitle", "hook", "postContent", "cta", "imagePrompt", "hashtags", "keywords"]
+    } : {
+      type: 'OBJECT',
+      properties: {
+        format: { type: 'STRING', description: 'Always exactly "carousel"' },
+        topicTitle: { type: 'STRING' },
+        coverTitle: { type: 'STRING' },
+        caption: { type: 'STRING' },
+        slides: {
+          type: 'ARRAY',
+          items: {
+            type: 'OBJECT',
+            properties: {
+              heading: { type: 'STRING' },
+              description: { type: 'STRING' },
+              imagePrompt: { type: 'STRING' }
+            },
+            required: ["heading", "description", "imagePrompt"]
+          }
+        },
+        cta: { type: 'STRING' },
+        hashtags: { type: 'ARRAY', items: { type: 'STRING' } },
+        keywords: { type: 'ARRAY', items: { type: 'STRING' } }
+      },
+      required: ["format", "topicTitle", "coverTitle", "caption", "slides", "cta", "hashtags", "keywords"]
+    };
+
+    const prompt = \`Format requested: \${format.toUpperCase()}.\nGenerate a brand new, highly educational, timeless post about UX/UI or Product Design.\`;
+
+    const response = await ai.models.generateContent({
+      model: 'gemini-2.5-flash',
+      contents: prompt,
+      config: {
+        systemInstruction: SYSTEM_PROMPT,
+        responseMimeType: 'application/json',
+        responseSchema: schemaObj as any,
+        temperature: 0.7,
+      }
+    });
+
+    if (response.text) {
+      return JSON.parse(response.text) as DesignContentResult;
+    }
+    throw new Error("No text in response");
+
+  } catch (error) {
+    console.error("Gemini API Error:", error);
+    console.warn("Falling back to mock data.");
+    return generateContentMock(format);
   }
 };
