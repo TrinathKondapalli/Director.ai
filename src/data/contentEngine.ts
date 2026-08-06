@@ -15,13 +15,24 @@ If Single Post: Generate Topic, Hook, Professional Caption, LinkedIn Version, In
 
 If Carousel: Generate Cover Title, Total Slides, Slide Heading, Slide Description, Slide CTA, Hashtags, SEO Keywords, AND for EVERY slide: Slide Content, ONE separate AI image prompt (background only).
 
+CAPTIONS REQUIREMENTS:
+Generate captions for LinkedIn, Instagram, Facebook, and Twitter/X. Each platform MUST have different writing styles.
+- LinkedIn: Professional, Educational, Industry insight, Thought leadership.
+- Instagram: Visual storytelling, Friendly, Short, Modern, Engaging.
+- Facebook: Conversational, Community driven, Easy reading.
+- Twitter/X: Short, Direct, Valuable, Memorable.
+
 IMAGE PROMPT RULES:
-The AI must generate ONE editorial-quality AI image prompt. The prompt must create ONLY the background artwork.
-Never generate text inside the image. Never generate logos. Never generate typography.
-Every Image Prompt should end with: "Editorial photography, Luxury minimalism, Modern composition, Professional designer workspace, Cinematic lighting, Soft shadows, Depth of field, Ultra realistic, 8K, 16:9, Background artwork only, NO TEXT, NO TYPOGRAPHY, NO LETTERS, NO WORDS, NO NUMBERS, NO LOGOS, NO WATERMARK, NO BRANDING"
+The AI must generate ONE editorial-quality AI image prompt. 
+CRITICAL: The prompt MUST describe a COMPLETE social media post design, NOT just a background.
+The generated image should already contain: Headline, Supporting text, Icons, Visual hierarchy, Cards, UI elements, Proper spacing, Brand colors, Graphic elements, Typography, Layout, Callouts, Highlights.
+The artwork should be directly inspired by the generated topic (e.g. wireframes, sticky notes, workspaces, UI flows).
+The output should look like it was designed in Adobe Illustrator, Figma, or Canva by a senior graphic designer.
+Design Style: Strong typography hierarchy, grid system, white space, premium composition. Resemble premium content from Linear, Stripe, Notion, OpenAI, Framer, Figma, Canva.
+Never generate: Generic AI art, random futuristic scenes, wallpaper-style compositions, empty backgrounds.
 
 Output Quality:
-Never repeat previous responses. Every generation should be unique. Feel like it was created by senior designers at Apple, OpenAI, Linear, Stripe, Figma.`;
+Never repeat previous responses. Every generation should be unique. Feel like it was created by senior designers.`;
 
 export const generateContentMock = async (format: 'single' | 'carousel'): Promise<DesignContentResult> => {
   await new Promise((resolve) => setTimeout(resolve, 3500));
@@ -34,17 +45,17 @@ export const generateContentMock = async (format: 'single' | 'carousel'): Promis
       hook: "If your dark mode looks harsh and causes eye strain, you're probably making this one critical color mistake. 👇",
       professionalCaption: "Pure black (#000000) against pure white (#FFFFFF) creates a massive contrast ratio that actually over-stimulates the retina. Instead of absolute black, use a 'tinted dark'.",
       captions: {
-        linkedin: "Designers: Stop using pure black (#000000). It creates massive contrast that over-stimulates the retina. Use a tinted dark instead. What hex codes are you using for dark mode? #UIDesign #UX",
-        instagram: "Are you making this rookie color mistake? 🛑 Stop using pure black! It causes eye strain. Use a deep, cool-toned gray instead for that premium feel. ✨👇 #UIDesign #UXTips",
-        facebook: "We just audited a major app and found they were using pure black. Switching to a tinted dark increased reading time by 12%. Check your hex codes!",
-        twitter: "Pure black (#000000) is ruining your dark mode. Use #09090B instead. Your users' eyes will thank you. 🌙 #UI #Design"
+        linkedin: "Designers: Stop using pure black (#000000). It creates massive contrast that over-stimulates the retina. Using a tinted dark instead increases readability and feels instantly more premium. Industry leaders like Stripe and Linear use elevated grays. How are you handling dark mode in your current projects? #UIDesign #UX #DesignSystems",
+        instagram: "Are you making this rookie color mistake? 🛑 Stop using pure black! It causes eye strain and feels cheap. Try a deep, cool-toned gray instead for that premium feel. ✨ Check our stories for exact hex codes! 👇 #UIDesign #UXTips #Figma",
+        facebook: "We just audited a major app and found they were using pure black backgrounds. Switching to a tinted dark increased reading time by 12% across their entire community! What's your go-to dark mode color?",
+        twitter: "Pure black (#000000) is ruining your dark mode. Use #09090B instead. Better readability. Premium feel. Your users will thank you. 🌙 #UI #UX"
       },
       actionableTakeaways: [
         "Never use #000000 for backgrounds in dark mode.",
         "Inject 2-5% of your primary brand color into a dark gray base."
       ],
       cta: "Have you audited your dark mode colors recently? Let me know your favorite dark hex code below! 👇",
-      imagePrompt: "A sleek, cinematic macro shot of a designer's workspace. A glowing monitor displaying a sophisticated color palette transitioning from pure black to a premium tinted dark navy. Editorial photography, Luxury minimalism, Modern composition, Professional designer workspace, Cinematic lighting, Soft shadows, Depth of field, Ultra realistic, 8K, 16:9, Background artwork only, NO TEXT, NO TYPOGRAPHY, NO LETTERS, NO WORDS, NO NUMBERS, NO LOGOS, NO WATERMARK, NO BRANDING",
+      imagePrompt: "A fully designed premium social media graphic. A sleek, cinematic dark mode UI card floating on a dark tinted background (#09090B). The card has a bold typography headline 'Stop Using Pure Black', supporting text below, and a comparison graphic showing #000000 vs #09090B. Modern typography hierarchy, clean grid system, subtle glowing UI elements, and sleek layout. Looks like a professional Figma export from Stripe or Linear.",
       hashtags: ["#UIDesign", "#UXDesign", "#ColorTheory", "#ProductDesign", "#DesignSystem", "#Figma", "#DarkMode", "#UXTips"],
       keywords: ["UI color theory", "Dark mode best practices", "Figma color palette", "How to design dark mode", "UI design tips"]
     };

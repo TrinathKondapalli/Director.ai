@@ -19,18 +19,46 @@ export interface PlatformCaptions {
 }
 
 export interface VideoPrompt {
-  scene: string;
+  videoConcept: string;
+  hook: string;
+  sceneObjective: string;
+  sceneDescription: string;
+  characterDescription: string;
+  characterAppearance: string;
+  characterClothing: string;
+  characterExpressions: string;
+  characterEmotions: string;
+  characterActions: string;
+  cameraAngle: string;
   cameraMovement: string;
+  cameraLens: string;
+  cameraDistance: string;
+  framing: string;
   lighting: string;
   environment: string;
-  subject: string;
-  emotion: string;
+  background: string;
+  props: string;
   colorPalette: string;
   composition: string;
-  transitions: string;
-  lens: string;
+  cinematicStyle: string;
+  visualStyle: string;
+  transition: string;
+  motionDetails: string;
+  videoQuality: string;
+  renderingStyle: string;
+  aspectRatio: string;
   frameRate: string;
   duration: string;
+  voiceoverScript: string;
+  voiceStyle: string;
+  voiceGender: string;
+  voiceEmotion: string;
+  voiceSpeed: string;
+  accent: string;
+  dialogue: string;
+  backgroundMusic: string;
+  soundEffects: string;
+  ambientSounds: string;
   negativePrompt: string;
 }
 

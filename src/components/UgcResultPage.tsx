@@ -115,11 +115,47 @@ export const UgcResultPage: React.FC<UgcResultPageProps> = ({ result, onCreateAn
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2">
             <SectionCard title="AI Video Generation Prompt" icon={Video} copyText={Object.entries(result.videoPrompt).map(([k, v]) => `${k.toUpperCase()}: ${v}`).join('\n')} copyLabel="Video Prompt" copyKey="videoprompt">
-              <div className="grid grid-cols-2 gap-4">
-                {Object.entries(result.videoPrompt).map(([key, value]) => (
-                  <div key={key} className="bg-[var(--color-bg-primary)] p-3 rounded-lg border border-[var(--color-border-primary)]">
-                    <strong className="block text-[10px] uppercase text-[var(--color-brand-violet)] tracking-widest mb-1">{key}</strong>
-                    <span className="text-xs text-white leading-relaxed">{String(value)}</span>
+              <div className="space-y-8">
+                {[
+                  {
+                    title: "Core Concept",
+                    keys: ["videoConcept", "hook", "sceneObjective", "sceneDescription", "duration", "negativePrompt"]
+                  },
+                  {
+                    title: "Character & Performance",
+                    keys: ["characterDescription", "characterAppearance", "characterClothing", "characterExpressions", "characterEmotions", "characterActions"]
+                  },
+                  {
+                    title: "Camera & Framing",
+                    keys: ["cameraAngle", "cameraMovement", "cameraLens", "cameraDistance", "framing"]
+                  },
+                  {
+                    title: "Environment & Lighting",
+                    keys: ["lighting", "environment", "background", "props"]
+                  },
+                  {
+                    title: "Cinematography & Style",
+                    keys: ["colorPalette", "composition", "cinematicStyle", "visualStyle", "transition", "motionDetails", "videoQuality", "renderingStyle", "aspectRatio", "frameRate"]
+                  },
+                  {
+                    title: "Audio & Voiceover",
+                    keys: ["voiceoverScript", "voiceStyle", "voiceGender", "voiceEmotion", "voiceSpeed", "accent", "dialogue", "backgroundMusic", "soundEffects", "ambientSounds"]
+                  }
+                ].map((category, idx) => (
+                  <div key={idx} className="bg-[var(--color-bg-primary)] p-5 rounded-xl border border-[var(--color-border-primary)]">
+                    <h4 className="text-[#FAFAFA] font-sora font-semibold text-sm mb-4 border-b border-[var(--color-border-primary)] pb-2">{category.title}</h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {category.keys.map((key) => {
+                        const val = result.videoPrompt[key as keyof typeof result.videoPrompt];
+                        if (!val) return null;
+                        return (
+                          <div key={key} className="bg-[var(--color-bg-surface)] p-3 rounded-lg border border-[var(--color-border-primary)]">
+                            <strong className="block text-[10px] uppercase text-[var(--color-brand-violet)] tracking-widest mb-1.5">{key.replace(/([A-Z])/g, ' $1').trim()}</strong>
+                            <span className="text-xs text-[#E4E4E7] leading-relaxed">{String(val)}</span>
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
                 ))}
               </div>
