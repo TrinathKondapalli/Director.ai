@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, Link as LinkIcon, ShieldCheck, Clapperboard, Lightbulb } from 'lucide-react';
 import { MasterPromptInput } from '../types';
+import { BackgroundGlow } from './BackgroundGlow';
 
 interface PromptGeneratorProps {
   onGenerate: (input: MasterPromptInput) => void;
@@ -51,9 +52,7 @@ export const PromptGenerator: React.FC<PromptGeneratorProps> = ({
 
   return (
     <div className="min-h-[calc(100vh-4rem)] bg-[var(--color-bg-primary)] py-12 px-4 sm:px-6 flex flex-col items-center justify-center selection:bg-[var(--color-brand-violet)]/30 relative overflow-hidden">
-      {/* Background glowing effects */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[var(--color-brand-violet)]/15 blur-[120px] rounded-full pointer-events-none z-0" />
-      <div className="absolute bottom-0 right-0 w-[600px] h-[400px] bg-[var(--color-brand-magenta)]/10 blur-[120px] rounded-full pointer-events-none z-0" />
+      <BackgroundGlow />
 
       <div className="w-full max-w-xl relative z-10">
         {/* Header Bar */}

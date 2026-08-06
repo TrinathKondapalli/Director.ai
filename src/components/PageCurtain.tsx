@@ -11,7 +11,7 @@ export const PageCurtain: React.FC<PageCurtainProps> = ({ isVisible, title }) =>
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#6615F6] pointer-events-none"
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-[var(--color-brand-violet)] pointer-events-none"
           initial={{ clipPath: 'polygon(0% 0%, 0% 0%, -20% 100%, -20% 100%)' }}
           animate={{ clipPath: 'polygon(0% 0%, 120% 0%, 100% 100%, -20% 100%)' }}
           exit={{ clipPath: 'polygon(120% 0%, 120% 0%, 100% 100%, 100% 100%)' }}
@@ -22,7 +22,7 @@ export const PageCurtain: React.FC<PageCurtainProps> = ({ isVisible, title }) =>
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 30 }}
             transition={{ duration: 0.4, delay: 0.1, ease: 'easeOut' }}
-            className="text-4xl sm:text-6xl md:text-7xl font-sora font-extrabold text-white tracking-tight"
+            className="text-4xl sm:text-6xl md:text-7xl font-display font-extrabold text-white tracking-tight"
           >
             {title}
           </motion.h2>

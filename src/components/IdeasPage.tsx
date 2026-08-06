@@ -4,6 +4,7 @@ import { Flame, Sparkles, ArrowRight, RefreshCw, Search, Layers, ShieldCheck, Vi
 import { AnimatedText } from './AnimatedText';
 import { TRENDING_UGC_CONCEPTS } from '../data/conceptsData';
 import { AiConceptCard } from '../types';
+import { BackgroundGlow } from './BackgroundGlow';
 
 interface IdeasPageProps {
   onSelectConcept: (concept: AiConceptCard) => void;
@@ -64,10 +65,7 @@ export const IdeasPage: React.FC<IdeasPageProps> = ({ onSelectConcept }) => {
 
   return (
     <div className="min-h-[calc(100vh-4rem)] bg-[#09090B] py-12 px-4 sm:px-6 selection:bg-[#6615F6]/30 relative overflow-hidden">
-      {/* Immersive Background Glows */}
-      <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[#6615F6]/15 blur-[120px] rounded-full" />
-      </div>
+      <BackgroundGlow />
 
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}

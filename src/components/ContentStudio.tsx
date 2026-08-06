@@ -5,6 +5,7 @@ import { generateContentMock } from '../data/contentEngine';
 import { DesignContentResult } from '../types';
 import { ContentLoadingScreen } from './ContentLoadingScreen'; // Force TS refresh
 import { ContentResultPage } from './ContentResultPage';
+import { BackgroundGlow } from './BackgroundGlow';
 import { AnimatedText } from './AnimatedText';
 
 interface ContentStudioProps {
@@ -44,23 +45,7 @@ export const ContentStudio: React.FC<ContentStudioProps> = ({ onNavigate }) => {
 
   return (
     <div className="min-h-[calc(100vh-4rem)] bg-[var(--color-bg-primary)] py-20 px-4 sm:px-6 relative overflow-hidden flex flex-col items-center justify-center selection:bg-[var(--color-brand-violet)]/30">
-      {/* Immersive Animated Background Glows */}
-      <motion.div
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.25, 0.4, 0.25],
-        }}
-        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-[var(--color-brand-violet)] blur-[120px] rounded-full pointer-events-none z-0 mix-blend-screen"
-      />
-      <motion.div
-        animate={{
-          scale: [1, 1.3, 1],
-          opacity: [0.15, 0.3, 0.15],
-        }}
-        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-        className="absolute top-0 right-0 w-[500px] h-[500px] bg-[var(--color-brand-magenta)] blur-[120px] rounded-full pointer-events-none z-0 mix-blend-screen"
-      />
+      <BackgroundGlow />
 
       <div className="w-full max-w-4xl relative z-10 flex flex-col items-center text-center">
         {/* Module Badge */}
