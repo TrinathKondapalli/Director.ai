@@ -28,6 +28,7 @@ import {
 import { DirectorLogoBanner } from './DirectorLogo';
 import { AnimatedText } from './AnimatedText';
 import { TRENDING_UGC_CONCEPTS } from '../data/conceptsData';
+import { BackgroundGlow } from './BackgroundGlow';
 
 interface LandingPageProps {
   onNavigate: (path: string) => void;
@@ -68,6 +69,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
 
   return (
     <div className="w-full bg-[#09090B] text-white selection:bg-[#8B5CF6]/30 overflow-hidden relative">
+      <BackgroundGlow />
       {/* 1. HERO SECTION WRAPPER (Edge-to-edge) */}
       <div className="relative w-full overflow-hidden">
         {/* Background Image from user */}

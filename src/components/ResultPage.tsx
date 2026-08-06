@@ -24,6 +24,7 @@ import {
   TrendingUp
 } from 'lucide-react';
 import { MasterPromptResult } from '../types';
+import { BackgroundGlow } from './BackgroundGlow';
 
 interface ResultPageProps {
   result: MasterPromptResult;
@@ -151,7 +152,9 @@ ${(fb?.hashtags || []).join(' ')}`;
   };
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] bg-[var(--color-bg-primary)] py-10 px-4 sm:px-6 flex flex-col items-center justify-start selection:bg-[var(--color-brand-violet)]/30 relative pb-24">
+    <div className="min-h-[calc(100vh-4rem)] bg-[var(--color-bg-primary)] py-10 px-4 sm:px-6 relative overflow-hidden flex justify-center selection:bg-[var(--color-brand-violet)]/30">
+      <BackgroundGlow />
+      
       {/* SUCCESS TOAST NOTIFICATION */}
       <AnimatePresence>
         {toastMessage && (
@@ -169,7 +172,7 @@ ${(fb?.hashtags || []).join(' ')}`;
         )}
       </AnimatePresence>
 
-      <div className="w-full max-w-4xl space-y-12">
+      <div className="w-full max-w-6xl space-y-8 relative z-10">
         {/* TOP HEADER SUMMARY */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-[var(--color-border-primary)] pb-6">
           <div>

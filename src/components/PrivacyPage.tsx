@@ -1,10 +1,12 @@
 import React from 'react';
 import { ShieldCheck, Lock, CheckCircle2, EyeOff, ServerOff } from 'lucide-react';
+import { BackgroundGlow } from './BackgroundGlow';
 
 export const PrivacyPage: React.FC = () => {
   return (
-    <div className="min-h-[calc(100vh-4rem)] bg-[#09090B] py-16 px-4 sm:px-6 selection:bg-[#6615F6]/30">
-      <div className="max-w-3xl mx-auto bg-[#111113] border border-[#27272A] rounded-3xl p-8 sm:p-12 shadow-2xl">
+    <div className="min-h-[calc(100vh-4rem)] bg-[#09090B] py-16 px-4 sm:px-6 selection:bg-[#6615F6]/30 relative overflow-hidden">
+      <BackgroundGlow />
+      <div className="max-w-3xl mx-auto bg-[#111113] border border-[#27272A] rounded-3xl p-8 sm:p-12 shadow-2xl relative z-10">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#22C55E]/15 border border-[#22C55E]/30 text-[#22C55E] text-xs font-mono mb-6">
           <ShieldCheck className="w-4 h-4" />
           <span>Strict Zero-Storage Mandate</span>

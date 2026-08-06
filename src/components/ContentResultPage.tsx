@@ -11,6 +11,7 @@ import {
   Target
 } from 'lucide-react';
 import { DesignContentResult, DesignContentResultV2Single, DesignContentResultV2Carousel } from '../types';
+import { BackgroundGlow } from './BackgroundGlow';
 
 interface ContentResultPageProps {
   result: DesignContentResult;
@@ -198,7 +199,8 @@ CTA: ${result.cta}
   );
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] bg-[var(--color-bg-primary)] py-10 px-4 sm:px-6 relative pb-24 flex justify-center selection:bg-[var(--color-brand-violet)]/30">
+    <div className="min-h-[calc(100vh-4rem)] bg-[var(--color-bg-primary)] py-10 px-4 sm:px-6 relative overflow-hidden pb-24 flex justify-center selection:bg-[var(--color-brand-violet)]/30">
+      <BackgroundGlow />
       <AnimatePresence>
         {toastMessage && (
           <motion.div
@@ -215,7 +217,7 @@ CTA: ${result.cta}
         )}
       </AnimatePresence>
 
-      <div className="w-full max-w-6xl space-y-8">
+      <div className="w-full max-w-6xl space-y-8 relative z-10">
         {/* HEADER */}
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border-b border-[var(--color-border-primary)] pb-8">
           <div>

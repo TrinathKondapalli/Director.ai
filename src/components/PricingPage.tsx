@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check, Sparkles, ShieldCheck, Zap, Info } from 'lucide-react';
+import { BackgroundGlow } from './BackgroundGlow';
 import { AnimatedText } from './AnimatedText';
 
 interface PricingPageProps {
@@ -18,7 +19,7 @@ export const PricingPage: React.FC<PricingPageProps> = ({ onNavigate }) => {
   };
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] bg-[var(--color-bg-primary)] py-16 px-4 sm:px-6 selection:bg-[var(--color-brand-violet)]/30 relative overflow-hidden">
+    <div className="min-h-[calc(100vh-4rem)] bg-[var(--color-bg-primary)] py-20 px-4 sm:px-6 relative overflow-hidden flex justify-center selection:bg-[var(--color-brand-violet)]/30">
       {/* Toast Notification */}
       <AnimatePresence>
         {showToast && (
@@ -38,9 +39,7 @@ export const PricingPage: React.FC<PricingPageProps> = ({ onNavigate }) => {
           </motion.div>
         )}
       </AnimatePresence>
-      {/* Background glowing effects */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[var(--color-brand-violet)]/15 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[600px] h-[400px] bg-[var(--color-brand-magenta)]/10 blur-[120px] rounded-full pointer-events-none" />
+      <BackgroundGlow />
 
       <div className="max-w-5xl mx-auto relative z-10">
         {/* Header */}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, Send, CheckCircle2, MessageSquare } from 'lucide-react';
+import { BackgroundGlow } from './BackgroundGlow';
 import { AnimatedText } from './AnimatedText';
 
 export const ContactPage: React.FC = () => {
@@ -14,8 +15,9 @@ export const ContactPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] bg-[#09090B] py-16 px-4 sm:px-6 flex items-center justify-center selection:bg-[#6615F6]/30">
-      <div className="w-full max-w-lg bg-[#111113] border border-[#27272A] rounded-3xl p-8 sm:p-10 shadow-2xl">
+    <div className="min-h-[calc(100vh-4rem)] bg-[#09090B] py-16 px-4 sm:px-6 flex items-center justify-center selection:bg-[#6615F6]/30 relative overflow-hidden">
+      <BackgroundGlow />
+      <div className="w-full max-w-lg bg-[#111113] border border-[#27272A] rounded-3xl p-8 sm:p-10 shadow-2xl relative z-10">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#6615F6]/15 border border-[#6615F6]/30 text-[#6615F6] text-xs font-mono mb-6">
           <MessageSquare className="w-4 h-4" />
           <span>Get in Touch</span>
