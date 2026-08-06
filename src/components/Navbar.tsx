@@ -17,11 +17,11 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
   };
 
   return (
-    <div className="sticky top-4 z-50 px-4 sm:px-6 max-w-6xl mx-auto mb-4">
-      <header className="glass-panel rounded-[20px] shadow-[0_20px_50px_rgba(0,0,0,0.25)]">
-        <div className="px-4 sm:px-6 h-16 flex items-center justify-between">
+    <div className="sticky top-4 z-50 px-4 w-full flex justify-center mb-4">
+      <header className="glass-panel rounded-[20px] md:rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.25)] w-full md:w-auto transition-all duration-300">
+        <div className="px-4 sm:px-6 h-14 md:h-16 flex items-center justify-between md:gap-12 lg:gap-16">
           {/* Left: Brand Logo Banner */}
-          <div className="flex-1 flex items-center justify-start">
+          <div className="flex items-center">
             <button
               onClick={() => handleMobileNav('/')}
               className="cursor-pointer focus:outline-none flex items-center group active:scale-95 transition-transform"
@@ -29,13 +29,13 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
               <img 
                 src="/Horizontal_Logo.png" 
                 alt="Director.ai" 
-                className="h-7 sm:h-9 w-auto object-contain"
+                className="h-7 sm:h-8 w-auto object-contain"
               />
             </button>
           </div>
 
           {/* Center: Desktop Nav Links */}
-          <nav className="hidden md:flex flex-1 items-center justify-center gap-8 text-[14px] font-medium tracking-wide">
+          <nav className="hidden md:flex items-center gap-8 text-[14px] font-medium tracking-wide">
             <a
               href="#how-it-works"
               className="text-[var(--color-text-secondary)] hover:text-white transition-colors cursor-pointer"
@@ -61,7 +61,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
           </nav>
 
           {/* Right: Actions */}
-          <div className="flex-1 flex items-center justify-end">
+          <div className="flex items-center gap-2">
             {/* Desktop Primary Action Button */}
             <button
               onClick={() => onNavigate('/generate')}
