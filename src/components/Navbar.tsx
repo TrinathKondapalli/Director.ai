@@ -25,6 +25,20 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
     setIsMobileMenuOpen(false);
   };
 
+  const handleHowItWorksClick = () => {
+    if (currentPath !== '/') {
+      onNavigate('/');
+      setTimeout(() => {
+        const el = document.getElementById('how-it-works');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } else {
+      const el = document.getElementById('how-it-works');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <div className="sticky top-4 z-50 px-4 w-full flex justify-center mb-4">
       <header className="glass-panel rounded-[20px] md:rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.25)] w-full md:w-auto transition-all duration-300">
@@ -45,12 +59,12 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
 
           {/* Center: Desktop Nav Links */}
           <nav className="hidden md:flex items-center gap-8 text-[14px] font-medium tracking-wide">
-            <a
-              href="#how-it-works"
+            <button
+              onClick={handleHowItWorksClick}
               className="text-[var(--color-text-secondary)] hover:text-white transition-colors cursor-pointer"
             >
               How It Works
-            </a>
+            </button>
             <button
               onClick={() => onNavigate('/ideas')}
               className={`transition-colors cursor-pointer ${
@@ -125,6 +139,16 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
                 <div className="flex items-center gap-3">
                   <Home className="w-4 h-4" />
                   <span>Home</span>
+                </div>
+              </button>
+
+              <button
+                onClick={handleHowItWorksClick}
+                className={`w-full flex items-center justify-between px-4 py-3 rounded-[14px] text-sm font-medium transition-colors text-[var(--color-text-secondary)] hover:text-white bg-[var(--color-bg-primary)] border border-transparent`}
+              >
+                <div className="flex items-center gap-3">
+                  <Lightbulb className="w-4 h-4 text-[var(--color-brand-violet)]" />
+                  <span>How It Works</span>
                 </div>
               </button>
 
