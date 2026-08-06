@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Flame, Sparkles, ArrowRight, RefreshCw, Search, Layers, ShieldCheck, Video } from 'lucide-react';
+import { Flame, Sparkles, ArrowRight, RefreshCw, Search, Layers, ShieldCheck, Video, Lightbulb, Users, ShoppingBag } from 'lucide-react';
 import { TRENDING_UGC_CONCEPTS } from '../data/conceptsData';
 import { AiConceptCard } from '../types';
 
@@ -158,62 +158,67 @@ export const IdeasPage: React.FC<IdeasPageProps> = ({ onSelectConcept }) => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.25, delay: index * 0.04 }}
-                  className="bg-[#111113] border border-[#27272A] rounded-3xl p-6 flex flex-col justify-between shadow-xl hover:border-[#6615F6]/50 transition-all group"
+                  className="bg-[#09090B] border border-[#27272A] rounded-[24px] p-6 sm:p-8 flex flex-col justify-between shadow-xl hover:border-[#6615F6]/50 transition-all group"
                 >
                   <div>
                     {/* Top Badge Row */}
-                    <div className="flex items-center justify-between gap-2 mb-4">
-                      <span className="px-2.5 py-1 rounded-full bg-[#6615F6]/15 border border-[#6615F6]/30 text-[#6615F6] text-[11px] font-mono font-semibold flex items-center gap-1">
-                        <Flame className="w-3 h-3 text-[#6615F6]" />
-                        <span>Trend Score: {concept.trendScore}/100</span>
+                    <div className="flex items-center justify-between gap-2 mb-6">
+                      <span className="px-3 py-1 rounded-full bg-[#6615F6]/10 border border-[#6615F6]/30 text-[#C084FC] text-[11px] font-mono font-medium flex items-center">
+                        Trend Score: {concept.trendScore}/100
                       </span>
 
-                      <span className="px-2 py-0.5 rounded-full bg-[#09090B] border border-[#27272A] text-[#22C55E] text-[10px] font-mono flex items-center gap-1">
-                        <Video className="w-3 h-3 text-[#22C55E]" />
-                        <span>UGC Ad</span>
+                      <span className="px-3 py-1 rounded-full bg-[#22C55E]/10 border border-[#22C55E]/30 text-[#4ADE80] text-[10px] font-mono font-medium flex items-center">
+                        UGC Ad
                       </span>
                     </div>
 
                     {/* Niche Tag */}
-                    <div className="text-[10px] font-mono uppercase text-[#6615F6] font-bold tracking-wider mb-1">
+                    <div className="text-[12px] font-mono uppercase text-[#A78BFA] font-bold tracking-wider mb-2">
                       {concept.nicheCategory}
                     </div>
 
                     {/* Concept Title */}
-                    <h2 className="text-lg font-bold text-[#FAFAFA] mb-2 group-hover:text-[#6615F6] transition-colors leading-snug">
-                      {concept.conceptTitle}
+                    <h2 className="text-[24px] font-bold text-[#FAFAFA] mb-3 group-hover:text-[#C084FC] transition-colors leading-tight font-sora">
+                      "{concept.conceptTitle}"
                     </h2>
 
                     {/* Why It Works */}
-                    <p className="text-xs text-[#A1A1AA] mb-4 leading-relaxed">
+                    <p className="text-[14px] text-[#A1A1AA] mb-8 leading-relaxed font-inter">
                       {concept.whyItWorks}
                     </p>
 
                     {/* Card Details */}
-                    <div className="space-y-2.5 bg-[#09090B] border border-[#27272A] p-3.5 rounded-2xl text-xs font-mono mb-6">
-                      <div>
-                        <span className="text-[#A1A1AA]/60 block text-[10px] uppercase">Hook Idea (0-3s)</span>
-                        <span className="text-[#FAFAFA] italic">{concept.hookIdea}</span>
-                      </div>
-
-                      <div className="pt-1 border-t border-[#27272A]">
-                        <span className="text-[#A1A1AA]/60 block text-[10px] uppercase">Target Audience</span>
-                        <span className="text-[#FAFAFA]">{concept.targetAudience}</span>
-                      </div>
-
-                      <div className="pt-1 border-t border-[#27272A]">
-                        <span className="text-[#A1A1AA]/60 block text-[10px] uppercase">Example Niche Product</span>
-                        <span className="text-[#FAFAFA]">{concept.productNameExample}</span>
-                      </div>
-
-                      <div className="pt-1 border-t border-[#27272A] flex justify-between">
-                        <div>
-                          <span className="text-[#A1A1AA]/60 block text-[10px] uppercase">Angle</span>
-                          <span className="text-[#6615F6]">{concept.marketingAngle}</span>
+                    <div className="flex flex-col gap-5 pt-6 border-t border-[#27272A] mb-8">
+                      {/* Hook Idea */}
+                      <div className="flex items-start gap-4">
+                        <div className="w-10 h-10 rounded-xl bg-[#111113] border border-[#27272A] flex items-center justify-center shrink-0 group-hover:border-[#6615F6]/30 transition-colors">
+                          <Lightbulb className="w-4 h-4 text-[#A78BFA]" />
                         </div>
-                        <div className="text-right">
-                          <span className="text-[#A1A1AA]/60 block text-[10px] uppercase">Emotional Trigger</span>
-                          <span className="text-[#22C55E]">{concept.emotionalTrigger}</span>
+                        <div>
+                          <div className="text-[12px] text-[#71717A] mb-1 font-inter">Hook Idea (0-3s)</div>
+                          <div className="text-[14px] text-[#FAFAFA] leading-snug font-inter">"{concept.hookIdea}"</div>
+                        </div>
+                      </div>
+
+                      {/* Target Audience */}
+                      <div className="flex items-start gap-4 pt-5 border-t border-[#27272A]/50">
+                        <div className="w-10 h-10 rounded-xl bg-[#111113] border border-[#27272A] flex items-center justify-center shrink-0 group-hover:border-[#6615F6]/30 transition-colors">
+                          <Users className="w-4 h-4 text-[#A78BFA]" />
+                        </div>
+                        <div>
+                          <div className="text-[12px] text-[#71717A] mb-1 font-inter">Target Audience</div>
+                          <div className="text-[14px] text-[#FAFAFA] leading-snug font-inter">{concept.targetAudience}</div>
+                        </div>
+                      </div>
+
+                      {/* Example Product */}
+                      <div className="flex items-start gap-4 pt-5 border-t border-[#27272A]/50">
+                        <div className="w-10 h-10 rounded-xl bg-[#111113] border border-[#27272A] flex items-center justify-center shrink-0 group-hover:border-[#6615F6]/30 transition-colors">
+                          <ShoppingBag className="w-4 h-4 text-[#A78BFA]" />
+                        </div>
+                        <div>
+                          <div className="text-[12px] text-[#71717A] mb-1 font-inter">Example Product</div>
+                          <div className="text-[14px] text-[#FAFAFA] leading-snug font-inter">{concept.productNameExample}</div>
                         </div>
                       </div>
                     </div>
@@ -222,10 +227,10 @@ export const IdeasPage: React.FC<IdeasPageProps> = ({ onSelectConcept }) => {
                   {/* Primary CTA */}
                   <button
                     onClick={() => onSelectConcept(concept)}
-                    className="w-full py-3 px-4 bg-[#6615F6] hover:bg-[#6615F6] text-white text-xs font-semibold rounded-xl transition-all shadow-md shadow-[#6615F6]/20 flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
+                    className="w-full py-4 px-4 bg-[#6615F6] hover:bg-[#7C3AED] text-white text-[15px] font-semibold rounded-[14px] transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
                   >
                     <Sparkles className="w-4 h-4 fill-current" />
-                    <span>{concept.primaryCta}</span>
+                    <span>Use This Concept</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </button>
                 </motion.div>
