@@ -43,12 +43,12 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
   const progressPercent = Math.min(100, Math.round(((currentStepIndex + 1) / STEPS.length) * 100));
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] bg-[#09090B] py-12 px-4 flex flex-col items-center justify-center selection:bg-[#6615F6]/30">
-      <div className="w-full max-w-md bg-[#111113] border border-[#27272A] rounded-3xl p-8 shadow-2xl text-center relative overflow-hidden">
+    <div className="min-h-[calc(100vh-4rem)] bg-[var(--color-bg-primary)] py-12 px-4 flex flex-col items-center justify-center selection:bg-[var(--color-brand-violet)]/30">
+      <div className="w-full max-w-md bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] rounded-3xl p-8 shadow-2xl text-center relative overflow-hidden">
         {/* Glow pulsing ring */}
         <div className="relative w-20 h-20 mx-auto mb-6 flex items-center justify-center">
-          <div className="absolute inset-0 rounded-full bg-[#6615F6]/20 animate-ping" />
-          <div className="w-16 h-16 rounded-2xl bg-[#09090B] border border-[#6615F6]/50 flex items-center justify-center shadow-lg shadow-[#6615F6]/30 relative z-10 text-[#6615F6]">
+          <div className="absolute inset-0 rounded-full bg-[var(--color-brand-violet)]/20 animate-ping" />
+          <div className="w-16 h-16 rounded-2xl bg-[var(--color-bg-primary)] border border-[var(--color-brand-violet)]/50 flex items-center justify-center shadow-lg shadow-[var(--color-brand-violet)]/30 relative z-10 text-[var(--color-brand-violet)]">
             <Clapperboard className="w-8 h-8" />
           </div>
         </div>
@@ -58,9 +58,9 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
         <p className="text-xs text-[#A1A1AA] font-mono mb-6">Building your high-converting UGC Master Prompt...</p>
 
         {/* Progress Bar */}
-        <div className="w-full bg-[#09090B] border border-[#27272A] h-2.5 rounded-full overflow-hidden mb-6">
+        <div className="w-full bg-[var(--color-bg-primary)] border border-[var(--color-border-primary)] h-2.5 rounded-full overflow-hidden mb-6">
           <motion.div
-            className="h-full bg-gradient-to-r from-[#6615F6] to-[#6615F6] rounded-full"
+            className="h-full bg-gradient-to-r from-[var(--color-brand-violet)] to-[var(--color-brand-magenta)] rounded-full"
             initial={{ width: '0%' }}
             animate={{ width: `${progressPercent}%` }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
@@ -81,7 +81,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
               {currentStepIndex === STEPS.length - 1 ? (
                 <Check className="w-4 h-4 text-[#22C55E]" />
               ) : (
-                <Loader2 className="w-4 h-4 text-[#6615F6] animate-spin" />
+                <Loader2 className="w-4 h-4 text-[var(--color-brand-violet)] animate-spin" />
               )}
               <span>{STEPS[currentStepIndex]}</span>
             </motion.div>
@@ -89,7 +89,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
         </div>
 
         {/* Completed Log List */}
-        <div className="space-y-1.5 text-left bg-[#09090B] p-4 rounded-xl border border-[#27272A] max-h-36 overflow-y-auto font-mono text-[11px] text-[#A1A1AA]">
+        <div className="space-y-1.5 text-left bg-[var(--color-bg-primary)] p-4 rounded-xl border border-[var(--color-border-primary)] max-h-36 overflow-y-auto font-mono text-[11px] text-[#A1A1AA]">
           {STEPS.slice(0, currentStepIndex + 1).map((step, idx) => (
             <div key={idx} className="flex items-center gap-2">
               <Check className="w-3 h-3 text-[#22C55E] shrink-0" />

@@ -68,15 +68,15 @@ export const PromptGenerator: React.FC<PromptGeneratorProps> = ({
             <button
               type="button"
               onClick={() => handlePreFillSample('serum')}
-              className="text-[11px] text-[#6615F6] hover:text-white transition-colors underline cursor-pointer"
+              className="text-[11px] text-[var(--color-brand-violet)] hover:text-white transition-colors underline cursor-pointer"
             >
               Skincare
             </button>
-            <span className="text-[#27272A]">|</span>
+            <span className="text-[var(--color-border-primary)]">|</span>
             <button
               type="button"
               onClick={() => handlePreFillSample('ring')}
-              className="text-[11px] text-[#6615F6] hover:text-white transition-colors underline cursor-pointer"
+              className="text-[11px] text-[var(--color-brand-violet)] hover:text-white transition-colors underline cursor-pointer"
             >
               Smart Ring
             </button>
@@ -91,7 +91,7 @@ export const PromptGenerator: React.FC<PromptGeneratorProps> = ({
           className="bg-[#111113] border border-[#27272A] rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden"
         >
           <div className="mb-6">
-            <div className="w-10 h-10 rounded-xl bg-[#6615F6]/20 border border-[#6615F6]/40 flex items-center justify-center text-[#6615F6] mb-4">
+            <div className="w-10 h-10 rounded-xl bg-[var(--color-brand-violet)]/20 border border-[var(--color-brand-violet)]/40 flex items-center justify-center text-[var(--color-brand-violet)] mb-4">
               <Clapperboard className="w-5 h-5" />
             </div>
             <h1 className="text-2xl font-extrabold text-[#FAFAFA] mb-1.5 tracking-tight">
@@ -106,7 +106,7 @@ export const PromptGenerator: React.FC<PromptGeneratorProps> = ({
             {/* Field 1: Product Name */}
             <div>
               <label className="block text-xs font-bold text-[#FAFAFA] mb-1.5 uppercase tracking-wider font-mono">
-                Product Name <span className="text-[#6615F6]">*</span>
+                Product Name <span className="text-[var(--color-brand-violet)]">*</span>
               </label>
               <input
                 type="text"
@@ -115,14 +115,14 @@ export const PromptGenerator: React.FC<PromptGeneratorProps> = ({
                 value={formData.productName}
                 onChange={handleChange}
                 placeholder="e.g. Lumora Hydra-Glow Serum"
-                className="w-full bg-[#09090B] border border-[#27272A] focus:border-[#6615F6] focus:ring-1 focus:ring-[#6615F6] rounded-xl px-4 py-3.5 text-sm text-[#FAFAFA] placeholder-[#A1A1AA]/50 outline-none transition-colors"
+                className="w-full bg-[var(--color-bg-primary)] border border-[var(--color-border-primary)] focus:border-[var(--color-brand-violet)] focus:ring-1 focus:ring-[var(--color-brand-violet)]/50 focus:shadow-[0_0_15px_rgba(139,92,246,0.15)] rounded-xl px-4 py-3.5 text-sm text-[#FAFAFA] placeholder-[#A1A1AA]/50 outline-none transition-all"
               />
             </div>
 
             {/* Field 2: Who is this product for? */}
             <div>
               <label className="block text-xs font-bold text-[#FAFAFA] mb-1.5 uppercase tracking-wider font-mono">
-                Who is this product for? <span className="text-[#6615F6]">*</span>
+                Who is this product for? <span className="text-[var(--color-brand-violet)]">*</span>
               </label>
               <textarea
                 name="targetAudience"
@@ -131,7 +131,7 @@ export const PromptGenerator: React.FC<PromptGeneratorProps> = ({
                 value={formData.targetAudience}
                 onChange={handleChange}
                 placeholder="e.g. Women aged 20-35 struggling with dull skin & dark spots"
-                className="w-full bg-[#09090B] border border-[#27272A] focus:border-[#6615F6] focus:ring-1 focus:ring-[#6615F6] rounded-xl px-4 py-3 text-sm text-[#FAFAFA] placeholder-[#A1A1AA]/50 outline-none transition-colors resize-none"
+                className="w-full bg-[var(--color-bg-primary)] border border-[var(--color-border-primary)] focus:border-[var(--color-brand-violet)] focus:ring-1 focus:ring-[var(--color-brand-violet)]/50 focus:shadow-[0_0_15px_rgba(139,92,246,0.15)] rounded-xl px-4 py-3 text-sm text-[#FAFAFA] placeholder-[#A1A1AA]/50 outline-none transition-all resize-none"
               />
             </div>
 
@@ -148,15 +148,15 @@ export const PromptGenerator: React.FC<PromptGeneratorProps> = ({
                   value={formData.productUrl}
                   onChange={handleChange}
                   placeholder="https://example.com/product"
-                  className="w-full bg-[#09090B] border border-[#27272A] focus:border-[#6615F6] focus:ring-1 focus:ring-[#6615F6] rounded-xl pl-9 pr-4 py-3 text-sm text-[#FAFAFA] placeholder-[#A1A1AA]/50 outline-none transition-colors"
+                  className="w-full bg-[var(--color-bg-primary)] border border-[var(--color-border-primary)] focus:border-[var(--color-brand-violet)] focus:ring-1 focus:ring-[var(--color-brand-violet)]/50 focus:shadow-[0_0_15px_rgba(139,92,246,0.15)] rounded-xl pl-9 pr-4 py-3 text-sm text-[#FAFAFA] placeholder-[#A1A1AA]/50 outline-none transition-all"
                 />
                 <LinkIcon className="w-4 h-4 text-[#A1A1AA] absolute left-3 top-3.5" />
               </div>
             </div>
 
             {/* Auto-Determined AI Callout */}
-            <div className="bg-[#09090B] border border-[#27272A]/80 p-3.5 rounded-xl text-[11px] text-[#A1A1AA] flex items-center gap-2 font-mono">
-              <Sparkles className="w-4 h-4 text-[#6615F6] shrink-0" />
+            <div className="bg-[var(--color-bg-primary)] border border-[var(--color-border-primary)] p-3.5 rounded-xl text-[11px] text-[#A1A1AA] flex items-center gap-2 font-mono">
+              <Sparkles className="w-4 h-4 text-[var(--color-brand-violet)] shrink-0" />
               <span>
                 Director.ai auto-calculates viral hooks, marketing angles, voiceover scripts, camera movements & lighting setups.
               </span>

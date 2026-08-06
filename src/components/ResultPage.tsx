@@ -151,7 +151,7 @@ ${(fb?.hashtags || []).join(' ')}`;
   };
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] bg-[#09090B] py-10 px-4 sm:px-6 flex flex-col items-center justify-start selection:bg-[#6615F6]/30 relative pb-24">
+    <div className="min-h-[calc(100vh-4rem)] bg-[var(--color-bg-primary)] py-10 px-4 sm:px-6 flex flex-col items-center justify-start selection:bg-[var(--color-brand-violet)]/30 relative pb-24">
       {/* SUCCESS TOAST NOTIFICATION */}
       <AnimatePresence>
         {toastMessage && (
@@ -159,7 +159,7 @@ ${(fb?.hashtags || []).join(' ')}`;
             initial={{ opacity: 0, y: 40, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.9 }}
-            className="fixed bottom-8 right-6 z-50 bg-[#111113] border-2 border-[#22C55E] text-[#FAFAFA] px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3 font-mono text-xs sm:text-sm backdrop-blur-xl"
+            className="fixed bottom-8 right-6 z-50 bg-[var(--color-bg-surface)] border-2 border-[#22C55E] text-[#FAFAFA] px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3 font-mono text-xs sm:text-sm backdrop-blur-xl"
           >
             <div className="w-7 h-7 rounded-full bg-[#22C55E]/20 text-[#22C55E] flex items-center justify-center shrink-0">
               <CheckCircle2 className="w-4 h-4" />
@@ -171,13 +171,13 @@ ${(fb?.hashtags || []).join(' ')}`;
 
       <div className="w-full max-w-4xl space-y-12">
         {/* TOP HEADER SUMMARY */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-[#27272A] pb-6">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-[var(--color-border-primary)] pb-6">
           <div>
             <div className="flex flex-wrap items-center gap-2 mb-1.5">
               <h1 className="text-2xl sm:text-3xl font-extrabold text-[#FAFAFA] tracking-tight">
                 {result.productName}
               </h1>
-              <span className="px-3 py-1 rounded-full bg-[#6615F6]/15 border border-[#6615F6]/30 text-[#6615F6] text-xs font-mono font-semibold">
+              <span className="px-3 py-1 rounded-full bg-[var(--color-brand-violet)]/15 border border-[var(--color-brand-violet)]/30 text-[var(--color-brand-violet)] text-xs font-mono font-semibold">
                 Complete Publishing Package
               </span>
             </div>
@@ -191,7 +191,7 @@ ${(fb?.hashtags || []).join(' ')}`;
             className={`w-full sm:w-auto px-6 py-3.5 rounded-2xl text-xs sm:text-sm font-semibold transition-all flex items-center justify-center gap-2.5 cursor-pointer shadow-xl active:scale-95 shrink-0 ${
               activeCopiedKey === 'everything'
                 ? 'bg-[#22C55E] text-white shadow-[#22C55E]/25'
-                : 'bg-[#6615F6] hover:bg-[#6615F6] text-white shadow-[#6615F6]/30'
+                : 'btn-primary'
             }`}
           >
             {activeCopiedKey === 'everything' ? (
@@ -212,7 +212,7 @@ ${(fb?.hashtags || []).join(' ')}`;
         <section className="space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-xl bg-[#6615F6]/15 border border-[#6615F6]/30 text-[#6615F6] flex items-center justify-center font-mono text-xs font-bold">
+              <div className="w-8 h-8 rounded-xl bg-[var(--color-brand-violet)]/15 border border-[var(--color-brand-violet)]/30 text-[var(--color-brand-violet)] flex items-center justify-center font-mono text-xs font-bold">
                 01
               </div>
               <h2 className="text-xl font-bold text-[#FAFAFA] tracking-tight">
@@ -228,15 +228,15 @@ ${(fb?.hashtags || []).join(' ')}`;
           </div>
 
           {/* CODE EDITOR STYLE CARD */}
-          <div className="bg-[#111113] border border-[#27272A] rounded-2xl shadow-2xl overflow-hidden transition-all">
+          <div className="bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] rounded-2xl shadow-2xl overflow-hidden transition-all">
             {/* Toolbar Header */}
-            <div className="bg-[#09090B] border-b border-[#27272A] px-4 py-3 flex items-center justify-between">
+            <div className="bg-[var(--color-bg-primary)] border-b border-[var(--color-border-primary)] px-4 py-3 flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 rounded-full bg-red-500/80" />
                 <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
                 <div className="w-3 h-3 rounded-full bg-green-500/80" />
                 <span className="ml-2 text-xs text-[#A1A1AA] font-mono flex items-center gap-1.5 truncate">
-                  <Terminal className="w-3.5 h-3.5 text-[#6615F6]" />
+                  <Terminal className="w-3.5 h-3.5 text-[var(--color-brand-violet)]" />
                   <span>DIRECTOR.AI // MASTER_PROMPT.txt</span>
                 </span>
               </div>
@@ -244,7 +244,7 @@ ${(fb?.hashtags || []).join(' ')}`;
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setIsPromptExpanded(!isPromptExpanded)}
-                  className="px-3 py-1.5 bg-[#1C1C20] hover:bg-[#27272A] text-[#A1A1AA] hover:text-white rounded-lg text-xs font-mono transition-colors flex items-center gap-1.5 cursor-pointer"
+                  className="px-3 py-1.5 bg-[#1C1C20] hover:bg-[var(--color-border-primary)] text-[#A1A1AA] hover:text-white rounded-lg text-xs font-mono transition-colors flex items-center gap-1.5 cursor-pointer"
                 >
                   {isPromptExpanded ? (
                     <>
@@ -264,7 +264,7 @@ ${(fb?.hashtags || []).join(' ')}`;
                   className={`px-3.5 py-1.5 rounded-lg text-xs font-mono transition-all flex items-center gap-1.5 cursor-pointer ${
                     activeCopiedKey === 'master-prompt'
                       ? 'bg-[#22C55E] text-white'
-                      : 'bg-[#6615F6] hover:bg-[#6615F6] text-white'
+                      : 'bg-[var(--color-brand-violet)] hover:bg-[var(--color-brand-violet)] text-white'
                   }`}
                 >
                   {activeCopiedKey === 'master-prompt' ? (
@@ -284,7 +284,7 @@ ${(fb?.hashtags || []).join(' ')}`;
 
             {/* Prompt Editor Content Body */}
             <div
-              className={`p-4 sm:p-6 bg-[#09090B] font-mono text-xs sm:text-sm text-zinc-200 overflow-x-auto leading-relaxed selection:bg-[#6615F6]/40 transition-all ${
+              className={`p-4 sm:p-6 bg-[var(--color-bg-primary)] font-mono text-xs sm:text-sm text-zinc-200 overflow-x-auto leading-relaxed selection:bg-[var(--color-brand-violet)]/40 transition-all ${
                 isPromptExpanded ? 'max-h-none' : 'max-h-[500px] overflow-y-auto'
               }`}
             >
@@ -300,7 +300,7 @@ ${(fb?.hashtags || []).join(' ')}`;
                       <span
                         className={`whitespace-pre-wrap break-words min-w-0 flex-1 ${
                           isHeader
-                            ? 'text-[#6615F6] font-bold text-xs sm:text-sm pt-2 block border-b border-[#27272A]/60 pb-1'
+                            ? 'text-[var(--color-brand-violet)] font-bold text-xs sm:text-sm pt-2 block border-b border-[var(--color-border-primary)]/60 pb-1'
                             : isBracket
                             ? 'text-[#22C55E] font-semibold'
                             : line.startsWith('-')
@@ -324,7 +324,7 @@ ${(fb?.hashtags || []).join(' ')}`;
               className={`px-5 py-2.5 rounded-xl text-xs font-semibold transition-all flex items-center gap-2 cursor-pointer ${
                 activeCopiedKey === 'master-prompt-btn'
                   ? 'bg-[#22C55E] text-white'
-                  : 'bg-[#6615F6] hover:bg-[#6615F6] text-white shadow-md shadow-[#6615F6]/20'
+                  : 'bg-[var(--color-brand-violet)] hover:bg-[var(--color-brand-violet)] text-white shadow-md shadow-[var(--color-brand-violet)]/20'
               }`}
             >
               <Copy className="w-4 h-4" />
@@ -332,9 +332,9 @@ ${(fb?.hashtags || []).join(' ')}`;
             </button>
             <button
               onClick={onCreateAnother}
-              className="px-5 py-2.5 bg-[#111113] hover:bg-[#1C1C20] text-white text-xs font-medium rounded-xl border border-[#27272A] transition-colors flex items-center gap-2 cursor-pointer"
+              className="px-5 py-2.5 bg-[var(--color-bg-surface)] hover:bg-[#1C1C20] text-white text-xs font-medium rounded-xl border border-[var(--color-border-primary)] transition-colors flex items-center gap-2 cursor-pointer"
             >
-              <RefreshCw className="w-4 h-4 text-[#6615F6]" />
+              <RefreshCw className="w-4 h-4 text-[var(--color-brand-violet)]" />
               <span>Generate Another</span>
             </button>
           </div>
@@ -342,7 +342,7 @@ ${(fb?.hashtags || []).join(' ')}`;
 
         {/* SECTION 2: YOUTUBE OPTIMIZATION */}
         {yt && (
-          <section className="space-y-4 pt-4 border-t border-[#27272A]/80">
+          <section className="space-y-4 pt-4 border-t border-[var(--color-border-primary)]/80">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2.5">
                 <div className="w-8 h-8 rounded-xl bg-red-500/15 border border-red-500/30 text-red-500 flex items-center justify-center font-mono text-xs font-bold">
@@ -365,7 +365,7 @@ ${(fb?.hashtags || []).join(' ')}`;
                   className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all flex items-center gap-1.5 cursor-pointer ${
                     activeCopiedKey === 'yt-all'
                       ? 'bg-[#22C55E] text-white'
-                      : 'bg-[#1C1C20] hover:bg-[#27272A] text-white border border-[#27272A]'
+                      : 'bg-[#1C1C20] hover:bg-[var(--color-border-primary)] text-white border border-[var(--color-border-primary)]'
                   }`}
                 >
                   <Copy className="w-3.5 h-3.5" />
@@ -376,7 +376,7 @@ ${(fb?.hashtags || []).join(' ')}`;
 
             <div className="space-y-4">
               {/* YouTube Title Card */}
-              <div className="bg-[#111113] border border-[#27272A] p-5 rounded-2xl space-y-2">
+              <div className="bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] p-5 rounded-2xl space-y-2">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-mono uppercase tracking-wider text-[#A1A1AA] font-bold flex items-center gap-1.5">
                     <FileText className="w-3.5 h-3.5 text-red-400" />
@@ -384,19 +384,19 @@ ${(fb?.hashtags || []).join(' ')}`;
                   </span>
                   <button
                     onClick={() => copyToClipboard(yt.title, 'YouTube Title', 'yt-title')}
-                    className="px-3 py-1 rounded-lg bg-[#09090B] hover:bg-[#1C1C20] text-[#A1A1AA] hover:text-white border border-[#27272A] text-xs font-mono transition-colors flex items-center gap-1 cursor-pointer"
+                    className="px-3 py-1 rounded-lg bg-[var(--color-bg-primary)] hover:bg-[#1C1C20] text-[#A1A1AA] hover:text-white border border-[var(--color-border-primary)] text-xs font-mono transition-colors flex items-center gap-1 cursor-pointer"
                   >
                     {activeCopiedKey === 'yt-title' ? <Check className="w-3 h-3 text-[#22C55E]" /> : <Copy className="w-3 h-3" />}
                     <span>Copy</span>
                   </button>
                 </div>
-                <div className="bg-[#09090B] border border-[#27272A]/80 p-3.5 rounded-xl text-sm font-semibold text-[#FAFAFA]">
+                <div className="bg-[var(--color-bg-primary)] border border-[var(--color-border-primary)]/80 p-3.5 rounded-xl text-sm font-semibold text-[#FAFAFA]">
                   {yt.title}
                 </div>
               </div>
 
               {/* YouTube Description Card */}
-              <div className="bg-[#111113] border border-[#27272A] p-5 rounded-2xl space-y-2">
+              <div className="bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] p-5 rounded-2xl space-y-2">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-mono uppercase tracking-wider text-[#A1A1AA] font-bold flex items-center gap-1.5">
                     <FileText className="w-3.5 h-3.5 text-red-400" />
@@ -404,13 +404,13 @@ ${(fb?.hashtags || []).join(' ')}`;
                   </span>
                   <button
                     onClick={() => copyToClipboard(yt.description, 'YouTube Description', 'yt-desc')}
-                    className="px-3 py-1 rounded-lg bg-[#09090B] hover:bg-[#1C1C20] text-[#A1A1AA] hover:text-white border border-[#27272A] text-xs font-mono transition-colors flex items-center gap-1 cursor-pointer"
+                    className="px-3 py-1 rounded-lg bg-[var(--color-bg-primary)] hover:bg-[#1C1C20] text-[#A1A1AA] hover:text-white border border-[var(--color-border-primary)] text-xs font-mono transition-colors flex items-center gap-1 cursor-pointer"
                   >
                     {activeCopiedKey === 'yt-desc' ? <Check className="w-3 h-3 text-[#22C55E]" /> : <Copy className="w-3 h-3" />}
                     <span>Copy</span>
                   </button>
                 </div>
-                <div className="bg-[#09090B] border border-[#27272A]/80 p-3.5 rounded-xl text-xs sm:text-sm text-[#A1A1AA] leading-relaxed whitespace-pre-line font-mono">
+                <div className="bg-[var(--color-bg-primary)] border border-[var(--color-border-primary)]/80 p-3.5 rounded-xl text-xs sm:text-sm text-[#A1A1AA] leading-relaxed whitespace-pre-line font-mono">
                   {yt.description}
                 </div>
               </div>
@@ -433,7 +433,7 @@ ${(fb?.hashtags || []).join(' ')}`;
                 const formattedTagsString = fitTags.join(', ');
 
                 return (
-                  <div className="bg-[#111113] border border-[#27272A] p-5 rounded-2xl space-y-2">
+                  <div className="bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] p-5 rounded-2xl space-y-2">
                     <div className="flex flex-wrap items-center justify-between gap-2">
                       <div className="flex items-center gap-2">
                         <span className="text-xs font-mono uppercase tracking-wider text-[#A1A1AA] font-bold flex items-center gap-1.5">
@@ -451,13 +451,13 @@ ${(fb?.hashtags || []).join(' ')}`;
 
                       <button
                         onClick={() => copyToClipboard(formattedTagsString, 'YouTube Tags', 'yt-tags')}
-                        className="px-3 py-1 rounded-lg bg-[#09090B] hover:bg-[#1C1C20] text-[#A1A1AA] hover:text-white border border-[#27272A] text-xs font-mono transition-colors flex items-center gap-1 cursor-pointer"
+                        className="px-3 py-1 rounded-lg bg-[var(--color-bg-primary)] hover:bg-[#1C1C20] text-[#A1A1AA] hover:text-white border border-[var(--color-border-primary)] text-xs font-mono transition-colors flex items-center gap-1 cursor-pointer"
                       >
                         {activeCopiedKey === 'yt-tags' ? <Check className="w-3 h-3 text-[#22C55E]" /> : <Copy className="w-3 h-3" />}
                         <span>Copy Tags</span>
                       </button>
                     </div>
-                    <div className="bg-[#09090B] border border-[#27272A]/80 p-4 rounded-xl text-xs font-mono text-[#FAFAFA] leading-relaxed selection:bg-[#6615F6]/40">
+                    <div className="bg-[var(--color-bg-primary)] border border-[var(--color-border-primary)]/80 p-4 rounded-xl text-xs font-mono text-[#FAFAFA] leading-relaxed selection:bg-[var(--color-brand-violet)]/40">
                       {formattedTagsString}
                     </div>
                   </div>
@@ -465,7 +465,7 @@ ${(fb?.hashtags || []).join(' ')}`;
               })()}
 
               {/* Thumbnail Prompt Card */}
-              <div className="bg-[#111113] border border-[#27272A] p-5 rounded-2xl space-y-2">
+              <div className="bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] p-5 rounded-2xl space-y-2">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-mono uppercase tracking-wider text-[#A1A1AA] font-bold flex items-center gap-1.5">
                     <Image className="w-3.5 h-3.5 text-red-400" />
@@ -473,24 +473,24 @@ ${(fb?.hashtags || []).join(' ')}`;
                   </span>
                   <button
                     onClick={() => copyToClipboard(yt.thumbnailPrompt, 'Thumbnail Prompt', 'yt-thumb')}
-                    className="px-3 py-1 rounded-lg bg-[#09090B] hover:bg-[#1C1C20] text-[#A1A1AA] hover:text-white border border-[#27272A] text-xs font-mono transition-colors flex items-center gap-1 cursor-pointer"
+                    className="px-3 py-1 rounded-lg bg-[var(--color-bg-primary)] hover:bg-[#1C1C20] text-[#A1A1AA] hover:text-white border border-[var(--color-border-primary)] text-xs font-mono transition-colors flex items-center gap-1 cursor-pointer"
                   >
                     {activeCopiedKey === 'yt-thumb' ? <Check className="w-3 h-3 text-[#22C55E]" /> : <Copy className="w-3 h-3" />}
                     <span>Copy</span>
                   </button>
                 </div>
-                <div className="bg-[#09090B] border border-[#27272A]/80 p-3.5 rounded-xl text-xs sm:text-sm text-[#FAFAFA] font-mono leading-relaxed">
+                <div className="bg-[var(--color-bg-primary)] border border-[var(--color-border-primary)]/80 p-3.5 rounded-xl text-xs sm:text-sm text-[#FAFAFA] font-mono leading-relaxed">
                   {yt.thumbnailPrompt}
                 </div>
               </div>
 
               {/* Extra Metadata Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="bg-[#111113] border border-[#27272A] p-4 rounded-2xl space-y-1">
+                <div className="bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] p-4 rounded-2xl space-y-1">
                   <div className="text-[10px] font-mono uppercase text-[#A1A1AA]">Keywords</div>
                   <div className="text-xs text-[#FAFAFA] font-mono">{yt.keywords.join(', ')}</div>
                 </div>
-                <div className="bg-[#111113] border border-[#27272A] p-4 rounded-2xl space-y-1">
+                <div className="bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] p-4 rounded-2xl space-y-1">
                   <div className="text-[10px] font-mono uppercase text-[#A1A1AA]">Category Recommendation</div>
                   <div className="text-xs text-[#FAFAFA] font-mono">{yt.categoryRecommendation}</div>
                 </div>
@@ -500,7 +500,7 @@ ${(fb?.hashtags || []).join(' ')}`;
         )}
 
         {/* SECTION 3: INSTAGRAM & FACEBOOK */}
-        <section className="space-y-4 pt-4 border-t border-[#27272A]/80">
+        <section className="space-y-4 pt-4 border-t border-[var(--color-border-primary)]/80">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2.5">
               <div className="w-8 h-8 rounded-xl bg-pink-500/15 border border-pink-500/30 text-pink-400 flex items-center justify-center font-mono text-xs font-bold">
@@ -520,7 +520,7 @@ ${(fb?.hashtags || []).join(' ')}`;
               className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all flex items-center gap-1.5 cursor-pointer ${
                 activeCopiedKey === 'ig-fb-all'
                   ? 'bg-[#22C55E] text-white'
-                  : 'bg-[#1C1C20] hover:bg-[#27272A] text-white border border-[#27272A]'
+                  : 'bg-[#1C1C20] hover:bg-[var(--color-border-primary)] text-white border border-[var(--color-border-primary)]'
               }`}
             >
               <Copy className="w-3.5 h-3.5" />
@@ -531,7 +531,7 @@ ${(fb?.hashtags || []).join(' ')}`;
           <div className="space-y-4">
             {/* Instagram Caption Card */}
             {ig && (
-              <div className="bg-[#111113] border border-[#27272A] p-5 rounded-2xl space-y-2">
+              <div className="bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] p-5 rounded-2xl space-y-2">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-mono uppercase tracking-wider text-[#A1A1AA] font-bold flex items-center gap-1.5">
                     <Instagram className="w-3.5 h-3.5 text-pink-400" />
@@ -539,13 +539,13 @@ ${(fb?.hashtags || []).join(' ')}`;
                   </span>
                   <button
                     onClick={() => copyToClipboard(ig.caption, 'Instagram Caption', 'ig-caption')}
-                    className="px-3 py-1 rounded-lg bg-[#09090B] hover:bg-[#1C1C20] text-[#A1A1AA] hover:text-white border border-[#27272A] text-xs font-mono transition-colors flex items-center gap-1 cursor-pointer"
+                    className="px-3 py-1 rounded-lg bg-[var(--color-bg-primary)] hover:bg-[#1C1C20] text-[#A1A1AA] hover:text-white border border-[var(--color-border-primary)] text-xs font-mono transition-colors flex items-center gap-1 cursor-pointer"
                   >
                     {activeCopiedKey === 'ig-caption' ? <Check className="w-3 h-3 text-[#22C55E]" /> : <Copy className="w-3 h-3" />}
                     <span>Copy</span>
                   </button>
                 </div>
-                <div className="bg-[#09090B] border border-[#27272A]/80 p-3.5 rounded-xl text-xs sm:text-sm text-[#A1A1AA] leading-relaxed whitespace-pre-line font-mono">
+                <div className="bg-[var(--color-bg-primary)] border border-[var(--color-border-primary)]/80 p-3.5 rounded-xl text-xs sm:text-sm text-[#A1A1AA] leading-relaxed whitespace-pre-line font-mono">
                   {ig.caption}
                 </div>
               </div>
@@ -553,7 +553,7 @@ ${(fb?.hashtags || []).join(' ')}`;
 
             {/* Instagram Hashtags Card */}
             {ig && (
-              <div className="bg-[#111113] border border-[#27272A] p-5 rounded-2xl space-y-2">
+              <div className="bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] p-5 rounded-2xl space-y-2">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-mono uppercase tracking-wider text-[#A1A1AA] font-bold flex items-center gap-1.5">
                     <Tag className="w-3.5 h-3.5 text-pink-400" />
@@ -561,13 +561,13 @@ ${(fb?.hashtags || []).join(' ')}`;
                   </span>
                   <button
                     onClick={() => copyToClipboard(ig.hashtags.join(' '), 'Instagram Hashtags', 'ig-tags')}
-                    className="px-3 py-1 rounded-lg bg-[#09090B] hover:bg-[#1C1C20] text-[#A1A1AA] hover:text-white border border-[#27272A] text-xs font-mono transition-colors flex items-center gap-1 cursor-pointer"
+                    className="px-3 py-1 rounded-lg bg-[var(--color-bg-primary)] hover:bg-[#1C1C20] text-[#A1A1AA] hover:text-white border border-[var(--color-border-primary)] text-xs font-mono transition-colors flex items-center gap-1 cursor-pointer"
                   >
                     {activeCopiedKey === 'ig-tags' ? <Check className="w-3 h-3 text-[#22C55E]" /> : <Copy className="w-3 h-3" />}
                     <span>Copy</span>
                   </button>
                 </div>
-                <div className="bg-[#09090B] border border-[#27272A]/80 p-3.5 rounded-xl text-xs font-mono text-pink-400 flex flex-wrap gap-2">
+                <div className="bg-[var(--color-bg-primary)] border border-[var(--color-border-primary)]/80 p-3.5 rounded-xl text-xs font-mono text-pink-400 flex flex-wrap gap-2">
                   {ig.hashtags.map((tag, tIdx) => (
                     <span key={tIdx} className="px-2.5 py-1 rounded-lg bg-pink-500/10 border border-pink-500/20">
                       {tag}
@@ -579,21 +579,21 @@ ${(fb?.hashtags || []).join(' ')}`;
 
             {/* Call to Action Card */}
             {(ig?.callToAction || fb?.callToAction) && (
-              <div className="bg-[#111113] border border-[#27272A] p-5 rounded-2xl space-y-2">
+              <div className="bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] p-5 rounded-2xl space-y-2">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-mono uppercase tracking-wider text-[#A1A1AA] font-bold flex items-center gap-1.5">
-                    <Share2 className="w-3.5 h-3.5 text-[#6615F6]" />
+                    <Share2 className="w-3.5 h-3.5 text-[var(--color-brand-violet)]" />
                     <span>Call To Action (CTA)</span>
                   </span>
                   <button
                     onClick={() => copyToClipboard(ig?.callToAction || fb?.callToAction || '', 'CTA', 'cta')}
-                    className="px-3 py-1 rounded-lg bg-[#09090B] hover:bg-[#1C1C20] text-[#A1A1AA] hover:text-white border border-[#27272A] text-xs font-mono transition-colors flex items-center gap-1 cursor-pointer"
+                    className="px-3 py-1 rounded-lg bg-[var(--color-bg-primary)] hover:bg-[#1C1C20] text-[#A1A1AA] hover:text-white border border-[var(--color-border-primary)] text-xs font-mono transition-colors flex items-center gap-1 cursor-pointer"
                   >
                     {activeCopiedKey === 'cta' ? <Check className="w-3 h-3 text-[#22C55E]" /> : <Copy className="w-3 h-3" />}
                     <span>Copy</span>
                   </button>
                 </div>
-                <div className="bg-[#09090B] border border-[#27272A]/80 p-3.5 rounded-xl text-xs sm:text-sm text-[#FAFAFA] font-mono font-semibold">
+                <div className="bg-[var(--color-bg-primary)] border border-[var(--color-border-primary)]/80 p-3.5 rounded-xl text-xs sm:text-sm text-[#FAFAFA] font-mono font-semibold">
                   {ig?.callToAction || fb?.callToAction}
                 </div>
               </div>
@@ -601,7 +601,7 @@ ${(fb?.hashtags || []).join(' ')}`;
 
             {/* Facebook Caption Card */}
             {fb && (
-              <div className="bg-[#111113] border border-[#27272A] p-5 rounded-2xl space-y-2">
+              <div className="bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] p-5 rounded-2xl space-y-2">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-mono uppercase tracking-wider text-[#A1A1AA] font-bold flex items-center gap-1.5">
                     <Facebook className="w-3.5 h-3.5 text-blue-500" />
@@ -609,13 +609,13 @@ ${(fb?.hashtags || []).join(' ')}`;
                   </span>
                   <button
                     onClick={() => copyToClipboard(fb.caption, 'Facebook Caption', 'fb-caption')}
-                    className="px-3 py-1 rounded-lg bg-[#09090B] hover:bg-[#1C1C20] text-[#A1A1AA] hover:text-white border border-[#27272A] text-xs font-mono transition-colors flex items-center gap-1 cursor-pointer"
+                    className="px-3 py-1 rounded-lg bg-[var(--color-bg-primary)] hover:bg-[#1C1C20] text-[#A1A1AA] hover:text-white border border-[var(--color-border-primary)] text-xs font-mono transition-colors flex items-center gap-1 cursor-pointer"
                   >
                     {activeCopiedKey === 'fb-caption' ? <Check className="w-3 h-3 text-[#22C55E]" /> : <Copy className="w-3 h-3" />}
                     <span>Copy</span>
                   </button>
                 </div>
-                <div className="bg-[#09090B] border border-[#27272A]/80 p-3.5 rounded-xl text-xs sm:text-sm text-[#A1A1AA] leading-relaxed whitespace-pre-line font-mono">
+                <div className="bg-[var(--color-bg-primary)] border border-[var(--color-border-primary)]/80 p-3.5 rounded-xl text-xs sm:text-sm text-[#A1A1AA] leading-relaxed whitespace-pre-line font-mono">
                   {fb.caption}
                 </div>
               </div>
@@ -624,13 +624,13 @@ ${(fb?.hashtags || []).join(' ')}`;
         </section>
 
         {/* BOTTOM GLOBAL ACTIONS BAR */}
-        <div className="pt-8 border-t border-[#27272A] flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div className="pt-8 border-t border-[var(--color-border-primary)] flex flex-col sm:flex-row items-center justify-center gap-4">
           <button
             onClick={handleCopyEverything}
             className={`w-full sm:w-auto px-8 py-4 rounded-2xl text-sm sm:text-base font-semibold transition-all shadow-xl flex items-center justify-center gap-2.5 cursor-pointer active:scale-[0.98] ${
               activeCopiedKey === 'everything'
                 ? 'bg-[#22C55E] text-white shadow-[#22C55E]/20'
-                : 'bg-[#6615F6] hover:bg-[#6615F6] text-white shadow-[#6615F6]/30'
+                : 'bg-[var(--color-brand-violet)] hover:bg-[var(--color-brand-violet)] text-white shadow-[var(--color-brand-violet)]/30'
             }`}
           >
             {activeCopiedKey === 'everything' ? (
@@ -648,9 +648,9 @@ ${(fb?.hashtags || []).join(' ')}`;
 
           <button
             onClick={onCreateAnother}
-            className="w-full sm:w-auto px-8 py-4 bg-[#111113] hover:bg-[#1C1C20] text-[#FAFAFA] text-sm sm:text-base font-medium rounded-2xl border border-[#27272A] transition-colors flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
+            className="w-full sm:w-auto px-8 py-4 bg-[var(--color-bg-surface)] hover:bg-[#1C1C20] text-[#FAFAFA] text-sm sm:text-base font-medium rounded-2xl border border-[var(--color-border-primary)] transition-colors flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
           >
-            <RefreshCw className="w-5 h-5 text-[#6615F6]" />
+            <RefreshCw className="w-5 h-5 text-[var(--color-brand-violet)]" />
             <span>Generate Another Prompt</span>
           </button>
 
@@ -662,7 +662,7 @@ ${(fb?.hashtags || []).join(' ')}`;
               window.dispatchEvent(new Event('popstate'));
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
-            className="w-full sm:w-auto px-8 py-4 bg-[#09090B] hover:bg-[#111113] text-[#A1A1AA] hover:text-white text-sm sm:text-base font-medium rounded-2xl border border-[#27272A] transition-colors flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
+            className="w-full sm:w-auto px-8 py-4 bg-[var(--color-bg-primary)] hover:bg-[var(--color-bg-surface)] text-[#A1A1AA] hover:text-white text-sm sm:text-base font-medium rounded-2xl border border-[var(--color-border-primary)] transition-colors flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
           >
             <Home className="w-5 h-5" />
             <span>Back to Home</span>
@@ -670,7 +670,7 @@ ${(fb?.hashtags || []).join(' ')}`;
         </div>
 
         {/* PRIVACY WARNING FOOTER */}
-        <div className="bg-[#111113] border border-[#27272A] p-4 rounded-xl text-center flex items-center justify-center gap-2 text-xs text-[#22C55E] font-mono">
+        <div className="bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] p-4 rounded-xl text-center flex items-center justify-center gap-2 text-xs text-[#22C55E] font-mono">
           <Lock className="w-4 h-4 shrink-0" />
           <span>
             Everything generated here exists only in your current session. Refreshing or leaving permanently clears this data.
