@@ -70,8 +70,7 @@ export const IdeasPage: React.FC<IdeasPageProps> = ({ onSelectConcept }) => {
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#6615F6]/15 border border-[#6615F6]/30 text-[#6615F6] text-xs font-mono mb-4">
-            <Flame className="w-4 h-4 text-[#6615F6]" />
+          <div className="mb-4 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#A78BFA]/50 bg-[#111113]/50 backdrop-blur-sm text-[#A78BFA] text-[11px] font-semibold tracking-wide shadow-[0_0_15px_rgba(167,139,250,0.6)]">
             <span>Updated Real-Time • High-Converting UGC Ad Frameworks</span>
           </div>
           <h1 className="text-3xl sm:text-5xl font-extrabold text-[#FAFAFA] tracking-tight mb-4">

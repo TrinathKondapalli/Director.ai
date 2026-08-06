@@ -53,9 +53,8 @@ export const ContentStudio: React.FC<ContentStudioProps> = ({ onNavigate }) => {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="mb-8 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[var(--color-border-primary)] bg-[var(--color-bg-surface)] backdrop-blur-sm text-[var(--color-brand-violet)] text-[11px] font-semibold tracking-wide shadow-sm"
+          className="mb-8 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#A78BFA]/50 bg-[#111113]/50 backdrop-blur-sm text-[#A78BFA] text-[11px] font-semibold tracking-wide shadow-[0_0_15px_rgba(167,139,250,0.6)]"
         >
-          <PenTool className="w-3.5 h-3.5" />
           <span>AI DESIGN CONTENT STUDIO</span>
         </motion.div>
 

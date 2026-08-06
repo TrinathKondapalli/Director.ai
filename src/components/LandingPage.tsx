@@ -90,9 +90,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="mb-8 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#27272A] bg-[#111113]/50 backdrop-blur-sm text-[#A78BFA] text-[11px] font-semibold tracking-wide"
+          className="mb-8 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#A78BFA]/50 bg-[#111113]/50 backdrop-blur-sm text-[#A78BFA] text-[11px] font-semibold tracking-wide shadow-[0_0_15px_rgba(167,139,250,0.6)]"
         >
-          <Sparkles className="w-3.5 h-3.5 text-[#A78BFA]" />
           <span>AI UGC AD DIRECTOR</span>
         </motion.div>
 

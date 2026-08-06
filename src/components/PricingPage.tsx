@@ -44,8 +44,7 @@ export const PricingPage: React.FC<PricingPageProps> = ({ onNavigate }) => {
       <div className="max-w-5xl mx-auto relative z-10">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#6615F6]/15 border border-[#6615F6]/30 text-[#6615F6] text-xs font-mono mb-4">
-            <Zap className="w-4 h-4 text-[#6615F6]" />
+          <div className="mb-4 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#A78BFA]/50 bg-[#111113]/50 backdrop-blur-sm text-[#A78BFA] text-[11px] font-semibold tracking-wide shadow-[0_0_15px_rgba(167,139,250,0.6)]">
             <span>Simple Transparent Pricing</span>
           </div>
           <h1 className="text-3xl sm:text-5xl font-extrabold text-[#FAFAFA] tracking-tight mb-4">
