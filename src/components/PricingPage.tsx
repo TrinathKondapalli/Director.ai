@@ -1,14 +1,42 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Check, Sparkles, ShieldCheck, Zap } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Check, Sparkles, ShieldCheck, Zap, Info } from 'lucide-react';
 
 interface PricingPageProps {
   onNavigate: (path: string) => void;
 }
 
 export const PricingPage: React.FC<PricingPageProps> = ({ onNavigate }) => {
+  const [showToast, setShowToast] = useState(false);
+
+  const handleProClick = () => {
+    setShowToast(true);
+    setTimeout(() => {
+      setShowToast(false);
+    }, 3000);
+  };
+
   return (
     <div className="min-h-[calc(100vh-4rem)] bg-[var(--color-bg-primary)] py-16 px-4 sm:px-6 selection:bg-[var(--color-brand-violet)]/30 relative overflow-hidden">
+      {/* Toast Notification */}
+      <AnimatePresence>
+        {showToast && (
+          <motion.div
+            initial={{ opacity: 0, y: -20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.95 }}
+            className="fixed top-24 left-1/2 -translate-x-1/2 z-[100] px-4 py-3 rounded-2xl bg-[var(--color-bg-elevated)] border border-[var(--color-border-primary)] shadow-2xl flex items-center gap-3 backdrop-blur-xl min-w-[300px]"
+          >
+            <div className="w-8 h-8 shrink-0 rounded-full bg-[var(--color-brand-violet)]/20 flex items-center justify-center">
+              <Info className="w-4 h-4 text-[var(--color-brand-violet)]" />
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-white">Pro Access Unavailable</p>
+              <p className="text-xs text-[var(--color-text-secondary)] mt-0.5">This feature is currently in private beta.</p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       {/* Background glowing effects */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[var(--color-brand-violet)]/15 blur-[120px] rounded-full pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-[600px] h-[400px] bg-[var(--color-brand-magenta)]/10 blur-[120px] rounded-full pointer-events-none" />
@@ -111,7 +139,7 @@ export const PricingPage: React.FC<PricingPageProps> = ({ onNavigate }) => {
             </div>
 
             <button
-              onClick={() => onNavigate('/generate')}
+              onClick={handleProClick}
               className="w-full py-4 btn-primary flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
             >
               <Sparkles className="w-4 h-4 fill-current" />
