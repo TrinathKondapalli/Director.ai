@@ -26,6 +26,7 @@ import {
   ShoppingBag
 } from 'lucide-react';
 import { DirectorLogoBanner } from './DirectorLogo';
+import { AnimatedText } from './AnimatedText';
 import { TRENDING_UGC_CONCEPTS } from '../data/conceptsData';
 
 interface LandingPageProps {
@@ -94,17 +95,18 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
         </motion.div>
 
         {/* Headline */}
-        <motion.h1
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="font-sora text-[40px] sm:text-[64px] md:text-[72px] font-extrabold tracking-[-0.04em] text-[#FAFAFA] max-w-5xl leading-[0.92] mb-6"
-        >
-          Create AI UGC Ads <br className="hidden md:block" />
-          <span className="text-[#A78BFA]">
-            Without Writing Complex Prompts.
-          </span>
-        </motion.h1>
+        <h1 className="font-sora text-[40px] sm:text-[64px] md:text-[72px] font-extrabold tracking-[-0.04em] text-[#FAFAFA] max-w-5xl leading-[0.92] mb-6">
+          <AnimatedText 
+            text="Create AI UGC Ads" 
+            className="justify-center"
+          />
+          <br className="hidden md:block" />
+          <AnimatedText 
+            text="Without Writing Complex Prompts." 
+            className="text-[var(--color-brand-violet)] justify-center"
+            delayOffset={0.2}
+          />
+        </h1>
 
         {/* Supporting Description */}
         <motion.p
@@ -552,7 +554,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
           </div>
 
           <h2 className="font-sora text-[40px] md:text-[56px] font-bold text-white tracking-tight mb-6 leading-tight">
-            Your Ideas Stay Yours.
+            <AnimatedText text="Your Ideas Stay Yours." className="justify-center" />
           </h2>
 
           <p className="font-inter text-[16px] sm:text-[18px] text-[#A1A1AA] max-w-3xl mx-auto leading-relaxed mb-14">
