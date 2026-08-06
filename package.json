@@ -12,11 +12,11 @@
     "start": "node server.ts"
   },
   "dependencies": {
-    "@google/genai": "latest",
+    "@google/genai": "^2.16.0",
     "canvas-confetti": "^1.9.4",
     "clsx": "^2.1.1",
-    "express": "^4.21.2",
     "cors": "^2.8.5",
+    "express": "^4.21.2",
     "framer-motion": "^12.4.7",
     "lucide-react": "^0.475.0",
     "react": "^19.0.0",

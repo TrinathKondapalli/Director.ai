@@ -231,10 +231,25 @@ export const generateContent = async (format: 'single' | 'carousel'): Promise<De
     const randomTopic = designTopics[Math.floor(Math.random() * designTopics.length)];
     const seed = Math.random().toString(36).substring(2, 9);
 
-    const prompt = `Format requested: ${format.toUpperCase()}.\nGenerate a brand new, highly educational, timeless post about ${randomTopic} (or a deeply related UX/UI/Product Design concept). It MUST be completely unique and different from standard advice. [Seed: ${seed}]`;
+    const prompt = `Today's objective:
+Research current discussions from trusted design sources about: ${randomTopic}.
+Find ONE interesting topic that has momentum today.
+Transform it into a practical lesson.
+Generate ONE completely original educational social media post.
+Format requested: ${format.toUpperCase()}.
+
+Requirements:
+• Do not summarize the news.
+• Teach a valuable lesson.
+• Base it on psychology, usability, accessibility, product thinking or user behavior.
+• Every generation must be different.
+• Never repeat previous outputs.
+• If a similar topic has already been generated, choose another.
+
+[Random Seed to guarantee uniqueness: ${seed}]`;
 
     const response = await ai.models.generateContent({
-      model: 'gemini-2.5-flash',
+      model: 'gemini-2.0-flash',
       contents: prompt,
       config: {
         systemInstruction: SYSTEM_PROMPT,
