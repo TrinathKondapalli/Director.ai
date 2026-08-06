@@ -309,3 +309,70 @@ Also generate the accompanying Social Media packages (YouTube, Instagram, Facebo
     return generateLocalMasterPrompt(input);
   }
 };
+
+import { AiConceptCard } from '../types';
+import { TRENDING_UGC_CONCEPTS } from './conceptsData';
+
+export const generateTrendingConcepts = async (niche: string): Promise<AiConceptCard[]> => {
+  try {
+    const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+    if (!apiKey) {
+      console.warn("No Gemini API Key found. Falling back to local trending concepts.");
+      return TRENDING_UGC_CONCEPTS; // fallback
+    }
+
+    const ai = new GoogleGenAI({ apiKey });
+    
+    const SYSTEM_PROMPT = `You are a TikTok/Reels UGC Trend Analyst. Your job is to invent highly viral, brand-new UGC video concepts that convert. 
+Generate exactly 6 unique, highly creative product concepts within the requested niche.
+
+Make the concepts incredibly specific, emotional, and compelling. Ensure the difficulty is either "Easy", "Medium", or "Advanced". Trend score should be a high number between 85 and 99.
+`;
+
+    const schemaObj = {
+      type: 'ARRAY',
+      items: {
+        type: 'OBJECT',
+        properties: {
+          id: { type: 'STRING' },
+          conceptTitle: { type: 'STRING' },
+          whyItWorks: { type: 'STRING' },
+          targetAudience: { type: 'STRING' },
+          recommendedCategory: { type: 'STRING' },
+          nicheCategory: { type: 'STRING' },
+          platformFocus: { type: 'STRING' },
+          marketingAngle: { type: 'STRING' },
+          hookIdea: { type: 'STRING' },
+          emotionalTrigger: { type: 'STRING' },
+          difficulty: { type: 'STRING' },
+          trendScore: { type: 'NUMBER' },
+          primaryCta: { type: 'STRING' },
+          productNameExample: { type: 'STRING' }
+        },
+        required: ["id", "conceptTitle", "whyItWorks", "targetAudience", "recommendedCategory", "nicheCategory", "platformFocus", "marketingAngle", "hookIdea", "emotionalTrigger", "difficulty", "trendScore", "primaryCta", "productNameExample"]
+      }
+    };
+
+    const promptText = `Niche requested: ${niche === 'All Niches' ? 'A mix of highly viral niches (e.g. Biohacking, Skincare, SaaS, Smart Home, etc)' : niche}. Generate 6 fresh trending UGC concepts.`;
+
+    const response = await ai.models.generateContent({
+      model: 'gemini-2.5-flash',
+      contents: promptText,
+      config: {
+        systemInstruction: SYSTEM_PROMPT,
+        responseMimeType: 'application/json',
+        responseSchema: schemaObj as any,
+        temperature: 0.9,
+      }
+    });
+
+    if (response.text) {
+      return JSON.parse(response.text) as AiConceptCard[];
+    }
+    throw new Error("No text in response");
+
+  } catch (error) {
+    console.error("Gemini API Error for Trending Concepts:", error);
+    return TRENDING_UGC_CONCEPTS;
+  }
+};
