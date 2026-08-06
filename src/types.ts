@@ -71,3 +71,68 @@ export interface AiConceptCard {
   primaryCta: string;
   productNameExample: string;
 }
+
+export interface DesignContentResult {
+  researchSummary: {
+    topicTitle: string;
+    source: string;
+    date: string;
+    summary: string;
+    whyItMatters: string;
+    keyTakeaways: string[];
+    futureImpact: string;
+    difficultyLevel: string;
+    estimatedReadingTime: string;
+  };
+  linkedInPost: string;
+  instagramCaption: string;
+  facebookPost: string;
+  twitter: {
+    singleTweet: string;
+    thread: string[];
+  };
+  imagePrompt: string;
+  thumbnailPrompt: string;
+  seoHashtags: {
+    linkedin: string[];
+    instagram: string[];
+    twitter: string[];
+  };
+  seoKeywords: {
+    primary: string[];
+    secondary: string[];
+    longTail: string[];
+  };
+  postVariations: {
+    professional: string;
+    storytelling: string;
+    minimal: string;
+    technical: string;
+    educational: string;
+  };
+  hooks: string[];
+  ctas: string[];
+  carouselContent: {
+    slide1Cover: string;
+    slide2Problem: string;
+    slide3Insight: string;
+    slide4Example: string;
+    slide5Solution: string;
+    slide6Takeaway: string;
+    slide7Cta: string;
+  };
+  shortVideoScript: {
+    sec30: string;
+    sec60: string;
+    sec90: string;
+  };
+  blogOutline: {
+    seoTitle: string;
+    introduction: string;
+    headings: string[];
+    subheadings: string[];
+    conclusion: string;
+  };
+  newsletterVersion: string;
+  portfolioInsight: string;
+}

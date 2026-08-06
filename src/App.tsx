@@ -9,6 +9,7 @@ import { PricingPage } from './components/PricingPage';
 import { PrivacyPage } from './components/PrivacyPage';
 import { TermsPage } from './components/TermsPage';
 import { ContactPage } from './components/ContactPage';
+import { ContentStudio } from './components/ContentStudio';
 import { DirectorLogoIcon } from './components/DirectorLogo';
 import { MasterPromptInput, MasterPromptResult, AiConceptCard } from './types';
 import { generateLocalMasterPrompt } from './data/generatorEngine';
@@ -30,7 +31,7 @@ export default function App() {
   const [currentPath, setCurrentPath] = useState<string>(() => {
     if (typeof window !== 'undefined') {
       const p = window.location.pathname;
-      if (p === '/generate' || p === '/result' || p === '/ideas' || p === '/pricing' || p === '/privacy' || p === '/terms' || p === '/contact') {
+      if (p === '/generate' || p === '/result' || p === '/ideas' || p === '/pricing' || p === '/privacy' || p === '/terms' || p === '/contact' || p === '/studio') {
         return p;
       }
     }
@@ -67,6 +68,7 @@ export default function App() {
     if (path === '/terms') pageName = 'Terms of Service';
     if (path === '/contact') pageName = 'Contact Us';
     if (path === '/result') pageName = 'Master Prompt';
+    if (path === '/studio') pageName = 'Content Studio';
 
     setIncomingPageName(pageName);
     setIsTransitioning(true);
@@ -178,6 +180,10 @@ export default function App() {
               />
             )}
 
+            {currentPath === '/studio' && (
+              <ContentStudio onNavigate={navigateTo} />
+            )}
+
             {currentPath === '/result' && activeResult && (
               <ResultPage
                 result={activeResult}
@@ -188,14 +194,14 @@ export default function App() {
             {/* Fallback for result page if refreshed or accessed directly without memory state */}
             {currentPath === '/result' && !activeResult && (
               <div className="min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center p-6 text-center">
-                <div className="bg-[#111113] border border-[#27272A] p-8 rounded-3xl max-w-md shadow-2xl">
-                  <h2 className="text-xl font-bold text-[#FAFAFA] mb-2">No Active Prompt in Memory</h2>
-                  <p className="text-xs text-[#A1A1AA] mb-6 leading-relaxed font-mono">
+                <div className="bg-[var(--color-bg-card)] border border-[var(--color-border-primary)] p-8 rounded-[20px] max-w-md shadow-[0_20px_50px_rgba(0,0,0,0.25)]">
+                  <h2 className="text-xl font-bold text-white mb-2 font-display">No Active Prompt in Memory</h2>
+                  <p className="text-sm text-[var(--color-text-secondary)] mb-6 leading-relaxed font-mono">
                     "Your ideas stay yours." Prompts are held strictly in temporary RAM and erased upon page refresh.
                   </p>
                   <button
                     onClick={() => navigateTo('/generate')}
-                    className="px-6 py-3 bg-[#6615F6] hover:bg-[#6615F6] text-white text-xs font-semibold rounded-xl cursor-pointer transition-colors shadow-lg shadow-[#6615F6]/20"
+                    className="px-6 py-3 btn-primary text-sm w-full cursor-pointer"
                   >
                     Generate Master Prompt
                   </button>
@@ -221,7 +227,7 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-[#09090B] pt-24 pb-8 px-4 sm:px-6 relative border-t border-[#1C1C20] mt-12 rounded-t-[40px]">
+      <footer className="bg-[var(--color-bg-primary)] pt-24 pb-8 px-4 sm:px-6 relative border-t border-[var(--color-border-divider)] mt-12">
         <div className="max-w-6xl mx-auto">
           {/* Top Grid */}
           <div className="grid grid-cols-1 md:grid-cols-5 gap-12 lg:gap-8 mb-24">
@@ -230,22 +236,22 @@ export default function App() {
             <div className="md:col-span-1 lg:col-span-2">
               <div className="mb-6">
                 <DirectorLogoIcon className="h-10 w-auto mb-2" />
-                <div className="text-[10px] font-mono tracking-widest text-[#A1A1AA] uppercase">AI Creative Studio</div>
+                <div className="text-[10px] font-mono tracking-widest text-[var(--color-text-muted)] uppercase">AI Creative Studio</div>
               </div>
-              <p className="font-inter text-[14px] text-[#A1A1AA] leading-relaxed max-w-sm mb-8">
+              <p className="font-sans text-[14px] text-[var(--color-text-secondary)] leading-relaxed max-w-sm mb-8">
                 The AI UGC Ad Director that turns ideas into scroll-stopping ads — in seconds. <br/> No prompts. Just results.
               </p>
               <div className="flex items-center gap-3">
-                <button className="w-10 h-10 rounded-full bg-[#111113] border border-[#27272A] flex items-center justify-center text-[#A1A1AA] hover:text-[#C084FC] hover:border-[#8B5CF6]/50 transition-colors">
+                <button className="w-10 h-10 rounded-[14px] bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] flex items-center justify-center text-[var(--color-text-secondary)] hover:text-white hover:border-[var(--color-border-divider)] transition-colors">
                   <Youtube className="w-4 h-4" />
                 </button>
-                <button className="w-10 h-10 rounded-full bg-[#111113] border border-[#27272A] flex items-center justify-center text-[#A1A1AA] hover:text-[#C084FC] hover:border-[#8B5CF6]/50 transition-colors">
+                <button className="w-10 h-10 rounded-[14px] bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] flex items-center justify-center text-[var(--color-text-secondary)] hover:text-white hover:border-[var(--color-border-divider)] transition-colors">
                   <Instagram className="w-4 h-4" />
                 </button>
-                <button className="w-10 h-10 rounded-full bg-[#111113] border border-[#27272A] flex items-center justify-center text-[#A1A1AA] hover:text-[#C084FC] hover:border-[#8B5CF6]/50 transition-colors">
+                <button className="w-10 h-10 rounded-[14px] bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] flex items-center justify-center text-[var(--color-text-secondary)] hover:text-white hover:border-[var(--color-border-divider)] transition-colors">
                   <Music className="w-4 h-4" />
                 </button>
-                <button className="w-10 h-10 rounded-full bg-[#111113] border border-[#27272A] flex items-center justify-center text-[#A1A1AA] hover:text-[#C084FC] hover:border-[#8B5CF6]/50 transition-colors">
+                <button className="w-10 h-10 rounded-[14px] bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] flex items-center justify-center text-[var(--color-text-secondary)] hover:text-white hover:border-[var(--color-border-divider)] transition-colors">
                   <Linkedin className="w-4 h-4" />
                 </button>
               </div>
@@ -254,52 +260,52 @@ export default function App() {
             {/* Column 2: PRODUCT */}
             <div className="md:col-span-1 lg:col-span-1">
               <div className="flex items-center gap-2 mb-6">
-                <span className="font-inter text-[12px] font-bold text-[#FAFAFA] tracking-wider uppercase">PRODUCT</span>
-                <div className="w-1.5 h-1.5 rounded-full bg-[#8B5CF6] shadow-[0_0_8px_rgba(139,92,246,0.8)]" />
+                <span className="font-sans text-[12px] font-bold text-white tracking-wider uppercase">PRODUCT</span>
+                <div className="w-1.5 h-1.5 rounded-full bg-[var(--color-brand-violet)] shadow-[0_0_8px_rgba(123,77,255,0.8)]" />
               </div>
-              <ul className="space-y-4 font-inter text-[14px] text-[#A1A1AA]">
-                <li><button onClick={() => navigateTo('/ideas')} className="hover:text-[#FAFAFA] transition-colors">Trending Concepts</button></li>
-                <li><button onClick={() => navigateTo('/generate')} className="hover:text-[#FAFAFA] transition-colors">Generate Prompts</button></li>
+              <ul className="space-y-4 font-sans text-[14px] text-[var(--color-text-secondary)]">
+                <li><button onClick={() => navigateTo('/ideas')} className="hover:text-white transition-colors">Trending Concepts</button></li>
+                <li><button onClick={() => navigateTo('/generate')} className="hover:text-white transition-colors">Generate Prompts</button></li>
               </ul>
             </div>
 
             {/* Column 3: CREATOR */}
             <div className="md:col-span-2 lg:col-span-2">
               <div className="flex items-center gap-2 mb-6">
-                <span className="font-inter text-[12px] font-bold text-[#FAFAFA] tracking-wider uppercase">CREATOR</span>
-                <div className="w-1.5 h-1.5 rounded-full bg-[#8B5CF6] shadow-[0_0_8px_rgba(139,92,246,0.8)]" />
+                <span className="font-sans text-[12px] font-bold text-white tracking-wider uppercase">CREATOR</span>
+                <div className="w-1.5 h-1.5 rounded-full bg-[var(--color-brand-violet)] shadow-[0_0_8px_rgba(123,77,255,0.8)]" />
               </div>
-              <ul className="space-y-4 font-inter text-[14px] text-[#A1A1AA]">
-                <li><button className="hover:text-[#FAFAFA] transition-colors">GitHub Repository</button></li>
-                <li><button className="hover:text-[#FAFAFA] transition-colors">Developer Portfolio</button></li>
-                <li><button onClick={() => navigateTo('/contact')} className="hover:text-[#FAFAFA] transition-colors">Contact</button></li>
+              <ul className="space-y-4 font-sans text-[14px] text-[var(--color-text-secondary)]">
+                <li><button className="hover:text-white transition-colors">GitHub Repository</button></li>
+                <li><button className="hover:text-white transition-colors">Developer Portfolio</button></li>
+                <li><button onClick={() => navigateTo('/contact')} className="hover:text-white transition-colors">Contact</button></li>
               </ul>
             </div>
           </div>
 
           {/* Bottom Bar */}
-          <div className="border-t border-[#1C1C20] pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="font-inter text-[13px] text-[#71717A]">
+          <div className="border-t border-[var(--color-border-primary)] pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="font-sans text-[13px] text-[var(--color-text-muted)]">
               © 2025 Director.ai. All rights reserved.
             </div>
 
-            <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-12 text-[13px] font-inter text-[#A1A1AA]">
+            <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-12 text-[13px] font-sans text-[var(--color-text-secondary)]">
               <div className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-[#8B5CF6]" />
+                <ShieldCheck className="w-4 h-4 text-[var(--color-brand-violet)]" />
                 <span>Zero Data Retention</span>
               </div>
               <div className="flex items-center gap-2">
-                <Lock className="w-4 h-4 text-[#8B5CF6]" />
+                <Lock className="w-4 h-4 text-[var(--color-brand-violet)]" />
                 <span>Enterprise Grade Security</span>
               </div>
               <div className="flex items-center gap-2">
-                <Zap className="w-4 h-4 text-[#8B5CF6]" />
+                <Zap className="w-4 h-4 text-[var(--color-brand-violet)]" />
                 <span>Built for Speed</span>
               </div>
             </div>
 
-            <button className="flex items-center gap-2 px-4 py-2 rounded-xl border border-[#27272A] bg-[#111113] text-[#A1A1AA] hover:text-[#FAFAFA] text-[13px] font-inter transition-colors">
-              <Globe className="w-4 h-4 text-[#8B5CF6]" />
+            <button className="flex items-center gap-2 px-4 py-2 rounded-[14px] border border-[var(--color-border-primary)] bg-[var(--color-bg-surface)] text-[var(--color-text-secondary)] hover:text-white hover:bg-[var(--color-bg-elevated)] text-[13px] font-sans transition-colors">
+              <Globe className="w-4 h-4 text-[var(--color-brand-violet)]" />
               <span>English</span>
               <ChevronDown className="w-4 h-4 ml-2" />
             </button>
