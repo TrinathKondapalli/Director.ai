@@ -5,13 +5,15 @@ import { UgcStudio } from './components/UgcStudio';
 import { UgcResultPage } from './components/UgcResultPage';
 import { LoadingScreen } from './components/LoadingScreen';
 import { DesignPublisher } from './components/DesignPublisher';
+import { DesignResultPage } from './components/DesignResultPage';
 import { PricingPage } from './components/PricingPage';
 import { PrivacyPage } from './components/PrivacyPage';
 import { TermsPage } from './components/TermsPage';
 import { ContactPage } from './components/ContactPage';
 import { DirectorLogoIcon } from './components/DirectorLogo';
-import { UgcStudioInput, UgcStudioResult } from './types';
+import { UgcStudioInput, UgcStudioResult, DesignContentResult } from './types';
 import { generateUgcContent, generateLocalUgcMock } from './data/generatorEngine';
+import { generateContent as generateDesignContent, generateContentMock as generateLocalDesignMock } from './data/contentEngine';
 import { PageCurtain } from './components/PageCurtain';
 import { 
   Youtube, 
@@ -29,7 +31,7 @@ export default function App() {
   const [currentPath, setCurrentPath] = useState<string>(() => {
     if (typeof window !== 'undefined') {
       const p = window.location.pathname;
-      if (p === '/ugc-studio' || p === '/ugc-result' || p === '/design-publisher' || p === '/pricing' || p === '/privacy' || p === '/terms' || p === '/contact') {
+      if (p === '/ugc-studio' || p === '/ugc-result' || p === '/design-publisher' || p === '/design-result' || p === '/pricing' || p === '/privacy' || p === '/terms' || p === '/contact') {
         return p;
       }
     }
@@ -38,8 +40,14 @@ export default function App() {
 
   const [isGenerating, setIsGenerating] = useState<boolean>(false);
   const [showLoadingAnimation, setShowLoadingAnimation] = useState<boolean>(false);
+  
+  // UGC State
   const [pendingResult, setPendingResult] = useState<UgcStudioResult | null>(null);
   const [activeResult, setActiveResult] = useState<UgcStudioResult | null>(null);
+
+  // Design Publisher State
+  const [pendingDesignResult, setPendingDesignResult] = useState<DesignContentResult | null>(null);
+  const [activeDesignResult, setActiveDesignResult] = useState<DesignContentResult | null>(null);
 
   const [isTransitioning, setIsTransitioning] = useState<boolean>(false);
   const [incomingPageName, setIncomingPageName] = useState<string>('');
@@ -64,6 +72,7 @@ export default function App() {
     if (path === '/terms') pageName = 'Terms of Service';
     if (path === '/contact') pageName = 'Contact Us';
     if (path === '/ugc-result') pageName = 'Studio Result';
+    if (path === '/design-result') pageName = 'Design Result';
 
     setIncomingPageName(pageName);
     setIsTransitioning(true);
@@ -83,30 +92,68 @@ export default function App() {
     setIsGenerating(true);
     setShowLoadingAnimation(true);
 
+    const startTime = Date.now();
+    let resultObj;
     try {
-      const resultObj = await generateUgcContent(input);
-      setPendingResult(resultObj);
+      resultObj = await generateUgcContent(input);
     } catch (err) {
       console.warn('Backend API unavailable, using local high-performance engine:', err);
-      const fallback = generateLocalUgcMock(input);
-      setPendingResult(fallback);
+      resultObj = generateLocalUgcMock(input);
     }
-  };
 
-  const handleLoadingComplete = () => {
-    if (pendingResult) {
-      setActiveResult(pendingResult);
-      setPendingResult(null);
+    const elapsed = Date.now() - startTime;
+    const minLoadingTime = 3000;
+    if (elapsed < minLoadingTime) {
+      await new Promise(r => setTimeout(r, minLoadingTime - elapsed));
     }
+
+    setActiveResult(resultObj);
     setIsGenerating(false);
     setShowLoadingAnimation(false);
     navigateTo('/ugc-result');
   };
 
-  const handleCreateAnother = () => {
+  const handleGenerateDesign = async (format: 'single' | 'carousel') => {
+    setIsGenerating(true);
+    setShowLoadingAnimation(true);
+
+    const startTime = Date.now();
+    let resultObj;
+    try {
+      resultObj = await generateDesignContent(format);
+    } catch (err) {
+      console.warn('Backend API unavailable, using local high-performance engine:', err);
+      resultObj = generateLocalDesignMock(format);
+    }
+
+    const elapsed = Date.now() - startTime;
+    const minLoadingTime = 3000;
+    if (elapsed < minLoadingTime) {
+      await new Promise(r => setTimeout(r, minLoadingTime - elapsed));
+    }
+
+    setActiveDesignResult(resultObj);
+    setIsGenerating(false);
+    setShowLoadingAnimation(false);
+    navigateTo('/design-result');
+  };
+
+  const handleLoadingComplete = () => {
+    // The LoadingScreen component calls this after its 2.7s animation finishes.
+    // We intentionally do nothing here so the loading screen stays visible until the API call finishes.
+    // Navigation is handled entirely within handleGeneratePrompt and handleGenerateDesign.
+  };
+
+  const handleCreateAnotherUgc = () => {
     setActiveResult(null);
     setPendingResult(null);
     navigateTo('/ugc-studio');
+  };
+
+  const handleCreateAnotherDesign = () => {
+    setActiveDesignResult(null);
+    setPendingDesignResult(null);
+    navigateTo('/design-publisher');
   };
 
   return (
@@ -133,13 +180,16 @@ export default function App() {
             )}
 
             {currentPath === '/design-publisher' && (
-              <DesignPublisher onNavigate={navigateTo} />
+              <DesignPublisher 
+                onGenerate={handleGenerateDesign}
+                isGenerating={isGenerating}
+              />
             )}
 
             {currentPath === '/ugc-result' && activeResult && (
               <UgcResultPage
                 result={activeResult}
-                onCreateAnother={handleCreateAnother}
+                onCreateAnother={handleCreateAnotherUgc}
               />
             )}
 
@@ -155,6 +205,30 @@ export default function App() {
                     className="px-6 py-3 btn-primary text-sm w-full cursor-pointer"
                   >
                     Go To UGC Studio
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {currentPath === '/design-result' && activeDesignResult && (
+              <DesignResultPage
+                result={activeDesignResult}
+                onCreateAnother={handleCreateAnotherDesign}
+              />
+            )}
+
+            {currentPath === '/design-result' && !activeDesignResult && (
+              <div className="min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center p-6 text-center">
+                <div className="bg-[var(--color-bg-card)] border border-[var(--color-border-primary)] p-8 rounded-[20px] max-w-md shadow-[0_20px_50px_rgba(0,0,0,0.25)]">
+                  <h2 className="text-xl font-bold text-white mb-2 font-display">No Active Project in Memory</h2>
+                  <p className="text-sm text-[var(--color-text-secondary)] mb-6 leading-relaxed font-mono">
+                    "Your ideas stay yours." Projects are held strictly in temporary RAM and erased upon page refresh.
+                  </p>
+                  <button
+                    onClick={() => navigateTo('/design-publisher')}
+                    className="px-6 py-3 btn-primary text-sm w-full cursor-pointer"
+                  >
+                    Go To Design Publisher
                   </button>
                 </div>
               </div>

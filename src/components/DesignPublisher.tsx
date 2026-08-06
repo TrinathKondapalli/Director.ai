@@ -3,10 +3,11 @@ import { PenTool, Image as ImageIcon, Sparkles, Layout, Video, ArrowRight } from
 import { BackgroundGlow } from './BackgroundGlow';
 
 interface DesignPublisherProps {
-  onNavigate: (path: string) => void;
+  onGenerate: (format: 'single' | 'carousel') => void;
+  isGenerating: boolean;
 }
 
-export const DesignPublisher: React.FC<DesignPublisherProps> = ({ onNavigate }) => {
+export const DesignPublisher: React.FC<DesignPublisherProps> = ({ onGenerate, isGenerating }) => {
   const [isHovered, setIsHovered] = useState<string | null>(null);
 
   return (
@@ -31,10 +32,10 @@ export const DesignPublisher: React.FC<DesignPublisherProps> = ({ onNavigate }) 
         
         {/* Single Post Option */}
         <div 
-          className="bg-[var(--color-bg-card)] border border-[var(--color-border-primary)] rounded-[24px] p-8 hover:border-[var(--color-brand-violet)] transition-colors cursor-pointer group"
-          onMouseEnter={() => setIsHovered('single')}
+          className={`bg-[var(--color-bg-card)] border border-[var(--color-border-primary)] rounded-[24px] p-8 transition-colors ${!isGenerating ? 'hover:border-[var(--color-brand-violet)] cursor-pointer group' : 'opacity-50 cursor-not-allowed'}`}
+          onMouseEnter={() => !isGenerating && setIsHovered('single')}
           onMouseLeave={() => setIsHovered(null)}
-          onClick={() => onNavigate('/design-result?format=single')}
+          onClick={() => !isGenerating && onGenerate('single')}
         >
           <div className="w-14 h-14 rounded-2xl bg-[var(--color-brand-violet)]/10 border border-[var(--color-brand-violet)]/20 flex items-center justify-center mb-6">
             <Layout className="w-7 h-7 text-[var(--color-brand-violet)]" />
@@ -44,17 +45,17 @@ export const DesignPublisher: React.FC<DesignPublisherProps> = ({ onNavigate }) 
             Generates a focused, single-image post with a deep-dive caption, tailored hooks, and professional insights on UX/UI best practices.
           </p>
           <div className="flex items-center gap-2 text-[var(--color-brand-violet)] font-semibold text-sm group-hover:gap-3 transition-all">
-            <span>Generate Single Post</span>
+            <span>{isGenerating && isHovered === 'single' ? 'Generating...' : 'Generate Single Post'}</span>
             <ArrowRight className="w-4 h-4" />
           </div>
         </div>
 
         {/* Carousel Option */}
         <div 
-          className="bg-[var(--color-bg-card)] border border-[var(--color-border-primary)] rounded-[24px] p-8 hover:border-[var(--color-brand-magenta)] transition-colors cursor-pointer group"
-          onMouseEnter={() => setIsHovered('carousel')}
+          className={`bg-[var(--color-bg-card)] border border-[var(--color-border-primary)] rounded-[24px] p-8 transition-colors ${!isGenerating ? 'hover:border-[var(--color-brand-magenta)] cursor-pointer group' : 'opacity-50 cursor-not-allowed'}`}
+          onMouseEnter={() => !isGenerating && setIsHovered('carousel')}
           onMouseLeave={() => setIsHovered(null)}
-          onClick={() => onNavigate('/design-result?format=carousel')}
+          onClick={() => !isGenerating && onGenerate('carousel')}
         >
           <div className="w-14 h-14 rounded-2xl bg-[var(--color-brand-magenta)]/10 border border-[var(--color-brand-magenta)]/20 flex items-center justify-center mb-6">
             <ImageIcon className="w-7 h-7 text-[var(--color-brand-magenta)]" />

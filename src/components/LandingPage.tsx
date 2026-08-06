@@ -127,20 +127,20 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
           className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mb-8"
         >
           <button
-            onClick={() => onNavigate('/generate')}
+            onClick={() => onNavigate('/ugc-studio')}
             className="w-full sm:w-auto px-8 py-3.5 btn-primary text-[16px] flex items-center justify-center gap-2.5 cursor-pointer"
           >
             <Sparkles className="w-4 h-4 fill-current text-white" />
-            <span>Generate Master Prompt</span>
+            <span>AI UGC Studio</span>
             <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
           </button>
 
           <button
-            onClick={() => onNavigate('/ideas')}
+            onClick={() => onNavigate('/design-publisher')}
             className="w-full sm:w-auto px-8 py-3.5 bg-[var(--color-bg-surface)] hover:bg-[var(--color-bg-elevated)] backdrop-blur-sm text-[var(--color-text-secondary)] hover:text-white text-[16px] font-medium font-inter rounded-full border border-[var(--color-border-primary)] hover:border-[var(--color-border-hover)] transition-colors cursor-pointer flex items-center justify-center gap-2.5"
           >
             <Lightbulb className="w-4 h-4 text-[var(--color-brand-violet)]" />
-            <span>See Trending Concepts</span>
+            <span>AI Design Publisher</span>
           </button>
         </motion.div>
 
@@ -393,7 +393,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
           </div>
 
           <button
-            onClick={() => onNavigate('/ideas')}
+            onClick={() => onNavigate('/ugc-studio')}
             className="px-6 py-3 bg-[#09090B] hover:bg-[#1C1C20] text-white text-sm font-semibold rounded-full border border-[#27272A] hover:border-[#8B5CF6]/50 transition-colors cursor-pointer flex items-center gap-2 self-start md:self-auto shadow-lg"
           >
             <span>View All Concepts</span>
@@ -442,7 +442,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
 
               <button
                 onClick={() => {
-                  onNavigate('/generate');
+                  onNavigate('/ugc-studio');
                 }}
                 className="w-full py-3.5 px-4 bg-[#09090B] hover:bg-[#111113] text-[#FAFAFA] hover:text-white text-sm font-semibold rounded-xl border border-[#27272A] group-hover:border-[#8B5CF6]/60 shadow-[0_0_10px_rgba(139,92,246,0)] group-hover:shadow-[0_0_15px_rgba(139,92,246,0.15)] transition-all cursor-pointer flex items-center justify-center gap-2 relative z-10"
               >
