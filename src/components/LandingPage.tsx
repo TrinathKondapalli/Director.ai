@@ -580,7 +580,6 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
       >
         <div className="max-w-6xl mx-auto bg-[#111113] border border-[#27272A] rounded-[32px] p-8 sm:p-16 text-center relative overflow-hidden shadow-2xl">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#22C55E]/10 border border-[#22C55E]/20 text-[#4ADE80] text-[13px] font-inter font-medium mb-8 shadow-sm">
-            <ShieldCheck className="w-4 h-4" />
             <span>Zero Data Retention</span>
           </div>
 
