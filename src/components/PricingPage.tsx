@@ -8,8 +8,12 @@ interface PricingPageProps {
 
 export const PricingPage: React.FC<PricingPageProps> = ({ onNavigate }) => {
   return (
-    <div className="min-h-[calc(100vh-4rem)] bg-[#09090B] py-16 px-4 sm:px-6 selection:bg-[#6615F6]/30">
-      <div className="max-w-5xl mx-auto">
+    <div className="min-h-[calc(100vh-4rem)] bg-[var(--color-bg-primary)] py-16 px-4 sm:px-6 selection:bg-[var(--color-brand-violet)]/30 relative overflow-hidden">
+      {/* Background glowing effects */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[var(--color-brand-violet)]/15 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-[600px] h-[400px] bg-[var(--color-brand-magenta)]/10 blur-[120px] rounded-full pointer-events-none" />
+
+      <div className="max-w-5xl mx-auto relative z-10">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#6615F6]/15 border border-[#6615F6]/30 text-[#6615F6] text-xs font-mono mb-4">
