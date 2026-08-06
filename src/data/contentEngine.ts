@@ -40,6 +40,7 @@ export const generateContentMock = async (format: 'single' | 'carousel'): Promis
       format: 'carousel',
       topicTitle: "The Psychology of Micro-Interactions in Product Design",
       coverTitle: "Why Your App Feels 'Cheap' (And How to Fix It)",
+      caption: "Have you ever used an app that functioned perfectly, but just felt... cheap? 📱\n\nThe problem usually isn't the visual design. It's the lack of purposeful motion. Micro-interactions are subtle animations that provide immediate visual feedback and recreate the tactile satisfaction of the physical world in a digital space.\n\nSwipe through to see how adding purposeful motion to your core interactions can skyrocket your perceived product value. 👉",
       slides: [
         {
           heading: "The 'Cheap' Feeling",
@@ -81,6 +82,7 @@ export const generateContentMock = async (format: 'single' | 'carousel'): Promis
       format: 'carousel',
       topicTitle: "How to Design Forms that Actually Convert",
       coverTitle: "Stop Losing Users at the Signup Form",
+      caption: "Forms are the highest point of friction in any digital product. Did you know every input field you add drops your conversion rate by roughly 5-10%? 📉\n\nIf you want to stop losing users at the signup form, you need to optimize for vertical momentum, use inline validation, and leverage browser autofill.\n\nSwipe to learn how to design forms that actually convert! 👉",
       slides: [
         {
           heading: "The Friction Point",

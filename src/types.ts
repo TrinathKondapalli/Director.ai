@@ -87,6 +87,7 @@ export interface DesignContentResultV2Carousel {
   format: 'carousel';
   topicTitle: string;
   coverTitle: string;
+  caption: string;
   slides: {
     heading: string;
     description: string;

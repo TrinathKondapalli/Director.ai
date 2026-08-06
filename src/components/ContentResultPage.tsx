@@ -93,11 +93,18 @@ CTA: ${result.cta}
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
       {/* Main Post Content */}
       <div className="lg:col-span-2">
-        <SectionCard title="Post Content" icon={MessageSquare} copyText={`${res.hook}\n\n${res.postContent}\n\n${res.cta}`} copyLabel="Post" copyKey="post">
+        <SectionCard 
+          title="Social Media Post Caption" 
+          icon={MessageSquare} 
+          copyText={`${res.hook}\n\n${res.postContent}\n\n${res.cta}\n\n${res.hashtags.join(' ')}`} 
+          copyLabel="Caption" 
+          copyKey="post"
+        >
           <div className="space-y-4 text-[15px] leading-relaxed text-[#D4D4D8]">
             <p className="font-semibold text-white">{res.hook}</p>
             <p>{res.postContent}</p>
             <p className="font-semibold text-[var(--color-brand-lavender)] italic">{res.cta}</p>
+            <p className="font-mono text-[13px] text-[var(--color-brand-magenta)] pt-4 border-t border-[var(--color-border-primary)]/50">{res.hashtags.join(' ')}</p>
           </div>
         </SectionCard>
       </div>
@@ -128,31 +135,45 @@ CTA: ${result.cta}
 
   const renderCarousel = (res: DesignContentResultV2Carousel) => (
     <div className="flex flex-col gap-6">
-      {/* Overview */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <SectionCard title="Carousel Overview" icon={List} copyText={`Title: ${res.coverTitle}\n\nCTA: ${res.cta}`} copyLabel="Overview" copyKey="overview">
-          <div className="mb-4">
-            <strong className="text-white text-xs font-mono uppercase tracking-wider">Slide 1 (Cover Title)</strong>
-            <p className="text-lg font-bold text-white mt-1">{res.coverTitle}</p>
-          </div>
-          <div>
-            <strong className="text-white text-xs font-mono uppercase tracking-wider">Final Slide (Call to Action)</strong>
-            <p className="text-[var(--color-brand-lavender)] italic mt-1">{res.cta}</p>
-          </div>
-        </SectionCard>
-        
-        <SectionCard title="SEO & Tags" icon={Hash} copyText={res.hashtags.join(' ')} copyLabel="Tags" copyKey="tags">
-          <strong className="text-white text-xs uppercase tracking-wider block mb-2">Keywords</strong>
-          <div className="flex flex-wrap gap-2 mb-6">
-            {res.keywords.map((k, i) => (
-              <span key={i} className="px-2.5 py-1 bg-[var(--color-bg-primary)] border border-[var(--color-border-primary)] rounded-md text-[11px] font-mono text-[#A1A1AA]">{k}</span>
-            ))}
-          </div>
-          <strong className="text-white text-xs uppercase tracking-wider block mb-2">Hashtags</strong>
-          <div className="font-mono text-[12px] text-[var(--color-brand-magenta)]">
-            {res.hashtags.join(' ')}
-          </div>
-        </SectionCard>
+      {/* Overview & Caption */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="lg:col-span-2">
+          <SectionCard 
+            title="Social Media Post Caption" 
+            icon={MessageSquare} 
+            copyText={`${res.caption}\n\n${res.cta}\n\n${res.hashtags.join(' ')}`} 
+            copyLabel="Caption" 
+            copyKey="carousel-caption"
+          >
+            <div className="space-y-4 text-[15px] leading-relaxed text-[#D4D4D8]">
+              <p>{res.caption}</p>
+              <p className="font-semibold text-[var(--color-brand-lavender)] italic">{res.cta}</p>
+              <p className="font-mono text-[13px] text-[var(--color-brand-magenta)] pt-4 border-t border-[var(--color-border-primary)]/50">{res.hashtags.join(' ')}</p>
+            </div>
+          </SectionCard>
+        </div>
+
+        <div className="flex flex-col gap-6">
+          <SectionCard title="Carousel Overview" icon={List} copyText={`Title: ${res.coverTitle}`} copyLabel="Overview" copyKey="overview">
+            <div className="mb-2">
+              <strong className="text-white text-xs font-mono uppercase tracking-wider">Slide 1 (Cover Title)</strong>
+              <p className="text-lg font-bold text-white mt-1">{res.coverTitle}</p>
+            </div>
+          </SectionCard>
+          
+          <SectionCard title="SEO & Tags" icon={Hash} copyText={res.hashtags.join(' ')} copyLabel="Tags" copyKey="tags">
+            <strong className="text-white text-xs uppercase tracking-wider block mb-2">Keywords</strong>
+            <div className="flex flex-wrap gap-2 mb-6">
+              {res.keywords.map((k, i) => (
+                <span key={i} className="px-2.5 py-1 bg-[var(--color-bg-primary)] border border-[var(--color-border-primary)] rounded-md text-[11px] font-mono text-[#A1A1AA]">{k}</span>
+              ))}
+            </div>
+            <strong className="text-white text-xs uppercase tracking-wider block mb-2">Hashtags</strong>
+            <div className="font-mono text-[12px] text-[var(--color-brand-magenta)]">
+              {res.hashtags.join(' ')}
+            </div>
+          </SectionCard>
+        </div>
       </div>
 
       {/* Individual Slides */}
