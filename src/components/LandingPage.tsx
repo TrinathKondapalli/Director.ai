@@ -125,18 +125,18 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
         >
           <button
             onClick={() => onNavigate('/generate')}
-            className="w-full sm:w-auto px-8 py-3.5 bg-[#8B5CF6] hover:bg-[#A78BFA] text-white text-[16px] font-semibold font-inter rounded-full transition-all flex items-center justify-center gap-2.5 cursor-pointer"
+            className="w-full sm:w-auto px-8 py-3.5 btn-primary text-[16px] flex items-center justify-center gap-2.5 cursor-pointer"
           >
             <Sparkles className="w-4 h-4 fill-current text-white" />
             <span>Generate Master Prompt</span>
-            <ArrowRight className="w-4 h-4 ml-1" />
+            <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
           </button>
 
           <button
             onClick={() => onNavigate('/ideas')}
-            className="w-full sm:w-auto px-8 py-3.5 bg-[#09090B]/50 hover:bg-[#111113] backdrop-blur-sm text-[#A1A1AA] hover:text-white text-[16px] font-medium font-inter rounded-full border border-[#27272A] transition-colors cursor-pointer flex items-center justify-center gap-2.5"
+            className="w-full sm:w-auto px-8 py-3.5 bg-[var(--color-bg-surface)] hover:bg-[var(--color-bg-elevated)] backdrop-blur-sm text-[var(--color-text-secondary)] hover:text-white text-[16px] font-medium font-inter rounded-full border border-[var(--color-border-primary)] hover:border-[var(--color-border-hover)] transition-colors cursor-pointer flex items-center justify-center gap-2.5"
           >
-            <Lightbulb className="w-4 h-4 text-[#A78BFA]" />
+            <Lightbulb className="w-4 h-4 text-[var(--color-brand-violet)]" />
             <span>See Trending Concepts</span>
           </button>
         </motion.div>
