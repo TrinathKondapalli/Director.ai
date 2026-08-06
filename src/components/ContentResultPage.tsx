@@ -232,11 +232,11 @@ CTA: ${result.cta}
           </div>
           
           <div className="flex items-center gap-3 w-full md:w-auto">
-            <button onClick={onCreateAnother} className="btn-secondary flex-1 md:flex-none">
+            <button onClick={onCreateAnother} className="btn-secondary flex-1 md:flex-none flex items-center justify-center gap-2 px-6 py-3 cursor-pointer">
               <RefreshCw className="w-4 h-4" />
               <span>New Topic</span>
             </button>
-            <button onClick={copyAll} className="btn-primary flex-1 md:flex-none">
+            <button onClick={copyAll} className="btn-primary flex-1 md:flex-none flex items-center justify-center gap-2 px-6 py-3 cursor-pointer">
               <Copy className="w-4 h-4" />
               <span>Copy All</span>
             </button>
