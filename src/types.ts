@@ -12,10 +12,11 @@ export interface UgcStudioInput {
 }
 
 export interface PlatformCaptions {
-  linkedin: string;
-  instagram: string;
-  facebook: string;
-  twitter: string;
+  linkedin: { hook: string; context: string; mainInsight: string; keyTakeaways: string[]; cta: string; hashtags: string[]; };
+  instagram: { hook: string; story: string; lesson: string; cta: string; hashtags: string[]; };
+  facebook: { opening: string; problem: string; advice: string; example: string; question: string; hashtags: string[]; };
+  twitter: { singleTweet: string; threadVersion: string[]; hashtags: string[]; };
+  youtube: { seoTitle: string; description: string; whatYouWillLearn: string[]; chapters: string[]; cta: string; keywords: string[]; hashtags: string[]; };
 }
 
 export interface VideoPrompt {
@@ -63,6 +64,8 @@ export interface VideoPrompt {
 }
 
 export interface UgcStudioResult {
+  originalInput: UgcStudioInput;
+  oneLineSummary: string;
   dailySuggestedTopic: string;
   hook: string;
   problem: string;
@@ -77,9 +80,19 @@ export interface UgcStudioResult {
   videoPrompt: VideoPrompt;
   videoHook: string;
   voiceoverScript: string;
-  shotList: string[];
+  videoScriptTimeline: { time: string; action: string; audio: string }[];
+  shotList: {
+    sceneNumber: string;
+    description: string;
+    camera: string;
+    movement: string;
+    voice: string;
+    sfx: string;
+    transition: string;
+  }[];
   bRollIdeas: string[];
   thumbnailPrompt: string;
+  thumbnailStyle: string;
   generatedAt: string;
 }
 
@@ -90,6 +103,7 @@ export interface DesignContentResultV2Single {
   hook: string;
   professionalCaption: string;
   captions: PlatformCaptions;
+  actionableTakeaways: string[];
   cta: string;
   imagePrompt: string;
   hashtags: string[];
@@ -101,12 +115,13 @@ export interface DesignContentResultV2Carousel {
   topicTitle: string;
   coverTitle: string;
   whyThisMatters: string;
-  caption: string;
+  captions: PlatformCaptions;
   slides: {
     heading: string;
     description: string;
     imagePrompt: string;
   }[];
+  actionableTakeaways: string[];
   cta: string;
   hashtags: string[];
   keywords: string[];

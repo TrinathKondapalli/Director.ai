@@ -13,11 +13,16 @@ Before generating content, you must research and identify:
 Never repeat previous concepts.
 
 CAPTIONS REQUIREMENTS:
-Generate captions for LinkedIn, Instagram, Facebook, and Twitter/X. Each platform MUST have different writing styles.
-- LinkedIn: Professional, Educational, Thought Leadership, Long-form, Clear CTA.
-- Instagram: Conversational, Short paragraphs, Emoji friendly, Storytelling, High engagement, Strong CTA.
-- Facebook: Community focused, Friendly, Conversational, Educational, Easy to read.
-- Twitter/X: Short, Punchy, Insightful, High retention, Thread-ready if required.
+Generate highly structured captions for LinkedIn, Instagram, Facebook, Twitter/X, and YouTube.
+Instead of a single string, you MUST return a structured object for each platform.
+- LinkedIn: { hook, context, mainInsight, keyTakeaways, cta, hashtags }
+- Instagram: { hook, story, lesson, cta, hashtags }
+- Facebook: { opening, problem, advice, example, question, hashtags }
+- Twitter/X: { singleTweet, threadVersion (array of strings), hashtags }
+- YouTube: { seoTitle, description, whatYouWillLearn, chapters, cta, keywords, hashtags }
+
+VIDEO SCRIPT & SHOT LIST REQUIREMENTS:
+Generate a structured timeline for the video script and a detailed shot list broken down by scene number.
 
 VIDEO PROMPT REQUIREMENTS:
 Generate a cinematic AI video prompt suitable for modern models (Veo 3, Runway Gen-4, Pika, Kling, Sora).
@@ -28,6 +33,8 @@ export function generateLocalUgcMock(input: UgcStudioInput): UgcStudioResult {
   const prod = input.isRandom ? "Random Trending Concept" : (input.product || "Featured Product");
   
   return {
+    originalInput: input,
+    oneLineSummary: `Authentic UGC advertisement targeting busy professionals who struggle with productivity.`,
     dailySuggestedTopic: `Why ${prod} is taking over TikTok`,
     hook: `Stop scrolling if you struggle with [Pain Point]!`,
     problem: `Most people waste hours dealing with inefficient workflows.`,
@@ -35,10 +42,48 @@ export function generateLocalUgcMock(input: UgcStudioInput): UgcStudioResult {
     solution: `${prod} completely automates the process and gives you back your time.`,
     callToAction: `Tap the link in my bio to get yours before it sells out!`,
     captions: {
-      linkedin: `As professionals, we are constantly seeking ways to optimize our daily workflows. I recently implemented ${prod} into my system and the results were profound.\n\nEfficiency isn't about working harder—it's about working smarter. What are your top productivity strategies? #ThoughtLeadership #Productivity #Workflow`,
-      instagram: `Stop what you're doing right now! 🛑 I finally found the ultimate hack for your daily routine. ${prod} literally changed everything for me. You guys have to see this... Link in bio to grab yours! ✨👇 #DailyHack #MustHave`,
-      facebook: `Hey everyone! If you're tired of dealing with the same frustrating problems every single day, you need to see this. We've been using ${prod} in our community and it's an absolute game-changer. Click the link below to check it out!`,
-      twitter: `Hit a new productivity record today using ${prod}. If you aren't automating this yet, you're falling behind. Work smarter, not harder. 🚀 #ProductivityHack`
+      linkedin: {
+        hook: `As professionals, we are constantly seeking ways to optimize our daily workflows.`,
+        context: `I recently implemented ${prod} into my system and the results were profound.`,
+        mainInsight: `Efficiency isn't about working harder—it's about working smarter.`,
+        keyTakeaways: ["Automate repetitive tasks", "Focus on deep work", "Eliminate digital clutter"],
+        cta: `What are your top productivity strategies?`,
+        hashtags: ["#ThoughtLeadership", "#Productivity", "#Workflow"]
+      },
+      instagram: {
+        hook: `Stop what you're doing right now! 🛑`,
+        story: `I finally found the ultimate hack for your daily routine. ${prod} literally changed everything for me.`,
+        lesson: `You don't need more time, you need better systems.`,
+        cta: `Link in bio to grab yours! ✨👇`,
+        hashtags: ["#DailyHack", "#MustHave", "#Productivity"]
+      },
+      facebook: {
+        opening: `Hey everyone!`,
+        problem: `If you're tired of dealing with the same frustrating problems every single day, you need to see this.`,
+        advice: `We've been using ${prod} in our community and it's an absolute game-changer.`,
+        example: `For example, it saved us 3 hours just yesterday.`,
+        question: `What's your biggest time-waster right now?`,
+        hashtags: ["#GameChanger", "#CommunityTips"]
+      },
+      twitter: {
+        singleTweet: `Hit a new productivity record today using ${prod}. If you aren't automating this yet, you're falling behind. Work smarter, not harder. 🚀`,
+        threadVersion: [
+          `Most people waste hours dealing with inefficient workflows. Here is how I fixed mine with ${prod}. 🧵`,
+          `Problem: I was spending 3 hours a day on manual tasks.`,
+          `Solution: ${prod} automates the entire process in one click.`,
+          `The takeaway: You don't need more hours in the day, you just need better tools.`
+        ],
+        hashtags: ["#ProductivityHack", "#WorkSmarter"]
+      },
+      youtube: {
+        seoTitle: `How I Fixed My Workflow using ${prod} (Save 3 Hours a Day)`,
+        description: `In this video, I reveal how I completely transformed my daily routine using the ultimate productivity tool.`,
+        whatYouWillLearn: ["How to set up the tool", "My daily routine", "Advanced workflow hacks"],
+        chapters: ["0:00 Intro", "1:20 The Problem", "3:45 The Solution"],
+        cta: `Don't forget to like and subscribe! Link in description.`,
+        keywords: ["productivity", "workflow tutorial", "time management"],
+        hashtags: ["#Productivity", "#Tutorial", "#Workflow"]
+      }
     },
     seoHashtags: ["#UGC", "#TechTrend", "#ProductivityHack", "#MustHave", "#DailyEssentials", "#TikTokMadeMeBuyIt", "#ViralProduct", "#LifeHack", "#SmartLiving", "#CreatorTips", "#GrowthHack", "#WorkSmarter", "#TechGadget", "#RoutineRefresh", "#GameChanger", "#Efficiency", "#SetupTour", "#TechReview", "#Unboxing", "#Aesthetic"],
     primaryKeywords: [prod, "productivity tool", "daily routine hack"],
@@ -89,11 +134,17 @@ export function generateLocalUgcMock(input: UgcStudioInput): UgcStudioResult {
     },
     videoHook: `You won't believe what this little thing can do...`,
     voiceoverScript: `I used to waste 3 hours a day until I found this. It's called ${prod}, and it completely changed how I work. Just look at this...`,
+    videoScriptTimeline: [
+      { time: "Second 1-2", action: "Creator looks exhausted at desk.", audio: "I used to waste 3 hours a day..." },
+      { time: "Second 3-5", action: "Creator activates product.", audio: "until I found this." },
+      { time: "Second 6-8", action: "Time-lapse of getting work done.", audio: "It completely changed how I work." },
+      { time: "Second 9-10", action: "Creator points at link.", audio: "Link in bio to get yours!" }
+    ],
     shotList: [
-      `Wide shot of creator looking frustrated at desk.`,
-      `Close-up of ${prod} being activated.`,
-      `Macro shot of the product texture/interface.`,
-      `Final reaction shot of creator smiling.`
+      { sceneNumber: "Scene 1", description: "Creator looking frustrated.", camera: "Medium Close-up", movement: "Push in", voice: "I used to waste...", sfx: "Sigh", transition: "Cut" },
+      { sceneNumber: "Scene 2", description: "Product being activated.", camera: "Macro", movement: "Static", voice: "until I found this.", sfx: "Click", transition: "Whip pan" },
+      { sceneNumber: "Scene 3", description: "Fast workflow.", camera: "Wide", movement: "Time-lapse", voice: "It completely changed...", sfx: "Keyboard typing", transition: "Cut" },
+      { sceneNumber: "Scene 4", description: "Smiling creator.", camera: "Close-up", movement: "Handheld", voice: "Link in bio!", sfx: "Pop", transition: "None" }
     ],
     bRollIdeas: [
       `Sunlight hitting the product on a desk.`,
@@ -101,6 +152,7 @@ export function generateLocalUgcMock(input: UgcStudioInput): UgcStudioResult {
       `Extreme close-up of the brand logo.`
     ],
     thumbnailPrompt: `Creator making a shocked face pointing at ${prod} with a bold colorful border.`,
+    thumbnailStyle: `High contrast, bold typography, YouTube click-through optimized.`,
     generatedAt: new Date().toISOString()
   };
 }
@@ -118,6 +170,7 @@ export const generateUgcContent = async (input: UgcStudioInput): Promise<UgcStud
     const schemaObj = {
       type: 'OBJECT',
       properties: {
+        oneLineSummary: { type: 'STRING' },
         dailySuggestedTopic: { type: 'STRING' },
         hook: { type: 'STRING' },
         problem: { type: 'STRING' },
@@ -127,12 +180,36 @@ export const generateUgcContent = async (input: UgcStudioInput): Promise<UgcStud
         captions: {
           type: 'OBJECT',
           properties: {
-            linkedin: { type: 'STRING' },
-            instagram: { type: 'STRING' },
-            facebook: { type: 'STRING' },
-            twitter: { type: 'STRING' }
+            linkedin: { 
+              type: 'OBJECT', 
+              properties: { 
+                hook: { type: 'STRING' }, context: { type: 'STRING' }, mainInsight: { type: 'STRING' }, 
+                keyTakeaways: { type: 'ARRAY', items: { type: 'STRING' } }, cta: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } 
+              },
+              required: ["hook", "context", "mainInsight", "keyTakeaways", "cta", "hashtags"]
+            },
+            instagram: { 
+              type: 'OBJECT', 
+              properties: { hook: { type: 'STRING' }, story: { type: 'STRING' }, lesson: { type: 'STRING' }, cta: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } },
+              required: ["hook", "story", "lesson", "cta", "hashtags"]
+            },
+            facebook: { 
+              type: 'OBJECT', 
+              properties: { opening: { type: 'STRING' }, problem: { type: 'STRING' }, advice: { type: 'STRING' }, example: { type: 'STRING' }, question: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } },
+              required: ["opening", "problem", "advice", "example", "question", "hashtags"]
+            },
+            twitter: { 
+              type: 'OBJECT', 
+              properties: { singleTweet: { type: 'STRING' }, threadVersion: { type: 'ARRAY', items: { type: 'STRING' } }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } },
+              required: ["singleTweet", "threadVersion", "hashtags"]
+            },
+            youtube: { 
+              type: 'OBJECT', 
+              properties: { seoTitle: { type: 'STRING' }, description: { type: 'STRING' }, whatYouWillLearn: { type: 'ARRAY', items: { type: 'STRING' } }, chapters: { type: 'ARRAY', items: { type: 'STRING' } }, cta: { type: 'STRING' }, keywords: { type: 'ARRAY', items: { type: 'STRING' } }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } },
+              required: ["seoTitle", "description", "whatYouWillLearn", "chapters", "cta", "keywords", "hashtags"]
+            }
           },
-          required: ["linkedin", "instagram", "facebook", "twitter"]
+          required: ["linkedin", "instagram", "facebook", "twitter", "youtube"]
         },
         seoHashtags: { type: 'ARRAY', items: { type: 'STRING' } },
         primaryKeywords: { type: 'ARRAY', items: { type: 'STRING' } },
@@ -196,12 +273,40 @@ export const generateUgcContent = async (input: UgcStudioInput): Promise<UgcStud
         },
         videoHook: { type: 'STRING' },
         voiceoverScript: { type: 'STRING' },
-        shotList: { type: 'ARRAY', items: { type: 'STRING' } },
+        videoScriptTimeline: {
+          type: 'ARRAY',
+          items: {
+            type: 'OBJECT',
+            properties: {
+              time: { type: 'STRING' },
+              action: { type: 'STRING' },
+              audio: { type: 'STRING' }
+            },
+            required: ["time", "action", "audio"]
+          }
+        },
+        shotList: {
+          type: 'ARRAY',
+          items: {
+            type: 'OBJECT',
+            properties: {
+              sceneNumber: { type: 'STRING' },
+              description: { type: 'STRING' },
+              camera: { type: 'STRING' },
+              movement: { type: 'STRING' },
+              voice: { type: 'STRING' },
+              sfx: { type: 'STRING' },
+              transition: { type: 'STRING' }
+            },
+            required: ["sceneNumber", "description", "camera", "movement", "voice", "sfx", "transition"]
+          }
+        },
         bRollIdeas: { type: 'ARRAY', items: { type: 'STRING' } },
         thumbnailPrompt: { type: 'STRING' },
+        thumbnailStyle: { type: 'STRING' },
         generatedAt: { type: 'STRING' }
       },
-      required: ["dailySuggestedTopic", "hook", "problem", "story", "solution", "callToAction", "captions", "seoHashtags", "primaryKeywords", "secondaryKeywords", "longTailKeywords", "videoPrompt", "videoHook", "voiceoverScript", "shotList", "bRollIdeas", "thumbnailPrompt", "generatedAt"]
+      required: ["oneLineSummary", "dailySuggestedTopic", "hook", "problem", "story", "solution", "callToAction", "captions", "seoHashtags", "primaryKeywords", "secondaryKeywords", "longTailKeywords", "videoPrompt", "videoHook", "voiceoverScript", "videoScriptTimeline", "shotList", "bRollIdeas", "thumbnailPrompt", "thumbnailStyle", "generatedAt"]
     };
 
     let promptText = "";
@@ -220,11 +325,13 @@ Platform: ${input.platform}
 Tone: ${input.tone}
 Goal: ${input.goal}
 
-Generate the complete UGC Studio Result for this exact product configuration. Ensure video duration is strictly 10 seconds.`;
+Generate the complete UGC Studio Result for this exact product configuration. Ensure video duration is strictly 10 seconds.
+
+[Random Seed for unique generation: ${Math.random().toString(36).substring(2, 9)}]`;
     }
 
     const response = await ai.models.generateContent({
-      model: 'gemini-3.6-flash',
+      model: 'gemini-3.5-flash',
       contents: promptText,
       config: {
         systemInstruction: SYSTEM_PROMPT,
@@ -235,7 +342,9 @@ Generate the complete UGC Studio Result for this exact product configuration. En
     });
 
     if (response.text) {
-      return JSON.parse(response.text) as UgcStudioResult;
+      const parsed = JSON.parse(response.text) as UgcStudioResult;
+      parsed.originalInput = input;
+      return parsed;
     }
     throw new Error("No text in response");
 

@@ -123,7 +123,7 @@ export default function App() {
       resultObj = await generateDesignContent(format);
     } catch (err) {
       console.warn('Backend API unavailable, using local high-performance engine:', err);
-      resultObj = generateLocalDesignMock(format);
+      resultObj = await generateLocalDesignMock(format);
     }
 
     const elapsed = Date.now() - startTime;

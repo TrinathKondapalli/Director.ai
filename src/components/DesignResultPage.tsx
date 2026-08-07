@@ -12,7 +12,7 @@ interface DesignResultPageProps {
 export const DesignResultPage: React.FC<DesignResultPageProps> = ({ result, onCreateAnother }) => {
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [activeCopiedKey, setActiveCopiedKey] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<'linkedin' | 'instagram' | 'facebook' | 'twitter'>('linkedin');
+  const [activeTab, setActiveTab] = useState<'linkedin' | 'instagram' | 'facebook' | 'twitter' | 'youtube'>('linkedin');
 
   const showToast = (message: string, key: string) => {
     setActiveCopiedKey(key);
@@ -72,22 +72,40 @@ export const DesignResultPage: React.FC<DesignResultPageProps> = ({ result, onCr
           </div>
         </SectionCard>
 
-        <SectionCard title="Platform Captions" icon={List} copyText={res.captions[activeTab]} copyLabel={`${activeTab} Caption`} copyKey="captions">
-          <div className="flex gap-2 mb-4 border-b border-[var(--color-border-primary)] pb-2 overflow-x-auto">
-            {(['linkedin', 'instagram', 'facebook', 'twitter'] as const).map(tab => (
+        <div className="bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] rounded-2xl shadow-xl overflow-hidden mt-6">
+          <div className="flex items-center justify-between p-4 border-b border-[var(--color-border-primary)] bg-[var(--color-bg-primary)]/50">
+            <h3 className="text-sm font-sora font-bold text-white flex items-center gap-2">
+              <List className="w-4 h-4 text-[var(--color-brand-violet)]" />
+              Platform Captions
+            </h3>
+            <button onClick={() => copyToClipboard(formatCaption(activeTab, res.captions[activeTab]) + '\n\n' + res.hashtags.join(' '), `${activeTab} Caption`, 'captions')} className="text-[var(--color-brand-violet)] hover:text-white flex items-center gap-1.5 text-xs font-mono transition-colors">
+              {activeCopiedKey === 'captions' ? <CheckCircle2 className="w-3.5 h-3.5 text-[#22C55E]" /> : <Copy className="w-3.5 h-3.5" />} Copy Caption
+            </button>
+          </div>
+          <div className="flex border-b border-[var(--color-border-primary)] overflow-x-auto custom-scrollbar">
+            {(['linkedin', 'instagram', 'facebook', 'twitter', 'youtube'] as const).map(tab => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-semibold capitalize transition-colors ${
-                  activeTab === tab ? 'bg-[var(--color-brand-violet)] text-white' : 'text-[#A1A1AA] hover:bg-[var(--color-border-primary)]'
+                className={`px-5 py-3.5 text-xs font-semibold capitalize transition-colors whitespace-nowrap ${
+                  activeTab === tab ? 'bg-[var(--color-brand-violet)]/10 text-white border-b-2 border-[var(--color-brand-violet)]' : 'text-[#A1A1AA] hover:bg-[var(--color-bg-primary)]'
                 }`}
               >
                 {tab}
               </button>
             ))}
           </div>
-          <div className="text-white whitespace-pre-wrap">{res.captions[activeTab]}</div>
-        </SectionCard>
+          <div className="p-6 md:p-8">
+            <p className="text-sm text-white whitespace-pre-wrap leading-relaxed mb-6 font-mono">{formatCaption(activeTab, res.captions[activeTab])}</p>
+            <div className="pt-6 border-t border-[var(--color-border-primary)]">
+              <div className="flex items-center justify-between mb-3">
+                <strong className="text-[10px] uppercase text-[#A1A1AA] tracking-widest">Hashtags</strong>
+                <span className="text-[10px] font-mono text-[#71717A]">{formatCaption(activeTab, res.captions[activeTab]).length} Chars</span>
+              </div>
+              <p className="text-xs font-mono text-[var(--color-brand-violet)] leading-relaxed">{res.hashtags.join(' ')}</p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="flex flex-col gap-6">
@@ -118,11 +136,11 @@ export const DesignResultPage: React.FC<DesignResultPageProps> = ({ result, onCr
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2">
           <SectionCard 
-            title="Carousel Overview" 
+            title="Carousel Concept" 
             icon={MessageSquare} 
-            copyText={`Title: ${res.coverTitle}\n\nWHY THIS MATTERS: ${res.whyThisMatters}\n\n${res.caption}\n\n${res.cta}`} 
-            copyLabel="Overview" 
-            copyKey="carousel-caption"
+            copyText={`Title: ${res.coverTitle}\n\nWHY THIS MATTERS: ${res.whyThisMatters}\n\n${res.cta}`} 
+            copyLabel="Concept" 
+            copyKey="carousel-concept"
           >
             <div className="space-y-4 text-[15px] leading-relaxed text-[#D4D4D8]">
               <div className="mb-2">
@@ -133,10 +151,44 @@ export const DesignResultPage: React.FC<DesignResultPageProps> = ({ result, onCr
                 <strong className="text-[var(--color-brand-lavender)] text-xs uppercase tracking-wider block mb-1">Why This Matters</strong>
                 <p className="text-white italic text-sm">{res.whyThisMatters}</p>
               </div>
-              <p>{res.caption}</p>
               <p className="font-semibold text-[var(--color-brand-lavender)] italic">{res.cta}</p>
             </div>
           </SectionCard>
+
+          <div className="bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] rounded-2xl shadow-xl overflow-hidden mt-6">
+            <div className="flex items-center justify-between p-4 border-b border-[var(--color-border-primary)] bg-[var(--color-bg-primary)]/50">
+              <h3 className="text-sm font-sora font-bold text-white flex items-center gap-2">
+                <List className="w-4 h-4 text-[var(--color-brand-violet)]" />
+                Platform Captions
+              </h3>
+              <button onClick={() => copyToClipboard(formatCaption(activeTab, res.captions[activeTab]) + '\n\n' + res.hashtags.join(' '), `${activeTab} Caption`, 'captions-carousel')} className="text-[var(--color-brand-violet)] hover:text-white flex items-center gap-1.5 text-xs font-mono transition-colors">
+                {activeCopiedKey === 'captions-carousel' ? <CheckCircle2 className="w-3.5 h-3.5 text-[#22C55E]" /> : <Copy className="w-3.5 h-3.5" />} Copy Caption
+              </button>
+            </div>
+            <div className="flex border-b border-[var(--color-border-primary)] overflow-x-auto custom-scrollbar">
+              {(['linkedin', 'instagram', 'facebook', 'twitter', 'youtube'] as const).map(tab => (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className={`px-5 py-3.5 text-xs font-semibold capitalize transition-colors whitespace-nowrap ${
+                    activeTab === tab ? 'bg-[var(--color-brand-violet)]/10 text-white border-b-2 border-[var(--color-brand-violet)]' : 'text-[#A1A1AA] hover:bg-[var(--color-bg-primary)]'
+                  }`}
+                >
+                  {tab}
+                </button>
+              ))}
+            </div>
+            <div className="p-6 md:p-8">
+              <p className="text-sm text-white whitespace-pre-wrap leading-relaxed mb-6 font-mono">{formatCaption(activeTab, res.captions[activeTab])}</p>
+              <div className="pt-6 border-t border-[var(--color-border-primary)]">
+                <div className="flex items-center justify-between mb-3">
+                  <strong className="text-[10px] uppercase text-[#A1A1AA] tracking-widest">Hashtags</strong>
+                  <span className="text-[10px] font-mono text-[#71717A]">{formatCaption(activeTab, res.captions[activeTab]).length} Chars</span>
+                </div>
+                <p className="text-xs font-mono text-[var(--color-brand-violet)] leading-relaxed">{res.hashtags.join(' ')}</p>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="flex flex-col gap-6">
@@ -194,6 +246,19 @@ export const DesignResultPage: React.FC<DesignResultPageProps> = ({ result, onCr
       </div>
     </div>
   );
+
+  const formatCaption = (platform: string, captionObj: any) => {
+    if (!captionObj) return '';
+    if (typeof captionObj === 'string') return captionObj;
+    switch (platform) {
+      case 'linkedin': return `${captionObj.hook}\n\n${captionObj.context}\n\n${captionObj.mainInsight}\n\n${(captionObj.keyTakeaways || []).map((t: string) => `• ${t}`).join('\n')}\n\n${captionObj.cta}`;
+      case 'instagram': return `${captionObj.hook}\n\n${captionObj.story}\n\n${captionObj.lesson}\n\n${captionObj.cta}`;
+      case 'facebook': return `${captionObj.opening}\n\n${captionObj.problem}\n\n${captionObj.advice}\n\n${captionObj.example}\n\n${captionObj.question}`;
+      case 'twitter': return `[ SINGLE TWEET ]\n${captionObj.singleTweet}\n\n------------------------\n\n[ THREAD VERSION ]\n${(captionObj.threadVersion || []).join('\n\n')}`;
+      case 'youtube': return `${captionObj.seoTitle}\n\n${captionObj.description}\n\nWhat You'll Learn:\n${(captionObj.whatYouWillLearn || []).map((t: string) => `• ${t}`).join('\n')}\n\nChapters:\n${(captionObj.chapters || []).join('\n')}\n\n${captionObj.cta}\n\nKeywords: ${(captionObj.keywords || []).join(', ')}`;
+      default: return '';
+    }
+  };
 
   return (
     <div className="min-h-[calc(100vh-4rem)] bg-[var(--color-bg-primary)] py-10 px-4 sm:px-6 relative overflow-hidden pb-24 flex justify-center selection:bg-[var(--color-brand-violet)]/30">

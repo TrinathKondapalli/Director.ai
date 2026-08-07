@@ -16,11 +16,13 @@ If Single Post: Generate Topic, Hook, Professional Caption, LinkedIn Version, In
 If Carousel: Generate Cover Title, Total Slides, Slide Heading, Slide Description, Slide CTA, Hashtags, SEO Keywords, AND for EVERY slide: Slide Content, ONE separate AI image prompt (background only).
 
 CAPTIONS REQUIREMENTS:
-Generate captions for LinkedIn, Instagram, Facebook, and Twitter/X. Each platform MUST have different writing styles.
-- LinkedIn: Professional, Educational, Industry insight, Thought leadership.
-- Instagram: Visual storytelling, Friendly, Short, Modern, Engaging.
-- Facebook: Conversational, Community driven, Easy reading.
-- Twitter/X: Short, Direct, Valuable, Memorable.
+Generate highly structured captions for LinkedIn, Instagram, Facebook, Twitter/X, and YouTube.
+Instead of a single string, you MUST return a structured object for each platform.
+- LinkedIn: { hook, context, mainInsight, keyTakeaways, cta, hashtags }
+- Instagram: { hook, story, lesson, cta, hashtags }
+- Facebook: { opening, problem, advice, example, question, hashtags }
+- Twitter/X: { singleTweet, threadVersion (array of strings), hashtags }
+- YouTube: { seoTitle, description, whatYouWillLearn, chapters, cta, keywords, hashtags }
 
 IMAGE PROMPT RULES:
 The AI must generate ONE editorial-quality AI image prompt. 
@@ -45,10 +47,47 @@ export const generateContentMock = async (format: 'single' | 'carousel'): Promis
       hook: "If your dark mode looks harsh and causes eye strain, you're probably making this one critical color mistake. 👇",
       professionalCaption: "Pure black (#000000) against pure white (#FFFFFF) creates a massive contrast ratio that actually over-stimulates the retina. Instead of absolute black, use a 'tinted dark'.",
       captions: {
-        linkedin: "Designers: Stop using pure black (#000000). It creates massive contrast that over-stimulates the retina. Using a tinted dark instead increases readability and feels instantly more premium. Industry leaders like Stripe and Linear use elevated grays. How are you handling dark mode in your current projects? #UIDesign #UX #DesignSystems",
-        instagram: "Are you making this rookie color mistake? 🛑 Stop using pure black! It causes eye strain and feels cheap. Try a deep, cool-toned gray instead for that premium feel. ✨ Check our stories for exact hex codes! 👇 #UIDesign #UXTips #Figma",
-        facebook: "We just audited a major app and found they were using pure black backgrounds. Switching to a tinted dark increased reading time by 12% across their entire community! What's your go-to dark mode color?",
-        twitter: "Pure black (#000000) is ruining your dark mode. Use #09090B instead. Better readability. Premium feel. Your users will thank you. 🌙 #UI #UX"
+        linkedin: {
+          hook: `Designers: Stop using pure black (#000000).`,
+          context: `It creates massive contrast that over-stimulates the retina.`,
+          mainInsight: `Using a tinted dark instead increases readability and feels instantly more premium. Industry leaders like Stripe and Linear use elevated grays.`,
+          keyTakeaways: ["Never use #000000", "Inject 2-5% brand color into a dark base", "Test readability"],
+          cta: `How are you handling dark mode in your current projects?`,
+          hashtags: ["#UIDesign", "#UX", "#DesignSystems"]
+        },
+        instagram: {
+          hook: `Are you making this rookie color mistake? 🛑 Stop using pure black!`,
+          story: `It causes eye strain and feels cheap. Try a deep, cool-toned gray instead for that premium feel. ✨`,
+          lesson: `Elevated grays increase readability and reduce contrast fatigue.`,
+          cta: `Check our stories for exact hex codes! 👇`,
+          hashtags: ["#UIDesign", "#UXTips", "#Figma"]
+        },
+        facebook: {
+          opening: `Hey designers!`,
+          problem: `We just audited a major app and found they were using pure black backgrounds.`,
+          advice: `Switching to a tinted dark increased reading time by 12% across their entire community!`,
+          example: `Try using #09090B instead of #000000.`,
+          question: `What's your go-to dark mode color?`,
+          hashtags: ["#UIDesign", "#DarkMode"]
+        },
+        twitter: {
+          singleTweet: `Pure black (#000000) is ruining your dark mode. Use #09090B instead. Better readability. Premium feel. Your users will thank you. 🌙`,
+          threadVersion: [
+            `Stop using pure black (#000000) in your UI designs. Here is why. 🧵`,
+            `1/ Extreme contrast causes eye fatigue on OLED screens.`,
+            `2/ It feels cheap. Premium brands use tinted darks instead.`
+          ],
+          hashtags: ["#UI", "#UX"]
+        },
+        youtube: {
+          seoTitle: `Stop Using Pure Black in UI Design (#000000)`,
+          description: `Learn why pure black causes eye strain and how to design premium dark mode interfaces.`,
+          whatYouWillLearn: ["Why pure black is bad", "How to pick dark mode colors", "Examples from top brands"],
+          chapters: ["0:00 Intro", "1:30 The Problem with #000000", "3:00 How to Fix It"],
+          cta: `Subscribe for more UI/UX tips!`,
+          keywords: ["dark mode", "ui design", "color theory"],
+          hashtags: ["#UIDesign", "#UXDesign"]
+        }
       },
       actionableTakeaways: [
         "Never use #000000 for backgrounds in dark mode.",
@@ -65,7 +104,49 @@ export const generateContentMock = async (format: 'single' | 'carousel'): Promis
       topicTitle: "The Psychology of Micro-Interactions in Product Design",
       coverTitle: "Why Your App Feels 'Cheap' (And How to Fix It)",
       whyThisMatters: "Without purposeful motion, digital products feel broken and robotic. Micro-interactions build immediate subconscious trust.",
-      caption: "Have you ever used an app that functioned perfectly, but just felt... cheap? 📱 The problem usually isn't the visual design. It's the lack of purposeful motion.",
+      captions: {
+        linkedin: {
+          hook: `Have you ever used an app that functioned perfectly, but just felt... cheap?`,
+          context: `The problem usually isn't the visual design. It's the lack of purposeful motion.`,
+          mainInsight: `Without purposeful motion, digital products feel broken and robotic. Micro-interactions build immediate subconscious trust.`,
+          keyTakeaways: ["Audit your app for missing visual feedback", "Use spring physics", "Motion equals emotion"],
+          cta: `What is your favorite app for micro-interactions?`,
+          hashtags: ["#ProductDesign", "#MicroInteractions", "#UXDesign"]
+        },
+        instagram: {
+          hook: `Why does your app feel cheap? 📱`,
+          story: `The problem usually isn't the visual design. It's the lack of purposeful motion.`,
+          lesson: `Micro-interactions build immediate subconscious trust.`,
+          cta: `Drop your favorite app in the comments! 👇`,
+          hashtags: ["#ProductDesign", "#MotionDesign", "#UIDesign"]
+        },
+        facebook: {
+          opening: `Hey community!`,
+          problem: `Have you ever used an app that functioned perfectly, but just felt... cheap?`,
+          advice: `The problem usually isn't the visual design. It's the lack of purposeful motion.`,
+          example: `Think about the heart animation when you like a post.`,
+          question: `What is your favorite app for micro-interactions?`,
+          hashtags: ["#UXDesign", "#AppDesign"]
+        },
+        twitter: {
+          singleTweet: `Have you ever used an app that functioned perfectly, but just felt... cheap? The problem usually isn't the visual design. It's the lack of purposeful motion.`,
+          threadVersion: [
+            `Why your app feels cheap (and how to fix it) 🧵`,
+            `1/ Visual design isn't everything. Motion is emotion.`,
+            `2/ Micro-interactions build immediate subconscious trust.`
+          ],
+          hashtags: ["#UXDesign", "#MotionDesign"]
+        },
+        youtube: {
+          seoTitle: `The Psychology of Micro-Interactions in App Design`,
+          description: `Learn how purposeful motion can instantly elevate the perceived value of your digital products.`,
+          whatYouWillLearn: ["What are micro-interactions?", "Spring physics vs linear", "Best practices"],
+          chapters: ["0:00 Intro", "1:45 The Cheap Feeling", "4:00 How to use motion"],
+          cta: `Subscribe for weekly product design breakdowns!`,
+          keywords: ["micro interactions", "motion design", "ux design"],
+          hashtags: ["#ProductDesign", "#UXDesign"]
+        }
+      },
       slides: [
         {
           heading: "The 'Cheap' Feeling",
@@ -110,12 +191,28 @@ export const generateContent = async (format: 'single' | 'carousel'): Promise<De
         captions: {
           type: 'OBJECT',
           properties: {
-            linkedin: { type: 'STRING' },
-            instagram: { type: 'STRING' },
-            facebook: { type: 'STRING' },
-            twitter: { type: 'STRING' }
+            linkedin: { 
+              type: 'OBJECT', properties: { hook: { type: 'STRING' }, context: { type: 'STRING' }, mainInsight: { type: 'STRING' }, keyTakeaways: { type: 'ARRAY', items: { type: 'STRING' } }, cta: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } },
+              required: ["hook", "context", "mainInsight", "keyTakeaways", "cta", "hashtags"]
+            },
+            instagram: { 
+              type: 'OBJECT', properties: { hook: { type: 'STRING' }, story: { type: 'STRING' }, lesson: { type: 'STRING' }, cta: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } },
+              required: ["hook", "story", "lesson", "cta", "hashtags"]
+            },
+            facebook: { 
+              type: 'OBJECT', properties: { opening: { type: 'STRING' }, problem: { type: 'STRING' }, advice: { type: 'STRING' }, example: { type: 'STRING' }, question: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } },
+              required: ["opening", "problem", "advice", "example", "question", "hashtags"]
+            },
+            twitter: { 
+              type: 'OBJECT', properties: { singleTweet: { type: 'STRING' }, threadVersion: { type: 'ARRAY', items: { type: 'STRING' } }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } },
+              required: ["singleTweet", "threadVersion", "hashtags"]
+            },
+            youtube: { 
+              type: 'OBJECT', properties: { seoTitle: { type: 'STRING' }, description: { type: 'STRING' }, whatYouWillLearn: { type: 'ARRAY', items: { type: 'STRING' } }, chapters: { type: 'ARRAY', items: { type: 'STRING' } }, cta: { type: 'STRING' }, keywords: { type: 'ARRAY', items: { type: 'STRING' } }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } },
+              required: ["seoTitle", "description", "whatYouWillLearn", "chapters", "cta", "keywords", "hashtags"]
+            }
           },
-          required: ["linkedin", "instagram", "facebook", "twitter"]
+          required: ["linkedin", "instagram", "facebook", "twitter", "youtube"]
         },
         actionableTakeaways: { type: 'ARRAY', items: { type: 'STRING' } },
         cta: { type: 'STRING' },
@@ -131,7 +228,17 @@ export const generateContent = async (format: 'single' | 'carousel'): Promise<De
         topicTitle: { type: 'STRING' },
         coverTitle: { type: 'STRING' },
         whyThisMatters: { type: 'STRING' },
-        caption: { type: 'STRING' },
+        captions: {
+          type: 'OBJECT',
+          properties: {
+            linkedin: { type: 'OBJECT', properties: { hook: { type: 'STRING' }, context: { type: 'STRING' }, mainInsight: { type: 'STRING' }, keyTakeaways: { type: 'ARRAY', items: { type: 'STRING' } }, cta: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } }, required: ["hook", "context", "mainInsight", "keyTakeaways", "cta", "hashtags"] },
+            instagram: { type: 'OBJECT', properties: { hook: { type: 'STRING' }, story: { type: 'STRING' }, lesson: { type: 'STRING' }, cta: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } }, required: ["hook", "story", "lesson", "cta", "hashtags"] },
+            facebook: { type: 'OBJECT', properties: { opening: { type: 'STRING' }, problem: { type: 'STRING' }, advice: { type: 'STRING' }, example: { type: 'STRING' }, question: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } }, required: ["opening", "problem", "advice", "example", "question", "hashtags"] },
+            twitter: { type: 'OBJECT', properties: { singleTweet: { type: 'STRING' }, threadVersion: { type: 'ARRAY', items: { type: 'STRING' } }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } }, required: ["singleTweet", "threadVersion", "hashtags"] },
+            youtube: { type: 'OBJECT', properties: { seoTitle: { type: 'STRING' }, description: { type: 'STRING' }, whatYouWillLearn: { type: 'ARRAY', items: { type: 'STRING' } }, chapters: { type: 'ARRAY', items: { type: 'STRING' } }, cta: { type: 'STRING' }, keywords: { type: 'ARRAY', items: { type: 'STRING' } }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } }, required: ["seoTitle", "description", "whatYouWillLearn", "chapters", "cta", "keywords", "hashtags"] }
+          },
+          required: ["linkedin", "instagram", "facebook", "twitter", "youtube"]
+        },
         slides: {
           type: 'ARRAY',
           items: {
@@ -149,7 +256,7 @@ export const generateContent = async (format: 'single' | 'carousel'): Promise<De
         hashtags: { type: 'ARRAY', items: { type: 'STRING' }, description: 'Generate exactly 20 hashtags' },
         keywords: { type: 'ARRAY', items: { type: 'STRING' } }
       },
-      required: ["format", "topicTitle", "coverTitle", "whyThisMatters", "caption", "slides", "actionableTakeaways", "cta", "hashtags", "keywords"]
+      required: ["format", "topicTitle", "coverTitle", "whyThisMatters", "captions", "slides", "actionableTakeaways", "cta", "hashtags", "keywords"]
     };
 
     const designTopics = [
@@ -172,7 +279,7 @@ Format requested: ${format.toUpperCase()}.
 [Random Seed to guarantee uniqueness: ${seed}]`;
 
     const response = await ai.models.generateContent({
-      model: 'gemini-3.6-flash',
+      model: 'gemini-3.5-flash',
       contents: prompt,
       config: {
         systemInstruction: SYSTEM_PROMPT,
