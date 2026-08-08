@@ -52,25 +52,49 @@ export const UgcResultPage: React.FC<UgcResultPageProps> = ({ result, onCreateAn
     copyMarkdown();
   };
 
+  const cleanText = (text?: string): string => {
+    if (!text) return '';
+    return text.replace(/[—–]/g, '-');
+  };
+
+  const formatHashtags = (tags?: string[]): string => {
+    if (!tags || !Array.isArray(tags)) return '';
+    return tags
+      .map(t => {
+        const clean = t.trim().replace(/[—–]/g, '-');
+        if (!clean) return '';
+        return clean.startsWith('#') ? clean : `#${clean}`;
+      })
+      .filter(Boolean)
+      .join(' ');
+  };
+
   const formatCaption = (platform: string, captionObj: any) => {
     if (!captionObj) return '';
-    if (typeof captionObj === 'string') return captionObj;
+    if (typeof captionObj === 'string') return cleanText(captionObj);
+    let resultText = '';
     
     switch (platform) {
       case 'linkedin':
-        return `${captionObj.hook}\n\n${captionObj.context}\n\n${captionObj.mainInsight}\n\n${(captionObj.keyTakeaways || []).map((t: string) => `• ${t}`).join('\n')}\n\n${captionObj.cta}`;
+        resultText = `${captionObj.hook || ''}\n\n${captionObj.context || ''}\n\n${captionObj.mainInsight || ''}\n\n${(captionObj.keyTakeaways || []).map((t: string) => `• ${t}`).join('\n')}\n\n${captionObj.cta || ''}`;
+        break;
       case 'instagram':
-        return `${captionObj.hook}\n\n${captionObj.story}\n\n${captionObj.lesson}\n\n${captionObj.cta}`;
+        resultText = `${captionObj.hook || ''}\n\n${captionObj.story || ''}\n\n${captionObj.lesson || ''}\n\n${captionObj.cta || ''}`;
+        break;
       case 'facebook':
-        return `${captionObj.opening}\n\n${captionObj.problem}\n\n${captionObj.advice}\n\n${captionObj.example}\n\n${captionObj.question}`;
+        resultText = `${captionObj.opening || ''}\n\n${captionObj.problem || ''}\n\n${captionObj.advice || ''}\n\n${captionObj.example || ''}\n\n${captionObj.question || ''}`;
+        break;
       case 'twitter':
         const threadStr = (captionObj.threadVersion || []).join('\n\n');
-        return `[ SINGLE TWEET ]\n${captionObj.singleTweet}\n\n------------------------\n\n[ THREAD VERSION ]\n${threadStr}`;
+        resultText = `[ SINGLE TWEET ]\n${captionObj.singleTweet || ''}\n\n------------------------\n\n[ THREAD VERSION ]\n${threadStr}`;
+        break;
       case 'youtube':
-        return `${captionObj.seoTitle}\n\n${captionObj.description}\n\nWhat You'll Learn:\n${(captionObj.whatYouWillLearn || []).map((t: string) => `• ${t}`).join('\n')}\n\nChapters:\n${(captionObj.chapters || []).join('\n')}\n\n${captionObj.cta}\n\nKeywords: ${(captionObj.keywords || []).join(', ')}`;
+        resultText = `${captionObj.seoTitle || ''}\n\n${captionObj.description || ''}\n\nWhat You'll Learn:\n${(captionObj.whatYouWillLearn || []).map((t: string) => `• ${t}`).join('\n')}\n\nChapters:\n${(captionObj.chapters || []).join('\n')}\n\n${captionObj.cta || ''}\n\nKeywords: ${(captionObj.keywords || []).join(', ')}`;
+        break;
       default:
-        return '';
+        resultText = '';
     }
+    return cleanText(resultText);
   };
 
   const compileMasterPrompt = (p: any) => {
@@ -225,13 +249,15 @@ export const UgcResultPage: React.FC<UgcResultPageProps> = ({ result, onCreateAn
               ))}
             </div>
             <div className="p-6 md:p-8">
-              <p className="text-sm text-white whitespace-pre-wrap leading-relaxed mb-6 font-mono">{formatCaption(activeTab, result.captions[activeTab])}</p>
+              <div className="max-h-[350px] overflow-y-auto pr-2 custom-scrollbar mb-6">
+                <p className="text-sm text-white whitespace-pre-wrap leading-relaxed font-mono">{formatCaption(activeTab, result.captions[activeTab])}</p>
+              </div>
               <div className="pt-6 border-t border-[var(--color-border-primary)]">
                 <div className="flex items-center justify-between mb-3">
                   <strong className="text-[10px] uppercase text-[#A1A1AA] tracking-widest">Hashtags</strong>
                   <span className="text-[10px] font-mono text-[#71717A]">{formatCaption(activeTab, result.captions[activeTab]).length} Chars</span>
                 </div>
-                <p className="text-xs font-mono text-[var(--color-brand-violet)] leading-relaxed">{result.seoHashtags.join(' ')}</p>
+                <p className="text-xs font-mono text-[var(--color-brand-violet)] leading-relaxed">{formatHashtags(result.seoHashtags)}</p>
               </div>
             </div>
           </div>

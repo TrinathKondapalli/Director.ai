@@ -1,5 +1,5 @@
 import { GoogleGenAI } from '@google/genai';
-import { DesignContentResult, DesignContentResultV2Single, DesignContentResultV2Carousel } from '../types';
+import { DesignContentResult, DesignContentResultV2Single, DesignContentResultV2Carousel, DesignTopic } from '../types';
 
 const SYSTEM_PROMPT = `You are DIRECTOR.AI's Design Intelligence Engine.
 You are a senior UX Researcher, Product Designer, Creative Director, Design Educator, and Industry Analyst with over 25 years of experience.

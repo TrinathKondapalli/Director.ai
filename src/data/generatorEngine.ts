@@ -1,5 +1,5 @@
 import { GoogleGenAI } from '@google/genai';
-import { UgcStudioInput, UgcStudioResult } from '../types';
+import { UgcStudioInput, UgcStudioResult, UgcTopic } from '../types';
 
 const SYSTEM_PROMPT = `You are DIRECTOR.AI's AI UGC Studio Director.
 Your purpose is to generate authentic User Generated Content (UGC) ad ideas that feel natural, trustworthy, and engaging rather than promotional.
@@ -462,15 +462,14 @@ export function generateLocalUgcMockFromTopic(topic: UgcTopic): UgcStudioResult 
       backgroundMusic: `Upbeat ambient lo-fi track`,
       soundEffects: `Subtle click and notification chime`,
       ambientSounds: `Quiet office ambience`,
-      audioMixing: `Voiceover boosted +3dB over ducked music track`,
       negativePrompt: `blurry, low resolution, unnatural face, glitch, cartoon, distorted fingers, watermark, logo overlay`
     },
     videoHook: topic.visualHookAngle,
     voiceoverScript: `If you're dealing with ${topic.corePainPoint}, stop scrolling. ${topic.solution}.`,
     videoScriptTimeline: [
-      { timestamp: "0:00 - 0:03", visual: topic.visualHookAngle, audio: `Stop scrolling if you struggle with ${topic.corePainPoint}.` },
-      { timestamp: "0:03 - 0:07", visual: `Demonstrating ${topic.solution} on laptop screen.`, audio: `${topic.brandName} completely fixes this in seconds.` },
-      { timestamp: "0:07 - 0:10", visual: `Happy user pointing to CTA link.`, audio: `Check out ${topic.brandName} right now!` }
+      { time: "0:00 - 0:03", action: topic.visualHookAngle, audio: `Stop scrolling if you struggle with ${topic.corePainPoint}.` },
+      { time: "0:03 - 0:07", action: `Demonstrating ${topic.solution} on laptop screen.`, audio: `${topic.brandName} completely fixes this in seconds.` },
+      { time: "0:07 - 0:10", action: `Happy user pointing to CTA link.`, audio: `Check out ${topic.brandName} right now!` }
     ],
     shotList: [
       { sceneNumber: "Scene 1", description: topic.visualHookAngle, camera: "35mm Eye-level", movement: "Quick push-in", voice: "Frustrated opening line", sfx: "Sigh sound", transition: "Jump cut" },

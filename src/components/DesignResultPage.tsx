@@ -23,9 +23,52 @@ export const DesignResultPage: React.FC<DesignResultPageProps> = ({ result, onCr
     }, 2500);
   };
 
+  const cleanText = (text?: string): string => {
+    if (!text) return '';
+    return text.replace(/[—–]/g, '-');
+  };
+
+  const formatHashtags = (tags?: string[]): string => {
+    if (!tags || !Array.isArray(tags)) return '';
+    return tags
+      .map(t => {
+        const clean = t.trim().replace(/[—–]/g, '-');
+        if (!clean) return '';
+        return clean.startsWith('#') ? clean : `#${clean}`;
+      })
+      .filter(Boolean)
+      .join(' ');
+  };
+
   const copyToClipboard = (text: string, label: string, key: string) => {
-    navigator.clipboard.writeText(text);
+    navigator.clipboard.writeText(cleanText(text) || '');
     showToast(`${label} copied successfully.`, key);
+  };
+
+  const formatCaption = (platform: string, captionObj: any) => {
+    if (!captionObj) return '';
+    if (typeof captionObj === 'string') return cleanText(captionObj);
+    let resultText = '';
+    switch (platform) {
+      case 'linkedin': 
+        resultText = `${captionObj.hook || ''}\n\n${captionObj.context || ''}\n\n${captionObj.mainInsight || ''}\n\n${(captionObj.keyTakeaways || []).map((t: string) => `• ${t}`).join('\n')}\n\n${captionObj.cta || ''}`;
+        break;
+      case 'instagram': 
+        resultText = `${captionObj.hook || ''}\n\n${captionObj.story || ''}\n\n${captionObj.lesson || ''}\n\n${captionObj.cta || ''}`;
+        break;
+      case 'facebook': 
+        resultText = `${captionObj.opening || ''}\n\n${captionObj.problem || ''}\n\n${captionObj.advice || ''}\n\n${captionObj.example || ''}\n\n${captionObj.question || ''}`;
+        break;
+      case 'twitter': 
+        resultText = `[ SINGLE TWEET ]\n${captionObj.singleTweet || ''}\n\n------------------------\n\n[ THREAD VERSION ]\n${(captionObj.threadVersion || []).join('\n\n')}`;
+        break;
+      case 'youtube': 
+        resultText = `${captionObj.seoTitle || ''}\n\n${captionObj.description || ''}\n\nWhat You'll Learn:\n${(captionObj.whatYouWillLearn || []).map((t: string) => `• ${t}`).join('\n')}\n\nChapters:\n${(captionObj.chapters || []).join('\n')}\n\n${captionObj.cta || ''}\n\nKeywords: ${(captionObj.keywords || []).join(', ')}`;
+        break;
+      default: 
+        resultText = '';
+    }
+    return cleanText(resultText);
   };
 
   const SectionCard = ({ title, icon: Icon, children, copyText, copyLabel, copyKey }: any) => (
@@ -38,7 +81,7 @@ export const DesignResultPage: React.FC<DesignResultPageProps> = ({ result, onCr
         {copyText && (
           <button
             onClick={() => copyToClipboard(copyText, copyLabel, copyKey)}
-            className="p-2 bg-[var(--color-bg-surface)] hover:bg-[var(--color-border-primary)] border border-[var(--color-border-primary)] rounded-lg text-[#A1A1AA] hover:text-white transition-colors"
+            className="p-2 bg-[var(--color-bg-surface)] hover:bg-[var(--color-border-primary)] border border-[var(--color-border-primary)] rounded-lg text-[#A1A1AA] hover:text-white transition-colors cursor-pointer"
             title={`Copy ${copyLabel}`}
           >
             {activeCopiedKey === copyKey ? <CheckCircle2 className="w-4 h-4 text-[#22C55E]" /> : <Copy className="w-4 h-4" />}
@@ -57,18 +100,18 @@ export const DesignResultPage: React.FC<DesignResultPageProps> = ({ result, onCr
         <SectionCard 
           title="Educational Content" 
           icon={MessageSquare} 
-          copyText={`WHY THIS MATTERS: ${res.whyThisMatters}\n\n${res.hook}\n\n${res.professionalCaption}\n\n${res.cta}`} 
+          copyText={`WHY THIS MATTERS: ${res.whyThisMatters || ''}\n\n${res.hook || ''}\n\n${res.professionalCaption || ''}\n\n${res.cta || ''}`} 
           copyLabel="Content" 
           copyKey="post"
         >
           <div className="space-y-4 text-[15px] leading-relaxed text-[#D4D4D8]">
             <div className="bg-[var(--color-brand-violet)]/10 border border-[var(--color-brand-violet)]/20 rounded-lg p-3">
               <strong className="text-[var(--color-brand-lavender)] text-xs uppercase tracking-wider block mb-1">Why This Matters</strong>
-              <p className="text-white italic text-sm">{res.whyThisMatters}</p>
+              <p className="text-white italic text-sm">{cleanText(res.whyThisMatters)}</p>
             </div>
-            <p className="font-semibold text-white text-lg">{res.hook}</p>
-            <p>{res.professionalCaption}</p>
-            <p className="font-semibold text-[var(--color-brand-lavender)] italic">{res.cta}</p>
+            <p className="font-semibold text-white text-lg">{cleanText(res.hook)}</p>
+            <p>{cleanText(res.professionalCaption)}</p>
+            <p className="font-semibold text-[var(--color-brand-lavender)] italic">{cleanText(res.cta)}</p>
           </div>
         </SectionCard>
 
@@ -78,7 +121,7 @@ export const DesignResultPage: React.FC<DesignResultPageProps> = ({ result, onCr
               <List className="w-4 h-4 text-[var(--color-brand-violet)]" />
               Platform Captions
             </h3>
-            <button onClick={() => copyToClipboard(formatCaption(activeTab, res.captions[activeTab]) + '\n\n' + res.hashtags.join(' '), `${activeTab} Caption`, 'captions')} className="text-[var(--color-brand-violet)] hover:text-white flex items-center gap-1.5 text-xs font-mono transition-colors">
+            <button onClick={() => copyToClipboard(formatCaption(activeTab, res.captions?.[activeTab]) + '\n\n' + formatHashtags(res.hashtags), `${activeTab} Caption`, 'captions')} className="text-[var(--color-brand-violet)] hover:text-white flex items-center gap-1.5 text-xs font-mono transition-colors cursor-pointer">
               {activeCopiedKey === 'captions' ? <CheckCircle2 className="w-3.5 h-3.5 text-[#22C55E]" /> : <Copy className="w-3.5 h-3.5" />} Copy Caption
             </button>
           </div>
@@ -87,7 +130,7 @@ export const DesignResultPage: React.FC<DesignResultPageProps> = ({ result, onCr
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`px-5 py-3.5 text-xs font-semibold capitalize transition-colors whitespace-nowrap ${
+                className={`px-5 py-3.5 text-xs font-semibold capitalize transition-colors whitespace-nowrap cursor-pointer ${
                   activeTab === tab ? 'bg-[var(--color-brand-violet)]/10 text-white border-b-2 border-[var(--color-brand-violet)]' : 'text-[#A1A1AA] hover:bg-[var(--color-bg-primary)]'
                 }`}
               >
@@ -96,35 +139,37 @@ export const DesignResultPage: React.FC<DesignResultPageProps> = ({ result, onCr
             ))}
           </div>
           <div className="p-6 md:p-8">
-            <p className="text-sm text-white whitespace-pre-wrap leading-relaxed mb-6 font-mono">{formatCaption(activeTab, res.captions[activeTab])}</p>
+            <div className="max-h-[350px] overflow-y-auto pr-2 custom-scrollbar mb-6">
+              <p className="text-sm text-white whitespace-pre-wrap leading-relaxed font-mono">{formatCaption(activeTab, res.captions?.[activeTab])}</p>
+            </div>
             <div className="pt-6 border-t border-[var(--color-border-primary)]">
               <div className="flex items-center justify-between mb-3">
                 <strong className="text-[10px] uppercase text-[#A1A1AA] tracking-widest">Hashtags</strong>
-                <span className="text-[10px] font-mono text-[#71717A]">{formatCaption(activeTab, res.captions[activeTab]).length} Chars</span>
+                <span className="text-[10px] font-mono text-[#71717A]">{formatCaption(activeTab, res.captions?.[activeTab]).length} Chars</span>
               </div>
-              <p className="text-xs font-mono text-[var(--color-brand-violet)] leading-relaxed">{res.hashtags.join(' ')}</p>
+              <p className="text-xs font-mono text-[var(--color-brand-violet)] leading-relaxed">{formatHashtags(res.hashtags)}</p>
             </div>
           </div>
         </div>
       </div>
 
       <div className="flex flex-col gap-6">
-        <SectionCard title="AI Image Prompt" icon={ImageIcon} copyText={res.imagePrompt} copyLabel="Prompt" copyKey="prompt">
+        <SectionCard title="AI Image Prompt" icon={ImageIcon} copyText={cleanText(res.imagePrompt)} copyLabel="Prompt" copyKey="prompt">
           <div className="p-4 bg-[var(--color-bg-primary)] border border-[var(--color-border-primary)] rounded-xl font-mono text-[12px] text-[var(--color-brand-violet)] leading-relaxed">
-            {res.imagePrompt}
+            {cleanText(res.imagePrompt)}
           </div>
         </SectionCard>
 
-        <SectionCard title="SEO & Tags" icon={Hash} copyText={res.hashtags.join(' ')} copyLabel="Tags" copyKey="tags">
+        <SectionCard title="SEO & Tags" icon={Hash} copyText={formatHashtags(res.hashtags)} copyLabel="Tags" copyKey="tags">
           <strong className="text-white text-xs uppercase tracking-wider block mb-2">Keywords</strong>
           <div className="flex flex-wrap gap-2 mb-6">
-            {res.keywords.map((k, i) => (
-              <span key={i} className="px-2.5 py-1 bg-[var(--color-bg-primary)] border border-[var(--color-border-primary)] rounded-md text-[11px] font-mono text-[#A1A1AA]">{k}</span>
+            {(res.keywords || []).map((k, i) => (
+              <span key={i} className="px-2.5 py-1 bg-[var(--color-bg-primary)] border border-[var(--color-border-primary)] rounded-md text-[11px] font-mono text-[#A1A1AA]">{cleanText(k)}</span>
             ))}
           </div>
           <strong className="text-white text-xs uppercase tracking-wider block mb-2">Hashtags</strong>
           <div className="font-mono text-[12px] text-[var(--color-brand-magenta)]">
-            {res.hashtags.join(' ')}
+            {formatHashtags(res.hashtags)}
           </div>
         </SectionCard>
       </div>
@@ -138,20 +183,20 @@ export const DesignResultPage: React.FC<DesignResultPageProps> = ({ result, onCr
           <SectionCard 
             title="Carousel Concept" 
             icon={MessageSquare} 
-            copyText={`Title: ${res.coverTitle}\n\nWHY THIS MATTERS: ${res.whyThisMatters}\n\n${res.cta}`} 
+            copyText={`Title: ${res.coverTitle || ''}\n\nWHY THIS MATTERS: ${res.whyThisMatters || ''}\n\n${res.cta || ''}`} 
             copyLabel="Concept" 
             copyKey="carousel-concept"
           >
             <div className="space-y-4 text-[15px] leading-relaxed text-[#D4D4D8]">
               <div className="mb-2">
                 <strong className="text-white text-xs font-mono uppercase tracking-wider">Slide 1 (Cover Title)</strong>
-                <p className="text-2xl font-bold text-white mt-1">{res.coverTitle}</p>
+                <p className="text-2xl font-bold text-white mt-1">{cleanText(res.coverTitle)}</p>
               </div>
               <div className="bg-[var(--color-brand-violet)]/10 border border-[var(--color-brand-violet)]/20 rounded-lg p-3">
                 <strong className="text-[var(--color-brand-lavender)] text-xs uppercase tracking-wider block mb-1">Why This Matters</strong>
-                <p className="text-white italic text-sm">{res.whyThisMatters}</p>
+                <p className="text-white italic text-sm">{cleanText(res.whyThisMatters)}</p>
               </div>
-              <p className="font-semibold text-[var(--color-brand-lavender)] italic">{res.cta}</p>
+              <p className="font-semibold text-[var(--color-brand-lavender)] italic">{cleanText(res.cta)}</p>
             </div>
           </SectionCard>
 
@@ -161,7 +206,7 @@ export const DesignResultPage: React.FC<DesignResultPageProps> = ({ result, onCr
                 <List className="w-4 h-4 text-[var(--color-brand-violet)]" />
                 Platform Captions
               </h3>
-              <button onClick={() => copyToClipboard(formatCaption(activeTab, res.captions[activeTab]) + '\n\n' + res.hashtags.join(' '), `${activeTab} Caption`, 'captions-carousel')} className="text-[var(--color-brand-violet)] hover:text-white flex items-center gap-1.5 text-xs font-mono transition-colors">
+              <button onClick={() => copyToClipboard(formatCaption(activeTab, res.captions?.[activeTab]) + '\n\n' + formatHashtags(res.hashtags), `${activeTab} Caption`, 'captions-carousel')} className="text-[var(--color-brand-violet)] hover:text-white flex items-center gap-1.5 text-xs font-mono transition-colors cursor-pointer">
                 {activeCopiedKey === 'captions-carousel' ? <CheckCircle2 className="w-3.5 h-3.5 text-[#22C55E]" /> : <Copy className="w-3.5 h-3.5" />} Copy Caption
               </button>
             </div>
@@ -170,7 +215,7 @@ export const DesignResultPage: React.FC<DesignResultPageProps> = ({ result, onCr
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`px-5 py-3.5 text-xs font-semibold capitalize transition-colors whitespace-nowrap ${
+                  className={`px-5 py-3.5 text-xs font-semibold capitalize transition-colors whitespace-nowrap cursor-pointer ${
                     activeTab === tab ? 'bg-[var(--color-brand-violet)]/10 text-white border-b-2 border-[var(--color-brand-violet)]' : 'text-[#A1A1AA] hover:bg-[var(--color-bg-primary)]'
                   }`}
                 >
@@ -179,29 +224,31 @@ export const DesignResultPage: React.FC<DesignResultPageProps> = ({ result, onCr
               ))}
             </div>
             <div className="p-6 md:p-8">
-              <p className="text-sm text-white whitespace-pre-wrap leading-relaxed mb-6 font-mono">{formatCaption(activeTab, res.captions[activeTab])}</p>
+              <div className="max-h-[350px] overflow-y-auto pr-2 custom-scrollbar mb-6">
+                <p className="text-sm text-white whitespace-pre-wrap leading-relaxed font-mono">{formatCaption(activeTab, res.captions?.[activeTab])}</p>
+              </div>
               <div className="pt-6 border-t border-[var(--color-border-primary)]">
                 <div className="flex items-center justify-between mb-3">
                   <strong className="text-[10px] uppercase text-[#A1A1AA] tracking-widest">Hashtags</strong>
-                  <span className="text-[10px] font-mono text-[#71717A]">{formatCaption(activeTab, res.captions[activeTab]).length} Chars</span>
+                  <span className="text-[10px] font-mono text-[#71717A]">{formatCaption(activeTab, res.captions?.[activeTab]).length} Chars</span>
                 </div>
-                <p className="text-xs font-mono text-[var(--color-brand-violet)] leading-relaxed">{res.hashtags.join(' ')}</p>
+                <p className="text-xs font-mono text-[var(--color-brand-violet)] leading-relaxed">{formatHashtags(res.hashtags)}</p>
               </div>
             </div>
           </div>
         </div>
 
         <div className="flex flex-col gap-6">
-          <SectionCard title="SEO & Tags" icon={Hash} copyText={res.hashtags.join(' ')} copyLabel="Tags" copyKey="tags">
+          <SectionCard title="SEO & Tags" icon={Hash} copyText={formatHashtags(res.hashtags)} copyLabel="Tags" copyKey="tags">
             <strong className="text-white text-xs uppercase tracking-wider block mb-2">Keywords</strong>
             <div className="flex flex-wrap gap-2 mb-6">
-              {res.keywords.map((k, i) => (
-                <span key={i} className="px-2.5 py-1 bg-[var(--color-bg-primary)] border border-[var(--color-border-primary)] rounded-md text-[11px] font-mono text-[#A1A1AA]">{k}</span>
+              {(res.keywords || []).map((k, i) => (
+                <span key={i} className="px-2.5 py-1 bg-[var(--color-bg-primary)] border border-[var(--color-border-primary)] rounded-md text-[11px] font-mono text-[#A1A1AA]">{cleanText(k)}</span>
               ))}
             </div>
             <strong className="text-white text-xs uppercase tracking-wider block mb-2">Hashtags</strong>
             <div className="font-mono text-[12px] text-[var(--color-brand-magenta)]">
-              {res.hashtags.join(' ')}
+              {formatHashtags(res.hashtags)}
             </div>
           </SectionCard>
         </div>
@@ -212,16 +259,16 @@ export const DesignResultPage: React.FC<DesignResultPageProps> = ({ result, onCr
           <Target className="w-5 h-5 text-[var(--color-brand-violet)]" />
           Carousel Slides
         </h3>
-        {res.slides.map((slide, index) => (
+        {(res.slides || []).map((slide, index) => (
           <div key={index} className="bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] rounded-2xl shadow-lg p-6 flex flex-col lg:flex-row gap-6 relative group">
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-8 h-8 rounded-lg bg-[var(--color-brand-violet)]/15 border border-[var(--color-brand-violet)]/30 text-[var(--color-brand-violet)] font-bold flex items-center justify-center text-sm font-mono shrink-0">
                   {index + 2}
                 </div>
-                <h4 className="font-sora font-bold text-lg text-white">{slide.heading}</h4>
+                <h4 className="font-sora font-bold text-lg text-white">{cleanText(slide.heading)}</h4>
               </div>
-              <p className="text-[#D4D4D8] leading-relaxed ml-11">{slide.description}</p>
+              <p className="text-[#D4D4D8] leading-relaxed ml-11">{cleanText(slide.description)}</p>
             </div>
             
             <div className="flex-1 bg-[var(--color-bg-primary)] rounded-xl p-5 border border-[var(--color-border-primary)] relative">
@@ -232,13 +279,13 @@ export const DesignResultPage: React.FC<DesignResultPageProps> = ({ result, onCr
                 </strong>
                 <button
                   onClick={() => copyToClipboard(slide.imagePrompt, `Slide ${index + 2} Prompt`, `prompt-${index}`)}
-                  className="text-[#A1A1AA] hover:text-white transition-colors"
+                  className="text-[#A1A1AA] hover:text-white transition-colors cursor-pointer"
                 >
                   {activeCopiedKey === `prompt-${index}` ? <CheckCircle2 className="w-4 h-4 text-[#22C55E]" /> : <Copy className="w-4 h-4" />}
                 </button>
               </div>
               <div className="font-mono text-[12px] text-[var(--color-brand-violet)] leading-relaxed">
-                {slide.imagePrompt}
+                {cleanText(slide.imagePrompt)}
               </div>
             </div>
           </div>
@@ -247,18 +294,13 @@ export const DesignResultPage: React.FC<DesignResultPageProps> = ({ result, onCr
     </div>
   );
 
-  const formatCaption = (platform: string, captionObj: any) => {
-    if (!captionObj) return '';
-    if (typeof captionObj === 'string') return captionObj;
-    switch (platform) {
-      case 'linkedin': return `${captionObj.hook}\n\n${captionObj.context}\n\n${captionObj.mainInsight}\n\n${(captionObj.keyTakeaways || []).map((t: string) => `• ${t}`).join('\n')}\n\n${captionObj.cta}`;
-      case 'instagram': return `${captionObj.hook}\n\n${captionObj.story}\n\n${captionObj.lesson}\n\n${captionObj.cta}`;
-      case 'facebook': return `${captionObj.opening}\n\n${captionObj.problem}\n\n${captionObj.advice}\n\n${captionObj.example}\n\n${captionObj.question}`;
-      case 'twitter': return `[ SINGLE TWEET ]\n${captionObj.singleTweet}\n\n------------------------\n\n[ THREAD VERSION ]\n${(captionObj.threadVersion || []).join('\n\n')}`;
-      case 'youtube': return `${captionObj.seoTitle}\n\n${captionObj.description}\n\nWhat You'll Learn:\n${(captionObj.whatYouWillLearn || []).map((t: string) => `• ${t}`).join('\n')}\n\nChapters:\n${(captionObj.chapters || []).join('\n')}\n\n${captionObj.cta}\n\nKeywords: ${(captionObj.keywords || []).join(', ')}`;
-      default: return '';
-    }
-  };
+  if (!result) {
+    return (
+      <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center p-6 text-center">
+        <p className="text-[#A1A1AA]">No result available.</p>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-[calc(100vh-4rem)] bg-[var(--color-bg-primary)] py-10 px-4 sm:px-6 relative overflow-hidden pb-24 flex justify-center selection:bg-[var(--color-brand-violet)]/30">
@@ -288,20 +330,20 @@ export const DesignResultPage: React.FC<DesignResultPageProps> = ({ result, onCr
               </span>
             </div>
             <h1 className="text-2xl sm:text-4xl font-sora font-extrabold text-[#FAFAFA] tracking-tight leading-snug">
-              {result.topicTitle}
+              {cleanText(result.topicTitle || (result as any).coverTitle || 'Design Insight')}
             </h1>
           </div>
           <div className="flex items-center gap-3">
             <button
               onClick={onCreateAnother}
-              className="px-6 py-2.5 bg-[var(--color-bg-surface)] hover:bg-[var(--color-border-primary)] border border-[var(--color-border-primary)] text-white text-sm font-semibold rounded-xl transition-all shadow-sm"
+              className="px-6 py-2.5 bg-[var(--color-bg-surface)] hover:bg-[var(--color-border-primary)] border border-[var(--color-border-primary)] text-white text-sm font-semibold rounded-xl transition-all shadow-sm cursor-pointer"
             >
               New Content
             </button>
           </div>
         </div>
 
-        {result.format === 'single' ? renderSinglePost(result) : renderCarousel(result)}
+        {result.format === 'single' ? renderSinglePost(result as DesignContentResultV2Single) : renderCarousel(result as DesignContentResultV2Carousel)}
       </div>
     </div>
   );

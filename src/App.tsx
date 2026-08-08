@@ -148,7 +148,7 @@ export default function App() {
       resultObj = await generateUgcFromTopic(topic);
     } catch (err) {
       console.warn('Backend API unavailable, using local topic engine:', err);
-      resultObj = generateUgcFromTopic(topic);
+      resultObj = await generateUgcFromTopic(topic);
     }
 
     const elapsed = Date.now() - startTime;
@@ -187,6 +187,8 @@ export default function App() {
     setShowLoadingAnimation(false);
     navigateTo('/design-result');
   };
+
+  const handleLoadingComplete = () => {};
 
   const handleCreateAnotherUgc = () => {
     setActiveResult(null);
