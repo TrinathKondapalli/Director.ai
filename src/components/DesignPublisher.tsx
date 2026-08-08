@@ -12,6 +12,7 @@ interface DesignPublisherProps {
 
 export const DesignPublisher: React.FC<DesignPublisherProps> = ({ onGenerate, onGenerateTopic, isGenerating }) => {
   const {
+    completedDesignIds,
     allDesignTopics,
     completedDesignCount,
     totalDesignCount,
@@ -24,7 +25,7 @@ export const DesignPublisher: React.FC<DesignPublisherProps> = ({ onGenerate, on
   const [selectedTopicIndex, setSelectedTopicIndex] = useState<number>(0);
   const [isHovered, setIsHovered] = useState<string | null>(null);
 
-  const currentTopic: DesignTopic | undefined = uncompletedDesignTopics[selectedTopicIndex % Math.max(1, uncompletedDesignTopics.length)];
+  const currentTopic: DesignTopic | undefined = allDesignTopics[selectedTopicIndex % Math.max(1, allDesignTopics.length)];
 
   const handleGenerateTopicFormat = (format: 'single' | 'carousel') => {
     if (!currentTopic) return;
@@ -33,8 +34,8 @@ export const DesignPublisher: React.FC<DesignPublisherProps> = ({ onGenerate, on
   };
 
   const handleNextTopic = () => {
-    if (uncompletedDesignTopics.length > 0) {
-      setSelectedTopicIndex(prev => (prev + 1) % uncompletedDesignTopics.length);
+    if (allDesignTopics.length > 0) {
+      setSelectedTopicIndex(prev => (prev + 1) % allDesignTopics.length);
     }
   };
 
@@ -118,7 +119,7 @@ export const DesignPublisher: React.FC<DesignPublisherProps> = ({ onGenerate, on
 
           {currentTopic ? (
             <div className="bg-[var(--color-bg-surface)] border border-[var(--color-brand-violet)]/30 rounded-2xl p-6 space-y-5 relative">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-[var(--color-border-primary)]/50 pb-4">
                 <div className="flex items-center gap-2">
                   <span className="px-3 py-1 bg-[var(--color-brand-violet)]/20 text-[var(--color-brand-violet)] font-mono text-xs font-bold rounded-lg border border-[var(--color-brand-violet)]/30">
                     {currentTopic.id}
@@ -126,10 +127,30 @@ export const DesignPublisher: React.FC<DesignPublisherProps> = ({ onGenerate, on
                   <span className="px-2.5 py-1 bg-[var(--color-bg-primary)] text-[#A1A1AA] font-mono text-[10px] rounded border border-[var(--color-border-primary)] uppercase">
                     {currentTopic.category}
                   </span>
+                  {completedDesignIds.includes(currentTopic.id) && (
+                    <span className="px-2 py-0.5 bg-[#22C55E]/15 text-[#22C55E] font-mono text-[10px] font-bold rounded border border-[#22C55E]/30 flex items-center gap-1">
+                      <CheckCircle2 className="w-3 h-3" /> Completed
+                    </span>
+                  )}
                 </div>
-                <span className="text-xs text-[#A1A1AA] font-mono">
-                  Topic {selectedTopicIndex + 1} of {uncompletedDesignTopics.length} remaining
-                </span>
+
+                <div className="flex items-center gap-2 w-full sm:w-auto">
+                  <label className="text-[11px] font-mono text-[#A1A1AA] uppercase tracking-wider shrink-0">Jump To Principle:</label>
+                  <select
+                    value={selectedTopicIndex}
+                    onChange={(e) => setSelectedTopicIndex(Number(e.target.value))}
+                    className="bg-[var(--color-bg-primary)] border border-[var(--color-border-primary)] hover:border-[var(--color-brand-violet)] text-[#FAFAFA] text-xs font-mono rounded-xl px-3 py-1.5 focus:outline-none focus:border-[var(--color-brand-violet)] transition-colors cursor-pointer w-full sm:w-[280px] truncate"
+                  >
+                    {allDesignTopics.map((t, idx) => {
+                      const isDone = completedDesignIds.includes(t.id);
+                      return (
+                        <option key={t.id} value={idx} className="bg-[#09090B] text-white">
+                          {isDone ? '✓ ' : ''}{t.id}: {t.principleName} ({t.category})
+                        </option>
+                      );
+                    })}
+                  </select>
+                </div>
               </div>
 
               <div>

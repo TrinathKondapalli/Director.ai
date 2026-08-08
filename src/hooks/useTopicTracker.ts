@@ -64,6 +64,8 @@ export function useTopicTracker() {
   };
 
   return {
+    completedUgcIds,
+    completedDesignIds,
     allUgcTopics,
     allDesignTopics,
     completedUgcCount: completedUgcIds.length,

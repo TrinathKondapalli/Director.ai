@@ -13,6 +13,7 @@ interface UgcStudioProps {
 
 export const UgcStudio: React.FC<UgcStudioProps> = ({ onGenerate, onGenerateTopic, isGenerating, onNavigate }) => {
   const {
+    completedUgcIds,
     allUgcTopics,
     completedUgcCount,
     totalUgcCount,
@@ -24,7 +25,7 @@ export const UgcStudio: React.FC<UgcStudioProps> = ({ onGenerate, onGenerateTopi
   const [mode, setMode] = useState<'dataset' | 'custom'>('dataset');
   const [selectedTopicIndex, setSelectedTopicIndex] = useState<number>(0);
 
-  const currentTopic: UgcTopic | undefined = uncompletedUgcTopics[selectedTopicIndex % Math.max(1, uncompletedUgcTopics.length)];
+  const currentTopic: UgcTopic | undefined = allUgcTopics[selectedTopicIndex % Math.max(1, allUgcTopics.length)];
 
   const [formData, setFormData] = useState<Omit<UgcStudioInput, 'isRandom'>>({
     industry: '',
@@ -55,8 +56,8 @@ export const UgcStudio: React.FC<UgcStudioProps> = ({ onGenerate, onGenerateTopi
   };
 
   const handleNextTopic = () => {
-    if (uncompletedUgcTopics.length > 0) {
-      setSelectedTopicIndex(prev => (prev + 1) % uncompletedUgcTopics.length);
+    if (allUgcTopics.length > 0) {
+      setSelectedTopicIndex(prev => (prev + 1) % allUgcTopics.length);
     }
   };
 
@@ -154,13 +155,35 @@ export const UgcStudio: React.FC<UgcStudioProps> = ({ onGenerate, onGenerateTopi
 
           {currentTopic ? (
             <div className="bg-[var(--color-bg-surface)] border border-[var(--color-brand-violet)]/30 rounded-2xl p-6 space-y-5 relative">
-              <div className="flex items-center justify-between">
-                <span className="px-3 py-1 bg-[var(--color-brand-violet)]/20 text-[var(--color-brand-violet)] font-mono text-xs font-bold rounded-lg border border-[var(--color-brand-violet)]/30">
-                  {currentTopic.id}
-                </span>
-                <span className="text-xs text-[#A1A1AA] font-mono">
-                  Topic {selectedTopicIndex + 1} of {uncompletedUgcTopics.length} remaining
-                </span>
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-[var(--color-border-primary)]/50 pb-4">
+                <div className="flex items-center gap-2">
+                  <span className="px-3 py-1 bg-[var(--color-brand-violet)]/20 text-[var(--color-brand-violet)] font-mono text-xs font-bold rounded-lg border border-[var(--color-brand-violet)]/30">
+                    {currentTopic.id}
+                  </span>
+                  {completedUgcIds.includes(currentTopic.id) && (
+                    <span className="px-2 py-0.5 bg-[#22C55E]/15 text-[#22C55E] font-mono text-[10px] font-bold rounded border border-[#22C55E]/30 flex items-center gap-1">
+                      <CheckCircle2 className="w-3 h-3" /> Completed
+                    </span>
+                  )}
+                </div>
+
+                <div className="flex items-center gap-2 w-full sm:w-auto">
+                  <label className="text-[11px] font-mono text-[#A1A1AA] uppercase tracking-wider shrink-0">Jump To Concept:</label>
+                  <select
+                    value={selectedTopicIndex}
+                    onChange={(e) => setSelectedTopicIndex(Number(e.target.value))}
+                    className="bg-[var(--color-bg-primary)] border border-[var(--color-border-primary)] hover:border-[var(--color-brand-violet)] text-[#FAFAFA] text-xs font-mono rounded-xl px-3 py-1.5 focus:outline-none focus:border-[var(--color-brand-violet)] transition-colors cursor-pointer w-full sm:w-[280px] truncate"
+                  >
+                    {allUgcTopics.map((t, idx) => {
+                      const isDone = completedUgcIds.includes(t.id);
+                      return (
+                        <option key={t.id} value={idx} className="bg-[#09090B] text-white">
+                          {isDone ? '✓ ' : ''}{t.id}: {t.brandName} ({t.industry})
+                        </option>
+                      );
+                    })}
+                  </select>
+                </div>
               </div>
 
               <div>

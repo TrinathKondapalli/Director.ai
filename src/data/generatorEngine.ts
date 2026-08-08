@@ -2,13 +2,18 @@ import { GoogleGenAI } from '@google/genai';
 import { UgcStudioInput, UgcStudioResult, UgcTopic } from '../types';
 
 const SYSTEM_PROMPT = `You are DIRECTOR.AI's AI UGC Studio Director.
-Your purpose is to generate authentic User Generated Content (UGC) ad ideas that feel natural, trustworthy, and engaging rather than promotional.
+Your purpose is to generate authentic User Generated Content (UGC) ad video prompts and strategy that look, feel, and convert like genuine TikTok / Instagram Reels creator ads — NOT corporate TV commercials or generic promotional ads.
+
+MANDATORY UGC AD DIRECTIVES:
+- Aesthetic: Raw, unpolished, mobile-recorded creator footage (iPhone 15 Pro 4K 60fps), handheld selfie perspective or desk-mounted ring-light setup.
+- Vibe: Authentic customer review / problem-solution testimonial with direct eye contact, genuine facial expressions, and natural room lighting.
+- Video Prompting Style: Optimize every video prompt explicitly for AI Video Generators (Veo 3, Runway Gen-4, Sora, Kling, Pika, Luma Dream Machine) to output an authentic social media UGC ad instead of a glossy corporate commercial.
+- Avoid: Corporate commercial sheen, TV ad cinematography, studio lighting, artificial CGI, polished stock video feel, generic broadcast ads.
 
 Before generating content, you must research and identify:
 - Current market trends
-- Customer problems
-- Emotional triggers
-- Buying motivations
+- Customer problems & pain points
+- Emotional triggers & buying motivations
 
 Never repeat previous concepts.
 
@@ -25,9 +30,8 @@ VIDEO SCRIPT & SHOT LIST REQUIREMENTS:
 Generate a structured timeline for the video script and a detailed shot list broken down by scene number.
 
 VIDEO PROMPT REQUIREMENTS:
-Generate a cinematic AI video prompt suitable for modern models (Veo 3, Runway Gen-4, Pika, Kling, Sora).
-The prompt should feel like it was written by a professional film director.
-CRITICAL: Every generated video MUST be optimized for exactly 10 seconds. Never generate 30 sec, 45 sec, 60 sec, or longer.`;
+Generate an authentic UGC AI video prompt suitable for modern AI video engines.
+CRITICAL: Every generated video MUST be optimized for exactly 10 seconds. Aspect Ratio: 9:16 vertical.`;
 
 export function generateLocalUgcMock(input: UgcStudioInput): UgcStudioResult {
   const prod = input.isRandom ? "Random Trending Concept" : (input.product || "Featured Product");
@@ -354,6 +358,38 @@ Generate the complete UGC Studio Result for this exact product configuration. En
 };
 
 export function generateLocalUgcMockFromTopic(topic: UgcTopic): UgcStudioResult {
+  const masterPromptText = `Create a natural 10-second vertical UGC advertisement featuring a relatable ${topic.targetAudience} creator recording themselves in a real-world workspace setting.
+
+0–2 seconds (HOOK):
+Handheld selfie camera. Creator looks directly into camera with an engaging expression and says: "${topic.visualHookAngle}"
+
+2–4 seconds (PAIN):
+Creator turns camera toward laptop/desk showing the frustration of dealing with ${topic.corePainPoint}.
+
+4–7 seconds (PRODUCT):
+Creator quickly demonstrates using ${topic.brandName} to deliver ${topic.solution}. The product interaction feels spontaneous, fast, and authentic.
+
+7–9 seconds (RESULT):
+Problem is solved. Creator looks back at camera genuinely relieved and impressed: "Honestly, it saved me hours of headache this week."
+
+9–10 seconds (CTA):
+Creator points toward screen overlay: "Save yourself the pain and check out ${topic.brandName} today."
+
+Visual style:
+Authentic creator-shot UGC, handheld smartphone footage (iPhone 15 Pro 4K 60fps), natural room lighting, realistic imperfections, casual clothing, believable facial expressions, natural pacing, non-commercial feeling.
+
+Voice:
+Conversational creator voice. Energetic at hook, relieved at result. Natural delivery, not an artificial announcer.
+
+Audio:
+Natural room ambience, subtle keyboard sounds, clean chime when the feature is demonstrated.
+
+Format:
+9:16 vertical. Duration: Exactly 10 seconds.
+
+Negative:
+No cinematic commercial look, no studio lighting, no perfect actors, no dramatic camera movements, no generic stock footage, no corporate presenter, no artificial announcer voice, no glossy advertisement look.`;
+
   return {
     originalInput: {
       industry: topic.industry,
@@ -368,6 +404,59 @@ export function generateLocalUgcMockFromTopic(topic: UgcTopic): UgcStudioResult 
     },
     oneLineSummary: `${topic.brandName} UGC ad addressing ${topic.corePainPoint}`,
     dailySuggestedTopic: `Why ${topic.brandName} is Taking Over ${topic.industry}`,
+    creatorType: `${topic.targetAudience} Creator`,
+    coreIdea: `${topic.visualHookAngle} — demonstrating ${topic.solution}`,
+    toneVibe: `${topic.tone} & Authentic Creator Energy`,
+    ugcStory: {
+      hook: topic.visualHookAngle,
+      pain: `Struggling with ${topic.corePainPoint} every day`,
+      product: `${topic.brandName}: ${topic.solution}`,
+      result: `Saves hours of friction instantly with verified results`,
+      cta: `Try ${topic.brandName} today and save yourself the headache!`
+    },
+    storyboardTimeline: [
+      {
+        stage: 'HOOK',
+        timeRange: '0–2s',
+        whatWeSee: `Handheld selfie angle of creator looking directly into camera. ${topic.visualHookAngle}`,
+        whatCreatorDoes: `Points at screen with engaging expression to grab immediate attention.`,
+        whatCreatorSays: `"${topic.visualHookAngle}"`,
+        audioSfx: `Natural room tone, energetic visual pop effect`
+      },
+      {
+        stage: 'PAIN',
+        timeRange: '2–4s',
+        whatWeSee: `Close-up on creator's screen or workspace showing the frustrating problem.`,
+        whatCreatorDoes: `Sighs or shakes head showing real frustration with ${topic.corePainPoint}.`,
+        whatCreatorSays: `"I was wasting hours dealing with ${topic.corePainPoint} every single day."`,
+        audioSfx: `Keyboard click sounds, subtle frustration sound effect`
+      },
+      {
+        stage: 'PRODUCT',
+        timeRange: '4–7s',
+        whatWeSee: `Clean demonstration of ${topic.brandName} interface solving the problem instantly.`,
+        whatCreatorDoes: `Clicks/interacts with ${topic.brandName} showing how fast ${topic.solution} works.`,
+        whatCreatorSays: `"Then I found ${topic.brandName}. It literally handles ${topic.solution} in seconds."`,
+        audioSfx: `Smooth UI click chime sound`
+      },
+      {
+        stage: 'RESULT',
+        timeRange: '7–9s',
+        whatWeSee: `Creator back on camera with a relieved smile holding up laptop screen.`,
+        whatCreatorDoes: `Leans back with a relaxed smile showing the completed outcome.`,
+        whatCreatorSays: `"Honestly, it saved me hours of headache this week."`,
+        audioSfx: `Satisfying success chime sound`
+      },
+      {
+        stage: 'CTA',
+        timeRange: '9–10s',
+        whatWeSee: `Screen overlay with brand CTA link and creator pointing forward.`,
+        whatCreatorDoes: `Nods confidently and points to the link on screen.`,
+        whatCreatorSays: `"Save yourself the pain and check out ${topic.brandName} today."`,
+        audioSfx: `Clean end notification chime`
+      }
+    ],
+    masterUgcPrompt: masterPromptText,
     hook: topic.visualHookAngle,
     problem: topic.corePainPoint,
     story: `I was struggling with ${topic.corePainPoint} until I discovered ${topic.brandName}.`,
@@ -432,37 +521,37 @@ export function generateLocalUgcMockFromTopic(topic: UgcTopic): UgcStudioResult 
       characterExpressions: `Initial frustration shifting to instant delight and relief`,
       characterEmotions: `Stressed to empowered`,
       characterActions: `Interacting with ${topic.brandName} interface on screen`,
-      cameraAngle: `Eye-level medium shot`,
-      cameraMovement: `Subtle handheld push-in`,
-      cameraLens: `35mm prime`,
-      cameraDistance: `Medium close-up`,
-      framing: `Rule of thirds, subject slightly off-center`,
-      lighting: `Soft natural window light mixed with warm desk lamp glow`,
-      environment: `Modern home office workspace`,
-      background: `Neat desk with laptop, warm ambient lighting`,
-      props: `Laptop displaying ${topic.brandName}, coffee mug`,
-      colorPalette: `Warm natural tones with brand accent highlights`,
-      composition: `Clean, clutter-free desk setup`,
-      cinematicStyle: `Authentic commercial UGC grade`,
-      visualStyle: `High clarity 4K digital video`,
-      transition: `Match cut on action`,
-      motionDetails: `Smooth subtle movement`,
-      videoQuality: `Ultra sharp 4K HDR`,
-      renderingStyle: `Photorealistic cinema grade`,
+      cameraAngle: `Handheld Front-Facing Creator Shot (Selfie / Desk Mount)`,
+      cameraMovement: `Natural Handheld Motion with subtle organic movement`,
+      cameraLens: `24mm Mobile Wide Lens (iPhone 15 Pro Aesthetic)`,
+      cameraDistance: `Close-up Creator Talking Head`,
+      framing: `Vertical 9:16 portrait framing, subject direct to camera`,
+      lighting: `Natural ambient room lighting mixed with soft ring light`,
+      environment: `Relatable real-world workspace / home setup`,
+      background: `Authentic desk setup with subtle background depth blur (f/1.8)`,
+      props: `Smartphone / Laptop displaying ${topic.brandName}`,
+      colorPalette: `Natural organic color grading, warm relatable skin tones`,
+      composition: `Casual mobile creator composition`,
+      cinematicStyle: `Raw Authentic Mobile TikTok/Reels UGC Creator Style`,
+      visualStyle: `Unpolished Native 4K Smartphone Video (60fps)`,
+      transition: `Quick jump cut on spoken phrase`,
+      motionDetails: `Natural creator gestures and screen pointing`,
+      videoQuality: `iPhone 15 Pro 4K HDR 60fps`,
+      renderingStyle: `Raw Organic Creator Video (Zero Commercial Sheen)`,
       aspectRatio: `9:16 vertical`,
-      frameRate: `24 fps`,
+      frameRate: `60 fps`,
       duration: `Always exactly 10 seconds`,
-      voiceoverScript: `If you're dealing with ${topic.corePainPoint}, you need to see this. ${topic.solution}.`,
-      voiceStyle: `Conversational and authentic`,
+      voiceoverScript: `If you're dealing with ${topic.corePainPoint}, stop scrolling. ${topic.solution}.`,
+      voiceStyle: `Conversational, energetic, and relatable`,
       voiceGender: `Neutral`,
-      voiceEmotion: `Genuine and enthusiastic`,
-      voiceSpeed: `Natural pacing`,
+      voiceEmotion: `Genuine recommendation & excitement`,
+      voiceSpeed: `Fast-paced social media hook pacing`,
       accent: `American`,
       dialogue: `I can't believe how much time ${topic.brandName} saves me every single day.`,
-      backgroundMusic: `Upbeat ambient lo-fi track`,
-      soundEffects: `Subtle click and notification chime`,
-      ambientSounds: `Quiet office ambience`,
-      negativePrompt: `blurry, low resolution, unnatural face, glitch, cartoon, distorted fingers, watermark, logo overlay`
+      backgroundMusic: `Trending upbeat TikTok / Instagram background audio`,
+      soundEffects: `Subtle pops, clicks, and page transitions`,
+      ambientSounds: `Subtle room tone`,
+      negativePrompt: `corporate commercial, TV ad, polished stock footage, professional studio lighting, artificial CGI render, broadcast advertisement, glossy promotion, fake actors`
     },
     videoHook: topic.visualHookAngle,
     voiceoverScript: `If you're dealing with ${topic.corePainPoint}, stop scrolling. ${topic.solution}.`,

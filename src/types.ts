@@ -96,6 +96,25 @@ export interface UgcStudioResult {
   originalInput: UgcStudioInput;
   oneLineSummary: string;
   dailySuggestedTopic: string;
+  creatorType?: string;
+  coreIdea?: string;
+  toneVibe?: string;
+  ugcStory?: {
+    hook: string;
+    pain: string;
+    product: string;
+    result: string;
+    cta: string;
+  };
+  storyboardTimeline?: {
+    stage: 'HOOK' | 'PAIN' | 'PRODUCT' | 'RESULT' | 'CTA';
+    timeRange: string;
+    whatWeSee: string;
+    whatCreatorDoes: string;
+    whatCreatorSays: string;
+    audioSfx: string;
+  }[];
+  masterUgcPrompt?: string;
   hook: string;
   problem: string;
   story: string;
