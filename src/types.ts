@@ -11,6 +11,35 @@ export interface UgcStudioInput {
   isRandom: boolean;
 }
 
+export interface UgcTopic {
+  id: string;
+  industry: string;
+  productCategory: string;
+  brandName: string;
+  targetAudience: string;
+  corePainPoint: string;
+  solution: string;
+  visualHookAngle: string;
+  why: string;
+  tone: string;
+}
+
+export interface DesignTopic {
+  id: string;
+  category: string;
+  difficulty: string;
+  principleName: string;
+  coreDefinition: string;
+  whyThisMatters: string;
+  practicalApplication: string;
+  visualDo: string;
+  visualDont: string;
+  targetAudience: string;
+  commonMistake: string;
+  expertTip: string;
+  realWorldExample: string;
+}
+
 export interface PlatformCaptions {
   linkedin: { hook: string; context: string; mainInsight: string; keyTakeaways: string[]; cta: string; hashtags: string[]; };
   instagram: { hook: string; story: string; lesson: string; cta: string; hashtags: string[]; };

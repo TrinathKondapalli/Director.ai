@@ -11,9 +11,9 @@ import { PrivacyPage } from './components/PrivacyPage';
 import { TermsPage } from './components/TermsPage';
 import { ContactPage } from './components/ContactPage';
 import { DirectorLogoIcon } from './components/DirectorLogo';
-import { UgcStudioInput, UgcStudioResult, DesignContentResult } from './types';
-import { generateUgcContent, generateLocalUgcMock } from './data/generatorEngine';
-import { generateContent as generateDesignContent, generateContentMock as generateLocalDesignMock } from './data/contentEngine';
+import { UgcStudioInput, UgcStudioResult, DesignContentResult, UgcTopic, DesignTopic } from './types';
+import { generateUgcContent, generateLocalUgcMock, generateUgcFromTopic } from './data/generatorEngine';
+import { generateContent as generateDesignContent, generateContentMock as generateLocalDesignMock, generateContentFromTopic } from './data/contentEngine';
 import { PageCurtain } from './components/PageCurtain';
 import { 
   Youtube, 
@@ -138,10 +138,54 @@ export default function App() {
     navigateTo('/design-result');
   };
 
-  const handleLoadingComplete = () => {
-    // The LoadingScreen component calls this after its 2.7s animation finishes.
-    // We intentionally do nothing here so the loading screen stays visible until the API call finishes.
-    // Navigation is handled entirely within handleGeneratePrompt and handleGenerateDesign.
+  const handleGenerateUgcTopic = async (topic: UgcTopic) => {
+    setIsGenerating(true);
+    setShowLoadingAnimation(true);
+
+    const startTime = Date.now();
+    let resultObj;
+    try {
+      resultObj = await generateUgcFromTopic(topic);
+    } catch (err) {
+      console.warn('Backend API unavailable, using local topic engine:', err);
+      resultObj = generateUgcFromTopic(topic);
+    }
+
+    const elapsed = Date.now() - startTime;
+    const minLoadingTime = 3000;
+    if (elapsed < minLoadingTime) {
+      await new Promise(r => setTimeout(r, minLoadingTime - elapsed));
+    }
+
+    setActiveResult(resultObj);
+    setIsGenerating(false);
+    setShowLoadingAnimation(false);
+    navigateTo('/ugc-result');
+  };
+
+  const handleGenerateDesignTopic = async (topic: DesignTopic, format: 'single' | 'carousel') => {
+    setIsGenerating(true);
+    setShowLoadingAnimation(true);
+
+    const startTime = Date.now();
+    let resultObj;
+    try {
+      resultObj = await generateContentFromTopic(topic, format);
+    } catch (err) {
+      console.warn('Backend API unavailable, using local topic engine:', err);
+      resultObj = await generateContentFromTopic(topic, format);
+    }
+
+    const elapsed = Date.now() - startTime;
+    const minLoadingTime = 3000;
+    if (elapsed < minLoadingTime) {
+      await new Promise(r => setTimeout(r, minLoadingTime - elapsed));
+    }
+
+    setActiveDesignResult(resultObj);
+    setIsGenerating(false);
+    setShowLoadingAnimation(false);
+    navigateTo('/design-result');
   };
 
   const handleCreateAnotherUgc = () => {
@@ -172,8 +216,9 @@ export default function App() {
             )}
 
             {currentPath === '/ugc-studio' && (
-              <UgcStudio
+              <UgcStudio 
                 onGenerate={handleGeneratePrompt}
+                onGenerateTopic={handleGenerateUgcTopic}
                 isGenerating={isGenerating}
                 onNavigate={navigateTo}
               />
@@ -182,6 +227,7 @@ export default function App() {
             {currentPath === '/design-publisher' && (
               <DesignPublisher 
                 onGenerate={handleGenerateDesign}
+                onGenerateTopic={handleGenerateDesignTopic}
                 isGenerating={isGenerating}
               />
             )}

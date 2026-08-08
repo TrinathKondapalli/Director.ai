@@ -299,3 +299,257 @@ Format requested: ${format.toUpperCase()}.
     return generateContentMock(format);
   }
 };
+
+export const generateContentMockFromTopic = (topic: DesignTopic, format: 'single' | 'carousel'): DesignContentResult => {
+  if (format === 'single') {
+    return {
+      format: 'single',
+      topicTitle: topic.principleName,
+      whyThisMatters: topic.whyThisMatters,
+      hook: `Mastering ${topic.principleName}: ${topic.coreDefinition}`,
+      professionalCaption: `${topic.coreDefinition}\n\nPractical Application: ${topic.practicalApplication}\n\nCommon Mistake: ${topic.commonMistake}\n\nExpert Tip: ${topic.expertTip}`,
+      captions: {
+        linkedin: {
+          hook: `Designers: Are you leveraging ${topic.principleName}?`,
+          context: topic.coreDefinition,
+          mainInsight: topic.whyThisMatters,
+          keyTakeaways: [topic.practicalApplication, `Mistake to avoid: ${topic.commonMistake}`, `Pro Tip: ${topic.expertTip}`],
+          cta: `How do you apply ${topic.principleName} in your work?`,
+          hashtags: ["#UIDesign", "#UXPsychology", "#ProductDesign"]
+        },
+        instagram: {
+          hook: `Stop making this design mistake with ${topic.principleName}! 🛑`,
+          story: `${topic.coreDefinition} ${topic.whyThisMatters}`,
+          lesson: topic.practicalApplication,
+          cta: `Save this tip for your next Figma file! 📌✨`,
+          hashtags: ["#UXTips", "#DesignPrinciples", "#Figma"]
+        },
+        facebook: {
+          opening: `Attention designers & product creators!`,
+          problem: topic.commonMistake,
+          advice: topic.practicalApplication,
+          example: topic.realWorldExample,
+          question: `Have you used ${topic.principleName} in your projects?`,
+          hashtags: ["#UXDesign", "#UIDesign"]
+        },
+        twitter: {
+          singleTweet: `${topic.principleName}: ${topic.coreDefinition} Pro Tip: ${topic.expertTip}`,
+          threadVersion: [
+            `Understanding ${topic.principleName} 🧵`,
+            `1/ Definition: ${topic.coreDefinition}`,
+            `2/ Why it matters: ${topic.whyThisMatters}`,
+            `3/ Real World Example: ${topic.realWorldExample}`
+          ],
+          hashtags: ["#UI", "#UX"]
+        },
+        youtube: {
+          seoTitle: `Deep Dive into ${topic.principleName} | UX Design Masterclass`,
+          description: `Everything you need to know about ${topic.principleName}. ${topic.coreDefinition}`,
+          whatYouWillLearn: [topic.coreDefinition, topic.practicalApplication, topic.commonMistake],
+          chapters: ["0:00 Intro", "1:15 Definition & Impact", "3:30 Real World Examples"],
+          cta: `Subscribe for daily UX/UI design breakdowns!`,
+          keywords: [topic.principleName, topic.category, "UX Design"],
+          hashtags: ["#UXDesign", "#UIDesign"]
+        }
+      },
+      actionableTakeaways: [
+        topic.practicalApplication,
+        `Avoid: ${topic.commonMistake}`,
+        `Pro Tip: ${topic.expertTip}`
+      ],
+      cta: `What are your thoughts on ${topic.principleName}? Drop a comment below! 👇`,
+      imagePrompt: `A high-end editorial UI design breakdown card illustrating ${topic.principleName}. Crisp typography headline '${topic.principleName}', visual comparison card showing DO (${topic.visualDo}) vs DON'T (${topic.visualDont}), dark glassmorphism aesthetic (#09090B base), sleek purple accent highlights, clean grid system, looks like a Figma export from Linear or Stripe.`,
+      hashtags: ["#UIDesign", "#UXDesign", "#DesignPrinciples", "#Figma", "#UXPsychology", "#ProductDesign", "#DesignSystems", "#UXTips"],
+      keywords: [topic.principleName, topic.category, "UX best practices", "UI design rules"]
+    } as DesignContentResultV2Single;
+  } else {
+    return {
+      format: 'carousel',
+      topicTitle: topic.principleName,
+      coverTitle: `${topic.principleName}: The Universal Rule Every Designer Must Know`,
+      whyThisMatters: topic.whyThisMatters,
+      captions: {
+        linkedin: {
+          hook: `Why does ${topic.principleName} make or break user experience?`,
+          context: topic.coreDefinition,
+          mainInsight: topic.whyThisMatters,
+          keyTakeaways: [topic.practicalApplication, topic.expertTip],
+          cta: `Repost if you found this helpful!`,
+          hashtags: ["#DesignSystems", "#ProductDesign"]
+        },
+        instagram: {
+          hook: `${topic.principleName} Explained in 4 Slides 🎠`,
+          story: topic.coreDefinition,
+          lesson: topic.practicalApplication,
+          cta: `Swipe left and save for later! 📌`,
+          hashtags: ["#UXDesign", "#CarouselDesign"]
+        },
+        facebook: {
+          opening: `UX Principle Breakdown: ${topic.principleName}`,
+          problem: topic.commonMistake,
+          advice: topic.practicalApplication,
+          example: topic.realWorldExample,
+          question: `What is your favorite UX principle?`,
+          hashtags: ["#DesignPrinciples"]
+        },
+        twitter: {
+          singleTweet: `${topic.principleName}: ${topic.coreDefinition} Swipe through the breakdown below!`,
+          threadVersion: [
+            `${topic.principleName} Carousel Breakdown 🧵`,
+            `1/ Definition: ${topic.coreDefinition}`,
+            `2/ Application: ${topic.practicalApplication}`
+          ],
+          hashtags: ["#UXTips"]
+        },
+        youtube: {
+          seoTitle: `Mastering ${topic.principleName} (Carousel Guide)`,
+          description: `Visual walkthrough of ${topic.principleName}.`,
+          whatYouWillLearn: [topic.coreDefinition, topic.practicalApplication],
+          chapters: ["0:00 Cover", "1:00 Breakdown"],
+          cta: `Subscribe for more!`,
+          keywords: [topic.principleName],
+          hashtags: ["#UX"]
+        }
+      },
+      slides: [
+        {
+          heading: "The Core Definition",
+          description: topic.coreDefinition,
+          imagePrompt: `Clean minimalist infographic illustrating ${topic.principleName}. Dark glassmorphism, bold title 'Core Definition', glowing accents, ultra realistic Figma export aesthetic.`
+        },
+        {
+          heading: "Why This Matters",
+          description: topic.whyThisMatters,
+          imagePrompt: `Editorial UI card detailing business and UX impact of ${topic.principleName}. Dark sleek aesthetics, purple highlights.`
+        },
+        {
+          heading: "DO vs DON'T",
+          description: `DO: ${topic.visualDo} | DON'T: ${topic.visualDont}`,
+          imagePrompt: `Visual comparison split screen card. Left side green checkmark DO: ${topic.visualDo}. Right side red X DON'T: ${topic.visualDont}. Dark UI layout.`
+        },
+        {
+          heading: "Real World Example & Pro Tip",
+          description: `Example: ${topic.realWorldExample}. Pro Tip: ${topic.expertTip}`,
+          imagePrompt: `Sleek UI case study card showcasing real world app interaction example. Professional dark theme graphic.`
+        }
+      ],
+      actionableTakeaways: [
+        topic.practicalApplication,
+        `Pro Tip: ${topic.expertTip}`
+      ],
+      cta: `Share this carousel with your design team! 🚀`,
+      hashtags: ["#Carousel", "#UXDesign", "#DesignPrinciples", "#UIUX", "#ProductDesign", "#DesignTips", "#Figma", "#UXResearch"],
+      keywords: [topic.principleName, topic.category, "Design Principles", "UX UI Carousel"]
+    } as DesignContentResultV2Carousel;
+  }
+};
+
+export const generateContentFromTopic = async (topic: DesignTopic, format: 'single' | 'carousel'): Promise<DesignContentResult> => {
+  try {
+    const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+    if (!apiKey) {
+      console.warn("No Gemini API Key found. Returning dataset-driven mock result.");
+      return generateContentMockFromTopic(topic, format);
+    }
+
+    const ai = new GoogleGenAI({ apiKey });
+    
+    const schemaObj = format === 'single' ? {
+      type: 'OBJECT',
+      properties: {
+        format: { type: 'STRING', description: 'Always exactly "single"' },
+        topicTitle: { type: 'STRING' },
+        whyThisMatters: { type: 'STRING' },
+        hook: { type: 'STRING' },
+        professionalCaption: { type: 'STRING' },
+        captions: {
+          type: 'OBJECT',
+          properties: {
+            linkedin: { type: 'OBJECT', properties: { hook: { type: 'STRING' }, context: { type: 'STRING' }, mainInsight: { type: 'STRING' }, keyTakeaways: { type: 'ARRAY', items: { type: 'STRING' } }, cta: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } }, required: ["hook", "context", "mainInsight", "keyTakeaways", "cta", "hashtags"] },
+            instagram: { type: 'OBJECT', properties: { hook: { type: 'STRING' }, story: { type: 'STRING' }, lesson: { type: 'STRING' }, cta: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } }, required: ["hook", "story", "lesson", "cta", "hashtags"] },
+            facebook: { type: 'OBJECT', properties: { opening: { type: 'STRING' }, problem: { type: 'STRING' }, advice: { type: 'STRING' }, example: { type: 'STRING' }, question: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } }, required: ["opening", "problem", "advice", "example", "question", "hashtags"] },
+            twitter: { type: 'OBJECT', properties: { singleTweet: { type: 'STRING' }, threadVersion: { type: 'ARRAY', items: { type: 'STRING' } }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } }, required: ["singleTweet", "threadVersion", "hashtags"] },
+            youtube: { type: 'OBJECT', properties: { seoTitle: { type: 'STRING' }, description: { type: 'STRING' }, whatYouWillLearn: { type: 'ARRAY', items: { type: 'STRING' } }, chapters: { type: 'ARRAY', items: { type: 'STRING' } }, cta: { type: 'STRING' }, keywords: { type: 'ARRAY', items: { type: 'STRING' } }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } }, required: ["seoTitle", "description", "whatYouWillLearn", "chapters", "cta", "keywords", "hashtags"] }
+          },
+          required: ["linkedin", "instagram", "facebook", "twitter", "youtube"]
+        },
+        actionableTakeaways: { type: 'ARRAY', items: { type: 'STRING' } },
+        cta: { type: 'STRING' },
+        imagePrompt: { type: 'STRING' },
+        hashtags: { type: 'ARRAY', items: { type: 'STRING' } },
+        keywords: { type: 'ARRAY', items: { type: 'STRING' } }
+      },
+      required: ["format", "topicTitle", "whyThisMatters", "hook", "professionalCaption", "captions", "actionableTakeaways", "cta", "imagePrompt", "hashtags", "keywords"]
+    } : {
+      type: 'OBJECT',
+      properties: {
+        format: { type: 'STRING', description: 'Always exactly "carousel"' },
+        topicTitle: { type: 'STRING' },
+        coverTitle: { type: 'STRING' },
+        whyThisMatters: { type: 'STRING' },
+        captions: {
+          type: 'OBJECT',
+          properties: {
+            linkedin: { type: 'OBJECT', properties: { hook: { type: 'STRING' }, context: { type: 'STRING' }, mainInsight: { type: 'STRING' }, keyTakeaways: { type: 'ARRAY', items: { type: 'STRING' } }, cta: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } }, required: ["hook", "context", "mainInsight", "keyTakeaways", "cta", "hashtags"] },
+            instagram: { type: 'OBJECT', properties: { hook: { type: 'STRING' }, story: { type: 'STRING' }, lesson: { type: 'STRING' }, cta: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } }, required: ["hook", "story", "lesson", "cta", "hashtags"] },
+            facebook: { type: 'OBJECT', properties: { opening: { type: 'STRING' }, problem: { type: 'STRING' }, advice: { type: 'STRING' }, example: { type: 'STRING' }, question: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } }, required: ["opening", "problem", "advice", "example", "question", "hashtags"] },
+            twitter: { type: 'OBJECT', properties: { singleTweet: { type: 'STRING' }, threadVersion: { type: 'ARRAY', items: { type: 'STRING' } }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } }, required: ["singleTweet", "threadVersion", "hashtags"] },
+            youtube: { type: 'OBJECT', properties: { seoTitle: { type: 'STRING' }, description: { type: 'STRING' }, whatYouWillLearn: { type: 'ARRAY', items: { type: 'STRING' } }, chapters: { type: 'ARRAY', items: { type: 'STRING' } }, cta: { type: 'STRING' }, keywords: { type: 'ARRAY', items: { type: 'STRING' } }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } }, required: ["seoTitle", "description", "whatYouWillLearn", "chapters", "cta", "keywords", "hashtags"] }
+          },
+          required: ["linkedin", "instagram", "facebook", "twitter", "youtube"]
+        },
+        slides: {
+          type: 'ARRAY',
+          items: {
+            type: 'OBJECT',
+            properties: { heading: { type: 'STRING' }, description: { type: 'STRING' }, imagePrompt: { type: 'STRING' } },
+            required: ["heading", "description", "imagePrompt"]
+          }
+        },
+        actionableTakeaways: { type: 'ARRAY', items: { type: 'STRING' } },
+        cta: { type: 'STRING' },
+        hashtags: { type: 'ARRAY', items: { type: 'STRING' } },
+        keywords: { type: 'ARRAY', items: { type: 'STRING' } }
+      },
+      required: ["format", "topicTitle", "coverTitle", "whyThisMatters", "captions", "slides", "actionableTakeaways", "cta", "hashtags", "keywords"]
+    };
+
+    const prompt = `
+You are generating a ${format.toUpperCase()} design publisher post based strictly on this CURATED DESIGN PRINCIPLE:
+
+[PRINCIPLE NAME]: ${topic.principleName}
+[CATEGORY]: ${topic.category} (${topic.difficulty})
+[CORE DEFINITION]: ${topic.coreDefinition}
+[WHY THIS MATTERS]: ${topic.whyThisMatters}
+[PRACTICAL APPLICATION]: ${topic.practicalApplication}
+[VISUAL DO]: ${topic.visualDo}
+[VISUAL DONT]: ${topic.visualDont}
+[TARGET AUDIENCE]: ${topic.targetAudience}
+[COMMON MISTAKE]: ${topic.commonMistake}
+[EXPERT TIP]: ${topic.expertTip}
+[REAL WORLD EXAMPLE]: ${topic.realWorldExample}
+
+Generate the complete Design Publisher Result.
+[Random Seed: ${Math.random().toString(36).substring(2, 9)}]`;
+
+    const response = await ai.models.generateContent({
+      model: 'gemini-3.5-flash',
+      contents: prompt,
+      config: {
+        systemInstruction: SYSTEM_PROMPT,
+        responseMimeType: 'application/json',
+        responseSchema: schemaObj as any,
+        temperature: 0.8,
+      }
+    });
+
+    if (response.text) {
+      return JSON.parse(response.text) as DesignContentResult;
+    }
+    throw new Error("No text in response");
+  } catch (error) {
+    console.error("Gemini API Error (fallback to topic mock):", error);
+    return generateContentMockFromTopic(topic, format);
+  }
+};
+
