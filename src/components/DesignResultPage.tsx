@@ -98,46 +98,9 @@ export const DesignResultPage: React.FC<DesignResultPageProps> = ({ result, onCr
         </div>
       </section>
 
-      {/* 02 - POST PREVIEW */}
+      {/* 02 - IMAGE PROMPT */}
       <section>
-        <SectionHeader number="02" title="Post Preview" />
-        <div className="flex flex-col gap-6">
-          <div className="w-full aspect-[4/5] sm:aspect-video md:aspect-[4/5] lg:h-[700px] bg-[#050505] border border-[var(--color-border-primary)] rounded-2xl flex flex-col items-center justify-center relative overflow-hidden shadow-2xl group">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#1557FF]/5 to-transparent pointer-events-none" />
-            
-            <ImageIcon className="w-16 h-16 text-[#27272A] mb-8" />
-            
-            <div className="text-center max-w-lg px-8 relative z-10 flex flex-col items-center">
-              {res.imageText ? (
-                <>
-                  <h3 className="text-3xl md:text-5xl font-sora font-extrabold text-white mb-4 uppercase leading-tight tracking-tight">{cleanText(res.imageText.headline)}</h3>
-                  <p className="text-[#A1A1AA] text-lg font-light leading-relaxed">{cleanText(res.imageText.supporting)}</p>
-                </>
-              ) : (
-                <p className="text-[#A1A1AA] text-lg">Visual Asset Placeholder</p>
-              )}
-            </div>
-
-            {/* Simulated Brand Overlay */}
-            <div className={`absolute ${res.tzinrSignaturePlacement === 'top-right' ? 'top-8 right-8' : res.tzinrSignaturePlacement === 'bottom-left' ? 'bottom-8 left-8' : res.tzinrSignaturePlacement === 'bottom-right' ? 'bottom-8 right-8' : 'top-8 left-8'} flex flex-col`}>
-              <span className="text-white text-xs sm:text-sm font-bold tracking-widest">{res.tzinrSignatureText || 'TZINR'}</span>
-            </div>
-          </div>
-          
-          <div className="flex flex-col sm:flex-row items-center gap-4">
-             <button className="w-full sm:w-auto px-8 py-3.5 bg-[var(--color-brand-violet)] hover:bg-[var(--color-brand-lavender)] text-white font-semibold rounded-xl transition-colors flex items-center justify-center gap-2">
-               <Download className="w-5 h-5" /> Download
-             </button>
-             <button className="w-full sm:w-auto px-8 py-3.5 bg-[var(--color-bg-surface)] hover:bg-[var(--color-border-primary)] border border-[var(--color-border-primary)] text-white font-semibold rounded-xl transition-colors flex items-center justify-center gap-2">
-               <RefreshCcw className="w-5 h-5" /> Regenerate Image
-             </button>
-          </div>
-        </div>
-      </section>
-
-      {/* 03 - IMAGE PROMPT */}
-      <section>
-        <SectionHeader number="03" title="Image Prompt" />
+        <SectionHeader number="02" title="Image Prompt" />
         <div className="bg-[#050505] border border-[var(--color-border-primary)] rounded-2xl overflow-hidden flex flex-col shadow-xl">
            <div className="p-6 sm:p-8 overflow-y-auto custom-scrollbar max-h-[400px]">
              <p className="font-mono text-sm md:text-base text-[var(--color-brand-violet)] leading-loose whitespace-pre-wrap">{cleanText(res.imagePrompt)}</p>
@@ -153,9 +116,9 @@ export const DesignResultPage: React.FC<DesignResultPageProps> = ({ result, onCr
         </div>
       </section>
 
-      {/* 04 - POST DESCRIPTION */}
+      {/* 03 - POST DESCRIPTION */}
       <section>
-        <SectionHeader number="04" title="Post Description" />
+        <SectionHeader number="03" title="Post Description" />
         <div className="bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] rounded-2xl shadow-xl overflow-hidden">
           <div className="flex border-b border-[var(--color-border-primary)] overflow-x-auto custom-scrollbar">
             {(['linkedin', 'instagram', 'facebook', 'twitter', 'youtube'] as const).map(tab => (
@@ -187,9 +150,9 @@ export const DesignResultPage: React.FC<DesignResultPageProps> = ({ result, onCr
         </div>
       </section>
 
-      {/* 05 - SEO & TAGS */}
+      {/* 04 - SEO & TAGS */}
       <section>
-        <SectionHeader number="05" title="SEO & Tags" />
+        <SectionHeader number="04" title="SEO & Tags" />
         <div className="bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] rounded-2xl p-6 sm:p-8 shadow-xl">
           <div className="mb-8">
             <strong className="text-white text-xs uppercase tracking-widest block mb-4 font-mono">Keywords</strong>
@@ -208,9 +171,9 @@ export const DesignResultPage: React.FC<DesignResultPageProps> = ({ result, onCr
         </div>
       </section>
 
-      {/* 06 - PUBLISHING */}
+      {/* 05 - PUBLISHING */}
       <section>
-        <SectionHeader number="06" title="Publishing" />
+        <SectionHeader number="05" title="Publishing" />
         <div className="bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] rounded-2xl p-6 sm:p-8 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-6">
            <div className="w-full sm:w-auto">
              <strong className="text-white text-sm font-sora block mb-1">Ready to export?</strong>
@@ -251,41 +214,9 @@ export const DesignResultPage: React.FC<DesignResultPageProps> = ({ result, onCr
         </div>
       </section>
 
-      {/* 02 - POST PREVIEW (Carousel) */}
+      {/* 02 - IMAGE PROMPTS */}
       <section>
-        <SectionHeader number="02" title="Post Preview" />
-        <div className="flex flex-col gap-6">
-           {/* We could render multiple slides or just a scrollable row, let's do a vertical stack of preview cards for clarity */}
-           <div className="flex overflow-x-auto gap-6 pb-4 custom-scrollbar snap-x">
-             {(res.slides || []).map((slide, index) => (
-                <div key={index} className="w-[300px] sm:w-[400px] shrink-0 aspect-[4/5] bg-[#050505] border border-[var(--color-border-primary)] rounded-2xl flex flex-col items-center justify-center relative overflow-hidden shadow-xl snap-center group">
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#1557FF]/5 to-transparent pointer-events-none" />
-                  <ImageIcon className="w-10 h-10 text-[#27272A] mb-6" />
-                  <div className="text-center px-6 relative z-10">
-                     <h3 className="text-xl font-sora font-extrabold text-white mb-2 uppercase">{cleanText(slide.imageText?.headline)}</h3>
-                     <p className="text-[#A1A1AA] text-sm">{cleanText(slide.imageText?.supporting)}</p>
-                  </div>
-                  <div className="absolute top-4 left-4 font-mono text-[10px] text-[#A1A1AA]">
-                     Slide {index + 2}
-                  </div>
-                </div>
-             ))}
-           </div>
-           
-           <div className="flex flex-col sm:flex-row items-center gap-4">
-             <button className="w-full sm:w-auto px-8 py-3.5 bg-[var(--color-brand-violet)] hover:bg-[var(--color-brand-lavender)] text-white font-semibold rounded-xl transition-colors flex items-center justify-center gap-2">
-               <Download className="w-5 h-5" /> Download All
-             </button>
-             <button className="w-full sm:w-auto px-8 py-3.5 bg-[var(--color-bg-surface)] hover:bg-[var(--color-border-primary)] border border-[var(--color-border-primary)] text-white font-semibold rounded-xl transition-colors flex items-center justify-center gap-2">
-               <RefreshCcw className="w-5 h-5" /> Regenerate Carousel
-             </button>
-          </div>
-        </div>
-      </section>
-
-      {/* 03 - IMAGE PROMPT */}
-      <section>
-        <SectionHeader number="03" title="Image Prompts" />
+        <SectionHeader number="02" title="Image Prompts" />
         <div className="space-y-6">
           {(res.slides || []).map((slide, index) => (
             <div key={index} className="bg-[#050505] border border-[var(--color-border-primary)] rounded-2xl overflow-hidden flex flex-col shadow-xl">
@@ -308,9 +239,9 @@ export const DesignResultPage: React.FC<DesignResultPageProps> = ({ result, onCr
         </div>
       </section>
 
-      {/* 04 - POST DESCRIPTION */}
+      {/* 03 - POST DESCRIPTION */}
       <section>
-        <SectionHeader number="04" title="Post Description" />
+        <SectionHeader number="03" title="Post Description" />
         <div className="bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] rounded-2xl shadow-xl overflow-hidden">
           <div className="flex border-b border-[var(--color-border-primary)] overflow-x-auto custom-scrollbar">
             {(['linkedin', 'instagram', 'facebook', 'twitter', 'youtube'] as const).map(tab => (
@@ -342,9 +273,9 @@ export const DesignResultPage: React.FC<DesignResultPageProps> = ({ result, onCr
         </div>
       </section>
 
-      {/* 05 - SEO & TAGS */}
+      {/* 04 - SEO & TAGS */}
       <section>
-        <SectionHeader number="05" title="SEO & Tags" />
+        <SectionHeader number="04" title="SEO & Tags" />
         <div className="bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] rounded-2xl p-6 sm:p-8 shadow-xl">
           <div className="mb-8">
             <strong className="text-white text-xs uppercase tracking-widest block mb-4 font-mono">Keywords</strong>
@@ -363,9 +294,9 @@ export const DesignResultPage: React.FC<DesignResultPageProps> = ({ result, onCr
         </div>
       </section>
 
-      {/* 06 - PUBLISHING */}
+      {/* 05 - PUBLISHING */}
       <section>
-        <SectionHeader number="06" title="Publishing" />
+        <SectionHeader number="05" title="Publishing" />
         <div className="bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] rounded-2xl p-6 sm:p-8 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-6">
            <div className="w-full sm:w-auto">
              <strong className="text-white text-sm font-sora block mb-1">Ready to export?</strong>
