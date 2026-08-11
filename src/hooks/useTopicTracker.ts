@@ -55,6 +55,10 @@ export function useTopicTracker() {
     setCompletedDesignIds(prev => prev.includes(id) ? prev : [...prev, id]);
   };
 
+  const toggleUgcCompleted = (id: string) => {
+    setCompletedUgcIds(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]);
+  };
+
   const toggleDesignCompleted = (id: number) => {
     setCompletedDesignIds(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]);
   };
@@ -80,6 +84,7 @@ export function useTopicTracker() {
     uncompletedDesignTopics,
     markUgcCompleted,
     markDesignCompleted,
+    toggleUgcCompleted,
     toggleDesignCompleted,
     resetUgcProgress,
     resetDesignProgress,
