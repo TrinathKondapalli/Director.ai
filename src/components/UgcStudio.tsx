@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sparkles, ArrowRight, Database, CheckCircle2, RotateCcw, SkipForward, Layers, FileText } from 'lucide-react';
+import { Sparkles, ArrowRight, Database, CheckCircle2, RotateCcw, SkipForward, Layers, FileText, Check, Play } from 'lucide-react';
 import { UgcStudioInput, UgcTopic } from '../types';
 import { BackgroundGlow } from './BackgroundGlow';
 import { useTopicTracker } from '../hooks/useTopicTracker';
@@ -19,13 +19,11 @@ export const UgcStudio: React.FC<UgcStudioProps> = ({ onGenerate, onGenerateTopi
     totalUgcCount,
     uncompletedUgcTopics,
     markUgcCompleted,
+    toggleUgcCompleted,
     resetUgcProgress
   } = useTopicTracker();
 
   const [mode, setMode] = useState<'dataset' | 'custom'>('dataset');
-  const [selectedTopicIndex, setSelectedTopicIndex] = useState<number>(0);
-
-  const currentTopic: UgcTopic | undefined = allUgcTopics[selectedTopicIndex % Math.max(1, allUgcTopics.length)];
 
   const [formData, setFormData] = useState<Omit<UgcStudioInput, 'isRandom'>>({
     industry: '',
@@ -47,18 +45,6 @@ export const UgcStudio: React.FC<UgcStudioProps> = ({ onGenerate, onGenerateTopi
   const handleSubmitCustom = (e: React.FormEvent) => {
     e.preventDefault();
     onGenerate({ ...formData, isRandom: false });
-  };
-
-  const handleGenerateCurrentTopic = () => {
-    if (!currentTopic) return;
-    markUgcCompleted(currentTopic.id);
-    onGenerateTopic(currentTopic);
-  };
-
-  const handleNextTopic = () => {
-    if (allUgcTopics.length > 0) {
-      setSelectedTopicIndex(prev => (prev + 1) % allUgcTopics.length);
-    }
   };
 
   const handleAutoFill = () => {
@@ -153,111 +139,63 @@ export const UgcStudio: React.FC<UgcStudioProps> = ({ onGenerate, onGenerateTopi
             />
           </div>
 
-          {currentTopic ? (
-            <div className="bg-[var(--color-bg-surface)] border border-[var(--color-brand-violet)]/30 rounded-2xl p-6 space-y-5 relative">
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-[var(--color-border-primary)]/50 pb-4">
-                <div className="flex items-center gap-2">
-                  <span className="px-3 py-1 bg-[var(--color-brand-violet)]/20 text-[var(--color-brand-violet)] font-mono text-xs font-bold rounded-lg border border-[var(--color-brand-violet)]/30">
-                    {currentTopic.id}
-                  </span>
-                  {completedUgcIds.includes(currentTopic.id) && (
-                    <span className="px-2 py-0.5 bg-[#22C55E]/15 text-[#22C55E] font-mono text-[10px] font-bold rounded border border-[#22C55E]/30 flex items-center gap-1">
-                      <CheckCircle2 className="w-3 h-3" /> Completed
-                    </span>
-                  )}
-                </div>
-
-                <div className="flex items-center gap-2 w-full sm:w-auto">
-                  <label className="text-[11px] font-mono text-[#A1A1AA] uppercase tracking-wider shrink-0">Jump To Concept:</label>
-                  <select
-                    value={selectedTopicIndex}
-                    onChange={(e) => setSelectedTopicIndex(Number(e.target.value))}
-                    className="bg-[var(--color-bg-primary)] border border-[var(--color-border-primary)] hover:border-[var(--color-brand-violet)] text-[#FAFAFA] text-xs font-mono rounded-xl px-3 py-1.5 focus:outline-none focus:border-[var(--color-brand-violet)] transition-colors cursor-pointer w-full sm:w-[280px] truncate"
+          {/* 390 UGC Topics Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 max-h-[600px] overflow-y-auto pr-2 custom-scrollbar">
+            {allUgcTopics.map((topic) => {
+              const isCompleted = completedUgcIds.includes(topic.id);
+              return (
+                <div 
+                  key={topic.id}
+                  className={`flex flex-col p-3 rounded-xl border transition-all ${
+                    isCompleted 
+                      ? 'bg-[#22C55E]/5 border-[#22C55E]/20 opacity-70' 
+                      : 'bg-[var(--color-bg-primary)] border-[var(--color-border-primary)] hover:border-[var(--color-brand-violet)]/50'
+                  }`}
+                >
+                  <div className="flex items-start justify-between gap-2 mb-2">
+                    <div className="flex items-center gap-1.5">
+                      <span className="font-mono text-[10px] font-bold px-1.5 py-0.5 rounded bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] text-[#A1A1AA]">
+                        {topic.id}
+                      </span>
+                      <span className="font-mono text-[9px] font-bold px-1.5 py-0.5 rounded border border-[var(--color-brand-violet)]/30 bg-[var(--color-brand-violet)]/5 text-[var(--color-brand-violet)] truncate max-w-[100px]" title={topic.industry}>
+                        {topic.industry}
+                      </span>
+                    </div>
+                    <button 
+                      onClick={() => toggleUgcCompleted(topic.id)}
+                      className="shrink-0 p-1 hover:bg-[var(--color-bg-surface)] rounded text-[#A1A1AA] hover:text-white transition-colors cursor-pointer"
+                      title={isCompleted ? "Mark uncompleted" : "Mark completed manually"}
+                    >
+                      {isCompleted ? <CheckCircle2 className="w-3.5 h-3.5 text-[#22C55E]" /> : <Check className="w-3.5 h-3.5" />}
+                    </button>
+                  </div>
+                  
+                  <h4 className={`font-sora text-sm font-semibold mb-1 line-clamp-1 ${isCompleted ? 'text-[#A1A1AA]' : 'text-white'}`}>
+                    {topic.brandName}
+                  </h4>
+                  <p className="text-[10px] text-[#A1A1AA] line-clamp-1 mb-3 font-mono">
+                    {topic.productCategory}
+                  </p>
+                  
+                  <button
+                    onClick={() => {
+                      markUgcCompleted(topic.id);
+                      onGenerateTopic(topic);
+                    }}
+                    disabled={isGenerating}
+                    className={`w-full py-1.5 flex items-center justify-center gap-1.5 text-xs font-semibold rounded-lg transition-all mt-auto cursor-pointer ${
+                      isCompleted
+                        ? 'bg-[var(--color-bg-surface)] text-[#A1A1AA] hover:bg-[var(--color-border-primary)]'
+                        : 'bg-[var(--color-brand-violet)] text-white hover:bg-[var(--color-brand-violet)]/80 shadow-md'
+                    } disabled:opacity-50 disabled:cursor-not-allowed`}
                   >
-                    {allUgcTopics.map((t, idx) => {
-                      const isDone = completedUgcIds.includes(t.id);
-                      return (
-                        <option key={t.id} value={idx} className="bg-[#09090B] text-white">
-                          {isDone ? '✓ ' : ''}{t.id}: {t.brandName} ({t.industry})
-                        </option>
-                      );
-                    })}
-                  </select>
+                    <Play className="w-3.5 h-3.5" />
+                    {isCompleted ? 'Regenerate' : 'Generate'}
+                  </button>
                 </div>
-              </div>
-
-              <div>
-                <strong className="block text-[10px] uppercase tracking-widest text-[var(--color-brand-violet)] mb-1">
-                  Product / Brand Name
-                </strong>
-                <h3 className="text-2xl font-sora font-bold text-white">{currentTopic.brandName}</h3>
-                <span className="text-xs text-[#A1A1AA] font-mono">{currentTopic.industry} • {currentTopic.productCategory}</span>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="bg-[var(--color-bg-primary)] p-4 rounded-xl border border-[var(--color-border-primary)]">
-                  <strong className="block text-[10px] uppercase text-[#A1A1AA] tracking-wider mb-1">Target Audience</strong>
-                  <p className="text-xs text-white leading-relaxed">{currentTopic.targetAudience}</p>
-                </div>
-
-                <div className="bg-[var(--color-bg-primary)] p-4 rounded-xl border border-[var(--color-border-primary)]">
-                  <strong className="block text-[10px] uppercase text-[#A1A1AA] tracking-wider mb-1">Tone / Vibe</strong>
-                  <p className="text-xs text-white leading-relaxed">{currentTopic.tone}</p>
-                </div>
-              </div>
-
-              <div className="bg-[var(--color-bg-primary)] p-4 rounded-xl border border-[var(--color-border-primary)]">
-                <strong className="block text-[10px] uppercase text-[#A1A1AA] tracking-wider mb-1">Core Pain Point</strong>
-                <p className="text-xs text-[#E4E4E7] leading-relaxed">{currentTopic.corePainPoint}</p>
-              </div>
-
-              <div className="bg-[var(--color-bg-primary)] p-4 rounded-xl border border-[var(--color-border-primary)]">
-                <strong className="block text-[10px] uppercase text-[#22C55E] tracking-wider mb-1">Solution / Angle</strong>
-                <p className="text-xs text-[#E4E4E7] leading-relaxed">{currentTopic.solution}</p>
-              </div>
-
-              <div className="bg-[var(--color-bg-primary)] p-4 rounded-xl border border-[var(--color-border-primary)]">
-                <strong className="block text-[10px] uppercase text-[var(--color-brand-magenta)] tracking-wider mb-1">Visual Hook Angle</strong>
-                <p className="text-xs text-[#E4E4E7] leading-relaxed italic">"{currentTopic.visualHookAngle}"</p>
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-[var(--color-border-divider)]">
-                <button
-                  type="button"
-                  onClick={handleGenerateCurrentTopic}
-                  disabled={isGenerating}
-                  className="flex-1 py-4 bg-[var(--color-brand-violet)] hover:bg-[var(--color-brand-violet)]/80 text-white font-sora font-semibold text-sm rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 group disabled:opacity-50"
-                >
-                  <Sparkles className="w-4 h-4" />
-                  <span>Generate Concept for {currentTopic.brandName}</span>
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                </button>
-
-                <button
-                  type="button"
-                  onClick={handleNextTopic}
-                  className="px-5 py-4 bg-[var(--color-bg-primary)] hover:bg-[var(--color-border-primary)] text-[#A1A1AA] hover:text-white border border-[var(--color-border-primary)] font-sora text-xs font-semibold rounded-xl transition-all flex items-center justify-center gap-2"
-                >
-                  <SkipForward className="w-4 h-4" />
-                  <span>Skip / Next</span>
-                </button>
-              </div>
-            </div>
-          ) : (
-            <div className="text-center py-12 bg-[var(--color-bg-surface)] rounded-2xl border border-[var(--color-border-primary)] space-y-4">
-              <CheckCircle2 className="w-12 h-12 text-[#22C55E] mx-auto" />
-              <h3 className="text-xl font-sora font-bold text-white">All 390 UGC Topics Completed! 🎉</h3>
-              <p className="text-xs text-[#A1A1AA] max-w-md mx-auto">
-                You have systematically generated concepts for every single UGC topic in your database. Reset progress to start over or switch to Custom mode.
-              </p>
-              <button
-                onClick={resetUgcProgress}
-                className="px-6 py-2.5 bg-[var(--color-brand-violet)] text-white font-sora text-xs font-bold rounded-xl hover:bg-[var(--color-brand-violet)]/80 transition-all"
-              >
-                Reset Progress (Start Fresh)
-              </button>
-            </div>
-          )}
+              );
+            })}
+          </div>
         </div>
       ) : (
         /* Custom Mode Form */
