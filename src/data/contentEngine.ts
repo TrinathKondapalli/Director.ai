@@ -18,7 +18,7 @@ REQUIRED CONTENT STRUCTURE (Do not remove information just to make it minimal):
 4. HERO VISUAL (Strong conceptual metaphor)
 5. SHORT EXPLANATION (e.g., Users spend most of their time on other websites. Design familiar patterns.)
 6. SMALL EDITORIAL DETAIL (e.g., 01 / 10, DESIGN / RESEARCH / IMPACT)
-7. TZINR SIGNATURE
+7. TZINR SIGNATURE (e.g., TZINR, @tzinr, TZINR / DESIGN)
 
 VISUAL METAPHOR + SUPPORTING INFO:
 The hero visual must communicate the concept (e.g., repeating architectural arches with one unexpected path).
@@ -38,13 +38,16 @@ EDITORIAL MICRO-DETAILS:
 Include meaningful micro-details (e.g., UX PRINCIPLES 002, KEY TAKEAWAY, DESIGN / RESEARCH). 
 DO NOT invent meaningless coordinates (e.g., 45.2° N) unless they relate to the content.
 
-TZINR BRAND CONSISTENCY SYSTEM:
-1. Every post MUST carry the TZINR identity as the publisher's signature (TZINR / UX PRINCIPLE, @tzinr).
+TZINR BRAND CONSISTENCY SYSTEM (MANDATORY LAYER):
+1. Every post MUST carry the TZINR identity as the publisher's signature. It must be visibly identifiable within 1-2 seconds, but secondary to the main content.
 2. DO NOT BAKE THE LOGO INTO AI-GENERATED ART. The application overlays the logo based on your \`tzinrSignatureText\` and \`tzinrSignaturePlacement\` outputs. DO NOT include "TZINR" in the \`imagePrompt\`.
-3. Even without the logo, the design should feel like TZINR through the consistent White/Black/Blue editorial DNA.
+3. PRIMARY BRAND PLACEMENT: Default to TOP-LEFT. Do not randomly move it around. Place it in a quiet editorial area.
+4. SECONDARY SIGNATURE: Optionally include a small secondary signature near the bottom (@tzinr).
+5. CAROUSEL BRANDING: Slide 1 uses clear but subtle TZINR / [CATEGORY]. Middle slides use a smaller consistent signature. Final slide uses slightly stronger branding for brand recall.
+6. Even without the logo, the design should feel like TZINR through the consistent White/Black/Blue editorial DNA.
 
 10/10 QUALITY GATE (Internal check before generating):
-Does it look beautiful? Does the visual metaphor represent the idea? Does it have enough visual detail? Does it avoid unnecessary clutter? Does it avoid the "empty poster" look? Does it provide educational value? Is it unmistakably TZINR?
+Does it look beautiful? Does the visual metaphor represent the idea? Does it have enough visual detail? Does it avoid unnecessary clutter? Does it avoid the "empty poster" look? Does it provide educational value? Is it unmistakably TZINR? Is TZINR clearly visible but smaller than main content?
 
 REQUIRED 16-PART IMAGE PROMPT FORMAT (MUST use this format exactly, NO LOGOS OR BRAND TEXT IN THE ARTWORK PROMPT):
 [FORMAT] Premium editorial social media graphic, 4:5 vertical.
@@ -61,8 +64,8 @@ REQUIRED 16-PART IMAGE PROMPT FORMAT (MUST use this format exactly, NO LOGOS OR 
 [VISUAL HIERARCHY] 
 [DEPTH / LIGHTING] 
 [EDITORIAL DETAILS] (Include grids, lines, small meaningful metadata)
-[TZINR BRANDING] (Instruction for the AI NOT to include text branding, leave space).
-[NEGATIVE] beautiful empty poster, empty white background, flat canvas, generic infographic, dashboard, two-column cards, UI mockup unless conceptually necessary, random decoration, purple, pink, orange, green, yellow, generic AI artwork, cheap 3D, excessive text, fake coordinates, meaningless numbers, visual clutter.`;
+[TZINR BRANDING] (Instruction for the AI NOT to include text branding, leave quiet editorial space top-left for programmatic logo).
+[NEGATIVE] beautiful empty poster, empty white background, flat canvas, generic infographic, dashboard, two-column cards, UI mockup unless conceptually necessary, random decoration, purple, pink, orange, green, yellow, generic AI artwork, cheap 3D, excessive text, fake coordinates, meaningless numbers, visual clutter, AI-generated logo, text branding.`;
 
 export const generateContentFromTopic = async (topic: DesignTopic, format: 'single' | 'carousel'): Promise<DesignContentResult> => {
   try {
@@ -114,7 +117,7 @@ export const generateContentFromTopic = async (topic: DesignTopic, format: 'sing
           type: 'OBJECT', properties: { headline: { type: 'STRING' }, supporting: { type: 'STRING' } },
           required: ["headline"]
         },
-        tzinrSignatureText: { type: 'STRING', description: 'e.g., TZINR, TZINR / UX, TZINR / PRODUCT, @tzinr' },
+        tzinrSignatureText: { type: 'STRING', description: 'e.g., TZINR / UX, TZINR / DESIGN' },
         tzinrSignaturePlacement: { type: 'STRING', enum: ['top-left', 'top-right', 'bottom-left', 'bottom-right'] },
         imagePrompt: { type: 'STRING' },
         hashtags: { type: 'ARRAY', items: { type: 'STRING' }, description: 'Generate exactly 20 hashtags' },
@@ -173,10 +176,10 @@ CATEGORY: ${topic.category}
 
 INSTRUCTIONS:
 1. THE METAPHOR: Determine the strongest visual metaphor for this concept. It MUST be supported by educational copy.
-2. Apply the 10/10 QUALITY GATE internally before generating text. Ensure the design is NOT an empty poster and NOT a cluttered infographic. Find the premium editorial middle ground.
+2. Apply the 10/10 QUALITY GATE internally before generating text. Ensure the design is NOT an empty poster and NOT a cluttered infographic. Find the premium editorial middle ground. TZINR must be identifiable in 1-2 seconds but remain secondary.
 3. Generate the Social Media Captions. Keep it insightful, end with ONE meaningful question.
 4. Provide the exact 16-part REQUIRED IMAGE PROMPT FORMAT (excluding any logo/branding instructions). Ensure the EXACT VISIBLE TEXT includes the Category, Headline, Core Idea, Short Explanation, and Metadata.
-5. Determine the appropriate TZINR signature text and placement for programmatic overlay.
+5. Determine the appropriate TZINR signature text and placement for programmatic overlay (Default: top-left).
 
 Format requested: ${format.toUpperCase()}.
 
