@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Copy, CheckCircle2, ImageIcon, Hash, MessageSquare, List, Target, Type } from 'lucide-react';
+import { Copy, CheckCircle2, ImageIcon, Download, RefreshCcw, Send, Save } from 'lucide-react';
 import { DesignContentResult, DesignContentResultV2Single, DesignContentResultV2Carousel } from '../types';
 import { BackgroundGlow } from './BackgroundGlow';
 
@@ -71,66 +71,98 @@ export const DesignResultPage: React.FC<DesignResultPageProps> = ({ result, onCr
     return cleanText(resultText);
   };
 
-  const SectionCard = ({ title, icon: Icon, children, copyText, copyLabel, copyKey }: any) => (
-    <div className="bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] rounded-2xl shadow-xl overflow-hidden flex flex-col h-full">
-      <div className="bg-[var(--color-bg-primary)] border-b border-[var(--color-border-primary)] px-5 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-2.5">
-          <Icon className="w-5 h-5 text-[var(--color-brand-violet)]" />
-          <h3 className="font-sora font-bold text-[#FAFAFA] text-sm uppercase tracking-wider">{title}</h3>
-        </div>
-        {copyText && (
-          <button
-            onClick={() => copyToClipboard(copyText, copyLabel, copyKey)}
-            className="p-2 bg-[var(--color-bg-surface)] hover:bg-[var(--color-border-primary)] border border-[var(--color-border-primary)] rounded-lg text-[#A1A1AA] hover:text-white transition-colors cursor-pointer"
-            title={`Copy ${copyLabel}`}
-          >
-            {activeCopiedKey === copyKey ? <CheckCircle2 className="w-4 h-4 text-[#22C55E]" /> : <Copy className="w-4 h-4" />}
-          </button>
-        )}
-      </div>
-      <div className="p-5 flex-1 text-sm text-[#A1A1AA] whitespace-pre-wrap font-inter leading-relaxed">
-        {children}
-      </div>
+  const SectionHeader = ({ number, title }: { number: string; title: string }) => (
+    <div className="flex items-center gap-4 mb-6">
+      <span className="text-3xl md:text-4xl font-sora font-extrabold text-[#3F3F46]">{number}</span>
+      <h2 className="text-xl md:text-2xl font-sora font-bold text-white tracking-widest uppercase">{title}</h2>
     </div>
   );
 
   const renderSinglePost = (res: DesignContentResultV2Single) => (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      <div className="lg:col-span-2 flex flex-col gap-6">
-        <SectionCard 
-          title="Educational Content" 
-          icon={MessageSquare} 
-          copyText={`WHY THIS MATTERS: ${res.whyThisMatters || ''}\n\n${res.hook || ''}\n\n${res.professionalCaption || ''}\n\n${res.cta || ''}`} 
-          copyLabel="Content" 
-          copyKey="post"
-        >
-          <div className="space-y-4 text-[15px] leading-relaxed text-[#D4D4D8]">
-            <div className="bg-[var(--color-brand-violet)]/10 border border-[var(--color-brand-violet)]/20 rounded-lg p-3">
-              <strong className="text-[var(--color-brand-lavender)] text-xs uppercase tracking-wider block mb-1">Why This Matters</strong>
-              <p className="text-white italic text-sm">{cleanText(res.whyThisMatters)}</p>
-            </div>
-            <p className="font-semibold text-white text-lg">{cleanText(res.hook)}</p>
-            <p>{cleanText(res.professionalCaption)}</p>
-            <p className="font-semibold text-[var(--color-brand-lavender)] italic">{cleanText(res.cta)}</p>
+    <div className="flex flex-col gap-24 max-w-[900px] mx-auto w-full">
+      {/* 01 - CONTENT */}
+      <section>
+        <SectionHeader number="01" title="Content" />
+        <div className="bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] rounded-2xl p-6 sm:p-10 shadow-xl">
+          <div className="space-y-6 text-[15px] leading-relaxed text-[#D4D4D8]">
+            {res.whyThisMatters && (
+              <div className="mb-6">
+                <strong className="text-[var(--color-brand-violet)] text-xs uppercase tracking-widest block mb-2 font-mono">Why This Matters</strong>
+                <p className="text-white italic text-base">{cleanText(res.whyThisMatters)}</p>
+              </div>
+            )}
+            <p className="font-sora font-semibold text-white text-xl sm:text-2xl leading-snug">{cleanText(res.hook)}</p>
+            <p className="text-lg">{cleanText(res.professionalCaption)}</p>
+            <p className="font-semibold text-[var(--color-brand-lavender)] italic text-lg">{cleanText(res.cta)}</p>
           </div>
-        </SectionCard>
+        </div>
+      </section>
 
-        <div className="bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] rounded-2xl shadow-xl overflow-hidden mt-6">
-          <div className="flex items-center justify-between p-4 border-b border-[var(--color-border-primary)] bg-[var(--color-bg-primary)]/50">
-            <h3 className="text-sm font-sora font-bold text-white flex items-center gap-2">
-              <List className="w-4 h-4 text-[var(--color-brand-violet)]" />
-              Platform Captions
-            </h3>
-            <button onClick={() => copyToClipboard(formatCaption(activeTab, res.captions?.[activeTab]) + '\n\n' + formatHashtags(res.hashtags), `${activeTab} Caption`, 'captions')} className="text-[var(--color-brand-violet)] hover:text-white flex items-center gap-1.5 text-xs font-mono transition-colors cursor-pointer">
-              {activeCopiedKey === 'captions' ? <CheckCircle2 className="w-3.5 h-3.5 text-[#22C55E]" /> : <Copy className="w-3.5 h-3.5" />} Copy Caption
-            </button>
+      {/* 02 - POST PREVIEW */}
+      <section>
+        <SectionHeader number="02" title="Post Preview" />
+        <div className="flex flex-col gap-6">
+          <div className="w-full aspect-[4/5] sm:aspect-video md:aspect-[4/5] lg:h-[700px] bg-[#050505] border border-[var(--color-border-primary)] rounded-2xl flex flex-col items-center justify-center relative overflow-hidden shadow-2xl group">
+            <div className="absolute inset-0 bg-gradient-to-br from-[#1557FF]/5 to-transparent pointer-events-none" />
+            
+            <ImageIcon className="w-16 h-16 text-[#27272A] mb-8" />
+            
+            <div className="text-center max-w-lg px-8 relative z-10 flex flex-col items-center">
+              {res.imageText ? (
+                <>
+                  <h3 className="text-3xl md:text-5xl font-sora font-extrabold text-white mb-4 uppercase leading-tight tracking-tight">{cleanText(res.imageText.headline)}</h3>
+                  <p className="text-[#A1A1AA] text-lg font-light leading-relaxed">{cleanText(res.imageText.supporting)}</p>
+                </>
+              ) : (
+                <p className="text-[#A1A1AA] text-lg">Visual Asset Placeholder</p>
+              )}
+            </div>
+
+            {/* Simulated Brand Overlay */}
+            <div className={`absolute ${res.tzinrSignaturePlacement === 'top-right' ? 'top-8 right-8' : res.tzinrSignaturePlacement === 'bottom-left' ? 'bottom-8 left-8' : res.tzinrSignaturePlacement === 'bottom-right' ? 'bottom-8 right-8' : 'top-8 left-8'} flex flex-col`}>
+              <span className="text-white text-xs sm:text-sm font-bold tracking-widest">{res.tzinrSignatureText || 'TZINR'}</span>
+            </div>
           </div>
+          
+          <div className="flex flex-col sm:flex-row items-center gap-4">
+             <button className="w-full sm:w-auto px-8 py-3.5 bg-[var(--color-brand-violet)] hover:bg-[var(--color-brand-lavender)] text-white font-semibold rounded-xl transition-colors flex items-center justify-center gap-2">
+               <Download className="w-5 h-5" /> Download
+             </button>
+             <button className="w-full sm:w-auto px-8 py-3.5 bg-[var(--color-bg-surface)] hover:bg-[var(--color-border-primary)] border border-[var(--color-border-primary)] text-white font-semibold rounded-xl transition-colors flex items-center justify-center gap-2">
+               <RefreshCcw className="w-5 h-5" /> Regenerate Image
+             </button>
+          </div>
+        </div>
+      </section>
+
+      {/* 03 - IMAGE PROMPT */}
+      <section>
+        <SectionHeader number="03" title="Image Prompt" />
+        <div className="bg-[#050505] border border-[var(--color-border-primary)] rounded-2xl overflow-hidden flex flex-col shadow-xl">
+           <div className="p-6 sm:p-8 overflow-y-auto custom-scrollbar max-h-[400px]">
+             <p className="font-mono text-sm md:text-base text-[var(--color-brand-violet)] leading-loose whitespace-pre-wrap">{cleanText(res.imagePrompt)}</p>
+           </div>
+           <div className="bg-[var(--color-bg-surface)] p-4 border-t border-[var(--color-border-primary)] flex items-center justify-between">
+              <button 
+                onClick={() => copyToClipboard(res.imagePrompt, 'Image Prompt', 'prompt')} 
+                className="px-5 py-2.5 bg-[var(--color-bg-primary)] hover:bg-[#18181B] border border-[var(--color-border-primary)] rounded-lg text-sm font-semibold text-white transition-colors flex items-center gap-2 cursor-pointer"
+              >
+                 {activeCopiedKey === 'prompt' ? <CheckCircle2 className="w-4 h-4 text-[#22C55E]" /> : <Copy className="w-4 h-4" />} Copy Prompt
+              </button>
+           </div>
+        </div>
+      </section>
+
+      {/* 04 - POST DESCRIPTION */}
+      <section>
+        <SectionHeader number="04" title="Post Description" />
+        <div className="bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] rounded-2xl shadow-xl overflow-hidden">
           <div className="flex border-b border-[var(--color-border-primary)] overflow-x-auto custom-scrollbar">
             {(['linkedin', 'instagram', 'facebook', 'twitter', 'youtube'] as const).map(tab => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`px-5 py-3.5 text-xs font-semibold capitalize transition-colors whitespace-nowrap cursor-pointer ${
+                className={`px-6 py-4 text-sm font-semibold capitalize transition-colors whitespace-nowrap cursor-pointer ${
                   activeTab === tab ? 'bg-[var(--color-brand-violet)]/10 text-white border-b-2 border-[var(--color-brand-violet)]' : 'text-[#A1A1AA] hover:bg-[var(--color-bg-primary)]'
                 }`}
               >
@@ -138,267 +170,217 @@ export const DesignResultPage: React.FC<DesignResultPageProps> = ({ result, onCr
               </button>
             ))}
           </div>
-          <div className="p-6 md:p-8">
-            <div className="max-h-[350px] overflow-y-auto pr-2 custom-scrollbar mb-6">
-              <p className="text-sm text-white whitespace-pre-wrap leading-relaxed font-mono">{formatCaption(activeTab, res.captions?.[activeTab])}</p>
+          <div className="p-6 sm:p-8">
+            <div className="max-h-[400px] overflow-y-auto pr-2 custom-scrollbar mb-8">
+              <p className="text-base text-white whitespace-pre-wrap leading-relaxed font-inter">{formatCaption(activeTab, res.captions?.[activeTab])}</p>
             </div>
-            <div className="pt-6 border-t border-[var(--color-border-primary)]">
-              <div className="flex items-center justify-between mb-3">
-                <strong className="text-[10px] uppercase text-[#A1A1AA] tracking-widest">Hashtags</strong>
-                <span className="text-[10px] font-mono text-[#71717A]">{formatCaption(activeTab, res.captions?.[activeTab]).length} Chars</span>
-              </div>
-              <p className="text-xs font-mono text-[var(--color-brand-violet)] leading-relaxed">{formatHashtags(res.hashtags)}</p>
+            <div className="flex items-center justify-between pt-6 border-t border-[var(--color-border-primary)]">
+               <span className="text-xs font-mono text-[#71717A]">{formatCaption(activeTab, res.captions?.[activeTab]).length} Characters</span>
+               <button 
+                 onClick={() => copyToClipboard(formatCaption(activeTab, res.captions?.[activeTab]) + '\n\n' + formatHashtags(res.hashtags), `${activeTab} Description`, 'desc')} 
+                 className="px-5 py-2.5 bg-[var(--color-bg-primary)] hover:bg-[#18181B] border border-[var(--color-border-primary)] rounded-lg text-sm font-semibold text-white transition-colors flex items-center gap-2 cursor-pointer"
+               >
+                  {activeCopiedKey === 'desc' ? <CheckCircle2 className="w-4 h-4 text-[#22C55E]" /> : <Copy className="w-4 h-4" />} Copy Description
+               </button>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div className="flex flex-col gap-6">
-        {res.imageText && (
-          <SectionCard title="Image Text Preview" icon={Type} copyText={`${res.imageText.headline}\n${res.imageText.supporting || ''}`} copyLabel="Image Text" copyKey="imageText">
-            <div className="flex flex-col gap-2">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-              <div className="bg-[var(--color-bg-primary)] p-4 rounded-xl border border-[var(--color-border-primary)]">
-                <strong className="text-white text-[10px] uppercase tracking-wider text-[#A1A1AA] block mb-2">Slide Content</strong>
-                {res.imageText && (
-                  <div className="mb-3">
-                    <p className="text-lg font-bold text-white leading-snug">{cleanText(res.imageText.headline)}</p>
-                    {res.imageText.supporting && (
-                      <p className="text-xs text-[#D4D4D8] mt-1">{cleanText(res.imageText.supporting)}</p>
-                    )}
-                  </div>
-                )}
-                <div className="pt-3 border-t border-[var(--color-border-primary)]">
-                  <strong className="text-white text-[10px] uppercase tracking-wider block mb-2">Programmatic Brand Overlay</strong>
-                  <div className="flex flex-col gap-4">
-                    <div className="flex gap-4">
-                      <div>
-                        <span className="text-[10px] font-mono text-[#A1A1AA] uppercase">Signature</span>
-                        <p className="text-sm font-semibold text-white">{res.tzinrSignatureText || 'TZINR'}</p>
-                      </div>
-                      <div>
-                        <span className="text-[10px] font-mono text-[#A1A1AA] uppercase">Placement</span>
-                        <p className="text-sm font-semibold text-[var(--color-brand-violet)]">{res.tzinrSignaturePlacement || 'top-left'}</p>
-                      </div>
-                    </div>
-                    <div className="bg-[var(--color-bg-surface)] p-3 rounded-lg border border-[var(--color-border-primary)]">
-                      <strong className="text-white text-[10px] uppercase tracking-wider block mb-2 text-[#A1A1AA]">Final Acceptance Test</strong>
-                      <div className="grid grid-cols-1 gap-y-1">
-                        {[
-                          'TZINR safe area preserved', 'Official TZINR logo applied', 'Logo has sufficient contrast'
-                        ].map((check, idx) => (
-                          <div key={idx} className="flex items-center gap-2">
-                            <CheckCircle2 className="w-3 h-3 text-[#22C55E]" />
-                            <span className="text-[11px] text-[#D4D4D8] leading-none">{check}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-[var(--color-bg-primary)] p-4 rounded-xl border border-[var(--color-border-primary)]">
-                <strong className="text-white text-[10px] uppercase tracking-wider text-[#A1A1AA] block mb-2">Image Prompt</strong>
-                <p className="font-mono text-[11px] text-[var(--color-brand-violet)] leading-relaxed">{cleanText(res.imagePrompt)}</p>
-              </div>
-            </div> </div>
-          </SectionCard>
-        )}
-
-        <SectionCard title="AI Image Prompt" icon={ImageIcon} copyText={cleanText(res.imagePrompt)} copyLabel="Prompt" copyKey="prompt">
-          <div className="p-4 bg-[var(--color-bg-primary)] border border-[var(--color-border-primary)] rounded-xl font-mono text-[12px] text-[var(--color-brand-violet)] leading-relaxed mb-4">
-            {cleanText(res.imagePrompt)}
-          </div>
-          <div className="pt-4 border-t border-[var(--color-border-primary)]">
-            <strong className="text-white text-[10px] uppercase tracking-wider block mb-2">Programmatic Brand Overlay (Do not generate in AI)</strong>
-            <div className="flex flex-col gap-4">
-              <div className="flex gap-4">
-                <div>
-                  <span className="text-[10px] font-mono text-[#A1A1AA] uppercase">Signature</span>
-                  <p className="text-sm font-semibold text-white">{res.tzinrSignatureText || 'TZINR'}</p>
-                </div>
-                <div>
-                  <span className="text-[10px] font-mono text-[#A1A1AA] uppercase">Placement</span>
-                  <p className="text-sm font-semibold text-[var(--color-brand-violet)]">{res.tzinrSignaturePlacement || 'top-left'}</p>
-                </div>
-              </div>
-              <div className="bg-[var(--color-bg-surface)] p-3 rounded-lg border border-[var(--color-border-primary)] mt-2">
-                <strong className="text-white text-[10px] uppercase tracking-wider block mb-2 text-[#A1A1AA]">Final Acceptance Test (Pre-Export)</strong>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-1.5 gap-x-4">
-                  {[
-                    'AI artwork generated', 'Editorial composition completed', 'TZINR safe area preserved', 'Official TZINR logo applied', 'Logo clearly visible', 'Logo has sufficient contrast', 'Logo is not oversized', 'Logo is not hidden', 'Category metadata remains separate', 'Final preview contains TZINR', 'Export contains TZINR'
-                  ].map((check, idx) => (
-                    <div key={idx} className="flex items-center gap-2">
-                      <CheckCircle2 className="w-3 h-3 text-[#22C55E]" />
-                      <span className="text-[11px] text-[#D4D4D8] leading-none">{check}</span>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-3 pt-3 border-t border-[var(--color-border-primary)] flex items-center justify-between">
-                  <span className="text-[10px] uppercase font-mono text-[#A1A1AA]">POST STATUS</span>
-                  <span className="text-xs font-bold text-[#22C55E] uppercase bg-[#22C55E]/10 px-2 py-0.5 rounded">COMPLETE</span>
-                </div>
-              </div>
+      {/* 05 - SEO & TAGS */}
+      <section>
+        <SectionHeader number="05" title="SEO & Tags" />
+        <div className="bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] rounded-2xl p-6 sm:p-8 shadow-xl">
+          <div className="mb-8">
+            <strong className="text-white text-xs uppercase tracking-widest block mb-4 font-mono">Keywords</strong>
+            <div className="flex flex-wrap gap-2.5">
+              {(res.keywords || []).map((k, i) => (
+                <span key={i} className="px-3 py-1.5 bg-[var(--color-bg-primary)] border border-[var(--color-border-primary)] rounded-md text-sm text-[#D4D4D8]">{cleanText(k)}</span>
+              ))}
             </div>
           </div>
-        </SectionCard>
+          <div>
+            <strong className="text-white text-xs uppercase tracking-widest block mb-4 font-mono">Hashtags</strong>
+            <div className="font-mono text-sm text-[var(--color-brand-violet)] leading-relaxed">
+              {formatHashtags(res.hashtags)}
+            </div>
+          </div>
+        </div>
+      </section>
 
-        <SectionCard title="SEO & Tags" icon={Hash} copyText={formatHashtags(res.hashtags)} copyLabel="Tags" copyKey="tags">
-          <strong className="text-white text-xs uppercase tracking-wider block mb-2">Keywords</strong>
-          <div className="flex flex-wrap gap-2 mb-6">
-            {(res.keywords || []).map((k, i) => (
-              <span key={i} className="px-2.5 py-1 bg-[var(--color-bg-primary)] border border-[var(--color-border-primary)] rounded-md text-[11px] font-mono text-[#A1A1AA]">{cleanText(k)}</span>
-            ))}
-          </div>
-          <strong className="text-white text-xs uppercase tracking-wider block mb-2">Hashtags</strong>
-          <div className="font-mono text-[12px] text-[var(--color-brand-magenta)]">
-            {formatHashtags(res.hashtags)}
-          </div>
-        </SectionCard>
-      </div>
+      {/* 06 - PUBLISHING */}
+      <section>
+        <SectionHeader number="06" title="Publishing" />
+        <div className="bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] rounded-2xl p-6 sm:p-8 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-6">
+           <div className="w-full sm:w-auto">
+             <strong className="text-white text-sm font-sora block mb-1">Ready to export?</strong>
+             <p className="text-[#A1A1AA] text-sm">Save your progress or publish directly to platforms.</p>
+           </div>
+           <div className="flex w-full sm:w-auto items-center gap-3">
+              <button className="flex-1 sm:flex-none px-6 py-3 bg-[var(--color-bg-primary)] hover:bg-[var(--color-border-primary)] border border-[var(--color-border-primary)] text-white font-semibold rounded-xl transition-colors flex items-center justify-center gap-2">
+                <Save className="w-4 h-4" /> Save Draft
+              </button>
+              <button className="flex-1 sm:flex-none px-8 py-3 bg-white hover:bg-gray-100 text-black font-semibold rounded-xl transition-colors flex items-center justify-center gap-2 shadow-lg">
+                <Send className="w-4 h-4" /> Publish
+              </button>
+           </div>
+        </div>
+      </section>
     </div>
   );
 
   const renderCarousel = (res: DesignContentResultV2Carousel) => (
-    <div className="flex flex-col gap-6">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2">
-          <SectionCard 
-            title="Carousel Concept" 
-            icon={MessageSquare} 
-            copyText={`Title: ${res.coverTitle || ''}\n\nWHY THIS MATTERS: ${res.whyThisMatters || ''}\n\n${res.cta || ''}`} 
-            copyLabel="Concept" 
-            copyKey="carousel-concept"
-          >
-            <div className="space-y-4 text-[15px] leading-relaxed text-[#D4D4D8]">
-              <div className="mb-2">
-                <strong className="text-white text-xs font-mono uppercase tracking-wider">Slide 1 (Cover Title)</strong>
-                <p className="text-2xl font-bold text-white mt-1">{cleanText(res.coverTitle)}</p>
-              </div>
-              <div className="bg-[var(--color-brand-violet)]/10 border border-[var(--color-brand-violet)]/20 rounded-lg p-3">
-                <strong className="text-[var(--color-brand-lavender)] text-xs uppercase tracking-wider block mb-1">Why This Matters</strong>
-                <p className="text-white italic text-sm">{cleanText(res.whyThisMatters)}</p>
-              </div>
-              <p className="font-semibold text-[var(--color-brand-lavender)] italic">{cleanText(res.cta)}</p>
+    <div className="flex flex-col gap-24 max-w-[900px] mx-auto w-full">
+      {/* 01 - CONTENT */}
+      <section>
+        <SectionHeader number="01" title="Content" />
+        <div className="bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] rounded-2xl p-6 sm:p-10 shadow-xl">
+          <div className="space-y-6 text-[15px] leading-relaxed text-[#D4D4D8]">
+            <div className="mb-6">
+              <strong className="text-[var(--color-brand-violet)] text-xs uppercase tracking-widest block mb-2 font-mono">Slide 1 (Cover)</strong>
+              <p className="text-2xl font-sora font-bold text-white leading-snug">{cleanText(res.coverTitle)}</p>
             </div>
-          </SectionCard>
+            {res.whyThisMatters && (
+              <div className="mb-6">
+                <strong className="text-[var(--color-brand-violet)] text-xs uppercase tracking-widest block mb-2 font-mono">Why This Matters</strong>
+                <p className="text-white italic text-base">{cleanText(res.whyThisMatters)}</p>
+              </div>
+            )}
+            <p className="font-semibold text-[var(--color-brand-lavender)] italic text-lg">{cleanText(res.cta)}</p>
+          </div>
+        </div>
+      </section>
 
-          <div className="bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] rounded-2xl shadow-xl overflow-hidden mt-6">
-            <div className="flex items-center justify-between p-4 border-b border-[var(--color-border-primary)] bg-[var(--color-bg-primary)]/50">
-              <h3 className="text-sm font-sora font-bold text-white flex items-center gap-2">
-                <List className="w-4 h-4 text-[var(--color-brand-violet)]" />
-                Platform Captions
-              </h3>
-              <button onClick={() => copyToClipboard(formatCaption(activeTab, res.captions?.[activeTab]) + '\n\n' + formatHashtags(res.hashtags), `${activeTab} Caption`, 'captions-carousel')} className="text-[var(--color-brand-violet)] hover:text-white flex items-center gap-1.5 text-xs font-mono transition-colors cursor-pointer">
-                {activeCopiedKey === 'captions-carousel' ? <CheckCircle2 className="w-3.5 h-3.5 text-[#22C55E]" /> : <Copy className="w-3.5 h-3.5" />} Copy Caption
-              </button>
-            </div>
-            <div className="flex border-b border-[var(--color-border-primary)] overflow-x-auto custom-scrollbar">
-              {(['linkedin', 'instagram', 'facebook', 'twitter', 'youtube'] as const).map(tab => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className={`px-5 py-3.5 text-xs font-semibold capitalize transition-colors whitespace-nowrap cursor-pointer ${
-                    activeTab === tab ? 'bg-[var(--color-brand-violet)]/10 text-white border-b-2 border-[var(--color-brand-violet)]' : 'text-[#A1A1AA] hover:bg-[var(--color-bg-primary)]'
-                  }`}
-                >
-                  {tab}
-                </button>
-              ))}
-            </div>
-            <div className="p-6 md:p-8">
-              <div className="max-h-[350px] overflow-y-auto pr-2 custom-scrollbar mb-6">
-                <p className="text-sm text-white whitespace-pre-wrap leading-relaxed font-mono">{formatCaption(activeTab, res.captions?.[activeTab])}</p>
-              </div>
-              <div className="pt-6 border-t border-[var(--color-border-primary)]">
-                <div className="flex items-center justify-between mb-3">
-                  <strong className="text-[10px] uppercase text-[#A1A1AA] tracking-widest">Hashtags</strong>
-                  <span className="text-[10px] font-mono text-[#71717A]">{formatCaption(activeTab, res.captions?.[activeTab]).length} Chars</span>
+      {/* 02 - POST PREVIEW (Carousel) */}
+      <section>
+        <SectionHeader number="02" title="Post Preview" />
+        <div className="flex flex-col gap-6">
+           {/* We could render multiple slides or just a scrollable row, let's do a vertical stack of preview cards for clarity */}
+           <div className="flex overflow-x-auto gap-6 pb-4 custom-scrollbar snap-x">
+             {(res.slides || []).map((slide, index) => (
+                <div key={index} className="w-[300px] sm:w-[400px] shrink-0 aspect-[4/5] bg-[#050505] border border-[var(--color-border-primary)] rounded-2xl flex flex-col items-center justify-center relative overflow-hidden shadow-xl snap-center group">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#1557FF]/5 to-transparent pointer-events-none" />
+                  <ImageIcon className="w-10 h-10 text-[#27272A] mb-6" />
+                  <div className="text-center px-6 relative z-10">
+                     <h3 className="text-xl font-sora font-extrabold text-white mb-2 uppercase">{cleanText(slide.imageText?.headline)}</h3>
+                     <p className="text-[#A1A1AA] text-sm">{cleanText(slide.imageText?.supporting)}</p>
+                  </div>
+                  <div className="absolute top-4 left-4 font-mono text-[10px] text-[#A1A1AA]">
+                     Slide {index + 2}
+                  </div>
                 </div>
-                <p className="text-xs font-mono text-[var(--color-brand-violet)] leading-relaxed">{formatHashtags(res.hashtags)}</p>
-              </div>
+             ))}
+           </div>
+           
+           <div className="flex flex-col sm:flex-row items-center gap-4">
+             <button className="w-full sm:w-auto px-8 py-3.5 bg-[var(--color-brand-violet)] hover:bg-[var(--color-brand-lavender)] text-white font-semibold rounded-xl transition-colors flex items-center justify-center gap-2">
+               <Download className="w-5 h-5" /> Download All
+             </button>
+             <button className="w-full sm:w-auto px-8 py-3.5 bg-[var(--color-bg-surface)] hover:bg-[var(--color-border-primary)] border border-[var(--color-border-primary)] text-white font-semibold rounded-xl transition-colors flex items-center justify-center gap-2">
+               <RefreshCcw className="w-5 h-5" /> Regenerate Carousel
+             </button>
+          </div>
+        </div>
+      </section>
+
+      {/* 03 - IMAGE PROMPT */}
+      <section>
+        <SectionHeader number="03" title="Image Prompts" />
+        <div className="space-y-6">
+          {(res.slides || []).map((slide, index) => (
+            <div key={index} className="bg-[#050505] border border-[var(--color-border-primary)] rounded-2xl overflow-hidden flex flex-col shadow-xl">
+               <div className="bg-[var(--color-bg-surface)] border-b border-[var(--color-border-primary)] px-6 py-3 flex items-center justify-between">
+                  <strong className="text-white text-xs uppercase tracking-widest font-mono">Slide {index + 2}</strong>
+               </div>
+               <div className="p-6 sm:p-8 overflow-y-auto custom-scrollbar max-h-[300px]">
+                 <p className="font-mono text-sm text-[var(--color-brand-violet)] leading-loose whitespace-pre-wrap">{cleanText(slide.imagePrompt)}</p>
+               </div>
+               <div className="bg-[var(--color-bg-surface)] p-4 border-t border-[var(--color-border-primary)] flex items-center justify-end">
+                  <button 
+                    onClick={() => copyToClipboard(slide.imagePrompt, `Slide ${index+2} Prompt`, `prompt-${index}`)} 
+                    className="px-5 py-2.5 bg-[var(--color-bg-primary)] hover:bg-[#18181B] border border-[var(--color-border-primary)] rounded-lg text-sm font-semibold text-white transition-colors flex items-center gap-2 cursor-pointer"
+                  >
+                     {activeCopiedKey === `prompt-${index}` ? <CheckCircle2 className="w-4 h-4 text-[#22C55E]" /> : <Copy className="w-4 h-4" />} Copy
+                  </button>
+               </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 04 - POST DESCRIPTION */}
+      <section>
+        <SectionHeader number="04" title="Post Description" />
+        <div className="bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] rounded-2xl shadow-xl overflow-hidden">
+          <div className="flex border-b border-[var(--color-border-primary)] overflow-x-auto custom-scrollbar">
+            {(['linkedin', 'instagram', 'facebook', 'twitter', 'youtube'] as const).map(tab => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`px-6 py-4 text-sm font-semibold capitalize transition-colors whitespace-nowrap cursor-pointer ${
+                  activeTab === tab ? 'bg-[var(--color-brand-violet)]/10 text-white border-b-2 border-[var(--color-brand-violet)]' : 'text-[#A1A1AA] hover:bg-[var(--color-bg-primary)]'
+                }`}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
+          <div className="p-6 sm:p-8">
+            <div className="max-h-[400px] overflow-y-auto pr-2 custom-scrollbar mb-8">
+              <p className="text-base text-white whitespace-pre-wrap leading-relaxed font-inter">{formatCaption(activeTab, res.captions?.[activeTab])}</p>
+            </div>
+            <div className="flex items-center justify-between pt-6 border-t border-[var(--color-border-primary)]">
+               <span className="text-xs font-mono text-[#71717A]">{formatCaption(activeTab, res.captions?.[activeTab]).length} Characters</span>
+               <button 
+                 onClick={() => copyToClipboard(formatCaption(activeTab, res.captions?.[activeTab]) + '\n\n' + formatHashtags(res.hashtags), `${activeTab} Description`, 'desc')} 
+                 className="px-5 py-2.5 bg-[var(--color-bg-primary)] hover:bg-[#18181B] border border-[var(--color-border-primary)] rounded-lg text-sm font-semibold text-white transition-colors flex items-center gap-2 cursor-pointer"
+               >
+                  {activeCopiedKey === 'desc' ? <CheckCircle2 className="w-4 h-4 text-[#22C55E]" /> : <Copy className="w-4 h-4" />} Copy Description
+               </button>
             </div>
           </div>
         </div>
+      </section>
 
-        <div className="flex flex-col gap-6">
-          <SectionCard title="SEO & Tags" icon={Hash} copyText={formatHashtags(res.hashtags)} copyLabel="Tags" copyKey="tags">
-            <strong className="text-white text-xs uppercase tracking-wider block mb-2">Keywords</strong>
-            <div className="flex flex-wrap gap-2 mb-6">
+      {/* 05 - SEO & TAGS */}
+      <section>
+        <SectionHeader number="05" title="SEO & Tags" />
+        <div className="bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] rounded-2xl p-6 sm:p-8 shadow-xl">
+          <div className="mb-8">
+            <strong className="text-white text-xs uppercase tracking-widest block mb-4 font-mono">Keywords</strong>
+            <div className="flex flex-wrap gap-2.5">
               {(res.keywords || []).map((k, i) => (
-                <span key={i} className="px-2.5 py-1 bg-[var(--color-bg-primary)] border border-[var(--color-border-primary)] rounded-md text-[11px] font-mono text-[#A1A1AA]">{cleanText(k)}</span>
+                <span key={i} className="px-3 py-1.5 bg-[var(--color-bg-primary)] border border-[var(--color-border-primary)] rounded-md text-sm text-[#D4D4D8]">{cleanText(k)}</span>
               ))}
             </div>
-            <strong className="text-white text-xs uppercase tracking-wider block mb-2">Hashtags</strong>
-            <div className="font-mono text-[12px] text-[var(--color-brand-magenta)]">
+          </div>
+          <div>
+            <strong className="text-white text-xs uppercase tracking-widest block mb-4 font-mono">Hashtags</strong>
+            <div className="font-mono text-sm text-[var(--color-brand-violet)] leading-relaxed">
               {formatHashtags(res.hashtags)}
             </div>
-          </SectionCard>
-        </div>
-      </div>
-
-      <div className="space-y-6">
-        <h3 className="font-sora font-bold text-xl text-white mt-4 border-b border-[var(--color-border-primary)] pb-4 flex items-center gap-2">
-          <Target className="w-5 h-5 text-[var(--color-brand-violet)]" />
-          Carousel Slides
-        </h3>
-        {(res.slides || []).map((slide, index) => (
-          <div key={index} className="bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] rounded-2xl shadow-lg p-6 flex flex-col lg:flex-row gap-6 relative group">
-            <div className="flex-1">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-8 h-8 rounded-lg bg-[var(--color-brand-violet)]/15 border border-[var(--color-brand-violet)]/30 text-[var(--color-brand-violet)] font-bold flex items-center justify-center text-sm font-mono shrink-0">
-                  {index + 2}
-                </div>
-                <h4 className="font-sora font-bold text-lg text-white">{cleanText(slide.heading)}</h4>
-              </div>
-              <p className="text-[#D4D4D8] leading-relaxed ml-11">{cleanText(slide.description)}</p>
-            </div>
-            
-            <div className="flex-1 bg-[var(--color-bg-primary)] rounded-xl p-5 border border-[var(--color-border-primary)] relative flex flex-col gap-5">
-              {slide.imageText && (
-                <div>
-                  <div className="flex items-center justify-between mb-2">
-                    <strong className="text-white text-xs font-mono uppercase tracking-wider flex items-center gap-2">
-                      <Type className="w-4 h-4 text-[#1557FF]" />
-                      Image Text
-                    </strong>
-                    <button
-                      onClick={() => copyToClipboard(`${slide.imageText?.headline}\n${slide.imageText?.supporting || ''}`, `Slide ${index + 2} Text`, `text-${index}`)}
-                      className="text-[#A1A1AA] hover:text-white transition-colors cursor-pointer"
-                    >
-                      {activeCopiedKey === `text-${index}` ? <CheckCircle2 className="w-4 h-4 text-[#22C55E]" /> : <Copy className="w-4 h-4" />}
-                    </button>
-                  </div>
-                  <div className="bg-[var(--color-bg-surface)] rounded-lg p-3 border border-[var(--color-border-primary)]">
-                    <p className="text-sm font-sora font-bold text-white">{cleanText(slide.imageText.headline)}</p>
-                    {slide.imageText.supporting && (
-                      <p className="text-xs text-[#A1A1AA] mt-1">{cleanText(slide.imageText.supporting)}</p>
-                    )}
-                  </div>
-                </div>
-              )}
-              
-              <div>
-                <div className="flex items-center justify-between mb-3">
-                  <strong className="text-white text-xs font-mono uppercase tracking-wider flex items-center gap-2">
-                    <ImageIcon className="w-4 h-4 text-[var(--color-brand-magenta)]" />
-                    Image Prompt
-                  </strong>
-                  <button
-                    onClick={() => copyToClipboard(slide.imagePrompt, `Slide ${index + 2} Prompt`, `prompt-${index}`)}
-                    className="text-[#A1A1AA] hover:text-white transition-colors cursor-pointer"
-                  >
-                    {activeCopiedKey === `prompt-${index}` ? <CheckCircle2 className="w-4 h-4 text-[#22C55E]" /> : <Copy className="w-4 h-4" />}
-                  </button>
-                </div>
-                <div className="font-mono text-[12px] text-[var(--color-brand-violet)] leading-relaxed bg-[var(--color-bg-surface)] p-3 rounded-lg border border-[var(--color-border-primary)]">
-                  {cleanText(slide.imagePrompt)}
-                </div>
-              </div>
-            </div>
           </div>
-        ))}
-      </div>
+        </div>
+      </section>
+
+      {/* 06 - PUBLISHING */}
+      <section>
+        <SectionHeader number="06" title="Publishing" />
+        <div className="bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] rounded-2xl p-6 sm:p-8 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-6">
+           <div className="w-full sm:w-auto">
+             <strong className="text-white text-sm font-sora block mb-1">Ready to export?</strong>
+             <p className="text-[#A1A1AA] text-sm">Save your progress or publish directly to platforms.</p>
+           </div>
+           <div className="flex w-full sm:w-auto items-center gap-3">
+              <button className="flex-1 sm:flex-none px-6 py-3 bg-[var(--color-bg-primary)] hover:bg-[var(--color-border-primary)] border border-[var(--color-border-primary)] text-white font-semibold rounded-xl transition-colors flex items-center justify-center gap-2">
+                <Save className="w-4 h-4" /> Save Draft
+              </button>
+              <button className="flex-1 sm:flex-none px-8 py-3 bg-white hover:bg-gray-100 text-black font-semibold rounded-xl transition-colors flex items-center justify-center gap-2 shadow-lg">
+                <Send className="w-4 h-4" /> Publish
+              </button>
+           </div>
+        </div>
+      </section>
     </div>
   );
 
@@ -411,7 +393,7 @@ export const DesignResultPage: React.FC<DesignResultPageProps> = ({ result, onCr
   }
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] bg-[var(--color-bg-primary)] py-10 px-4 sm:px-6 relative overflow-hidden pb-24 flex justify-center selection:bg-[var(--color-brand-violet)]/30">
+    <div className="min-h-[calc(100vh-4rem)] bg-[var(--color-bg-primary)] py-12 px-4 sm:px-6 relative overflow-hidden pb-32 flex justify-center selection:bg-[var(--color-brand-violet)]/30">
       <BackgroundGlow />
       <AnimatePresence>
         {toastMessage && (
@@ -429,33 +411,37 @@ export const DesignResultPage: React.FC<DesignResultPageProps> = ({ result, onCr
         )}
       </AnimatePresence>
 
-      <div className="w-full max-w-6xl space-y-8 relative z-10">
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border-b border-[var(--color-border-primary)] pb-8">
-          <div>
-            <div className="flex items-center gap-3 mb-2">
-              <span className="px-3 py-1 rounded-full bg-[var(--color-brand-violet)]/15 border border-[var(--color-brand-violet)]/30 text-[var(--color-brand-violet)] text-[11px] font-mono font-semibold tracking-wide uppercase">
-                MODULE 02 / DESIGN PUBLISHER
-              </span>
-              {result.visualType && (
-                <span className="px-3 py-1 rounded-full bg-[#1557FF]/15 border border-[#1557FF]/30 text-[#1557FF] text-[11px] font-mono font-semibold tracking-wide uppercase flex items-center gap-1.5">
-                  <Type className="w-3.5 h-3.5" /> TYPE {result.visualType.toUpperCase()}
-                </span>
-              )}
-            </div>
-            <h1 className="text-2xl sm:text-4xl font-sora font-extrabold text-[#FAFAFA] tracking-tight leading-snug">
+      <div className="w-full max-w-5xl relative z-10 flex flex-col gap-12 sm:gap-16">
+        {/* HEADER */}
+        <div className="flex flex-col items-center text-center gap-6 pb-12 border-b border-[var(--color-border-primary)]/50">
+          <div className="flex flex-col items-center gap-3">
+            <h1 className="text-[10px] font-mono tracking-[0.3em] text-[#A1A1AA] uppercase">DIRECTOR.AI</h1>
+            <h2 className="text-3xl sm:text-5xl font-sora font-extrabold text-white tracking-tight leading-tight">
               {cleanText(result.topicTitle || (result as any).coverTitle || 'Design Insight')}
-            </h1>
+            </h2>
+            <div className="flex items-center gap-2 mt-2">
+              <span className="text-[11px] font-mono font-semibold tracking-widest uppercase text-[#A1A1AA]">
+                {result.visualType ? `TYPE ${result.visualType} · ` : ''}TZINR
+              </span>
+            </div>
           </div>
-          <div className="flex items-center gap-3">
+          
+          <div className="flex items-center gap-4 mt-4">
             <button
               onClick={onCreateAnother}
-              className="px-6 py-2.5 bg-[var(--color-bg-surface)] hover:bg-[var(--color-border-primary)] border border-[var(--color-border-primary)] text-white text-sm font-semibold rounded-xl transition-all shadow-sm cursor-pointer"
+              className="px-6 py-2.5 bg-transparent hover:bg-[var(--color-bg-surface)] border border-[#3F3F46] text-white text-xs font-semibold rounded-lg transition-all cursor-pointer"
             >
-              New Content
+              Regenerate
+            </button>
+            <button
+              className="px-6 py-2.5 bg-[var(--color-bg-surface)] hover:bg-[var(--color-border-primary)] border border-[var(--color-border-primary)] text-white text-xs font-semibold rounded-lg transition-all cursor-pointer"
+            >
+              Edit
             </button>
           </div>
         </div>
 
+        {/* CONTENT */}
         {result.format === 'single' ? renderSinglePost(result as DesignContentResultV2Single) : renderCarousel(result as DesignContentResultV2Carousel)}
       </div>
     </div>
