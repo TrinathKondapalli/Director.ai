@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Copy, CheckCircle2, ImageIcon, Hash, MessageSquare, List, Target } from 'lucide-react';
+import { Copy, CheckCircle2, ImageIcon, Hash, MessageSquare, List, Target, Type } from 'lucide-react';
 import { DesignContentResult, DesignContentResultV2Single, DesignContentResultV2Carousel } from '../types';
 import { BackgroundGlow } from './BackgroundGlow';
 
@@ -154,9 +154,58 @@ export const DesignResultPage: React.FC<DesignResultPageProps> = ({ result, onCr
       </div>
 
       <div className="flex flex-col gap-6">
+        {res.imageText && (
+          <SectionCard title="Image Text Preview" icon={Type} copyText={`${res.imageText.headline}\n${res.imageText.supporting || ''}`} copyLabel="Image Text" copyKey="imageText">
+            <div className="flex flex-col gap-2">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+              <div className="bg-[var(--color-bg-primary)] p-4 rounded-xl border border-[var(--color-border-primary)]">
+                <strong className="text-white text-[10px] uppercase tracking-wider text-[#A1A1AA] block mb-2">Slide Content</strong>
+                {res.imageText && (
+                  <div className="mb-3">
+                    <p className="text-lg font-bold text-white leading-snug">{cleanText(res.imageText.headline)}</p>
+                    {res.imageText.supporting && (
+                      <p className="text-xs text-[#D4D4D8] mt-1">{cleanText(res.imageText.supporting)}</p>
+                    )}
+                  </div>
+                )}
+                <div className="pt-3 border-t border-[var(--color-border-primary)]">
+                  <strong className="text-white text-[10px] uppercase tracking-wider block mb-2">Programmatic Brand Overlay</strong>
+                  <div className="flex gap-4">
+                    <div>
+                      <span className="text-[10px] font-mono text-[#A1A1AA] uppercase">Signature</span>
+                      <p className="text-sm font-semibold text-white">{res.tzinrSignatureText || 'TZINR'}</p>
+                    </div>
+                    <div>
+                      <span className="text-[10px] font-mono text-[#A1A1AA] uppercase">Placement</span>
+                      <p className="text-sm font-semibold text-[var(--color-brand-violet)]">{res.tzinrSignaturePlacement || 'top-left'}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-[var(--color-bg-primary)] p-4 rounded-xl border border-[var(--color-border-primary)]">
+                <strong className="text-white text-[10px] uppercase tracking-wider text-[#A1A1AA] block mb-2">Image Prompt</strong>
+                <p className="font-mono text-[11px] text-[var(--color-brand-violet)] leading-relaxed">{cleanText(res.imagePrompt)}</p>
+              </div>
+            </div> </div>
+          </SectionCard>
+        )}
+
         <SectionCard title="AI Image Prompt" icon={ImageIcon} copyText={cleanText(res.imagePrompt)} copyLabel="Prompt" copyKey="prompt">
-          <div className="p-4 bg-[var(--color-bg-primary)] border border-[var(--color-border-primary)] rounded-xl font-mono text-[12px] text-[var(--color-brand-violet)] leading-relaxed">
+          <div className="p-4 bg-[var(--color-bg-primary)] border border-[var(--color-border-primary)] rounded-xl font-mono text-[12px] text-[var(--color-brand-violet)] leading-relaxed mb-4">
             {cleanText(res.imagePrompt)}
+          </div>
+          <div className="pt-4 border-t border-[var(--color-border-primary)]">
+            <strong className="text-white text-[10px] uppercase tracking-wider block mb-2">Programmatic Brand Overlay (Do not generate in AI)</strong>
+            <div className="flex gap-4">
+              <div>
+                <span className="text-[10px] font-mono text-[#A1A1AA] uppercase">Signature</span>
+                <p className="text-sm font-semibold text-white">{res.tzinrSignatureText || 'TZINR'}</p>
+              </div>
+              <div>
+                <span className="text-[10px] font-mono text-[#A1A1AA] uppercase">Placement</span>
+                <p className="text-sm font-semibold text-[var(--color-brand-violet)]">{res.tzinrSignaturePlacement || 'top-left'}</p>
+              </div>
+            </div>
           </div>
         </SectionCard>
 
@@ -271,21 +320,46 @@ export const DesignResultPage: React.FC<DesignResultPageProps> = ({ result, onCr
               <p className="text-[#D4D4D8] leading-relaxed ml-11">{cleanText(slide.description)}</p>
             </div>
             
-            <div className="flex-1 bg-[var(--color-bg-primary)] rounded-xl p-5 border border-[var(--color-border-primary)] relative">
-              <div className="flex items-center justify-between mb-3">
-                <strong className="text-white text-xs font-mono uppercase tracking-wider flex items-center gap-2">
-                  <ImageIcon className="w-4 h-4 text-[var(--color-brand-magenta)]" />
-                  Image Prompt
-                </strong>
-                <button
-                  onClick={() => copyToClipboard(slide.imagePrompt, `Slide ${index + 2} Prompt`, `prompt-${index}`)}
-                  className="text-[#A1A1AA] hover:text-white transition-colors cursor-pointer"
-                >
-                  {activeCopiedKey === `prompt-${index}` ? <CheckCircle2 className="w-4 h-4 text-[#22C55E]" /> : <Copy className="w-4 h-4" />}
-                </button>
-              </div>
-              <div className="font-mono text-[12px] text-[var(--color-brand-violet)] leading-relaxed">
-                {cleanText(slide.imagePrompt)}
+            <div className="flex-1 bg-[var(--color-bg-primary)] rounded-xl p-5 border border-[var(--color-border-primary)] relative flex flex-col gap-5">
+              {slide.imageText && (
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <strong className="text-white text-xs font-mono uppercase tracking-wider flex items-center gap-2">
+                      <Type className="w-4 h-4 text-[#1557FF]" />
+                      Image Text
+                    </strong>
+                    <button
+                      onClick={() => copyToClipboard(`${slide.imageText?.headline}\n${slide.imageText?.supporting || ''}`, `Slide ${index + 2} Text`, `text-${index}`)}
+                      className="text-[#A1A1AA] hover:text-white transition-colors cursor-pointer"
+                    >
+                      {activeCopiedKey === `text-${index}` ? <CheckCircle2 className="w-4 h-4 text-[#22C55E]" /> : <Copy className="w-4 h-4" />}
+                    </button>
+                  </div>
+                  <div className="bg-[var(--color-bg-surface)] rounded-lg p-3 border border-[var(--color-border-primary)]">
+                    <p className="text-sm font-sora font-bold text-white">{cleanText(slide.imageText.headline)}</p>
+                    {slide.imageText.supporting && (
+                      <p className="text-xs text-[#A1A1AA] mt-1">{cleanText(slide.imageText.supporting)}</p>
+                    )}
+                  </div>
+                </div>
+              )}
+              
+              <div>
+                <div className="flex items-center justify-between mb-3">
+                  <strong className="text-white text-xs font-mono uppercase tracking-wider flex items-center gap-2">
+                    <ImageIcon className="w-4 h-4 text-[var(--color-brand-magenta)]" />
+                    Image Prompt
+                  </strong>
+                  <button
+                    onClick={() => copyToClipboard(slide.imagePrompt, `Slide ${index + 2} Prompt`, `prompt-${index}`)}
+                    className="text-[#A1A1AA] hover:text-white transition-colors cursor-pointer"
+                  >
+                    {activeCopiedKey === `prompt-${index}` ? <CheckCircle2 className="w-4 h-4 text-[#22C55E]" /> : <Copy className="w-4 h-4" />}
+                  </button>
+                </div>
+                <div className="font-mono text-[12px] text-[var(--color-brand-violet)] leading-relaxed bg-[var(--color-bg-surface)] p-3 rounded-lg border border-[var(--color-border-primary)]">
+                  {cleanText(slide.imagePrompt)}
+                </div>
               </div>
             </div>
           </div>
@@ -328,6 +402,11 @@ export const DesignResultPage: React.FC<DesignResultPageProps> = ({ result, onCr
               <span className="px-3 py-1 rounded-full bg-[var(--color-brand-violet)]/15 border border-[var(--color-brand-violet)]/30 text-[var(--color-brand-violet)] text-[11px] font-mono font-semibold tracking-wide uppercase">
                 MODULE 02 / DESIGN PUBLISHER
               </span>
+              {result.visualType && (
+                <span className="px-3 py-1 rounded-full bg-[#1557FF]/15 border border-[#1557FF]/30 text-[#1557FF] text-[11px] font-mono font-semibold tracking-wide uppercase flex items-center gap-1.5">
+                  <Type className="w-3.5 h-3.5" /> TYPE {result.visualType.toUpperCase()}
+                </span>
+              )}
             </div>
             <h1 className="text-2xl sm:text-4xl font-sora font-extrabold text-[#FAFAFA] tracking-tight leading-snug">
               {cleanText(result.topicTitle || (result as any).coverTitle || 'Design Insight')}

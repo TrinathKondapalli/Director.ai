@@ -24,20 +24,19 @@ export interface UgcTopic {
   tone: string;
 }
 
-export interface DesignTopic {
+export interface UgcTopic {
   id: string;
   category: string;
-  difficulty: string;
-  principleName: string;
-  coreDefinition: string;
-  whyThisMatters: string;
-  practicalApplication: string;
-  visualDo: string;
-  visualDont: string;
+  conceptName: string;
+  description: string;
   targetAudience: string;
-  commonMistake: string;
-  expertTip: string;
-  realWorldExample: string;
+  emotionalHook: string;
+}
+
+export interface DesignTopic {
+  id: number;
+  title: string;
+  category: string;
 }
 
 export interface PlatformCaptions {
@@ -146,6 +145,7 @@ export interface UgcStudioResult {
 
 export interface DesignContentResultV2Single {
   format: 'single';
+  visualType?: 'editorial_poster' | 'hero_object' | 'asymmetric_editorial' | 'visual_transformation' | 'diagrammatic' | 'typographic_experiment' | 'object_type' | 'full_bleed' | 'editorial_grid' | 'abstract_concept';
   topicTitle: string;
   whyThisMatters: string;
   hook: string;
@@ -154,12 +154,16 @@ export interface DesignContentResultV2Single {
   actionableTakeaways: string[];
   cta: string;
   imagePrompt: string;
+  imageText?: { headline: string; supporting?: string };
+  tzinrSignatureText: string;
+  tzinrSignaturePlacement: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
   hashtags: string[];
   keywords: string[];
 }
 
 export interface DesignContentResultV2Carousel {
   format: 'carousel';
+  visualType?: 'editorial_poster' | 'hero_object' | 'asymmetric_editorial' | 'visual_transformation' | 'diagrammatic' | 'typographic_experiment' | 'object_type' | 'full_bleed' | 'editorial_grid' | 'abstract_concept';
   topicTitle: string;
   coverTitle: string;
   whyThisMatters: string;
@@ -168,7 +172,10 @@ export interface DesignContentResultV2Carousel {
     heading: string;
     description: string;
     imagePrompt: string;
+    imageText?: { headline: string; supporting?: string };
   }[];
+  tzinrSignatureText: string;
+  tzinrSignaturePlacement: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
   actionableTakeaways: string[];
   cta: string;
   hashtags: string[];

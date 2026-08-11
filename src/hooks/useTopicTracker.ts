@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import ugcTopicsData from '../data/ugcTopics.json';
-import designTopicsData from '../data/designTopics.json';
+import { hundredDaysData } from '../data/100DaysData';
 import { UgcTopic, DesignTopic } from '../types';
 
 const UGC_COMPLETED_KEY = 'director_ai_ugc_completed_ids';
-const DESIGN_COMPLETED_KEY = 'director_ai_design_completed_ids';
+const DESIGN_COMPLETED_KEY = 'director_ai_design_completed_ids_100_days';
 
 export function useTopicTracker() {
   const [completedUgcIds, setCompletedUgcIds] = useState<string[]>(() => {
@@ -16,7 +16,7 @@ export function useTopicTracker() {
     }
   });
 
-  const [completedDesignIds, setCompletedDesignIds] = useState<string[]>(() => {
+  const [completedDesignIds, setCompletedDesignIds] = useState<number[]>(() => {
     try {
       const saved = localStorage.getItem(DESIGN_COMPLETED_KEY);
       return saved ? JSON.parse(saved) : [];
@@ -42,7 +42,7 @@ export function useTopicTracker() {
   }, [completedDesignIds]);
 
   const allUgcTopics = ugcTopicsData as UgcTopic[];
-  const allDesignTopics = designTopicsData as DesignTopic[];
+  const allDesignTopics = hundredDaysData as DesignTopic[];
 
   const uncompletedUgcTopics = allUgcTopics.filter(t => !completedUgcIds.includes(t.id));
   const uncompletedDesignTopics = allDesignTopics.filter(t => !completedDesignIds.includes(t.id));
@@ -51,8 +51,12 @@ export function useTopicTracker() {
     setCompletedUgcIds(prev => prev.includes(id) ? prev : [...prev, id]);
   };
 
-  const markDesignCompleted = (id: string) => {
+  const markDesignCompleted = (id: number) => {
     setCompletedDesignIds(prev => prev.includes(id) ? prev : [...prev, id]);
+  };
+
+  const toggleDesignCompleted = (id: number) => {
+    setCompletedDesignIds(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]);
   };
 
   const resetUgcProgress = () => {
@@ -76,6 +80,7 @@ export function useTopicTracker() {
     uncompletedDesignTopics,
     markUgcCompleted,
     markDesignCompleted,
+    toggleDesignCompleted,
     resetUgcProgress,
     resetDesignProgress,
   };

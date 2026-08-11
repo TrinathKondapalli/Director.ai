@@ -1,181 +1,83 @@
 import { GoogleGenAI } from '@google/genai';
 import { DesignContentResult, DesignContentResultV2Single, DesignContentResultV2Carousel, DesignTopic } from '../types';
 
-const SYSTEM_PROMPT = `You are DIRECTOR.AI's Design Intelligence Engine.
-You are a senior UX Researcher, Product Designer, Creative Director, Design Educator, and Industry Analyst with over 25 years of experience.
-Your responsibility is to produce ORIGINAL educational content inspired by what is happening in today's design industry.
+const SYSTEM_PROMPT = `You are a Senior Product Designer, UX Strategist, LinkedIn Personal Branding Strategist, Content Strategist, and Social Psychology-based Content Creator for TZINR (a premium creative design studio and publication).
 
-Before generating, Research: Latest UX/UI Design, Figma, Framer, Apple/Google Design, Accessibility, Design Systems, AI Design.
-Never create: Political content, Celebrity news, Crypto, Entertainment, Generic AI news.
-Generate ONE content category randomly (e.g. UX Tip, UI Tip, Design Psychology, Accessibility, Framework).
+Your goal is to build a 100-day LinkedIn content strategy for yourself.
+Every post must feel: Art-directed, conceptually intelligent, visually memorable, premium, minimal but not empty, sophisticated, and human-designed.
+The ultimate goal is: CONTENT FIRST + DESIGN SECOND + TZINR SIGNATURE ALWAYS.
 
-Content Types: Choose Single Post OR Carousel.
+CORE CONTENT PHILOSOPHY:
+CURIOSITY → TENSION → INSIGHT → VISUAL PROOF → PERSONAL PERSPECTIVE → DISCUSSION → CONNECTION
 
-If Single Post: Generate Topic, Hook, Professional Caption, LinkedIn Version, Instagram Version, Facebook Version, Twitter/X Version, CTA, 20 Hashtags, SEO Keywords, ONE Premium Image Prompt (background only).
+THE SINGLE-IDEA RULE:
+Every post must communicate ONE primary idea within 2–3 seconds. Do not explain the entire topic inside the image.
+Image = HOOK + CORE IDEA + VISUAL METAPHOR. Caption = DEFINITION + EXPLANATION + PRACTICAL APPLICATION.
 
-If Carousel: Generate Cover Title, Total Slides, Slide Heading, Slide Description, Slide CTA, Hashtags, SEO Keywords, AND for EVERY slide: Slide Content, ONE separate AI image prompt (background only).
+THE 10/10 DESIGN FORMULA:
+CONTENT IDEA → CORE MESSAGE → VISUAL METAPHOR → ART DIRECTION → COMPOSITION → TYPOGRAPHY → COLOR → ATMOSPHERE → TZINR SIGNATURE.
+NEVER begin with a template. NEVER begin with "Create a UX infographic."
 
-CAPTIONS REQUIREMENTS:
-Generate highly structured captions for LinkedIn, Instagram, Facebook, Twitter/X, and YouTube.
-Instead of a single string, you MUST return a structured object for each platform.
-- LinkedIn: { hook, context, mainInsight, keyTakeaways, cta, hashtags }
-- Instagram: { hook, story, lesson, cta, hashtags }
-- Facebook: { opening, problem, advice, example, question, hashtags }
-- Twitter/X: { singleTweet, threadVersion (array of strings), hashtags }
-- YouTube: { seoTitle, description, whatYouWillLearn, chapters, cta, keywords, hashtags }
+VISUAL METAPHOR IS MANDATORY:
+Every post must have a deliberate visual concept that explains or reinforces the idea.
+Example (Jakob's Law): Repeated familiar architectural arches with one unexpected path breaking away.
+Do NOT use a generic illustration or generic UI cards just because it matches a keyword.
 
-IMAGE PROMPT RULES:
-The AI must generate ONE editorial-quality AI image prompt. 
-CRITICAL: The prompt MUST describe a COMPLETE social media post design, NOT just a background.
-The generated image should already contain: Headline, Supporting text, Icons, Visual hierarchy, Cards, UI elements, Proper spacing, Brand colors, Graphic elements, Typography, Layout, Callouts, Highlights.
-The artwork should be directly inspired by the generated topic (e.g. wireframes, sticky notes, workspaces, UI flows).
-The output should look like it was designed in Adobe Illustrator, Figma, or Canva by a senior graphic designer.
-Design Style: Strong typography hierarchy, grid system, white space, premium composition. Resemble premium content from Linear, Stripe, Notion, OpenAI, Framer, Figma, Canva.
-Never generate: Generic AI art, random futuristic scenes, wallpaper-style compositions, empty backgrounds.
+COMPOSITION MUST FOLLOW THE METAPHOR:
+Possible compositions: Editorial poster, Hero object, Asymmetric editorial, Full-bleed visual, Typography-led, Architectural, Abstract, Diagrammatic, Visual transformation, Perspective composition, Minimal cinematic editorial.
+Do NOT automatically use: Two-column cards, DO/DON'T cards, UI mockups, Dashboard layouts, Three information pills.
 
-Output Quality:
-Never repeat previous responses. Every generation should be unique. Feel like it was created by senior designers.`;
+BACKGROUND & DEPTH SYSTEM:
+WHITE-THEMED does NOT mean SOLID WHITE. The background should feel designed.
+Use: Warm white, cool white, soft off-white, subtle blue gradient, blue atmospheric glow, soft mesh, fine dot grid, editorial grid, architectural lines, translucent geometric forms.
+Create DEPTH + ATMOSPHERE + VISUAL INTEREST.
 
-export const generateContentMock = async (format: 'single' | 'carousel'): Promise<DesignContentResult> => {
-  await new Promise((resolve) => setTimeout(resolve, 3500));
+COLOR SYSTEM:
+Primary: White (#FFFFFF), Off-white (#F7F9FC). Black (#050505), Deep Navy (#080D2A).
+Blues: Soft blue (#EAF1FF), Primary blue (#1557FF), Secondary blue (#2563EB).
+Blue should guide the viewer's eye (highlight the most important word, hero object, visual path).
+Do NOT introduce unrelated colors (No purple, pink, orange, red, green, yellow, teal).
 
-  if (format === 'single') {
-    return {
-      format: 'single',
-      topicTitle: "Stop using pure black (#000000) in your UI designs.",
-      whyThisMatters: "Using pure black causes extreme retina stimulation on OLED screens, leading to severe user eye fatigue and a 'cheap' brand perception.",
-      hook: "If your dark mode looks harsh and causes eye strain, you're probably making this one critical color mistake. 👇",
-      professionalCaption: "Pure black (#000000) against pure white (#FFFFFF) creates a massive contrast ratio that actually over-stimulates the retina. Instead of absolute black, use a 'tinted dark'.",
-      captions: {
-        linkedin: {
-          hook: `Designers: Stop using pure black (#000000).`,
-          context: `It creates massive contrast that over-stimulates the retina.`,
-          mainInsight: `Using a tinted dark instead increases readability and feels instantly more premium. Industry leaders like Stripe and Linear use elevated grays.`,
-          keyTakeaways: ["Never use #000000", "Inject 2-5% brand color into a dark base", "Test readability"],
-          cta: `How are you handling dark mode in your current projects?`,
-          hashtags: ["#UIDesign", "#UX", "#DesignSystems"]
-        },
-        instagram: {
-          hook: `Are you making this rookie color mistake? 🛑 Stop using pure black!`,
-          story: `It causes eye strain and feels cheap. Try a deep, cool-toned gray instead for that premium feel. ✨`,
-          lesson: `Elevated grays increase readability and reduce contrast fatigue.`,
-          cta: `Check our stories for exact hex codes! 👇`,
-          hashtags: ["#UIDesign", "#UXTips", "#Figma"]
-        },
-        facebook: {
-          opening: `Hey designers!`,
-          problem: `We just audited a major app and found they were using pure black backgrounds.`,
-          advice: `Switching to a tinted dark increased reading time by 12% across their entire community!`,
-          example: `Try using #09090B instead of #000000.`,
-          question: `What's your go-to dark mode color?`,
-          hashtags: ["#UIDesign", "#DarkMode"]
-        },
-        twitter: {
-          singleTweet: `Pure black (#000000) is ruining your dark mode. Use #09090B instead. Better readability. Premium feel. Your users will thank you. 🌙`,
-          threadVersion: [
-            `Stop using pure black (#000000) in your UI designs. Here is why. 🧵`,
-            `1/ Extreme contrast causes eye fatigue on OLED screens.`,
-            `2/ It feels cheap. Premium brands use tinted darks instead.`
-          ],
-          hashtags: ["#UI", "#UX"]
-        },
-        youtube: {
-          seoTitle: `Stop Using Pure Black in UI Design (#000000)`,
-          description: `Learn why pure black causes eye strain and how to design premium dark mode interfaces.`,
-          whatYouWillLearn: ["Why pure black is bad", "How to pick dark mode colors", "Examples from top brands"],
-          chapters: ["0:00 Intro", "1:30 The Problem with #000000", "3:00 How to Fix It"],
-          cta: `Subscribe for more UI/UX tips!`,
-          keywords: ["dark mode", "ui design", "color theory"],
-          hashtags: ["#UIDesign", "#UXDesign"]
-        }
-      },
-      actionableTakeaways: [
-        "Never use #000000 for backgrounds in dark mode.",
-        "Inject 2-5% of your primary brand color into a dark gray base."
-      ],
-      cta: "Have you audited your dark mode colors recently? Let me know your favorite dark hex code below! 👇",
-      imagePrompt: "A fully designed premium social media graphic. A sleek, cinematic dark mode UI card floating on a dark tinted background (#09090B). The card has a bold typography headline 'Stop Using Pure Black', supporting text below, and a comparison graphic showing #000000 vs #09090B. Modern typography hierarchy, clean grid system, subtle glowing UI elements, and sleek layout. Looks like a professional Figma export from Stripe or Linear.",
-      hashtags: ["#UIDesign", "#UXDesign", "#ColorTheory", "#ProductDesign", "#DesignSystem", "#Figma", "#DarkMode", "#UXTips"],
-      keywords: ["UI color theory", "Dark mode best practices", "Figma color palette", "How to design dark mode", "UI design tips"]
-    };
-  } else {
-    return {
-      format: 'carousel',
-      topicTitle: "The Psychology of Micro-Interactions in Product Design",
-      coverTitle: "Why Your App Feels 'Cheap' (And How to Fix It)",
-      whyThisMatters: "Without purposeful motion, digital products feel broken and robotic. Micro-interactions build immediate subconscious trust.",
-      captions: {
-        linkedin: {
-          hook: `Have you ever used an app that functioned perfectly, but just felt... cheap?`,
-          context: `The problem usually isn't the visual design. It's the lack of purposeful motion.`,
-          mainInsight: `Without purposeful motion, digital products feel broken and robotic. Micro-interactions build immediate subconscious trust.`,
-          keyTakeaways: ["Audit your app for missing visual feedback", "Use spring physics", "Motion equals emotion"],
-          cta: `What is your favorite app for micro-interactions?`,
-          hashtags: ["#ProductDesign", "#MicroInteractions", "#UXDesign"]
-        },
-        instagram: {
-          hook: `Why does your app feel cheap? 📱`,
-          story: `The problem usually isn't the visual design. It's the lack of purposeful motion.`,
-          lesson: `Micro-interactions build immediate subconscious trust.`,
-          cta: `Drop your favorite app in the comments! 👇`,
-          hashtags: ["#ProductDesign", "#MotionDesign", "#UIDesign"]
-        },
-        facebook: {
-          opening: `Hey community!`,
-          problem: `Have you ever used an app that functioned perfectly, but just felt... cheap?`,
-          advice: `The problem usually isn't the visual design. It's the lack of purposeful motion.`,
-          example: `Think about the heart animation when you like a post.`,
-          question: `What is your favorite app for micro-interactions?`,
-          hashtags: ["#UXDesign", "#AppDesign"]
-        },
-        twitter: {
-          singleTweet: `Have you ever used an app that functioned perfectly, but just felt... cheap? The problem usually isn't the visual design. It's the lack of purposeful motion.`,
-          threadVersion: [
-            `Why your app feels cheap (and how to fix it) 🧵`,
-            `1/ Visual design isn't everything. Motion is emotion.`,
-            `2/ Micro-interactions build immediate subconscious trust.`
-          ],
-          hashtags: ["#UXDesign", "#MotionDesign"]
-        },
-        youtube: {
-          seoTitle: `The Psychology of Micro-Interactions in App Design`,
-          description: `Learn how purposeful motion can instantly elevate the perceived value of your digital products.`,
-          whatYouWillLearn: ["What are micro-interactions?", "Spring physics vs linear", "Best practices"],
-          chapters: ["0:00 Intro", "1:45 The Cheap Feeling", "4:00 How to use motion"],
-          cta: `Subscribe for weekly product design breakdowns!`,
-          keywords: ["micro interactions", "motion design", "ux design"],
-          hashtags: ["#ProductDesign", "#UXDesign"]
-        }
-      },
-      slides: [
-        {
-          heading: "The 'Cheap' Feeling",
-          description: "Have you ever used an app that functioned perfectly, but just felt... cheap? The problem usually isn't the visual design. It's the lack of motion.",
-          imagePrompt: "A beautiful, moody shot of a smartphone in a dark room. Editorial photography, Luxury minimalism, Modern composition, Professional designer workspace, Cinematic lighting, Soft shadows, Depth of field, Ultra realistic, 8K, 16:9, Background artwork only, NO TEXT, NO TYPOGRAPHY, NO LETTERS, NO WORDS, NO NUMBERS, NO LOGOS, NO WATERMARK, NO BRANDING"
-        },
-        {
-          heading: "What are Micro-Interactions?",
-          description: "Micro-interactions are subtle animations that provide immediate visual feedback. A button pressing down. A toggle gliding over. A success checkmark drawing itself.",
-          imagePrompt: "A sleek, glowing digital toggle switch morphing and animating on a dark glassmorphic card. Editorial photography, Luxury minimalism, Modern composition, Professional designer workspace, Cinematic lighting, Soft shadows, Depth of field, Ultra realistic, 8K, 16:9, Background artwork only, NO TEXT, NO TYPOGRAPHY, NO LETTERS, NO WORDS, NO NUMBERS, NO LOGOS, NO WATERMARK, NO BRANDING"
-        }
-      ],
-      actionableTakeaways: [
-        "Audit your app for interactions that lack visual feedback.",
-        "Implement spring physics instead of linear animations for natural feel."
-      ],
-      cta: "What is your favorite app for micro-interactions? Drop it in the comments! 👇",
-      hashtags: ["#ProductDesign", "#MicroInteractions", "#UXDesign", "#MotionDesign", "#UIDesign", "#Figma", "#AppDesign", "#UXPsychology"],
-      keywords: ["Micro interactions UI", "UX motion design", "Framer animations", "How to improve app UX", "Perceived value in design"]
-    };
-  }
-};
+TYPOGRAPHY & TEXT LIMIT:
+Use strong sans-serif, bold headlines, extreme scale contrast, tight hierarchy, blue emphasis, large negative space.
+Text limit: Primary message 3–12 words. Optional supporting line 8–15 words.
+MEANINGFUL METADATA ONLY (e.g., TZINR / UX PRINCIPLE). Do NOT generate decorative pseudo-data (e.g., X 24.057).
 
-export const generateContent = async (format: 'single' | 'carousel'): Promise<DesignContentResult> => {
+DESIGN TENSION & WHITESPACE:
+Use controlled visual tension (e.g., huge typography vs tiny metadata).
+Whitespace is part of the design. LIGHT NOT EMPTY.
+
+TZINR BRAND CONSISTENCY SYSTEM (CRITICAL):
+1. Every social media post MUST carry a subtle, recognizable TZINR brand identity.
+2. DO NOT BAKE THE LOGO INTO AI-GENERATED ART. The application overlays the logo based on your \`tzinrSignatureText\` (e.g. "TZINR / DESIGN") and \`tzinrSignaturePlacement\` outputs. DO NOT include "TZINR" in the image artwork.
+3. TZINR Visual DNA must be maintained: White/off-white environments, black/navy typography, blue accent, editorial grid, conceptual visuals.
+
+10/10 QUALITY GATE (Internal check before generating):
+Does the visual actually represent the concept? Is there one clear focal point? Is the hierarchy dramatic? Does it avoid generic infographic patterns? Would this stop a designer scrolling?
+
+REQUIRED 16-PART IMAGE PROMPT FORMAT (MUST use this format exactly, NO LOGOS OR BRAND TEXT IN THE ARTWORK PROMPT):
+[FORMAT] Premium editorial social media graphic, 4:5 vertical.
+[CREATIVE CONCEPT] 
+[CORE MESSAGE] 
+[VISUAL METAPHOR] 
+[BACKGROUND] 
+[ATMOSPHERE] 
+[COLOR PALETTE] 
+[HERO VISUAL] 
+[TYPOGRAPHY] 
+[EXACT VISIBLE TEXT] "[TEXT]"
+[COMPOSITION] 
+[VISUAL HIERARCHY] 
+[DEPTH / LIGHTING] 
+[EDITORIAL DETAILS] 
+[TZINR BRANDING] (Instruction for the AI NOT to include text branding, just space for it).
+[NEGATIVE] generic infographic, template-like design, two-column card layout, UI mockup unless conceptually necessary, flat white canvas, random decoration, purple, pink, orange, green, yellow, generic AI artwork, cheap 3D, excessive text, fake metadata, meaningless numbers, visual clutter.`;
+
+export const generateContentFromTopic = async (topic: DesignTopic, format: 'single' | 'carousel'): Promise<DesignContentResult> => {
   try {
     const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
     if (!apiKey) {
-      console.warn("No Gemini API Key found. Falling back to mock data.");
-      return generateContentMock(format);
+      throw new Error("Gemini API Key missing.");
     }
 
     const ai = new GoogleGenAI({ apiKey });
@@ -184,6 +86,7 @@ export const generateContent = async (format: 'single' | 'carousel'): Promise<De
       type: 'OBJECT',
       properties: {
         format: { type: 'STRING', description: 'Always exactly "single"' },
+        visualType: { type: 'STRING', description: 'One of: editorial_poster, hero_object, asymmetric_editorial, visual_transformation, diagrammatic, typographic_experiment, object_type, full_bleed, editorial_grid, abstract_concept' },
         topicTitle: { type: 'STRING' },
         whyThisMatters: { type: 'STRING' },
         hook: { type: 'STRING' },
@@ -216,15 +119,22 @@ export const generateContent = async (format: 'single' | 'carousel'): Promise<De
         },
         actionableTakeaways: { type: 'ARRAY', items: { type: 'STRING' } },
         cta: { type: 'STRING' },
+        imageText: { 
+          type: 'OBJECT', properties: { headline: { type: 'STRING' }, supporting: { type: 'STRING' } },
+          required: ["headline"]
+        },
+        tzinrSignatureText: { type: 'STRING', description: 'e.g., TZINR, TZINR / UX, TZINR / PRODUCT, @tzinr' },
+        tzinrSignaturePlacement: { type: 'STRING', enum: ['top-left', 'top-right', 'bottom-left', 'bottom-right'] },
         imagePrompt: { type: 'STRING' },
         hashtags: { type: 'ARRAY', items: { type: 'STRING' }, description: 'Generate exactly 20 hashtags' },
         keywords: { type: 'ARRAY', items: { type: 'STRING' } }
       },
-      required: ["format", "topicTitle", "whyThisMatters", "hook", "professionalCaption", "captions", "actionableTakeaways", "cta", "imagePrompt", "hashtags", "keywords"]
+      required: ["format", "visualType", "topicTitle", "whyThisMatters", "hook", "professionalCaption", "captions", "actionableTakeaways", "cta", "imageText", "tzinrSignatureText", "tzinrSignaturePlacement", "imagePrompt", "hashtags", "keywords"]
     } : {
       type: 'OBJECT',
       properties: {
         format: { type: 'STRING', description: 'Always exactly "carousel"' },
+        visualType: { type: 'STRING', description: 'One of: editorial_poster, hero_object, asymmetric_editorial, visual_transformation, diagrammatic, typographic_experiment, object_type, full_bleed, editorial_grid, abstract_concept' },
         topicTitle: { type: 'STRING' },
         coverTitle: { type: 'STRING' },
         whyThisMatters: { type: 'STRING' },
@@ -246,37 +156,40 @@ export const generateContent = async (format: 'single' | 'carousel'): Promise<De
             properties: {
               heading: { type: 'STRING' },
               description: { type: 'STRING' },
+              imageText: { 
+                type: 'OBJECT', properties: { headline: { type: 'STRING' }, supporting: { type: 'STRING' } },
+                required: ["headline"]
+              },
               imagePrompt: { type: 'STRING' }
             },
-            required: ["heading", "description", "imagePrompt"]
+            required: ["heading", "description", "imageText", "imagePrompt"]
           }
         },
+        tzinrSignatureText: { type: 'STRING', description: 'e.g., TZINR, TZINR / UX, TZINR / PRODUCT, @tzinr' },
+        tzinrSignaturePlacement: { type: 'STRING', enum: ['top-left', 'top-right', 'bottom-left', 'bottom-right'] },
         actionableTakeaways: { type: 'ARRAY', items: { type: 'STRING' } },
         cta: { type: 'STRING' },
         hashtags: { type: 'ARRAY', items: { type: 'STRING' }, description: 'Generate exactly 20 hashtags' },
         keywords: { type: 'ARRAY', items: { type: 'STRING' } }
       },
-      required: ["format", "topicTitle", "coverTitle", "whyThisMatters", "captions", "slides", "actionableTakeaways", "cta", "hashtags", "keywords"]
+      required: ["format", "visualType", "topicTitle", "coverTitle", "whyThisMatters", "captions", "slides", "tzinrSignatureText", "tzinrSignaturePlacement", "actionableTakeaways", "cta", "hashtags", "keywords"]
     };
 
-    const designTopics = [
-      "Color Theory & Accessibility", "Micro-interactions & Delight", "Advanced Form Design",
-      "Typography Hierarchy", "Designing Empty States", "User Onboarding Flows",
-      "Perfecting Dark Mode", "Mobile Navigation Patterns", "Call to Action Placement",
-      "Error Handling & Validation", "Spacing, Padding & Grids", "Dashboard Data Visualization",
-      "Skeuomorphism vs Flat Design", "Designing for Trust", "Iconography Best Practices"
-    ];
-    const randomTopic = designTopics[Math.floor(Math.random() * designTopics.length)];
-    const seed = Math.random().toString(36).substring(2, 9);
+    const prompt = `Today's objective: Generate Day ${topic.id} of the 100-Day LinkedIn Content Strategy.
 
-    const prompt = `Today's objective:
-Research current discussions from trusted design sources about: ${randomTopic}.
-Find ONE interesting topic that has momentum today.
-Transform it into a practical lesson.
-Generate ONE completely original educational social media post.
+CONCEPT: ${topic.title}
+CATEGORY: ${topic.category}
+
+INSTRUCTIONS:
+1. THE METAPHOR: Determine the strongest visual metaphor for this concept (DO NOT USE TEMPLATES OR UI MOCKUPS UNLESS NECESSARY).
+2. Apply the 10/10 QUALITY GATE internally before generating text.
+3. Generate the Social Media Captions. Keep it insightful, end with ONE meaningful question. Do not spam the brand name.
+4. Provide the exact 16-part REQUIRED IMAGE PROMPT FORMAT (excluding any logo/branding instructions).
+5. Determine the appropriate TZINR signature text and placement for programmatic overlay.
+
 Format requested: ${format.toUpperCase()}.
 
-[Random Seed to guarantee uniqueness: ${seed}]`;
+[Random Seed to guarantee uniqueness: ${Math.random().toString(36).substring(2, 9)}]`;
 
     const response = await ai.models.generateContent({
       model: 'gemini-3.5-flash',
@@ -285,7 +198,7 @@ Format requested: ${format.toUpperCase()}.
         systemInstruction: SYSTEM_PROMPT,
         responseMimeType: 'application/json',
         responseSchema: schemaObj as any,
-        temperature: 0.8,
+        temperature: 0.85,
       }
     });
 
@@ -293,263 +206,8 @@ Format requested: ${format.toUpperCase()}.
       return JSON.parse(response.text) as DesignContentResult;
     }
     throw new Error("No text in response");
-
   } catch (error) {
     console.error("Gemini API Error:", error);
-    return generateContentMock(format);
+    throw error;
   }
 };
-
-export const generateContentMockFromTopic = (topic: DesignTopic, format: 'single' | 'carousel'): DesignContentResult => {
-  if (format === 'single') {
-    return {
-      format: 'single',
-      topicTitle: topic.principleName,
-      whyThisMatters: topic.whyThisMatters,
-      hook: `Mastering ${topic.principleName}: ${topic.coreDefinition}`,
-      professionalCaption: `${topic.coreDefinition}\n\nPractical Application: ${topic.practicalApplication}\n\nCommon Mistake: ${topic.commonMistake}\n\nExpert Tip: ${topic.expertTip}`,
-      captions: {
-        linkedin: {
-          hook: `Designers: Are you leveraging ${topic.principleName}?`,
-          context: topic.coreDefinition,
-          mainInsight: topic.whyThisMatters,
-          keyTakeaways: [topic.practicalApplication, `Mistake to avoid: ${topic.commonMistake}`, `Pro Tip: ${topic.expertTip}`],
-          cta: `How do you apply ${topic.principleName} in your work?`,
-          hashtags: ["#UIDesign", "#UXPsychology", "#ProductDesign"]
-        },
-        instagram: {
-          hook: `Stop making this design mistake with ${topic.principleName}! 🛑`,
-          story: `${topic.coreDefinition} ${topic.whyThisMatters}`,
-          lesson: topic.practicalApplication,
-          cta: `Save this tip for your next Figma file! 📌✨`,
-          hashtags: ["#UXTips", "#DesignPrinciples", "#Figma"]
-        },
-        facebook: {
-          opening: `Attention designers & product creators!`,
-          problem: topic.commonMistake,
-          advice: topic.practicalApplication,
-          example: topic.realWorldExample,
-          question: `Have you used ${topic.principleName} in your projects?`,
-          hashtags: ["#UXDesign", "#UIDesign"]
-        },
-        twitter: {
-          singleTweet: `${topic.principleName}: ${topic.coreDefinition} Pro Tip: ${topic.expertTip}`,
-          threadVersion: [
-            `Understanding ${topic.principleName} 🧵`,
-            `1/ Definition: ${topic.coreDefinition}`,
-            `2/ Why it matters: ${topic.whyThisMatters}`,
-            `3/ Real World Example: ${topic.realWorldExample}`
-          ],
-          hashtags: ["#UI", "#UX"]
-        },
-        youtube: {
-          seoTitle: `Deep Dive into ${topic.principleName} | UX Design Masterclass`,
-          description: `Everything you need to know about ${topic.principleName}. ${topic.coreDefinition}`,
-          whatYouWillLearn: [topic.coreDefinition, topic.practicalApplication, topic.commonMistake],
-          chapters: ["0:00 Intro", "1:15 Definition & Impact", "3:30 Real World Examples"],
-          cta: `Subscribe for daily UX/UI design breakdowns!`,
-          keywords: [topic.principleName, topic.category, "UX Design"],
-          hashtags: ["#UXDesign", "#UIDesign"]
-        }
-      },
-      actionableTakeaways: [
-        topic.practicalApplication,
-        `Avoid: ${topic.commonMistake}`,
-        `Pro Tip: ${topic.expertTip}`
-      ],
-      cta: `What are your thoughts on ${topic.principleName}? Drop a comment below! 👇`,
-      imagePrompt: `A high-end editorial UI design breakdown card illustrating ${topic.principleName}. Crisp typography headline '${topic.principleName}', visual comparison card showing DO (${topic.visualDo}) vs DON'T (${topic.visualDont}), dark glassmorphism aesthetic (#09090B base), sleek purple accent highlights, clean grid system, looks like a Figma export from Linear or Stripe.`,
-      hashtags: ["#UIDesign", "#UXDesign", "#DesignPrinciples", "#Figma", "#UXPsychology", "#ProductDesign", "#DesignSystems", "#UXTips"],
-      keywords: [topic.principleName, topic.category, "UX best practices", "UI design rules"]
-    } as DesignContentResultV2Single;
-  } else {
-    return {
-      format: 'carousel',
-      topicTitle: topic.principleName,
-      coverTitle: `${topic.principleName}: The Universal Rule Every Designer Must Know`,
-      whyThisMatters: topic.whyThisMatters,
-      captions: {
-        linkedin: {
-          hook: `Why does ${topic.principleName} make or break user experience?`,
-          context: topic.coreDefinition,
-          mainInsight: topic.whyThisMatters,
-          keyTakeaways: [topic.practicalApplication, topic.expertTip],
-          cta: `Repost if you found this helpful!`,
-          hashtags: ["#DesignSystems", "#ProductDesign"]
-        },
-        instagram: {
-          hook: `${topic.principleName} Explained in 4 Slides 🎠`,
-          story: topic.coreDefinition,
-          lesson: topic.practicalApplication,
-          cta: `Swipe left and save for later! 📌`,
-          hashtags: ["#UXDesign", "#CarouselDesign"]
-        },
-        facebook: {
-          opening: `UX Principle Breakdown: ${topic.principleName}`,
-          problem: topic.commonMistake,
-          advice: topic.practicalApplication,
-          example: topic.realWorldExample,
-          question: `What is your favorite UX principle?`,
-          hashtags: ["#DesignPrinciples"]
-        },
-        twitter: {
-          singleTweet: `${topic.principleName}: ${topic.coreDefinition} Swipe through the breakdown below!`,
-          threadVersion: [
-            `${topic.principleName} Carousel Breakdown 🧵`,
-            `1/ Definition: ${topic.coreDefinition}`,
-            `2/ Application: ${topic.practicalApplication}`
-          ],
-          hashtags: ["#UXTips"]
-        },
-        youtube: {
-          seoTitle: `Mastering ${topic.principleName} (Carousel Guide)`,
-          description: `Visual walkthrough of ${topic.principleName}.`,
-          whatYouWillLearn: [topic.coreDefinition, topic.practicalApplication],
-          chapters: ["0:00 Cover", "1:00 Breakdown"],
-          cta: `Subscribe for more!`,
-          keywords: [topic.principleName],
-          hashtags: ["#UX"]
-        }
-      },
-      slides: [
-        {
-          heading: "The Core Definition",
-          description: topic.coreDefinition,
-          imagePrompt: `Clean minimalist infographic illustrating ${topic.principleName}. Dark glassmorphism, bold title 'Core Definition', glowing accents, ultra realistic Figma export aesthetic.`
-        },
-        {
-          heading: "Why This Matters",
-          description: topic.whyThisMatters,
-          imagePrompt: `Editorial UI card detailing business and UX impact of ${topic.principleName}. Dark sleek aesthetics, purple highlights.`
-        },
-        {
-          heading: "DO vs DON'T",
-          description: `DO: ${topic.visualDo} | DON'T: ${topic.visualDont}`,
-          imagePrompt: `Visual comparison split screen card. Left side green checkmark DO: ${topic.visualDo}. Right side red X DON'T: ${topic.visualDont}. Dark UI layout.`
-        },
-        {
-          heading: "Real World Example & Pro Tip",
-          description: `Example: ${topic.realWorldExample}. Pro Tip: ${topic.expertTip}`,
-          imagePrompt: `Sleek UI case study card showcasing real world app interaction example. Professional dark theme graphic.`
-        }
-      ],
-      actionableTakeaways: [
-        topic.practicalApplication,
-        `Pro Tip: ${topic.expertTip}`
-      ],
-      cta: `Share this carousel with your design team! 🚀`,
-      hashtags: ["#Carousel", "#UXDesign", "#DesignPrinciples", "#UIUX", "#ProductDesign", "#DesignTips", "#Figma", "#UXResearch"],
-      keywords: [topic.principleName, topic.category, "Design Principles", "UX UI Carousel"]
-    } as DesignContentResultV2Carousel;
-  }
-};
-
-export const generateContentFromTopic = async (topic: DesignTopic, format: 'single' | 'carousel'): Promise<DesignContentResult> => {
-  try {
-    const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-    if (!apiKey) {
-      console.warn("No Gemini API Key found. Returning dataset-driven mock result.");
-      return generateContentMockFromTopic(topic, format);
-    }
-
-    const ai = new GoogleGenAI({ apiKey });
-    
-    const schemaObj = format === 'single' ? {
-      type: 'OBJECT',
-      properties: {
-        format: { type: 'STRING', description: 'Always exactly "single"' },
-        topicTitle: { type: 'STRING' },
-        whyThisMatters: { type: 'STRING' },
-        hook: { type: 'STRING' },
-        professionalCaption: { type: 'STRING' },
-        captions: {
-          type: 'OBJECT',
-          properties: {
-            linkedin: { type: 'OBJECT', properties: { hook: { type: 'STRING' }, context: { type: 'STRING' }, mainInsight: { type: 'STRING' }, keyTakeaways: { type: 'ARRAY', items: { type: 'STRING' } }, cta: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } }, required: ["hook", "context", "mainInsight", "keyTakeaways", "cta", "hashtags"] },
-            instagram: { type: 'OBJECT', properties: { hook: { type: 'STRING' }, story: { type: 'STRING' }, lesson: { type: 'STRING' }, cta: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } }, required: ["hook", "story", "lesson", "cta", "hashtags"] },
-            facebook: { type: 'OBJECT', properties: { opening: { type: 'STRING' }, problem: { type: 'STRING' }, advice: { type: 'STRING' }, example: { type: 'STRING' }, question: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } }, required: ["opening", "problem", "advice", "example", "question", "hashtags"] },
-            twitter: { type: 'OBJECT', properties: { singleTweet: { type: 'STRING' }, threadVersion: { type: 'ARRAY', items: { type: 'STRING' } }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } }, required: ["singleTweet", "threadVersion", "hashtags"] },
-            youtube: { type: 'OBJECT', properties: { seoTitle: { type: 'STRING' }, description: { type: 'STRING' }, whatYouWillLearn: { type: 'ARRAY', items: { type: 'STRING' } }, chapters: { type: 'ARRAY', items: { type: 'STRING' } }, cta: { type: 'STRING' }, keywords: { type: 'ARRAY', items: { type: 'STRING' } }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } }, required: ["seoTitle", "description", "whatYouWillLearn", "chapters", "cta", "keywords", "hashtags"] }
-          },
-          required: ["linkedin", "instagram", "facebook", "twitter", "youtube"]
-        },
-        actionableTakeaways: { type: 'ARRAY', items: { type: 'STRING' } },
-        cta: { type: 'STRING' },
-        imagePrompt: { type: 'STRING' },
-        hashtags: { type: 'ARRAY', items: { type: 'STRING' } },
-        keywords: { type: 'ARRAY', items: { type: 'STRING' } }
-      },
-      required: ["format", "topicTitle", "whyThisMatters", "hook", "professionalCaption", "captions", "actionableTakeaways", "cta", "imagePrompt", "hashtags", "keywords"]
-    } : {
-      type: 'OBJECT',
-      properties: {
-        format: { type: 'STRING', description: 'Always exactly "carousel"' },
-        topicTitle: { type: 'STRING' },
-        coverTitle: { type: 'STRING' },
-        whyThisMatters: { type: 'STRING' },
-        captions: {
-          type: 'OBJECT',
-          properties: {
-            linkedin: { type: 'OBJECT', properties: { hook: { type: 'STRING' }, context: { type: 'STRING' }, mainInsight: { type: 'STRING' }, keyTakeaways: { type: 'ARRAY', items: { type: 'STRING' } }, cta: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } }, required: ["hook", "context", "mainInsight", "keyTakeaways", "cta", "hashtags"] },
-            instagram: { type: 'OBJECT', properties: { hook: { type: 'STRING' }, story: { type: 'STRING' }, lesson: { type: 'STRING' }, cta: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } }, required: ["hook", "story", "lesson", "cta", "hashtags"] },
-            facebook: { type: 'OBJECT', properties: { opening: { type: 'STRING' }, problem: { type: 'STRING' }, advice: { type: 'STRING' }, example: { type: 'STRING' }, question: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } }, required: ["opening", "problem", "advice", "example", "question", "hashtags"] },
-            twitter: { type: 'OBJECT', properties: { singleTweet: { type: 'STRING' }, threadVersion: { type: 'ARRAY', items: { type: 'STRING' } }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } }, required: ["singleTweet", "threadVersion", "hashtags"] },
-            youtube: { type: 'OBJECT', properties: { seoTitle: { type: 'STRING' }, description: { type: 'STRING' }, whatYouWillLearn: { type: 'ARRAY', items: { type: 'STRING' } }, chapters: { type: 'ARRAY', items: { type: 'STRING' } }, cta: { type: 'STRING' }, keywords: { type: 'ARRAY', items: { type: 'STRING' } }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } }, required: ["seoTitle", "description", "whatYouWillLearn", "chapters", "cta", "keywords", "hashtags"] }
-          },
-          required: ["linkedin", "instagram", "facebook", "twitter", "youtube"]
-        },
-        slides: {
-          type: 'ARRAY',
-          items: {
-            type: 'OBJECT',
-            properties: { heading: { type: 'STRING' }, description: { type: 'STRING' }, imagePrompt: { type: 'STRING' } },
-            required: ["heading", "description", "imagePrompt"]
-          }
-        },
-        actionableTakeaways: { type: 'ARRAY', items: { type: 'STRING' } },
-        cta: { type: 'STRING' },
-        hashtags: { type: 'ARRAY', items: { type: 'STRING' } },
-        keywords: { type: 'ARRAY', items: { type: 'STRING' } }
-      },
-      required: ["format", "topicTitle", "coverTitle", "whyThisMatters", "captions", "slides", "actionableTakeaways", "cta", "hashtags", "keywords"]
-    };
-
-    const prompt = `
-You are generating a ${format.toUpperCase()} design publisher post based strictly on this CURATED DESIGN PRINCIPLE:
-
-[PRINCIPLE NAME]: ${topic.principleName}
-[CATEGORY]: ${topic.category} (${topic.difficulty})
-[CORE DEFINITION]: ${topic.coreDefinition}
-[WHY THIS MATTERS]: ${topic.whyThisMatters}
-[PRACTICAL APPLICATION]: ${topic.practicalApplication}
-[VISUAL DO]: ${topic.visualDo}
-[VISUAL DONT]: ${topic.visualDont}
-[TARGET AUDIENCE]: ${topic.targetAudience}
-[COMMON MISTAKE]: ${topic.commonMistake}
-[EXPERT TIP]: ${topic.expertTip}
-[REAL WORLD EXAMPLE]: ${topic.realWorldExample}
-
-Generate the complete Design Publisher Result.
-[Random Seed: ${Math.random().toString(36).substring(2, 9)}]`;
-
-    const response = await ai.models.generateContent({
-      model: 'gemini-3.5-flash',
-      contents: prompt,
-      config: {
-        systemInstruction: SYSTEM_PROMPT,
-        responseMimeType: 'application/json',
-        responseSchema: schemaObj as any,
-        temperature: 0.8,
-      }
-    });
-
-    if (response.text) {
-      return JSON.parse(response.text) as DesignContentResult;
-    }
-    throw new Error("No text in response");
-  } catch (error) {
-    console.error("Gemini API Error (fallback to topic mock):", error);
-    return generateContentMockFromTopic(topic, format);
-  }
-};
-

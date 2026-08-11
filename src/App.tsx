@@ -13,7 +13,7 @@ import { ContactPage } from './components/ContactPage';
 import { DirectorLogoIcon } from './components/DirectorLogo';
 import { UgcStudioInput, UgcStudioResult, DesignContentResult, UgcTopic, DesignTopic } from './types';
 import { generateUgcContent, generateLocalUgcMock, generateUgcFromTopic } from './data/generatorEngine';
-import { generateContent as generateDesignContent, generateContentMock as generateLocalDesignMock, generateContentFromTopic } from './data/contentEngine';
+import { generateContentFromTopic } from './data/contentEngine';
 import { PageCurtain } from './components/PageCurtain';
 import { 
   Youtube, 
@@ -113,30 +113,6 @@ export default function App() {
     navigateTo('/ugc-result');
   };
 
-  const handleGenerateDesign = async (format: 'single' | 'carousel') => {
-    setIsGenerating(true);
-    setShowLoadingAnimation(true);
-
-    const startTime = Date.now();
-    let resultObj;
-    try {
-      resultObj = await generateDesignContent(format);
-    } catch (err) {
-      console.warn('Backend API unavailable, using local high-performance engine:', err);
-      resultObj = await generateLocalDesignMock(format);
-    }
-
-    const elapsed = Date.now() - startTime;
-    const minLoadingTime = 3000;
-    if (elapsed < minLoadingTime) {
-      await new Promise(r => setTimeout(r, minLoadingTime - elapsed));
-    }
-
-    setActiveDesignResult(resultObj);
-    setIsGenerating(false);
-    setShowLoadingAnimation(false);
-    navigateTo('/design-result');
-  };
 
   const handleGenerateUgcTopic = async (topic: UgcTopic) => {
     setIsGenerating(true);
@@ -228,7 +204,6 @@ export default function App() {
 
             {currentPath === '/design-publisher' && (
               <DesignPublisher 
-                onGenerate={handleGenerateDesign}
                 onGenerateTopic={handleGenerateDesignTopic}
                 isGenerating={isGenerating}
               />
