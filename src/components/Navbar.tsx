@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, ShieldCheck, Menu, X, Home, Lightbulb, Tag, ArrowRight, PenTool } from 'lucide-react';
+import { Sparkles, ShieldCheck, Menu, X, Home, Lightbulb, Tag, ArrowRight, PenTool, BookOpen } from 'lucide-react';
 import { DirectorLogoBanner } from './DirectorLogo';
 
 interface NavbarProps {
@@ -72,6 +72,14 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
               }`}
             >
               AI Design Publisher
+            </button>
+            <button
+              onClick={() => onNavigate('/my-journal')}
+              className={`transition-colors cursor-pointer ${
+                currentPath === '/my-journal' ? 'text-white' : 'text-[var(--color-text-secondary)] hover:text-white'
+              }`}
+            >
+              My Journal
             </button>
             <button
               onClick={() => onNavigate('/pricing')}
@@ -177,6 +185,20 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
                 <div className="flex items-center gap-3">
                   <PenTool className="w-4 h-4 text-[var(--color-brand-violet)]" />
                   <span>AI Design Publisher</span>
+                </div>
+              </button>
+
+              <button
+                onClick={() => handleMobileNav('/my-journal')}
+                className={`w-full flex items-center justify-between px-4 py-3 rounded-[14px] text-sm font-medium transition-colors ${
+                  currentPath === '/my-journal'
+                    ? 'bg-[var(--color-brand-violet)]/15 text-[var(--color-brand-lavender)] border border-[var(--color-brand-violet)]/30'
+                    : 'text-[var(--color-text-secondary)] hover:text-white bg-[var(--color-bg-primary)] border border-transparent'
+                }`}
+              >
+                <div className="flex items-center gap-3">
+                  <BookOpen className="w-4 h-4 text-[var(--color-brand-violet)]" />
+                  <span>My Journal</span>
                 </div>
               </button>
               <button

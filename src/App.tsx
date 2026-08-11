@@ -6,6 +6,7 @@ import { UgcResultPage } from './components/UgcResultPage';
 import { LoadingScreen } from './components/LoadingScreen';
 import { DesignPublisher } from './components/DesignPublisher';
 import { DesignResultPage } from './components/DesignResultPage';
+import { MyJournal } from './components/MyJournal';
 import { PricingPage } from './components/PricingPage';
 import { PrivacyPage } from './components/PrivacyPage';
 import { TermsPage } from './components/TermsPage';
@@ -31,7 +32,7 @@ export default function App() {
   const [currentPath, setCurrentPath] = useState<string>(() => {
     if (typeof window !== 'undefined') {
       const p = window.location.pathname;
-      if (p === '/ugc-studio' || p === '/ugc-result' || p === '/design-publisher' || p === '/design-result' || p === '/pricing' || p === '/privacy' || p === '/terms' || p === '/contact') {
+      if (p === '/ugc-studio' || p === '/ugc-result' || p === '/design-publisher' || p === '/design-result' || p === '/my-journal' || p === '/pricing' || p === '/privacy' || p === '/terms' || p === '/contact') {
         return p;
       }
     }
@@ -67,6 +68,7 @@ export default function App() {
     let pageName = 'Home';
     if (path === '/ugc-studio') pageName = 'AI UGC Studio';
     if (path === '/design-publisher') pageName = 'AI Design Publisher';
+    if (path === '/my-journal') pageName = 'My Journal';
     if (path === '/pricing') pageName = 'Pricing';
     if (path === '/privacy') pageName = 'Privacy Policy';
     if (path === '/terms') pageName = 'Terms of Service';
@@ -209,6 +211,10 @@ export default function App() {
               />
             )}
 
+            {currentPath === '/my-journal' && (
+              <MyJournal />
+            )}
+
             {currentPath === '/ugc-result' && activeResult && (
               <UgcResultPage
                 result={activeResult}
@@ -305,6 +311,7 @@ export default function App() {
               <ul className="space-y-4 font-sans text-[14px] text-[var(--color-text-secondary)]">
                 <li><button onClick={() => navigateTo('/ugc-studio')} className="hover:text-white transition-colors">AI UGC Studio</button></li>
                 <li><button onClick={() => navigateTo('/design-publisher')} className="hover:text-white transition-colors">AI Design Publisher</button></li>
+                <li><button onClick={() => navigateTo('/my-journal')} className="hover:text-white transition-colors">My Journal</button></li>
               </ul>
             </div>
 
