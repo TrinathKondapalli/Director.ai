@@ -39,13 +39,13 @@ Include meaningful micro-details (e.g., UX PRINCIPLES 002, KEY TAKEAWAY, DESIGN 
 DO NOT invent meaningless coordinates (e.g., 45.2° N) unless they relate to the content.
 
 TZINR BRAND CONSISTENCY SYSTEM (MANDATORY LAYER):
-1. Every post MUST carry the TZINR identity as the publisher's signature. It must be visibly identifiable within 1-2 seconds, but secondary to the main content.
-2. DO NOT BAKE THE LOGO INTO AI-GENERATED ART. The application overlays the logo based on your \`tzinrSignatureText\` and \`tzinrSignaturePlacement\` outputs.
-3. SAFE AREA REQUIREMENT: The AI-generated artwork MUST NOT occupy the top-left corner with critical information. Reserve clean negative space in the upper-left area for the official TZINR logo overlay.
-4. DO NOT LET AI GENERATE BRAND TEXT: Never instruct the image model to "Add TZINR logo" or "Write TZINR".
-5. PRIMARY BRAND PLACEMENT: Default to TOP-LEFT. Do not randomly move it around. Place it in the reserved quiet editorial area.
-6. SECONDARY SIGNATURE: Optionally include a small secondary signature near the bottom (@tzinr).
-7. Even without the logo, the design should feel like TZINR through the consistent White/Black/Blue editorial DNA.
+1. The final image MUST visibly contain the exact text: TZINR.
+2. DO NOT change the existing design or redesign the composition to accommodate this. This is a branding addition only.
+3. PREFERRED PLACEMENT: Place the word "TZINR" clearly above the existing category metadata (e.g., UX PRINCIPLES 003) at the top of the typography section.
+4. SPACING & TYPOGRAPHY: Keep approximately 12–24 px of spacing between "TZINR" and the metadata. Use the same black/deep-navy editorial typography already used in the design.
+5. HIERARCHY: TZINR should be smaller than the main headline but clearly visible and recognizable as the brand.
+6. ALTERNATE PLACEMENT: If there is already a suitable empty area elsewhere in the composition, you may place TZINR there, but the preferred location is directly above the category metadata.
+7. Do not hide TZINR. Do not replace it with "UX FOUNDATIONS". Do not omit it.
 
 10/10 QUALITY GATE (Internal check before generating):
 Does it look beautiful? Does the visual metaphor represent the idea? Does it have enough visual detail? Does it avoid unnecessary clutter? Does it avoid the "empty poster" look? Does it provide educational value? Is the TZINR safe area preserved?
@@ -61,13 +61,13 @@ REQUIRED 17-PART IMAGE PROMPT FORMAT (MUST use this format exactly, NO LOGOS OR 
 [COLOR PALETTE] 
 [HERO VISUAL] 
 [TYPOGRAPHY] 
-[EXACT VISIBLE TEXT] "[TITLE] - [CORE IDEA] - [SHORT EXPLANATION] - [METADATA]"
+[EXACT VISIBLE TEXT] "TZINR - [CATEGORY METADATA] - [TITLE] - [CORE IDEA] - [SHORT EXPLANATION]"
 [COMPOSITION] 
 [VISUAL HIERARCHY] 
 [DEPTH / LIGHTING] 
 [EDITORIAL DETAILS] (Include grids, lines, small meaningful metadata)
-[TZINR BRANDING] (Instruction for the AI NOT to include text branding, leave quiet editorial space top-left for programmatic logo).
-[NEGATIVE] beautiful empty poster, empty white background, flat canvas, generic infographic, dashboard, two-column cards, UI mockup unless conceptually necessary, random decoration, purple, pink, orange, green, yellow, generic AI artwork, cheap 3D, excessive text, fake coordinates, meaningless numbers, visual clutter, AI-generated logo, text branding.`;
+[TZINR BRANDING] The exact word "TZINR" must be generated in the typography, preferably above the metadata.
+[NEGATIVE] beautiful empty poster, empty white background, flat canvas, generic infographic, dashboard, two-column cards, UI mockup unless conceptually necessary, random decoration, purple, pink, orange, green, yellow, generic AI artwork, cheap 3D, excessive text, fake coordinates, meaningless numbers, visual clutter.`;
 
 export const generateContentFromTopic = async (topic: DesignTopic, format: 'single' | 'carousel'): Promise<DesignContentResult> => {
   try {
