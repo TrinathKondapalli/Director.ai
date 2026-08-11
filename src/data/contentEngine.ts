@@ -40,17 +40,19 @@ DO NOT invent meaningless coordinates (e.g., 45.2° N) unless they relate to the
 
 TZINR BRAND CONSISTENCY SYSTEM (MANDATORY LAYER):
 1. Every post MUST carry the TZINR identity as the publisher's signature. It must be visibly identifiable within 1-2 seconds, but secondary to the main content.
-2. DO NOT BAKE THE LOGO INTO AI-GENERATED ART. The application overlays the logo based on your \`tzinrSignatureText\` and \`tzinrSignaturePlacement\` outputs. DO NOT include "TZINR" in the \`imagePrompt\`.
-3. PRIMARY BRAND PLACEMENT: Default to TOP-LEFT. Do not randomly move it around. Place it in a quiet editorial area.
-4. SECONDARY SIGNATURE: Optionally include a small secondary signature near the bottom (@tzinr).
-5. CAROUSEL BRANDING: Slide 1 uses clear but subtle TZINR / [CATEGORY]. Middle slides use a smaller consistent signature. Final slide uses slightly stronger branding for brand recall.
-6. Even without the logo, the design should feel like TZINR through the consistent White/Black/Blue editorial DNA.
+2. DO NOT BAKE THE LOGO INTO AI-GENERATED ART. The application overlays the logo based on your \`tzinrSignatureText\` and \`tzinrSignaturePlacement\` outputs.
+3. SAFE AREA REQUIREMENT: The AI-generated artwork MUST NOT occupy the top-left corner with critical information. Reserve clean negative space in the upper-left area for the official TZINR logo overlay.
+4. DO NOT LET AI GENERATE BRAND TEXT: Never instruct the image model to "Add TZINR logo" or "Write TZINR".
+5. PRIMARY BRAND PLACEMENT: Default to TOP-LEFT. Do not randomly move it around. Place it in the reserved quiet editorial area.
+6. SECONDARY SIGNATURE: Optionally include a small secondary signature near the bottom (@tzinr).
+7. Even without the logo, the design should feel like TZINR through the consistent White/Black/Blue editorial DNA.
 
 10/10 QUALITY GATE (Internal check before generating):
-Does it look beautiful? Does the visual metaphor represent the idea? Does it have enough visual detail? Does it avoid unnecessary clutter? Does it avoid the "empty poster" look? Does it provide educational value? Is it unmistakably TZINR? Is TZINR clearly visible but smaller than main content?
+Does it look beautiful? Does the visual metaphor represent the idea? Does it have enough visual detail? Does it avoid unnecessary clutter? Does it avoid the "empty poster" look? Does it provide educational value? Is the TZINR safe area preserved?
 
-REQUIRED 16-PART IMAGE PROMPT FORMAT (MUST use this format exactly, NO LOGOS OR BRAND TEXT IN THE ARTWORK PROMPT):
+REQUIRED 17-PART IMAGE PROMPT FORMAT (MUST use this format exactly, NO LOGOS OR BRAND TEXT IN THE ARTWORK PROMPT):
 [FORMAT] Premium editorial social media graphic, 4:5 vertical.
+[SAFE AREA] Reserve clean negative space in the upper-left area for the official TZINR logo overlay. Do not place critical typography, objects, or visual elements in this area.
 [CREATIVE CONCEPT] 
 [CORE MESSAGE] 
 [VISUAL METAPHOR] 
@@ -178,7 +180,7 @@ INSTRUCTIONS:
 1. THE METAPHOR: Determine the strongest visual metaphor for this concept. It MUST be supported by educational copy.
 2. Apply the 10/10 QUALITY GATE internally before generating text. Ensure the design is NOT an empty poster and NOT a cluttered infographic. Find the premium editorial middle ground. TZINR must be identifiable in 1-2 seconds but remain secondary.
 3. Generate the Social Media Captions. Keep it insightful, end with ONE meaningful question.
-4. Provide the exact 16-part REQUIRED IMAGE PROMPT FORMAT (excluding any logo/branding instructions). Ensure the EXACT VISIBLE TEXT includes the Category, Headline, Core Idea, Short Explanation, and Metadata.
+4. Provide the exact 17-part REQUIRED IMAGE PROMPT FORMAT (excluding any logo/branding instructions). Ensure the EXACT VISIBLE TEXT includes the Category, Headline, Core Idea, Short Explanation, and Metadata.
 5. Determine the appropriate TZINR signature text and placement for programmatic overlay (Default: top-left).
 
 Format requested: ${format.toUpperCase()}.

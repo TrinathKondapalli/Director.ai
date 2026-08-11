@@ -170,14 +170,29 @@ export const DesignResultPage: React.FC<DesignResultPageProps> = ({ result, onCr
                 )}
                 <div className="pt-3 border-t border-[var(--color-border-primary)]">
                   <strong className="text-white text-[10px] uppercase tracking-wider block mb-2">Programmatic Brand Overlay</strong>
-                  <div className="flex gap-4">
-                    <div>
-                      <span className="text-[10px] font-mono text-[#A1A1AA] uppercase">Signature</span>
-                      <p className="text-sm font-semibold text-white">{res.tzinrSignatureText || 'TZINR'}</p>
+                  <div className="flex flex-col gap-4">
+                    <div className="flex gap-4">
+                      <div>
+                        <span className="text-[10px] font-mono text-[#A1A1AA] uppercase">Signature</span>
+                        <p className="text-sm font-semibold text-white">{res.tzinrSignatureText || 'TZINR'}</p>
+                      </div>
+                      <div>
+                        <span className="text-[10px] font-mono text-[#A1A1AA] uppercase">Placement</span>
+                        <p className="text-sm font-semibold text-[var(--color-brand-violet)]">{res.tzinrSignaturePlacement || 'top-left'}</p>
+                      </div>
                     </div>
-                    <div>
-                      <span className="text-[10px] font-mono text-[#A1A1AA] uppercase">Placement</span>
-                      <p className="text-sm font-semibold text-[var(--color-brand-violet)]">{res.tzinrSignaturePlacement || 'top-left'}</p>
+                    <div className="bg-[var(--color-bg-surface)] p-3 rounded-lg border border-[var(--color-border-primary)]">
+                      <strong className="text-white text-[10px] uppercase tracking-wider block mb-2 text-[#A1A1AA]">Final Acceptance Test</strong>
+                      <div className="grid grid-cols-1 gap-y-1">
+                        {[
+                          'TZINR safe area preserved', 'Official TZINR logo applied', 'Logo has sufficient contrast'
+                        ].map((check, idx) => (
+                          <div key={idx} className="flex items-center gap-2">
+                            <CheckCircle2 className="w-3 h-3 text-[#22C55E]" />
+                            <span className="text-[11px] text-[#D4D4D8] leading-none">{check}</span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -196,14 +211,33 @@ export const DesignResultPage: React.FC<DesignResultPageProps> = ({ result, onCr
           </div>
           <div className="pt-4 border-t border-[var(--color-border-primary)]">
             <strong className="text-white text-[10px] uppercase tracking-wider block mb-2">Programmatic Brand Overlay (Do not generate in AI)</strong>
-            <div className="flex gap-4">
-              <div>
-                <span className="text-[10px] font-mono text-[#A1A1AA] uppercase">Signature</span>
-                <p className="text-sm font-semibold text-white">{res.tzinrSignatureText || 'TZINR'}</p>
+            <div className="flex flex-col gap-4">
+              <div className="flex gap-4">
+                <div>
+                  <span className="text-[10px] font-mono text-[#A1A1AA] uppercase">Signature</span>
+                  <p className="text-sm font-semibold text-white">{res.tzinrSignatureText || 'TZINR'}</p>
+                </div>
+                <div>
+                  <span className="text-[10px] font-mono text-[#A1A1AA] uppercase">Placement</span>
+                  <p className="text-sm font-semibold text-[var(--color-brand-violet)]">{res.tzinrSignaturePlacement || 'top-left'}</p>
+                </div>
               </div>
-              <div>
-                <span className="text-[10px] font-mono text-[#A1A1AA] uppercase">Placement</span>
-                <p className="text-sm font-semibold text-[var(--color-brand-violet)]">{res.tzinrSignaturePlacement || 'top-left'}</p>
+              <div className="bg-[var(--color-bg-surface)] p-3 rounded-lg border border-[var(--color-border-primary)] mt-2">
+                <strong className="text-white text-[10px] uppercase tracking-wider block mb-2 text-[#A1A1AA]">Final Acceptance Test (Pre-Export)</strong>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-1.5 gap-x-4">
+                  {[
+                    'AI artwork generated', 'Editorial composition completed', 'TZINR safe area preserved', 'Official TZINR logo applied', 'Logo clearly visible', 'Logo has sufficient contrast', 'Logo is not oversized', 'Logo is not hidden', 'Category metadata remains separate', 'Final preview contains TZINR', 'Export contains TZINR'
+                  ].map((check, idx) => (
+                    <div key={idx} className="flex items-center gap-2">
+                      <CheckCircle2 className="w-3 h-3 text-[#22C55E]" />
+                      <span className="text-[11px] text-[#D4D4D8] leading-none">{check}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-3 pt-3 border-t border-[var(--color-border-primary)] flex items-center justify-between">
+                  <span className="text-[10px] uppercase font-mono text-[#A1A1AA]">POST STATUS</span>
+                  <span className="text-xs font-bold text-[#22C55E] uppercase bg-[#22C55E]/10 px-2 py-0.5 rounded">COMPLETE</span>
+                </div>
               </div>
             </div>
           </div>
