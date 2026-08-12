@@ -40,7 +40,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
 
   return (
     <div className="sticky top-4 z-50 px-4 w-full flex justify-center mb-4">
-      <header className="glass-panel rounded-[20px] md:rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.25)] w-full md:w-auto transition-all duration-300">
+      <header className="glass-panel rounded-[20px] md:rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.5)] w-full md:w-auto">
         <div className="px-4 sm:px-6 h-14 md:h-16 flex items-center justify-between md:gap-12 lg:gap-16">
           {/* Left: Brand Logo Banner */}
           <div className="flex items-center">

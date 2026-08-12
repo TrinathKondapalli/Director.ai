@@ -123,11 +123,11 @@ html {
 
 /* Glassmorphism System */
 .glass-panel {
-  background: rgba(16, 16, 24, 0.75);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transform: translateZ(0);
+  background: rgba(12, 12, 18, 0.85);
+  backdrop-filter: blur(30px) saturate(190%);
+  -webkit-backdrop-filter: blur(30px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  isolation: isolate;
 }
 
 /* Custom Gradients & Glows */
