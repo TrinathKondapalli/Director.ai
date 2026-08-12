@@ -75,15 +75,19 @@ Multiple sticky notes, digital/clean design, computer-generated typography, stoc
 OUTPUT FORMAT:
 Return ONLY the image-generation prompt. Do not explain. Do not add commentary. Do not rewrite the user's text outside the prompt.`;
 
+export function generateLocalJournalMock(userIdea: string): string {
+  const stickyColor = getRandomStickyColor();
+  return `A square 1:1 format social media image featuring a warm off-white textured journal page background. Placed near the center is a single rectangular ${stickyColor} sticky note with slightly hand-torn edges and a soft shadow beneath. On the sticky note, the exact text "${userIdea}" is written in bold, expressive handwritten typography. Surrounding the sticky note on the background paper are minimal, delicate hand-drawn pencil doodles. Crisp, modern, personal journal aesthetic. Clean, highly legible text.`;
+}
+
 export const generateJournalPrompt = async (userIdea: string): Promise<string> => {
   const stickyColor = getRandomStickyColor();
+  const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+  if (!apiKey || apiKey.trim() === '' || apiKey === 'DUMMY_KEY') {
+    return generateLocalJournalMock(userIdea);
+  }
 
   try {
-    const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-    if (!apiKey) {
-      throw new Error("Gemini API Key missing.");
-    }
-
     const ai = new GoogleGenAI({ apiKey });
 
     const userMessage = `STICKY-NOTE COLOR FOR THIS POST: ${stickyColor}

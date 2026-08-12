@@ -16,9 +16,26 @@ export async function generateNextDiscoveryQuestion(
   brief: InitialBrief,
   history: { question: DiscoveryQuestion, answer: DiscoveryAnswer }[]
 ): Promise<DiscoveryQuestion | null> {
-  // If we've asked 5 questions, we can conclude the interview for V1 to prevent endless loops.
   if (history.length >= 5) {
     return null;
+  }
+
+  const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+  if (!apiKey || apiKey.trim() === '' || apiKey === 'DUMMY_KEY') {
+    const categories: ('BUSINESS' | 'AUDIENCE' | 'MARKET' | 'COMPETITORS' | 'PERSONALITY')[] = ['BUSINESS', 'AUDIENCE', 'MARKET', 'COMPETITORS', 'PERSONALITY'];
+    const category = categories[history.length % categories.length];
+    const defaultQuestions = [
+      "What is the single biggest bottleneck preventing your brand from scaling right now?",
+      "Who is your ideal customer, and what specific frustration leads them to seek your solution?",
+      "What is your unique defensible moat compared to your top 3 direct competitors?",
+      "How would you describe your brand's core personality if it were a human mentor?",
+      "What is the core brand promise or positioning statement you want customers to remember?"
+    ];
+    return {
+      id: Math.random().toString(36).substring(2, 9),
+      category: category,
+      questionText: defaultQuestions[history.length % defaultQuestions.length]
+    };
   }
 
   const promptText = `
@@ -79,6 +96,53 @@ export async function generateStrategyWorkspace(
   brief: InitialBrief,
   history: { question: DiscoveryQuestion, answer: DiscoveryAnswer }[]
 ): Promise<StrategyWorkspaceData> {
+  const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+  if (!apiKey || apiKey.trim() === '' || apiKey === 'DUMMY_KEY') {
+    return {
+      businessFoundation: `${brief.brandName} is a high-growth brand operating in the ${brief.industry} market, focused on delivering ${brief.goal}.`,
+      targetAudience: brief.market || "Targeting digital-first consumers seeking high-efficiency solutions.",
+      marketLandscape: `Operating in the competitive ${brief.industry} space with rapid innovation cycles.`,
+      competitorAnalysis: "Competing against traditional legacy providers by offering modern automated workflows.",
+      customerPainPoints: "Frictionful setup processes, lack of clear visual communication, and slow delivery times.",
+      differentiation: "AI-driven automated publication workflows and instant strategic content generation.",
+      brandPurpose: `Empower brands in ${brief.industry} with effortless creative authority.`,
+      brandVoice: "Authoritative, concise, visionary, and grounded in editorial precision.",
+      mission: `Deliver world-class strategic content for ${brief.brandName} without manual operational overhead.`,
+      vision: `Set the global gold standard for ${brief.industry} content automation.`,
+      brandValues: ["Editorial Quality", "Speed & Precision", "Transparent Integrity", "User-Centric Innovation"],
+      brandPersonality: {
+        primary: "Visionary Strategist",
+        secondary: "Editorial Director",
+        tertiary: "Tech Innovator",
+        avoid: ["Corporate Jargon", "Generic Hype", "Passive Phrasing"],
+        communicationStyle: "Direct, structured, and insightful.",
+        tone: "Confident and professional."
+      },
+      brandArchetype: "The Creator / The Sage",
+      messagingPillars: [
+        "Uncompromising Design Authority",
+        "Instant Operational Speed",
+        "Data-Backed Audience Connection"
+      ],
+      valueProposition: `${brief.brandName} transforms ${brief.description} into high-converting branded assets instantly.`,
+      taglineDirections: [
+        "Create Without Boundaries.",
+        "Authority Built in Seconds.",
+        "The Future of Branded Strategy."
+      ],
+      customerExperiencePrinciples: [
+        "Zero-Friction Onboarding",
+        "Consistent Editorial Standards",
+        "Proactive Strategic Insights"
+      ],
+      visualDirection: "Warm off-white paper texture with fine blueprint grid lines, Bebas Neue headlines, and Cobalt Blue accents.",
+      strategicRecommendations: [
+        "Focus on high-frequency LinkedIn & Instagram editorial publishing.",
+        "Maintain strict typography rules for instant brand recognition.",
+        "Leverage 10-second UGC ad scripts to drive conversion."
+      ]
+    };
+  }
   const promptText = `
 You are the senior brand strategist.
 Based on the initial brief and the discovery interview, synthesize the complete brand strategy.

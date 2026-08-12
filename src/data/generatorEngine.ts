@@ -328,14 +328,13 @@ export function generateLocalUgcMock(input: UgcStudioInput): UgcStudioResult {
   };
 }
 
-export const generateUgcContent = async (input: UgcStudioInput): Promise<UgcStudioResult> => {
-  try {
-    const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-    if (!apiKey) {
-      console.warn("No Gemini API Key found. Falling back to mock data.");
-      return generateLocalUgcMock(input);
-    }
+export const generateUgcMasterPrompt = async (input: UgcStudioInput): Promise<UgcStudioResult> => {
+  const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+  if (!apiKey || apiKey.trim() === '' || apiKey === 'DUMMY_KEY') {
+    return generateLocalUgcMock(input);
+  }
 
+  try {
     const ai = new GoogleGenAI({ apiKey });
     
     const schemaObj = {
@@ -523,7 +522,7 @@ MANDATORY RULES:
     }
 
     const response = await ai.models.generateContent({
-      model: 'gemini-3.5-flash',
+      model: 'gemini-2.5-flash',
       contents: promptText,
       config: {
         systemInstruction: SYSTEM_PROMPT,
@@ -545,6 +544,8 @@ MANDATORY RULES:
     return generateLocalUgcMock(input);
   }
 };
+
+export const generateUgcContent = generateUgcMasterPrompt;
 
 export function generateLocalUgcMockFromTopic(topic: UgcTopic): UgcStudioResult {
   const masterPromptText = `Create a natural 10-second vertical UGC ad featuring a relatable ${topic.targetAudience} creator recording themselves in a real-world workspace setting.
@@ -778,8 +779,8 @@ POV opening, POV framing, POV shot, cinematic commercial, studio lighting, corpo
 export async function generateUgcFromTopic(topic: UgcTopic): Promise<UgcStudioResult> {
   try {
     const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-    if (!apiKey) {
-      console.warn("No Gemini API Key found. Returning dataset-driven mock result.");
+    if (!apiKey || apiKey.trim() === '' || apiKey === 'DUMMY_KEY') {
+      console.warn("No valid Gemini API Key found. Returning dataset-driven mock result instantly.");
       return generateLocalUgcMockFromTopic(topic);
     }
 

@@ -56,13 +56,143 @@ REQUIRED 17-PART IMAGE PROMPT FORMAT (MUST use this format explicitly):
 [TZINR BRANDING] 'TZINR' (Manrope ExtraBold) top-left with 'UX FOUNDATIONS [NUM]' (IBM Plex Mono) directly below, template number (IBM Plex Mono) top-right.
 [NEGATIVE] simple stacked stone blocks, plain toy cubes, generic brick piles, Inter font, Roboto font, SF Pro font, Space Mono font, Helvetica Neue font, flat plain background, zero grid, empty canvas, overlapping text, centered 3D object, text over object, giant blocky text, 7+-2 items, presentation slide, dense infographic, multi-column cards, full article text, purple, pink, orange, green, yellow, visual clutter.`;
 
-export const generateContentFromTopic = async (topic: DesignTopic, format: 'single' | 'carousel'): Promise<DesignContentResult> => {
-  try {
-    const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-    if (!apiKey) {
-      throw new Error("Gemini API Key missing.");
+export function generateLocalContentMock(topic: DesignTopic, format: 'single' | 'carousel'): DesignContentResult {
+  const headline = topic.title.toUpperCase();
+  const baseCaptions = {
+    linkedin: {
+      hook: `Why ${topic.title} defines modern product design excellence:`,
+      context: `In complex digital interfaces, visual clarity is achieved through intentional spatial hierarchy and visual weight.`,
+      mainInsight: `Guiding attention through scale allows users to parse information rapidly without cognitive strain.`,
+      keyTakeaways: [
+        `Establish clear visual scale contrast between primary headlines and supporting copy.`,
+        `Use strategic Cobalt Blue accents to focus attention on primary action paths.`,
+        `Maintain generous safe margins to preserve editorial breathability.`
+      ],
+      cta: `How do you apply ${topic.title} in your design system? Let's discuss in the comments.`,
+      hashtags: [`#UXDesign`, `#VisualHierarchy`, `#ProductDesign`, `#UIUX`, `#DesignSystems`]
+    },
+    instagram: {
+      hook: `Guiding attention through scale with ${topic.title}. 🎯`,
+      story: `Design isn't just about making things look good—it's about directing the human eye effortlessly.`,
+      lesson: `Size, contrast, and layout work together to create clear reading orders.`,
+      cta: `Save this post for your next UI audit! 📌`,
+      hashtags: [`#uxdesign`, `#uidesign`, `#designrules`, `#productdesign`]
+    },
+    facebook: {
+      opening: `Here's a key UX principle every designer should master: ${topic.title}.`,
+      problem: `Users get overwhelmed when every element competes for equal visual attention.`,
+      advice: `Structure your canvas with clear typographic contrast and focal isolation.`,
+      example: `Notice how Bebas Neue headlines create instant anchor points for the reader.`,
+      question: `What's your biggest takeaway from this layout?`,
+      hashtags: [`#UX`, `#DesignStrategy`, `#UIUX`]
+    },
+    twitter: {
+      singleTweet: `${topic.title}: Guiding user attention through scale, contrast, and spatial hierarchy. 📐✨`,
+      threadVersion: [
+        `1/5 Most interface clutter comes from lack of visual hierarchy. Here's how to fix it 🧵`,
+        `2/5 Establish primary anchors using bold condensed typography like Bebas Neue.`,
+        `3/5 Use selective color accents (Cobalt Blue #1557FF) only where focal action is needed.`,
+        `4/5 Maintain 36px safe perimeter margins for breathing room.`,
+        `5/5 Follow @tzinr for daily UX foundations & design strategy!`
+      ],
+      hashtags: [`#UX`, `#DesignStrategy`]
+    },
+    youtube: {
+      seoTitle: `${topic.title} Explained: Master Visual Hierarchy & UI Design`,
+      description: `Deep dive into ${topic.title} and how to structure modern editorial layouts.`,
+      whatYouWillLearn: [`Visual hierarchy principles`, `Typographic scale contrast`, `Spatial composition`],
+      chapters: [`0:00 Introduction`, `1:30 Core Principle`, `4:15 Real-World Case Study`, `7:00 Key Takeaways`],
+      cta: `Subscribe to Director.ai for weekly design breakdowns!`,
+      keywords: [`UX Design`, topic.title, `Visual Hierarchy`, `UI UX`],
+      hashtags: [`#UXDesign`, `#UIUX`]
     }
+  };
 
+  if (format === 'carousel') {
+    return {
+      format: 'carousel',
+      visualType: 'hero_object',
+      topicTitle: topic.title,
+      coverTitle: topic.title,
+      whyThisMatters: `${topic.title} is a core foundation of effective digital product design, ensuring visual clarity and cognitive ease.`,
+      captions: baseCaptions,
+      slides: [
+        {
+          heading: headline,
+          description: `Guiding attention through scale and layout.`,
+          imagePrompt: `[FORMAT] 4:5 vertical editorial carousel slide. Cover slide for ${topic.title}.`,
+          imageText: { headline: headline, supporting: `Slide 1 / 5` }
+        },
+        {
+          heading: `SCALE & CONTRAST`,
+          description: `Primary anchors require dramatic typographic size contrast.`,
+          imagePrompt: `[FORMAT] 4:5 vertical editorial carousel slide. Focus on scale contrast.`,
+          imageText: { headline: `SCALE & CONTRAST`, supporting: `Slide 2 / 5` }
+        },
+        {
+          heading: `FOCAL ISOLATION`,
+          description: `Use Cobalt Blue accents only for key directional paths.`,
+          imagePrompt: `[FORMAT] 4:5 vertical editorial carousel slide. Cobalt Blue focal highlights.`,
+          imageText: { headline: `FOCAL ISOLATION`, supporting: `Slide 3 / 5` }
+        }
+      ],
+      tzinrSignatureText: `TZINR / UX`,
+      tzinrSignaturePlacement: `top-left`,
+      actionableTakeaways: [
+        `Use Bebas Neue for tall condensed primary headlines.`,
+        `Apply Manrope Semibold for clear, readable subheadings.`,
+        `Maintain IBM Plex Mono for technical metadata and counts.`
+      ],
+      cta: `Follow TZINR for daily UX foundations.`,
+      hashtags: [`#UXDesign`, `#VisualHierarchy`, `#ProductDesign`, `#UIUX`, `#DesignSystems`],
+      keywords: [`UX Design`, topic.title, `Visual Hierarchy`, `UI UX`]
+    };
+  }
+
+  return {
+    format: 'single',
+    visualType: 'hero_object',
+    topicTitle: topic.title,
+    whyThisMatters: `${topic.title} is a core foundation of effective digital product design, ensuring visual clarity and cognitive ease.`,
+    hook: `Master ${topic.title} to transform how users navigate your interface.`,
+    professionalCaption: `Understanding ${topic.title}: Clear visual hierarchy guides attention through scale, contrast, and strategic spatial layout.`,
+    captions: baseCaptions,
+    actionableTakeaways: [
+      `Use Bebas Neue for tall condensed primary headlines.`,
+      `Apply Manrope Semibold for clear, readable subheadings.`,
+      `Maintain IBM Plex Mono for technical metadata and counts.`
+    ],
+    cta: `Follow TZINR for daily UX foundations.`,
+    imageText: {
+      headline: headline,
+      supporting: `Guiding attention through scale`
+    },
+    tzinrSignatureText: `TZINR / UX`,
+    tzinrSignaturePlacement: `top-left`,
+    hashtags: [`#UXDesign`, `#VisualHierarchy`, `#ProductDesign`, `#UIUX`, `#DesignSystems`],
+    keywords: [`UX Design`, topic.title, `Visual Hierarchy`, `UI UX`],
+    imagePrompt: `[FORMAT] Premium editorial social media graphic, 4:5 vertical aspect ratio.
+[SAFE PADDING] ~36px safe margin on all 4 edges.
+[SPATIAL COMPOSITION] Strict two-column asymmetrical layout: Left 45% is clean typography column; Right 50% is bespoke 3D hero sculpture on rich paper canvas. Zero visual overlap.
+[TOP-LEFT BRANDING] 'TZINR' in Manrope ExtraBold with 'UX FOUNDATIONS ${String(topic.id).padStart(3, '0')}' in IBM Plex Mono.
+[TOP-RIGHT METADATA] '${String(topic.id).padStart(3, '0')} / 100' in IBM Plex Mono.
+[LEFT TYPOGRAPHY COLUMN] Headline '${headline}' in Bebas Neue uppercase condensed, Subheading 'Guiding attention through scale' in Manrope Semibold with 'scale' highlighted in Cobalt Blue (#1557FF), Paragraph explaining visual hierarchy in Manrope Regular.
+[RIGHT HERO VISUAL] Bespoke 3D architectural sculpture representing ${topic.title}, illuminated by a soft atmospheric Cobalt Blue background glow.
+[BOTTOM-LEFT METADATA] 'CONCEPT: ${topic.title.toUpperCase()}' in IBM Plex Mono.
+[BACKGROUND & TEXTURE] Warm off-white paper texture with fine blueprint grid lines, subtle dot matrix pattern, soft atmospheric blue background glow, and architectural shadows.
+[COLOR PALETTE] Off-white background, Deep Navy typography, Cobalt Blue (#1557FF) strategic accent.
+[TZINR BRANDING] 'TZINR' (Manrope ExtraBold) top-left with 'UX FOUNDATIONS ${String(topic.id).padStart(3, '0')}' (IBM Plex Mono).`
+  };
+}
+
+export const generateContentFromTopic = async (topic: DesignTopic, format: 'single' | 'carousel'): Promise<DesignContentResult> => {
+  const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+  if (!apiKey || apiKey.trim() === '' || apiKey === 'DUMMY_KEY') {
+    console.warn("No valid Gemini API Key found. Returning instant local design content mock.");
+    return generateLocalContentMock(topic, format);
+  }
+
+  try {
     const ai = new GoogleGenAI({ apiKey });
     
     const schemaObj = format === 'single' ? {
