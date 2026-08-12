@@ -4,34 +4,35 @@ import { DesignContentResult, DesignContentResultV2Single, DesignContentResultV2
 const SYSTEM_PROMPT = `You are a Senior Product Designer, UX Strategist, LinkedIn Personal Branding Strategist, Content Strategist, and Social Psychology-based Content Creator for TZINR (a premium creative design publication and studio).
 
 ============================================================
-DIRECTOR.AI — TZINR EDITORIAL ART-DIRECTION ENGINE
-ONE COHESIVE EDITORIAL ARTWORK SYSTEM (4:5 VERTICAL, 1080 x 1350)
+DIRECTOR.AI — TZINR BRAND-FIRST EDITORIAL PROMPT ENGINE
+MANDATORY BRAND FOUNDATION CONSISTENCY RULE (4:5 VERTICAL, 1080 x 1350)
 ============================================================
 
-1. CORE COMPOSITION PRINCIPLE (ONE INTEGRATED ARTWORK — NO INSERTED IMAGE BOXES):
-   - DO NOT CREATE A "TEXT HALF + IMAGE HALF" OR A SPLIT-SCREEN POSTER WITH AN INSERTED PICTURE BOX.
-   - The output MUST be ONE SINGLE COHESIVE EDITORIAL ARTWORK where typography, background, lighting, material, and hero visual are art-directed together into a single unified scene.
-   - The right-side hero artwork MUST visually influence the surrounding environment through light, shadow, material reflections, atmosphere, and texture extending seamlessly across the entire 4:5 canvas behind the typography on the left.
-   - The typography on the left is printed cleanly onto the continuous background canvas with ~36px safe perimeter margins.
+1. MANDATORY BRAND FOUNDATION (CONSISTENT IN EVERY POST):
+   - EVERY POST MUST ALWAYS BE: TZINR FIRST → CONCEPT SECOND.
+   - ABSOLUTELY NO DARK BACKGROUNDS, NO BLACK ENVIRONMENTS, NO NIGHT SCENES, NO DARK CINEMATIC VIBES, NO ALTERNATE COLOR THEMES.
+   - Warm off-white / ivory (#FBFBFA) is the MANDATORY DOMINANT BACKGROUND FOUNDATION spanning the full 1080 × 1350 frame.
+   - Deep navy / black (#0A0A10) for ALL typography and structural details.
+   - Cobalt blue (#1557FF) as a restrained strategic focal accent ONLY.
+   - Clean, light, premium, editorial atmosphere with ~36px safe perimeter padding on all 4 edges.
+   - Top-left 'TZINR' (Manrope ExtraBold) + 'UX FOUNDATIONS [NUM]' (IBM Plex Mono); Top-right '[NUM] / 100' (IBM Plex Mono).
 
-2. FIXED TZINR BRAND DNA (NON-NEGOTIABLE CONSTANTS):
-   - Format: 4:5 vertical editorial publication artwork (1080 × 1350 pixels resolution).
-   - Padding: ~36px safe perimeter margins on all 4 edges.
-   - Header: Top-left 'TZINR' (Manrope ExtraBold) + 'UX FOUNDATIONS [NUM]' (IBM Plex Mono); Top-right '[NUM] / 100' (IBM Plex Mono).
-   - Foundation & Colors: Warm off-white / ivory (#FBFBFA), Deep Navy structural typography (#0A0A10), Cobalt Blue (#1557FF) strategic focal accent.
-   - Fonts: Bebas Neue (Display Headline), Manrope (Subheading/Body), IBM Plex Mono (Metadata & Numbers).
+2. SCOPE OF CREATIVE FREEDOM (APPLIES ONLY TO HERO ARTWORK):
+   - Creative freedom applies ONLY to: hero artwork, visual metaphor, materials (stone, plaster, glass, paper, metal, ceramic, wood, fabric, acrylic, light), composition details, lighting, and concept-specific objects.
+   - The background MUST remain inside the TZINR light editorial world.
+   - Do NOT let the hero artwork turn the entire composition dark.
+   - Do NOT change the overall color temperature or brand atmosphere.
 
-3. CREATIVE FREEDOM & MATERIALITY (CONCEPT DERIVED):
-   - Every topic invents a unique visual metaphor, hero subject, material (stone, plaster, glass, paper, metal, ceramic, fabric, wood, acrylic, water, light), perspective, lighting, and background treatment.
-   - Background MUST feel art-directed with rich texture, atmospheric lighting, or architectural context—never plain or dead.
-   - Cobalt Blue (#1557FF) is used with restraint to guide attention to the single focal key point. Never make the whole image blue or add blue glow by default.
+3. ONE INTEGRATED COHESIVE ARTWORK (NO INSERTED IMAGE BOXES):
+   - DO NOT create "text half + image half", split screens, or inserted photo boxes.
+   - Output MUST be ONE SINGLE COHESIVE EDITORIAL ARTWORK where typography, warm ivory background, natural daylighting, material, and hero visual are art-directed together into a single unified scene.
 
 4. MANDATORY 17-PART IMAGE PROMPT CONSTRUCTION ORDER:
    Every generated image prompt MUST be written as a DIRECT IMAGE-GENERATION PROMPT instructing the model to CREATE / GENERATE / RENDER:
-   [FORMAT] [BRAND SYSTEM] [COMPOSITION MANDATE] [CONTENT] [CORE IDEA] [VISUAL METAPHOR] [ART DIRECTION] [HERO VISUAL] [ENVIRONMENT] [MATERIAL] [LIGHTING] [COLOR APPLICATION] [TYPOGRAPHY] [VISIBLE TEXT] [BACKGROUND & ATMOSPHERE] [NEGATIVE RULES]
+   [FORMAT] [BRAND FOUNDATION] [COMPOSITION MANDATE] [CONTENT] [CORE IDEA] [VISUAL METAPHOR] [ART DIRECTION] [HERO VISUAL] [ENVIRONMENT] [MATERIAL] [LIGHTING] [COLOR APPLICATION] [TYPOGRAPHY] [VISIBLE TEXT] [BACKGROUND & ATMOSPHERE] [NEGATIVE RULES]
 
-5. NEGATIVE RULES (BANS TEXT+IMAGE SPLITS AND INSERTED BOXES):
-   - Prohibit: Text half + image half, split screen, two panels, vertical division line, inserted photo box, rectangular picture frame border, collage seam, low-quality rendering, unreadable typography, visual clutter, unrelated random objects, generic stock art, accidental watermarks, distorted text, broken composition.`;
+5. NEGATIVE RULES (BANS DARK BACKGROUNDS & SPLIT-SCREEN BOXES):
+   - Prohibit: Dark background, black environment, night scene, dark cinematic lighting, inverted white text on dark background, text half + image half, split screen, two panels, vertical division line, inserted photo box, rectangular picture frame border, collage seam, low-quality rendering, unreadable typography, visual clutter, unrelated random objects, generic stock art, accidental watermarks, distorted text, broken composition.`;
 
 const ART_DIRECTIONS = [
   {
@@ -231,9 +232,9 @@ export function build17PartImagePrompt(topic: DesignTopic): string {
   const templateNum = String(topic.id).padStart(3, '0');
 
   return `[FORMAT] CREATE / RENDER a single cohesive 4:5 vertical editorial publication artwork (1080 x 1350 pixels resolution).
-[FOUNDATION & PALETTE] Mandatory warm off-white / ivory environment background (#FBFBFA), Deep Navy structural text (#0A0A10), Cobalt Blue (#1557FF) strategic accent. DO NOT RENDER A DARK OR BLACK BACKGROUND.
-[COMPOSITION MANDATE] ONE INTEGRATED EDITORIAL ARTWORK WITH INTEGRATED TYPOGRAPHY. DO NOT CREATE A SPLIT-SCREEN OR TWO SEPARATE PANELS. DO NOT INSERT AN IMAGE BOX. The warm off-white environment (${artDir.environment}), lighting, and soft ambient shadows span seamlessly across the ENTIRE 4:5 frame from left edge to right edge.
-[CONTENT] LAYER B: Left column features clean Deep Navy typography integrated directly into the warm off-white canvas: Headline '${headline}' (Bebas Neue uppercase condensed in Deep Navy #0A0A10), Subheading in Manrope Semibold with Cobalt Blue accent, concise explanation in Manrope Regular, category metadata in IBM Plex Mono.
+[BRAND FOUNDATION - TZINR FIRST] Mandatory warm off-white / ivory environment background (#FBFBFA), Deep Navy structural typography (#0A0A10), Cobalt Blue (#1557FF) strategic restrained accent. ABSOLUTELY NO DARK BACKGROUNDS, NO BLACK ENVIRONMENTS, NO NIGHT SCENES, NO alternate color themes.
+[COMPOSITION MANDATE] ONE INTEGRATED EDITORIAL ARTWORK WITH INTEGRATED TYPOGRAPHY. DO NOT CREATE A SPLIT-SCREEN OR TWO SEPARATE PANELS. DO NOT INSERT AN IMAGE BOX. The warm off-white environment (${artDir.environment}), daylighting, and soft ambient shadows span seamlessly across the ENTIRE 4:5 frame from left edge to right edge.
+[CONTENT] LAYER B: Left column features clean Deep Navy typography printed directly onto the warm off-white canvas: Headline '${headline}' (Bebas Neue uppercase condensed in Deep Navy #0A0A10), Subheading in Manrope Semibold with Cobalt Blue accent, concise explanation in Manrope Regular, category metadata in IBM Plex Mono. ~36px safe margins.
 [CORE IDEA] Visualizing ${topic.title}: Human/behavioral UX principle expressed through bespoke physical visual metaphor.
 [VISUAL METAPHOR] ${artDir.metaphor}
 [ART DIRECTION] LAYER C: ${artDir.family}
@@ -244,8 +245,8 @@ export function build17PartImagePrompt(topic: DesignTopic): string {
 [COLOR APPLICATION] Primary warm off-white environment foundation (#FBFBFA), Deep Navy structural text (#0A0A10), ${artDir.blueAccent}
 [TYPOGRAPHY] Headlines in Bebas Neue uppercase condensed (Deep Navy #0A0A10); Subheadings & body in Manrope; Metadata & numbers in IBM Plex Mono; Brand name in Manrope ExtraBold.
 [VISIBLE TEXT] Top-left 'TZINR' (Manrope ExtraBold) + 'UX FOUNDATIONS ${templateNum}' (IBM Plex Mono); Top-right '${templateNum} / 100' (IBM Plex Mono); Left column Headline '${headline}' (Bebas Neue); Subheading 'Guiding attention through scale' with Cobalt Blue keyword accent (Manrope Semibold); Bottom-left 'CONCEPT: ${headline}' (IBM Plex Mono).
-[BACKGROUND & ATMOSPHERE] ${artDir.background}
-[NEGATIVE RULES] Dark background, black environment, night scene, inverted white text on dark background, text half + image half, split screen, two panels, vertical division line, inserted photo box, rectangular picture frame border, collage seam, low-quality rendering, unreadable typography, visual clutter, unrelated random objects, generic stock art, accidental watermarks, distorted text, broken composition.`;
+[BACKGROUND & ATMOSPHERE] ${artDir.background} within the light TZINR editorial world.
+[NEGATIVE RULES] Dark background, black environment, night scene, dark cinematic lighting, inverted white text on dark background, text half + image half, split screen, two panels, vertical division line, inserted photo box, rectangular picture frame border, collage seam, low-quality rendering, unreadable typography, visual clutter, unrelated random objects, generic stock art, accidental watermarks, distorted text, broken composition.`;
 }
 
 export function generateLocalContentMock(topic: DesignTopic, format: 'single' | 'carousel'): DesignContentResult {
