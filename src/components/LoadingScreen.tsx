@@ -15,14 +15,15 @@ const STEPS = [
   'Writing cinematic scenes...',
   'Optimizing for AI video...',
   'Generating MASTER PROMPT...',
-  'Done.',
+  'Processing...',
 ];
 
 export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
+  const [dotCount, setDotCount] = useState(1);
 
   useEffect(() => {
-    // Step interval timing (total ~2.7 seconds)
+    // Step interval timing
     const interval = setInterval(() => {
       setCurrentStepIndex((prev) => {
         if (prev < STEPS.length - 1) {
@@ -31,16 +32,26 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
           clearInterval(interval);
           setTimeout(() => {
             onComplete();
-          }, 300);
+          }, 400);
           return prev;
         }
       });
-    }, 300);
+    }, 450);
 
     return () => clearInterval(interval);
   }, [onComplete]);
 
-  const progressPercent = Math.min(100, Math.round(((currentStepIndex + 1) / STEPS.length) * 100));
+  // 3-dot animation loop during Processing... stage
+  useEffect(() => {
+    const dotInterval = setInterval(() => {
+      setDotCount((prev) => (prev >= 3 ? 1 : prev + 1));
+    }, 400);
+    return () => clearInterval(dotInterval);
+  }, []);
+
+  const isProcessing = currentStepIndex === STEPS.length - 1;
+  const progressPercent = isProcessing ? 92 : Math.min(90, Math.round(((currentStepIndex + 1) / STEPS.length) * 100));
+  const activeDotText = '.'.repeat(dotCount);
 
   return (
     <div className="min-h-[calc(100vh-4rem)] bg-[var(--color-bg-primary)] py-12 px-4 flex flex-col items-center justify-center selection:bg-[var(--color-brand-violet)]/30">
@@ -49,7 +60,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
         <div className="relative w-20 h-20 mx-auto mb-6 flex items-center justify-center">
           <div className="absolute inset-0 rounded-full bg-[var(--color-brand-violet)]/20 animate-ping" />
           <div className="w-16 h-16 rounded-2xl bg-[var(--color-bg-primary)] border border-[var(--color-brand-violet)]/50 flex items-center justify-center shadow-lg shadow-[var(--color-brand-violet)]/30 relative z-10 text-[var(--color-brand-violet)]">
-            <Clapperboard className="w-8 h-8" />
+            <Clapperboard className="w-8 h-8 animate-pulse" />
           </div>
         </div>
 
@@ -63,7 +74,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
             className="h-full bg-gradient-to-r from-[var(--color-brand-violet)] to-[var(--color-brand-magenta)] rounded-full"
             initial={{ width: '0%' }}
             animate={{ width: `${progressPercent}%` }}
-            transition={{ duration: 0.2, ease: 'easeOut' }}
+            transition={{ duration: 0.3, ease: 'easeOut' }}
           />
         </div>
 
@@ -78,26 +89,33 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
               transition={{ duration: 0.15 }}
               className="flex items-center gap-2 text-xs text-[#FAFAFA] font-medium font-mono"
             >
-              {currentStepIndex === STEPS.length - 1 ? (
-                <Check className="w-4 h-4 text-[#22C55E]" />
-              ) : (
-                <Loader2 className="w-4 h-4 text-[var(--color-brand-violet)] animate-spin" />
-              )}
-              <span>{STEPS[currentStepIndex]}</span>
+              <Loader2 className="w-4 h-4 text-[var(--color-brand-violet)] animate-spin" />
+              <span>
+                {isProcessing ? `Processing${activeDotText}` : STEPS[currentStepIndex]}
+              </span>
             </motion.div>
           </AnimatePresence>
         </div>
 
         {/* Completed Log List */}
-        <div className="space-y-1.5 text-left bg-[var(--color-bg-primary)] p-4 rounded-xl border border-[var(--color-border-primary)] max-h-36 overflow-y-auto font-mono text-[11px] text-[#A1A1AA]">
-          {STEPS.slice(0, currentStepIndex + 1).map((step, idx) => (
-            <div key={idx} className="flex items-center gap-2">
-              <Check className="w-3 h-3 text-[#22C55E] shrink-0" />
-              <span className={idx === currentStepIndex ? 'text-white font-medium' : 'text-[#A1A1AA]/60'}>
-                {step}
-              </span>
-            </div>
-          ))}
+        <div className="space-y-1.5 text-left bg-[var(--color-bg-primary)] p-4 rounded-xl border border-[var(--color-border-primary)] max-h-40 overflow-y-auto font-mono text-[11px] text-[#A1A1AA]">
+          {STEPS.slice(0, currentStepIndex + 1).map((step, idx) => {
+            const isCurrent = idx === currentStepIndex;
+            return (
+              <div key={idx} className="flex items-center gap-2">
+                {isCurrent && isProcessing ? (
+                  <Loader2 className="w-3 h-3 text-[var(--color-brand-violet)] animate-spin shrink-0" />
+                ) : isCurrent ? (
+                  <Loader2 className="w-3 h-3 text-[var(--color-brand-violet)] animate-spin shrink-0" />
+                ) : (
+                  <Check className="w-3 h-3 text-[#22C55E] shrink-0" />
+                )}
+                <span className={isCurrent ? 'text-white font-medium' : 'text-[#A1A1AA]/60'}>
+                  {isCurrent && isProcessing ? `Processing${activeDotText}` : step}
+                </span>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

@@ -54,7 +54,7 @@ Make it conversational but professional. Do not ask generic questions we already
   };
 
   const response = await getAiClient().models.generateContent({
-    model: 'gemini-3.5-flash',
+    model: 'gemini-2.5-flash',
     contents: promptText,
     config: {
       systemInstruction: STRATEGY_SYSTEM_PROMPT,
@@ -140,7 +140,7 @@ Be highly specific, insightful, and actionable. Do not use generic corporate jar
   };
 
   const response = await getAiClient().models.generateContent({
-    model: 'gemini-3.5-flash',
+    model: 'gemini-2.5-flash',
     contents: promptText,
     config: {
       systemInstruction: STRATEGY_SYSTEM_PROMPT,
