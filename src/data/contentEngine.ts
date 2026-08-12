@@ -38,21 +38,19 @@ EDITORIAL MICRO-DETAILS:
 Include meaningful micro-details (e.g., UX PRINCIPLES 002, KEY TAKEAWAY, DESIGN / RESEARCH). 
 DO NOT invent meaningless coordinates (e.g., 45.2° N) unless they relate to the content.
 
-TZINR BRAND CONSISTENCY SYSTEM (MANDATORY LAYER):
+TZINR BRAND CONSISTENCY & 4:5 VERTICAL LAYOUT SYSTEM:
 1. The final image MUST visibly contain the exact text: TZINR.
-2. DO NOT change the existing design or redesign the composition to accommodate this. This is a branding addition only.
-3. PREFERRED PLACEMENT: Place the word "TZINR" clearly above the existing category metadata (e.g., UX PRINCIPLES 003) at the top of the typography section.
-4. SPACING & TYPOGRAPHY: Keep approximately 12–24 px of spacing between "TZINR" and the metadata. Use the same black/deep-navy editorial typography already used in the design.
-5. HIERARCHY: TZINR should be smaller than the main headline but clearly visible and recognizable as the brand.
-6. ALTERNATE PLACEMENT: If there is already a suitable empty area elsewhere in the composition, you may place TZINR there, but the preferred location is directly above the category metadata.
-7. Do not hide TZINR. Do not replace it with "UX FOUNDATIONS". Do not omit it.
+2. 4:5 VERTICAL RATIO LAYOUT: Anchor the top margin actively. Place "TZINR" and metadata at the extreme top-left header area. Do NOT leave a large empty gap or blank header above the text.
+3. SPACING & TYPOGRAPHY: Keep approximately 12–24 px of spacing between "TZINR" and the category metadata (e.g., UX FOUNDATIONS 004). Use clean editorial typography.
+4. HIERARCHY: TZINR (top-left) → Metadata → Main Headline → Visual Metaphor → Explanation copy.
+5. PROPORTIONAL VERTICAL BALANCE: Distribute elements naturally across the 4:5 vertical frame so there is zero wasted top padding or empty canvas space at the top.
 
 10/10 QUALITY GATE (Internal check before generating):
-Does it look beautiful? Does the visual metaphor represent the idea? Does it have enough visual detail? Does it avoid unnecessary clutter? Does it avoid the "empty poster" look? Does it provide educational value? Is the TZINR safe area preserved?
+Does it look beautiful? Does the visual metaphor represent the idea? Does it fill the 4:5 vertical aspect ratio naturally without a large blank top gap? Is the TZINR top-left placement tight and integrated?
 
 REQUIRED 17-PART IMAGE PROMPT FORMAT (MUST use this format exactly, NO LOGOS OR BRAND TEXT IN THE ARTWORK PROMPT):
-[FORMAT] Premium editorial social media graphic, 4:5 vertical.
-[SAFE AREA] Reserve clean negative space in the upper-left area for the official TZINR logo overlay. Do not place critical typography, objects, or visual elements in this area.
+[FORMAT] Premium editorial social media graphic, 4:5 vertical aspect ratio.
+[TOP MARGIN INTEGRATION] Anchor top-left immediately with TZINR and metadata. Zero top margin gap.
 [CREATIVE CONCEPT] 
 [CORE MESSAGE] 
 [VISUAL METAPHOR] 
@@ -62,12 +60,12 @@ REQUIRED 17-PART IMAGE PROMPT FORMAT (MUST use this format exactly, NO LOGOS OR 
 [HERO VISUAL] 
 [TYPOGRAPHY] 
 [EXACT VISIBLE TEXT] "TZINR - [CATEGORY METADATA] - [TITLE] - [CORE IDEA] - [SHORT EXPLANATION]"
-[COMPOSITION] 
+[COMPOSITION] Full 4:5 vertical balanced composition, tight top placement.
 [VISUAL HIERARCHY] 
 [DEPTH / LIGHTING] 
 [EDITORIAL DETAILS] (Include grids, lines, small meaningful metadata)
-[TZINR BRANDING] The exact word "TZINR" must be generated in the typography, preferably above the metadata.
-[NEGATIVE] beautiful empty poster, empty white background, flat canvas, generic infographic, dashboard, two-column cards, UI mockup unless conceptually necessary, random decoration, purple, pink, orange, green, yellow, generic AI artwork, cheap 3D, excessive text, fake coordinates, meaningless numbers, visual clutter.`;
+[TZINR BRANDING] The exact word "TZINR" must be generated in the typography at the extreme top-left.
+[NEGATIVE] large empty gap at top, blank header space, empty top margin, pushed-down composition, excessive top padding, beautiful empty poster, empty white background, flat canvas, generic infographic, dashboard, two-column cards, UI mockup unless conceptually necessary, random decoration, purple, pink, orange, green, yellow, generic AI artwork, cheap 3D, excessive text, fake coordinates, meaningless numbers, visual clutter.`;
 
 export const generateContentFromTopic = async (topic: DesignTopic, format: 'single' | 'carousel'): Promise<DesignContentResult> => {
   try {

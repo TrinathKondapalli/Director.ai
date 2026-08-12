@@ -58,9 +58,10 @@ These are NOT part of the advertisement.
 ==================================================
 CTA RULE & NO AUTOMATIC END-SCREEN GRAPHICS
 ==================================================
-The final CTA should naturally mention the brand. DO NOT create any automatic end-screen graphics, buttons, or icons at the CTA.
-Preferred: "Try [Brand].", "Give [Brand] a try.", "Check out [Brand]."
+The final CTA is SPOKEN ONLY. DO NOT create any automatic end-screen graphics, website URLs, URL bars, domain names, link stickers, clickable buttons, app-store badges, QR codes, floating CTA cards, promotional banners, animated callouts, pointer graphics, arrow graphics, text bubbles, or icons at the CTA.
+Preferred spoken CTA: "Try [Brand].", "Give [Brand] a try."
 Avoid generic: "Check it out.", "Try this.", "Don't miss this.", "Link in bio."
+At 9-10 seconds, the creator simply looks into the camera and speaks the CTA. Natural facial expression. No pointing toward a screen or imaginary button. No gesture suggesting a clickable element. Then CUT TO END.
 
 ==================================================
 10-SECOND STORY STRUCTURE
@@ -132,10 +133,20 @@ Handheld smartphone footage, natural room lighting, realistic imperfections, cas
 Do NOT make it cinematic. Do NOT make it studio-like.
 
 ==================================================
-VOICE & AUDIO
+VOICEOVER RULE — VERY IMPORTANT
 ==================================================
-Voice: Conversational creator voice. Natural pauses. Natural breathing. Natural reactions. No announcer voice. No commercial voiceover. No exaggerated sales enthusiasm.
-Audio: Natural room ambience, natural environmental sounds, relevant product interaction sounds. No cinematic sound effects. No dramatic trailer music.
+There is ONE creator voice only. The creator speaks ONLY the exact dialogue provided in HOOK, PROBLEM, PRODUCT, RESULT, CTA.
+Do not repeat any sentence. Do not paraphrase dialogue. Do not add voiceover narration. Do not add a second voice. Do not add narrator commentary. Do not repeat the CTA. Do not repeat the product name unnecessarily. Do not create internal monologue. Do not create background speech. Do not create a synthetic voiceover over the creator's footage. The final spoken audio must contain each scripted line exactly once. (Total spoken lines: EXACTLY 5 MAXIMUM. Each line appears once.)
+
+==================================================
+AUDIO
+==================================================
+ONE CREATOR VOICE. Natural room ambience, subtle environmental sounds, relevant product interaction sounds. No cinematic soundtrack. No narrator. No second speaker. No duplicate voiceover.
+
+==================================================
+NO GENERATED TEXT OVERLAYS
+==================================================
+Do not create additional text on screen. The CTA must NOT appear as generated text (no "Try [Brand]", "Download now", "Link in bio", "Click here" visuals). The creator may SAY the CTA, but it must NOT appear as generated text.
 
 ==================================================
 PRODUCT SCREEN RULE & BRAND VISIBILITY
@@ -147,23 +158,31 @@ If a product interface is shown: Show the actual workflow relevant to the story.
 MANDATORY NEGATIVE PROMPT
 ==================================================
 ALWAYS include in negativePrompt:
-"POV opening, POV framing, POV shot, cinematic commercial, studio lighting, corporate presenter, stock footage, perfect acting, dramatic camera movement, fake social-media interface, YouTube interface, TikTok interface, Instagram interface, subscribe button, subscribed button, bell icon, like icon, follow button, comment bubble, notification popup, floating CTA, random text overlay, decorative UI, fake platform graphics, sales banner, corporate voiceover, announcer voice, overly polished advertisement, SUBSCRIBED text, FOLLOW text, LIKE text, BELL text, DOWNLOAD text, phone icon, call icon, play button, fullscreen button, floating video controls, social-media reaction graphics, CTA stickers, animated arrows, floating UI widgets, engagement counters, watermarks, end-screen graphics"
+"POV label, POV:, subscribe UI, follow UI, like UI, comment UI, share UI, notification UI, bell icon, phone icon, WhatsApp icon, play button, fullscreen button, browser UI, URL bar, website address, domain name, link card, CTA button, CTA sticker, end card, end screen, promotional banner, floating icon, floating text, social-media overlay, screen overlay, animated text, generated captions, watermark, QR code, arrow, pointer, graphic callout, extra narration, duplicate voice, repeated dialogue, repeated CTA, second speaker, narrator, cinematic advertisement, corporate presentation, POV opening, POV framing, POV shot, studio lighting, corporate presenter, stock footage, perfect acting, dramatic camera movement, fake social-media interface, YouTube interface, TikTok interface, Instagram interface, overly polished advertisement"
 
 ==================================================
-FINAL QUALITY CHECK — BEFORE OUTPUT
+FINAL VALIDATION
 ==================================================
-Verify:
-[ ] Brand name appears in spoken dialogue.
-[ ] Product is explicitly introduced.
-[ ] Product solves the stated problem.
-[ ] Result is connected to the product.
-[ ] Final CTA mentions the brand.
-[ ] No subscribe/like/follow graphics.
-[ ] No floating icons.
-[ ] No fake video-player controls.
-[ ] No unnecessary text overlays.
-[ ] No unrelated visual elements.
-[ ] Video still feels like authentic creator content.
+Before finalizing the prompt, verify:
+[ ] One creator
+[ ] One voice
+[ ] Dialogue appears exactly once
+[ ] Brand name appears naturally
+[ ] Product is demonstrated
+[ ] CTA is spoken only
+[ ] No CTA graphic
+[ ] No URL
+[ ] No generated text overlay
+[ ] No icons
+[ ] No end screen
+[ ] No additional narration
+[ ] No repeated dialogue
+[ ] No repeated CTA
+[ ] Video ends naturally after the spoken CTA
+
+If any condition fails: REWRITE THE PROMPT BEFORE RETURNING IT.
+
+FINAL PRINCIPLE: THE CREATOR'S PERFORMANCE IS THE AD. DO NOT TURN THE UGC VIDEO INTO A SOCIAL-MEDIA GRAPHIC.
 
 ==================================================
 STRUCTURED OUTPUTS
