@@ -28,20 +28,39 @@ The video must begin naturally:
 - Creator reacting naturally to the situation
 
 ==================================================
-NO INVENTED SOCIAL-MEDIA UI
+1. BRAND NAME IS MANDATORY
 ==================================================
-NEVER generate: subscribe buttons, subscribed buttons, bell icons, like buttons, follow buttons, comment bubbles, share buttons, notification overlays, TikTok UI, YouTube UI, Instagram UI, fake platform graphics, floating CTA graphics — UNLESS that element is genuinely part of the product being demonstrated.
-Do NOT add decorative social-media elements just because the video is intended for social media.
+The exact brand/product name provided by the user MUST appear naturally in the spoken script. The brand name must be spelled exactly as provided.
+Never replace the brand with generic terms like "this app", "this tool", "this platform", or "this product" when a natural brand mention is possible.
 
 ==================================================
-CTA MUST BE NATURAL
+2. PRODUCT MUST BE PART OF THE STORY
 ==================================================
-Do NOT force a large visual CTA overlay. Avoid forced text overlays: "DOWNLOAD NOW", "SUBSCRIBE", "CLICK HERE", "GET STARTED" unless specifically requested.
-Prefer natural creator language:
-- "Honestly, I'd use this again."
-- "Try it yourself."
-- "That's what I use now."
-- "If you're editing a lot, give it a try."
+The creator must explicitly introduce or demonstrate the product. The product should feel like the solution to the problem.
+Do NOT make the ad merely describe a problem and then end with "Check it out." The viewer must understand WHY THIS BRAND?
+
+==================================================
+3. BRAND MENTION TIMING
+==================================================
+Preferred structure:
+0–2s: HOOK / PROBLEM
+2–4s: PAIN
+4–7s: PRODUCT + BRAND ("Then I started using [Brand]...")
+7–9s: RESULT ("Honestly, it saved me hours.")
+9–10s: BRAND CTA ("Try [Brand].")
+
+==================================================
+NO INVENTED SOCIAL-MEDIA UI
+==================================================
+CRITICAL: NEVER generate floating social-media controls. NEVER generate: subscribe buttons, subscribed buttons, bell icons, like buttons, follow buttons, comment bubbles, share buttons, phone icons, call icons, play buttons, fullscreen buttons, floating video controls, notification symbols, social-media reaction graphics, CTA stickers, animated arrows, floating UI widgets, engagement counters, fake platform controls, watermarks.
+These are NOT part of the advertisement.
+
+==================================================
+CTA RULE & NO AUTOMATIC END-SCREEN GRAPHICS
+==================================================
+The final CTA should naturally mention the brand. DO NOT create any automatic end-screen graphics, buttons, or icons at the CTA.
+Preferred: "Try [Brand].", "Give [Brand] a try.", "Check out [Brand]."
+Avoid generic: "Check it out.", "Try this.", "Don't miss this.", "Link in bio."
 
 ==================================================
 10-SECOND STORY STRUCTURE
@@ -119,28 +138,32 @@ Voice: Conversational creator voice. Natural pauses. Natural breathing. Natural 
 Audio: Natural room ambience, natural environmental sounds, relevant product interaction sounds. No cinematic sound effects. No dramatic trailer music.
 
 ==================================================
+PRODUCT SCREEN RULE & BRAND VISIBILITY
+==================================================
+The brand should be visible through natural methods (creator saying it, using product interface, or product packaging). Prefer real product interaction over artificial logo placement. Do NOT create giant logos or promotional banners.
+If a product interface is shown: Show the actual workflow relevant to the story. Do not add decorative floating controls around the interface.
+
+==================================================
 MANDATORY NEGATIVE PROMPT
 ==================================================
 ALWAYS include in negativePrompt:
-"POV opening, POV framing, POV shot, cinematic commercial, studio lighting, corporate presenter, stock footage, perfect acting, dramatic camera movement, fake social-media interface, YouTube interface, TikTok interface, Instagram interface, subscribe button, subscribed button, bell icon, like icon, follow button, comment bubble, notification popup, floating CTA, random text overlay, decorative UI, fake platform graphics, sales banner, corporate voiceover, announcer voice, overly polished advertisement, SUBSCRIBED text, FOLLOW text, LIKE text, BELL text, DOWNLOAD text"
+"POV opening, POV framing, POV shot, cinematic commercial, studio lighting, corporate presenter, stock footage, perfect acting, dramatic camera movement, fake social-media interface, YouTube interface, TikTok interface, Instagram interface, subscribe button, subscribed button, bell icon, like icon, follow button, comment bubble, notification popup, floating CTA, random text overlay, decorative UI, fake platform graphics, sales banner, corporate voiceover, announcer voice, overly polished advertisement, SUBSCRIBED text, FOLLOW text, LIKE text, BELL text, DOWNLOAD text, phone icon, call icon, play button, fullscreen button, floating video controls, social-media reaction graphics, CTA stickers, animated arrows, floating UI widgets, engagement counters, watermarks, end-screen graphics"
 
 ==================================================
 FINAL QUALITY CHECK — BEFORE OUTPUT
 ==================================================
 Verify:
-[ ] Dialogue fits the duration (max 28 words total).
-[ ] No duplicated product description.
-[ ] Hook is conversational, not corporate.
-[ ] Pain is visually understandable.
-[ ] Product is clearly demonstrated.
-[ ] Result shows a believable emotional change.
-[ ] CTA sounds like a creator recommendation.
-[ ] No POV language anywhere.
-[ ] No fake social-media UI.
-[ ] No unnecessary overlays.
-[ ] No invented subscribe/follow/bell elements.
-[ ] Product promotion remains natural.
-[ ] Entire video feels like authentic UGC.
+[ ] Brand name appears in spoken dialogue.
+[ ] Product is explicitly introduced.
+[ ] Product solves the stated problem.
+[ ] Result is connected to the product.
+[ ] Final CTA mentions the brand.
+[ ] No subscribe/like/follow graphics.
+[ ] No floating icons.
+[ ] No fake video-player controls.
+[ ] No unnecessary text overlays.
+[ ] No unrelated visual elements.
+[ ] Video still feels like authentic creator content.
 
 ==================================================
 STRUCTURED OUTPUTS
@@ -168,7 +191,7 @@ export function generateLocalUgcMock(input: UgcStudioInput): UgcStudioResult {
     problem: `Most people waste hours dealing with inefficient workflows.`,
     story: `I tested this for a week and couldn't believe the difference it made.`,
     solution: `${prod} completely automates the process and gives you back your time.`,
-    callToAction: `Tap the link in my bio to get yours before it sells out!`,
+    callToAction: `Give ${prod} a try!`,
     captions: {
       linkedin: {
         hook: `As professionals, we are constantly seeking ways to optimize our daily workflows.`,
@@ -267,13 +290,13 @@ export function generateLocalUgcMock(input: UgcStudioInput): UgcStudioResult {
       { time: "2–4s (PAIN)", action: `Creator turns camera to show the frustrating workflow — scrolling, messy files, manual work.`, audio: `Minimal or silent — visual carries the message.` },
       { time: "4–7s (PRODUCT)", action: `Creator opens ${prod} naturally and quickly demonstrates the key feature solving the problem.`, audio: `"Then I found ${prod}. It handles it in seconds."` },
       { time: "7–9s (RESULT)", action: `Creator looks back at camera with a genuine quiet smile — visibly relieved.`, audio: `"Honestly, it saved me so much time."` },
-      { time: "9–10s (CTA)", action: `Creator nods toward camera or gives a casual thumbs-up.`, audio: `"Give it a try."` }
+      { time: "9–10s (CTA)", action: `Creator nods toward camera or gives a casual thumbs-up.`, audio: `"Give ${prod} a try."` }
     ],
     shotList: [
       { sceneNumber: "Scene 1 (HOOK)", description: `Creator at desk, looking directly into camera. Tired but relatable expression. Casual setting.`, camera: `Medium Close-Up`, movement: `Subtle handheld hold`, voice: `"I was losing so much time on this every day."`, sfx: `Natural room tone`, transition: `Jump cut` },
       { sceneNumber: "Scene 2 (PAIN)", description: `Creator turns phone/laptop to show cluttered workflow or frustrating manual task.`, camera: `Over-the-shoulder close-up of screen`, movement: `Natural handheld`, voice: `Minimal — visual emphasis`, sfx: `Soft keyboard clicks`, transition: `Jump cut` },
       { sceneNumber: "Scene 3 (PRODUCT)", description: `Close-up of creator using ${prod} — quick, natural product interaction showing the key fix.`, camera: `Close-up of hands and screen`, movement: `Steady handheld`, voice: `"Then I found ${prod}. It handles it in seconds."`, sfx: `Clean UI click sound`, transition: `Jump cut` },
-      { sceneNumber: "Scene 4 (RESULT + CTA)", description: `Creator back on camera — genuine quiet smile. Nods and says recommendation naturally.`, camera: `Medium Close-Up`, movement: `Subtle handheld`, voice: `"Honestly, try it."`, sfx: `Natural room tone`, transition: `Fade` }
+      { sceneNumber: "Scene 4 (RESULT + CTA)", description: `Creator back on camera — genuine quiet smile. Nods and says recommendation naturally.`, camera: `Medium Close-Up`, movement: `Subtle handheld`, voice: `"Honestly, try ${prod}."`, sfx: `Natural room tone`, transition: `Fade` }
     ],
     bRollIdeas: [
       `Natural close-up of creator's hands on keyboard while using ${prod}.`,
