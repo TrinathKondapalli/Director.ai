@@ -5,46 +5,46 @@ const SYSTEM_PROMPT = `You are a Senior Product Designer, UX Strategist, LinkedI
 
 ============================================================
 DIRECTOR.AI — UNIVERSAL AI DESIGN PUBLISHER PROMPT-ENGINE
-3-LAYER ARCHITECTURE SYSTEM (4:5 VERTICAL, 1080 x 1350 PIXELS)
+CONCEPT-DRIVEN CREATIVE BACKGROUND GENERATION ENGINE
 ============================================================
 
-1. LAYER A — FIXED TZINR BRAND SYSTEM (NON-NEGOTIABLE CONSTANTS):
-   - 4:5 vertical aspect ratio (1080 × 1350 pixels resolution).
-   - ~36px safe perimeter padding on all sides.
-   - Top-left: 'TZINR' (Manrope ExtraBold) stacked above 'UX FOUNDATIONS [NUM]' (IBM Plex Mono).
-   - Top-right: Template post count e.g. '[NUM] / 100' (IBM Plex Mono).
-   - Left 45% column: Typography stack (Headline, Subheading with Cobalt Blue accent, Paragraph, Bottom-left metadata).
-   - Right 50% canvas: Hero visual area. Zero text overlap.
-   - Foundation: Warm off-white / ivory (#FBFBFA).
-   - Structure & Text: Deep navy / black (#0A0A10).
-   - Strategic Accent: Cobalt Blue (#1557FF) applied with restraint for focal emphasis.
+1. BRAND SYSTEM (ALWAYS CONSISTENT):
+   - Format: 4:5 vertical editorial graphic (1080 × 1350 pixels resolution).
+   - Safe Margin: ~36px safe padding on all 4 edges.
+   - Header: Top-left 'TZINR' (Manrope ExtraBold) + 'UX FOUNDATIONS [NUM]' (IBM Plex Mono); Top-right '[NUM] / 100' (IBM Plex Mono).
+   - Layout: Strict asymmetrical split: Left 45% typography column + Right 50% hero artwork area (zero text overlap).
+   - Foundation & Colors: Warm off-white / ivory (#FBFBFA), Deep Navy structural typography (#0A0A10), Cobalt Blue (#1557FF) strategic focal accent.
    - Fonts: Bebas Neue (Headline), Manrope (Subheading/Body), IBM Plex Mono (Metadata).
 
-2. LAYER B — CONTENT SYSTEM (CONCEPT DERIVED):
-   - 1 Main Display Headline (Bebas Neue).
-   - 1 Short Subheading with selective Cobalt Blue (#1557FF) keyword emphasis (Manrope Semibold).
-   - 1 Concise Explanation (Manrope Regular).
-   - Small Category Metadata (IBM Plex Mono). High signal, zero infographic clutter.
+2. CONCEPT-DRIVEN CREATIVE FREEDOM (BACKGROUND & VISUAL ELEMENTS):
+   - ALL visual treatments (grids, dot matrix, gradients, blue lighting, paper textures, architectural structures, shadows, organic curves, photographic lighting) are FULLY ALLOWED.
+   - Select visual treatments INTENTIONALLY based on what strengthens the specific concept:
+     * GRID: Use for design systems, visual hierarchy, alignment, structure, and consistency.
+     * DOTS / DOT MATRIX: Use for data chunking, Miller's Law, networks, scale, and repetition.
+     * GRADIENT / BLUE GLOW: Use for focal depth, spatial transition, atmosphere, and focal isolation.
+     * TEXTURE & PAPER: Use for tactility, editorial warm print quality, and physical presence.
+     * ARCHITECTURE: Use for structural hierarchy, Jakob's Law, Fitts's Law, and scale contrast.
+     * ORGANIC FORMS: Use for human behavior, fluid UX motion, and Gestalt proximity.
+     * SHADOW & LIGHT: Use for attention direction, chiaroscuro, and spatial perception.
+   - The background must NEVER be plain or empty; it should have intentional visual character while remaining clean and premium.
 
-3. LAYER C — CREATIVE ART DIRECTION (VARIABLE PER TOPIC):
-   - Concept-first creative reasoning determines: Visual Metaphor, Art Direction Family, Hero Subject, Environment, Material, Composition, Perspective, Lighting, Background, Color Accent Placement.
-   - 21 Visual Families: Architectural, Sculptural, Editorial Still Life, Conceptual Photography, Material Study, Shadow Study, Light Installation, Forced Perspective, Negative Space, Human Interaction, Environmental Scene, Organic Forms, Motion Frozen in Time, Surreal Composition, Abstract Geometry, Optical Illusion, Scale Contrast, Layered Materials, Paper/Fabric/Glass/Metal/Stone, Atmospheric Space, Contemporary Installation Art.
-
-4. MANDATORY 17-PART IMAGE PROMPT CONSTRUCTION ORDER:
+3. MANDATORY 17-PART IMAGE PROMPT CONSTRUCTION ORDER:
    Every generated image prompt MUST be written as a DIRECT IMAGE-GENERATION PROMPT instructing the model to CREATE / GENERATE / RENDER:
    [FORMAT] [BRAND SYSTEM] [FIXED LAYOUT] [CONTENT] [CORE IDEA] [VISUAL METAPHOR] [ART DIRECTION] [HERO VISUAL] [ENVIRONMENT] [MATERIAL] [COMPOSITION] [LIGHTING] [COLOR APPLICATION] [TYPOGRAPHY] [VISIBLE TEXT] [BACKGROUND] [NEGATIVE RULES]
 
-5. NEGATIVE RULES (NO DEFAULT RECIPES):
-   - Do NOT automatically add grid, dots, blue gradient glow, white 3D blocks, floating cubes, UI cards, dashboards, or generic infographics unless explicitly justified by the concept.`;
+4. NEGATIVE RULES (ONLY PROHIBIT GENUINELY BAD OUTPUT):
+   - Prohibit: Low-quality rendering, unreadable typography, visual clutter, unrelated random objects, generic stock-art appearance, accidental watermarks, distorted text, broken composition.
+   - DO NOT globally ban grids, dots, gradients, textures, architectural environments, or blue lighting. Use them intentionally when they elevate the concept.`;
 
 const ART_DIRECTIONS = [
   {
-    family: 'ARCHITECTURAL',
+    family: 'ARCHITECTURAL & GRID SYSTEMS',
     metaphor: 'Cascading architectural staircases and converging concrete planes creating dramatic scale contrast.',
-    environment: 'Sunlit concrete gallery space with deep structural shadows.',
+    environment: 'Sunlit concrete gallery space with fine architectural blueprint grid lines.',
     material: 'Smooth architectural concrete and matte white plaster.',
     lighting: 'High-contrast natural directional sunlight from an overhead skylight.',
-    blueAccent: 'Cobalt Blue (#1557FF) applied to the single illuminated focal portal lens at the convergence point.'
+    blueAccent: 'Cobalt Blue (#1557FF) applied to the single illuminated focal portal lens at the convergence point.',
+    background: 'Architectural gallery environment with fine blueprint grid lines, structural shadow depth, and subtle paper grain.'
   },
   {
     family: 'EDITORIAL STILL LIFE',
@@ -52,31 +52,35 @@ const ART_DIRECTIONS = [
     environment: 'Clean editorial studio tabletop setting.',
     material: 'Flawless optical glass, heavy matte paper stock, and carved limestone.',
     lighting: 'Soft diffused studio window lighting with gentle contact shadows.',
-    blueAccent: 'Cobalt Blue (#1557FF) tint inside the optical center of the glass prism.'
+    blueAccent: 'Cobalt Blue (#1557FF) tint inside the optical center of the glass prism.',
+    background: 'Warm tactile off-white paper canvas with subtle fiber texture and soft studio window shadows.'
   },
   {
-    family: 'SCULPTURAL',
+    family: 'SCULPTURAL & KINETIC',
     metaphor: 'A bronze kinetic pendulum suspended in static equilibrium over a carved limestone base.',
     environment: 'Minimalist gallery alcove with neutral plaster backdrop.',
     material: 'Patinated bronze wire, raw limestone block, and polished chrome.',
     lighting: 'Dramatic side spotlight casting razor-sharp geometric shadows.',
-    blueAccent: 'Cobalt Blue (#1557FF) high-gloss enamel ring marking the balance pivot point.'
+    blueAccent: 'Cobalt Blue (#1557FF) high-gloss enamel ring marking the balance pivot point.',
+    background: 'Gallery plaster alcove with sharp directional shadow projections and subtle surface stippling.'
   },
   {
-    family: 'SHADOW / LIGHT',
+    family: 'SHADOW / LIGHT & ATMOSPHERE',
     metaphor: 'Single sharp beam of light cutting across a dark void to reveal hidden architectural depth.',
-    environment: 'Atmospheric dark studio space with subtle environmental haze.',
+    environment: 'Atmospheric dark studio space with subtle environmental haze and radial gradient glow.',
     material: 'Dark slate, matte black metal, and translucent frosted glass.',
     lighting: 'Single tight key spotlight creating stark chiaroscuro shadow contrast.',
-    blueAccent: 'Cobalt Blue (#1557FF) illuminated edge glowing where light hits the glass barrier.'
+    blueAccent: 'Cobalt Blue (#1557FF) illuminated edge glowing where light hits the glass barrier.',
+    background: 'Atmospheric dark studio background with soft Cobalt Blue ambient radial glow gradient and mist depth.'
   },
   {
-    family: 'MATERIAL STUDY',
-    metaphor: 'Juxtaposition of rough volcanic rock resting against a polished glass sphere reflecting the room.',
-    environment: 'Raw material exhibition pedestal.',
-    material: 'Porous basalt stone, crystal optical sphere, and raw linen.',
-    lighting: 'Directional 45-degree key light creating rich tactile surface texture.',
-    blueAccent: 'Cobalt Blue (#1557FF) refraction line visible through the optical sphere center.'
+    family: 'DATA MATRIX & CHUNKING',
+    metaphor: '5 modular limestone pedestals arranged in distinct visual chunk groups with translucent glass boundary markers.',
+    environment: 'Technical design laboratory setting.',
+    material: 'Porous limestone, crystal optical glass, and anodized aluminum.',
+    lighting: 'Clean 45-degree directional key light with technical fill.',
+    blueAccent: 'Cobalt Blue (#1557FF) highlight on the 5th chunk pedestal boundary.',
+    background: 'Technical off-white paper canvas with fine monospaced dot matrix density clusters and margin alignment marks.'
   },
   {
     family: 'OPTICAL / PERSPECTIVE',
@@ -84,15 +88,17 @@ const ART_DIRECTIONS = [
     environment: 'Minimalist architectural corridor.',
     material: 'Monolithic travertine marble and translucent acrylic.',
     lighting: 'Symmetrical ambient fill with subtle directional rim lighting.',
-    blueAccent: 'Cobalt Blue (#1557FF) vertical neon edge framing the central vanishing portal.'
+    blueAccent: 'Cobalt Blue (#1557FF) vertical neon edge framing the central vanishing portal.',
+    background: 'Perspective corridor background with subtle receding grid lines and soft atmospheric gradient depth.'
   },
   {
-    family: 'NEGATIVE SPACE',
+    family: 'NEGATIVE SPACE & VOIDS',
     metaphor: 'Interlocking geometric voids in a wall forming a complete conceptual icon through spatial subtraction.',
     environment: 'Architectural facade wall on warm paper canvas.',
     material: 'Fine grain ivory paper cardstock with laser-cut geometric voids.',
     lighting: 'Backlit ambient diffusion accentuating precise cutout edges.',
-    blueAccent: 'Cobalt Blue (#1557FF) backplate visible exclusively through the central cutout void.'
+    blueAccent: 'Cobalt Blue (#1557FF) backplate visible exclusively through the central cutout void.',
+    background: 'Ivory cardstock texture with shadow depth from laser-cut void edges.'
   },
   {
     family: 'HUMAN INTERACTION',
@@ -100,63 +106,71 @@ const ART_DIRECTIONS = [
     environment: 'Warm tactile design workspace desk.',
     material: 'Natural skin tones, thick cotton paper, optical glass filter.',
     lighting: 'Warm overhead desk lamp ambient lighting.',
-    blueAccent: 'Cobalt Blue (#1557FF) alignment crosshair etched onto the glass filter.'
+    blueAccent: 'Cobalt Blue (#1557FF) alignment crosshair etched onto the glass filter.',
+    background: 'Tactile cotton paper workspace with subtle blueprint crosshair grid overlay.'
   },
   {
-    family: 'ORGANIC FORM',
+    family: 'ORGANIC FORM & FLOW',
     metaphor: 'Fluid ceramic ribbon sculpting through space, contrasting with rigid geometric framework pins.',
     environment: 'Soft studio background with gentle shadow gradient.',
     material: 'Glazed matte porcelain ceramic and brass pins.',
     lighting: 'Soft top-down dome diffusion lighting.',
-    blueAccent: 'Cobalt Blue (#1557FF) ceramic glaze applied to the primary organic curve zenith.'
+    blueAccent: 'Cobalt Blue (#1557FF) ceramic glaze applied to the primary organic curve zenith.',
+    background: 'Soft studio backdrop with smooth ambient lighting gradient and gentle porcelain shadows.'
   },
   {
-    family: 'PHOTOGRAPHIC',
+    family: 'PHOTOGRAPHIC & LETTERPRESS',
     metaphor: 'Macro studio photography of raw editorial paper grain with debossed typographic letterforms.',
     environment: 'Macro studio copy stand.',
     material: '350gsm warm ivory cotton paper with tactile letterpress texture.',
     lighting: 'Low-angle grazing light casting deep tactile letterpress shadows.',
-    blueAccent: 'Cobalt Blue (#1557FF) foil stamp on the primary focus keyword.'
+    blueAccent: 'Cobalt Blue (#1557FF) foil stamp on the primary focus keyword.',
+    background: 'Macro 350gsm paper texture with tactile debossed depth and soft grazing light.'
   },
   {
-    family: 'SURREAL',
+    family: 'SURREAL HORIZON',
     metaphor: 'A floating marble archway opening to reveal a calm open horizon within an indoor gallery room.',
     environment: 'Minimalist museum hall with open ceiling portal.',
     material: 'Carrara marble, quiet atmospheric air, and glass horizon.',
     lighting: 'Ethereal ambient sky illumination from above.',
-    blueAccent: 'Cobalt Blue (#1557FF) horizon line separating room and open space.'
+    blueAccent: 'Cobalt Blue (#1557FF) horizon line separating room and open space.',
+    background: 'Museum gallery hall with subtle atmospheric sky gradient glowing through portal.'
   },
   {
-    family: 'ABSTRACT GEOMETRY',
+    family: 'ABSTRACT GEOMETRY & FILTERS',
     metaphor: 'Overlapping geometric glass filters in space resolving multiple visual layers into one clear composite image.',
     environment: 'Clean white studio environment.',
     material: 'Multi-density colored glass plates and chrome stands.',
     lighting: 'Direct multi-angle studio lighting casting overlapping color shadows.',
-    blueAccent: 'Cobalt Blue (#1557FF) glass plate positioned as the final resolving lens.'
+    blueAccent: 'Cobalt Blue (#1557FF) glass plate positioned as the final resolving lens.',
+    background: 'Clean white studio background with translucent glass color shadow reflections.'
   },
   {
-    family: 'CONCEPTUAL OBJECTS',
+    family: 'CONCEPTUAL MEASUREMENT',
     metaphor: 'Precision brass calipers measuring the exact focal gap between two structural elements.',
     environment: 'Editorial product design bench.',
     material: 'Machined brass, dark oxidized steel, and optical lens.',
     lighting: 'Focused technical task light.',
-    blueAccent: 'Cobalt Blue (#1557FF) precision indicator needle pointing to exact measurement.'
+    blueAccent: 'Cobalt Blue (#1557FF) precision indicator needle pointing to exact measurement.',
+    background: 'Dark slate workbench with fine technical measurement tick marks and task light focus.'
   },
   {
-    family: 'MOTION / FROZEN MOTION',
+    family: 'MOTION / FROZEN STROBE',
     metaphor: 'Stroboscopic sequence of a falling glass sphere caught in 5 static frozen mid-air stages.',
     environment: 'High-speed photography studio void.',
     material: 'Solid glass sphere and dark acoustic foam background.',
     lighting: 'High-speed microsecond strobe flash.',
-    blueAccent: 'Cobalt Blue (#1557FF) streak line trailing the final frozen impact position.'
+    blueAccent: 'Cobalt Blue (#1557FF) streak line trailing the final frozen impact position.',
+    background: 'High-speed studio void with frozen motion blur paths and subtle directional lighting glow.'
   },
   {
-    family: 'ENVIRONMENTAL SCENE',
+    family: 'ENVIRONMENTAL COURTYARD',
     metaphor: 'Quiet courtyard setting where sunlight creates geometric shadows aligned perfectly with architectural grid floor.',
     environment: 'Open-air Mediterranean minimalist courtyard.',
     material: 'Terracotta tiles, pale limestone walls, and clean shadow lines.',
     lighting: 'Late afternoon warm sun at 45-degree angle.',
-    blueAccent: 'Cobalt Blue (#1557FF) ceramic bench positioned as the visual anchor.'
+    blueAccent: 'Cobalt Blue (#1557FF) ceramic bench positioned as the visual anchor.',
+    background: 'Mediterranean courtyard wall with clean sunlight shadow grid projections.'
   },
   {
     family: 'LIGHT INSTALLATION',
@@ -164,7 +178,8 @@ const ART_DIRECTIONS = [
     environment: 'Contemporary art installation pavilion.',
     material: 'Diffused acrylic light tubes and raw troweled plaster.',
     lighting: 'Self-illuminating LED light planes with soft ambient glow.',
-    blueAccent: 'Cobalt Blue (#1557FF) light tube establishing the primary spatial axis.'
+    blueAccent: 'Cobalt Blue (#1557FF) light tube establishing the primary spatial axis.',
+    background: 'Raw plaster gallery wall illuminated by soft spatial light plane reflections.'
   },
   {
     family: 'CONCEPTUAL PHOTOGRAPHY',
@@ -172,7 +187,8 @@ const ART_DIRECTIONS = [
     environment: 'Darkened photographic studio.',
     material: 'Optical glass prism and matte black background.',
     lighting: 'Ultra-narrow collimated beam of light.',
-    blueAccent: 'Cobalt Blue (#1557FF) spectral wavelength beam isolated on black.'
+    blueAccent: 'Cobalt Blue (#1557FF) spectral wavelength beam isolated on black.',
+    background: 'Dark photographic studio setting with sharp light ray refraction reflections.'
   },
   {
     family: 'LAYERED MATERIALS',
@@ -180,15 +196,17 @@ const ART_DIRECTIONS = [
     environment: 'Material research laboratory exhibition.',
     material: '90gsm tracing vellum, 6mm smoked tempered glass, and natural slate.',
     lighting: 'Soft rear backlighting casting layered translucent shadows.',
-    blueAccent: 'Cobalt Blue (#1557FF) edge banding on the central glass plate.'
+    blueAccent: 'Cobalt Blue (#1557FF) edge banding on the central glass plate.',
+    background: 'Exhibition space with backlit translucent material shadow gradients.'
   },
   {
-    family: 'ATMOSPHERIC SPACE',
+    family: 'ATMOSPHERIC FOG CHAMBER',
     metaphor: 'Minimalist mist-filled chamber where a single directional light beam reveals spatial depth and volume.',
     environment: 'Architectural fog chamber installation.',
     material: 'Water vapor mist, matte epoxy floor, and brushed aluminum.',
     lighting: 'Volumetric light shaft cutting through fog.',
-    blueAccent: 'Cobalt Blue (#1557FF) laser line marking the spatial grid floor.'
+    blueAccent: 'Cobalt Blue (#1557FF) laser line marking the spatial grid floor.',
+    background: 'Volumetric mist atmosphere with soft directional light beam depth.'
   },
   {
     family: 'CONTEMPORARY INSTALLATION ART',
@@ -196,7 +214,8 @@ const ART_DIRECTIONS = [
     environment: 'Sunlit museum atrium.',
     material: 'Monofilament wire, tinted acrylic frames, and polished concrete.',
     lighting: 'Bright natural sunlight creating vivid floor projections.',
-    blueAccent: 'Cobalt Blue (#1557FF) acrylic frame suspended at eye level.'
+    blueAccent: 'Cobalt Blue (#1557FF) acrylic frame suspended at eye level.',
+    background: 'Concrete atrium floor with vibrant geometric acrylic shadow projections.'
   },
   {
     family: 'SCALE CONTRAST',
@@ -204,7 +223,8 @@ const ART_DIRECTIONS = [
     environment: 'Minimalist studio soundstage.',
     material: 'Anodized black aluminum pin and translucent fiberglass sphere.',
     lighting: 'Internal glow from sphere with soft key light on pin.',
-    blueAccent: 'Cobalt Blue (#1557FF) core glowing inside the giant sphere.'
+    blueAccent: 'Cobalt Blue (#1557FF) core glowing inside the giant sphere.',
+    background: 'Studio soundstage with soft ambient illumination halo surrounding the focal sphere.'
   }
 ];
 
@@ -228,8 +248,8 @@ export function build17PartImagePrompt(topic: DesignTopic): string {
 [COLOR APPLICATION] Primary off-white environment foundation, Deep Navy structural text, ${artDir.blueAccent}
 [TYPOGRAPHY] Headlines in Bebas Neue uppercase condensed; Subheadings & body in Manrope; Metadata & numbers in IBM Plex Mono; Brand name in Manrope ExtraBold.
 [VISIBLE TEXT] Top-left 'TZINR' (Manrope ExtraBold) + 'UX FOUNDATIONS ${templateNum}' (IBM Plex Mono); Top-right '${templateNum} / 100' (IBM Plex Mono); Left column Headline '${headline}' (Bebas Neue); Subheading 'Guiding attention through scale' with Cobalt Blue keyword accent (Manrope Semibold); Bottom-left 'CONCEPT: ${headline}' (IBM Plex Mono).
-[BACKGROUND] ${artDir.environment} with rich tactile material texture, natural directional shadows, and zero visual clutter.
-[NEGATIVE RULES] Do NOT automatically add grid, dot patterns, blue gradient glow, white 3D blocks, floating cubes, UI cards, dashboards, or generic infographic elements.`;
+[BACKGROUND] ${artDir.background}
+[NEGATIVE RULES] Low-quality rendering, unreadable typography, visual clutter, unrelated random objects, generic stock-art appearance, accidental watermarks, distorted text, broken composition.`;
 }
 
 export function generateLocalContentMock(topic: DesignTopic, format: 'single' | 'carousel'): DesignContentResult {
