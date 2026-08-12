@@ -388,6 +388,58 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                 </div>
               </div>
             </div>
+            {/* MODULE 04 */}
+            <div className="bg-[var(--color-bg-card)] border border-[var(--color-border-primary)] rounded-[32px] overflow-hidden flex flex-col md:flex-row-reverse group hover:border-[var(--color-brand-violet)]/50 transition-colors mt-8">
+              <div className="p-10 md:p-14 md:w-1/2 flex flex-col justify-center">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[var(--color-brand-violet)]/15 rounded-full border border-[var(--color-brand-violet)]/30 text-[var(--color-brand-violet)] text-[11px] font-mono font-semibold tracking-wide uppercase w-max mb-6">
+                  <Target className="w-3.5 h-3.5" />
+                  <span>Module 04</span>
+                </div>
+                <h3 className="text-3xl md:text-4xl font-sora font-bold text-white mb-4">Brand Strategist</h3>
+                <h4 className="text-xl font-sora text-[#E4E4E7] mb-6">Turn a Business Idea Into a Defensible Strategy.</h4>
+                <p className="text-[#A1A1AA] mb-6 leading-relaxed">
+                  More than just a prompt generator. The Brand Strategist is a conversational AI consultant that guides you through a progressive discovery interview to build a complete 20-point brand foundation.
+                </p>
+                <div className="mb-8 space-y-2">
+                  <p className="text-sm text-[#A1A1AA]"><strong className="text-[var(--color-brand-violet)]">Generates:</strong> Discovery Q&A, Positioning Options, Brand Personality, Messaging Pillars, Taglines, and a final exportable Strategic Blueprint.</p>
+                </div>
+                <div className="mt-auto">
+                  <p className="text-[#E4E4E7] font-medium mb-6">You provide the business idea. The AI asks the right questions.</p>
+                  <button onClick={() => onNavigate('/brand-strategist')} className="btn-primary px-8 py-3.5 flex items-center gap-2 group cursor-pointer">
+                    Open Brand Strategist <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+              <div className="md:w-1/2 border-t md:border-t-0 md:border-r border-[var(--color-border-primary)] relative p-8 flex items-center justify-center overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-bg-primary)] to-[var(--color-brand-violet)]/10"></div>
+                <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,rgba(102,21,246,0.3),transparent_60%)]"></div>
+                
+                {/* Visual Representation of Strategy Dashboard */}
+                <div className="relative z-10 w-full max-w-sm flex flex-col gap-3">
+                  <div className="bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] rounded-xl p-4 shadow-xl translate-x-4">
+                    <div className="h-2 w-16 bg-[var(--color-text-muted)] rounded mb-3"></div>
+                    <div className="h-4 w-3/4 bg-white rounded mb-2"></div>
+                    <div className="h-4 w-1/2 bg-white/60 rounded"></div>
+                  </div>
+                  <div className="bg-[var(--color-brand-violet)]/10 border border-[var(--color-brand-violet)]/30 rounded-xl p-4 shadow-xl -translate-x-2">
+                    <div className="flex justify-between items-center mb-3">
+                      <div className="h-2 w-20 bg-[var(--color-brand-violet)] rounded"></div>
+                      <div className="h-2 w-2 bg-[var(--color-brand-violet)] rounded-full"></div>
+                    </div>
+                    <div className="h-3 w-full bg-[var(--color-brand-violet)]/40 rounded mb-2"></div>
+                    <div className="h-3 w-5/6 bg-[var(--color-brand-violet)]/20 rounded"></div>
+                  </div>
+                  <div className="bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] rounded-xl p-4 shadow-xl translate-x-6">
+                    <div className="h-2 w-12 bg-[var(--color-text-muted)] rounded mb-3"></div>
+                    <div className="flex gap-2">
+                      <div className="h-6 w-16 bg-white/10 rounded-full"></div>
+                      <div className="h-6 w-20 bg-white/10 rounded-full"></div>
+                      <div className="h-6 w-14 bg-white/10 rounded-full"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

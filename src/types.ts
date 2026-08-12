@@ -91,6 +91,24 @@ export interface VideoPrompt {
   negativePrompt: string;
 }
 
+export interface AiConceptCard {
+  id: string;
+  conceptTitle: string;
+  whyItWorks: string;
+  targetAudience: string;
+  recommendedCategory: string;
+  nicheCategory: string;
+  platformFocus: string;
+  marketingAngle: string;
+  hookIdea: string;
+  emotionalTrigger: string;
+  difficulty: string;
+  trendScore: number;
+  primaryCta: string;
+  productNameExample: string;
+  [key: string]: any;
+}
+
 export interface UgcStudioResult {
   originalInput: UgcStudioInput;
   oneLineSummary: string;
@@ -98,6 +116,9 @@ export interface UgcStudioResult {
   creatorType?: string;
   coreIdea?: string;
   toneVibe?: string;
+  visualStyle?: any;
+  voiceAndAudio?: any;
+  negativePrompt?: any;
   ugcStory?: {
     hook: string;
     pain: string;

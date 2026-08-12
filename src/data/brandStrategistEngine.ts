@@ -1,0 +1,157 @@
+import { GoogleGenAI, Type } from '@google/genai';
+import { InitialBrief, DiscoveryQuestion, DiscoveryAnswer, StrategicAnalysis, PositioningOption, BrandPersonality, StrategyWorkspaceData } from '../types/brandStrategist';
+
+// We must instantiate the client (assuming standard env setup from existing engine)
+const ai = new GoogleGenAI({
+  apiKey: import.meta.env.VITE_GEMINI_API_KEY
+});
+
+const STRATEGY_SYSTEM_PROMPT = `You are Director.ai's Elite Brand Strategist.
+You act as a senior consultant guiding a client to develop a highly differentiated, defensible brand strategy.
+You NEVER present assumptions as verified facts.
+You challenge weak assumptions, identify market gaps, and synthesize clear strategic direction.
+Always remain professional, insightful, and structured.`;
+
+export async function generateNextDiscoveryQuestion(
+  brief: InitialBrief,
+  history: { question: DiscoveryQuestion, answer: DiscoveryAnswer }[]
+): Promise<DiscoveryQuestion | null> {
+  // If we've asked 5 questions, we can conclude the interview for V1 to prevent endless loops.
+  if (history.length >= 5) {
+    return null;
+  }
+
+  const promptText = `
+Given this initial business brief:
+Name: ${brief.brandName}
+Desc: ${brief.description}
+Industry: ${brief.industry}
+Market: ${brief.market}
+Goal: ${brief.goal}
+
+Here is the conversation history so far:
+${history.map((h, i) => `Q${i+1}: [${h.question.category}] ${h.question.questionText}\nA${i+1}: ${h.answer.answerText}`).join('\n\n')}
+
+Your task: Generate the NEXT most critical strategic question to ask the client.
+Categories available: BUSINESS, AUDIENCE, MARKET, COMPETITORS, PERSONALITY.
+Ask only ONE highly targeted question that uncovers missing information or challenges assumptions.
+Make it conversational but professional. Do not ask generic questions we already know the answer to.`;
+
+  const schemaObj = {
+    type: Type.OBJECT,
+    properties: {
+      category: {
+        type: Type.STRING,
+        enum: ['BUSINESS', 'AUDIENCE', 'MARKET', 'COMPETITORS', 'PERSONALITY'],
+        description: "The strategic category of the question"
+      },
+      questionText: {
+        type: Type.STRING,
+        description: "The actual question to ask the client"
+      }
+    },
+    required: ["category", "questionText"]
+  };
+
+  const response = await ai.models.generateContent({
+    model: 'gemini-3.5-flash',
+    contents: promptText,
+    config: {
+      systemInstruction: STRATEGY_SYSTEM_PROMPT,
+      responseMimeType: 'application/json',
+      responseSchema: schemaObj as any,
+      temperature: 0.7,
+    }
+  });
+
+  if (response.text) {
+    const parsed = JSON.parse(response.text);
+    return {
+      id: Math.random().toString(36).substring(2, 9),
+      category: parsed.category,
+      questionText: parsed.questionText
+    };
+  }
+  return null;
+}
+
+export async function generateStrategyWorkspace(
+  brief: InitialBrief,
+  history: { question: DiscoveryQuestion, answer: DiscoveryAnswer }[]
+): Promise<StrategyWorkspaceData> {
+  const promptText = `
+You are the senior brand strategist.
+Based on the initial brief and the discovery interview, synthesize the complete brand strategy.
+
+Brief:
+Name: ${brief.brandName}
+Desc: ${brief.description}
+Industry: ${brief.industry}
+Market: ${brief.market}
+Goal: ${brief.goal}
+
+Interview History:
+${history.map(h => `Q: ${h.question.questionText}\nA: ${h.answer.answerText}`).join('\n\n')}
+
+Generate the complete 20-point strategic workspace.
+Be highly specific, insightful, and actionable. Do not use generic corporate jargon. Ensure the positioning is actually differentiated in the market.`;
+
+  const schemaObj = {
+    type: Type.OBJECT,
+    properties: {
+      businessFoundation: { type: Type.STRING },
+      targetAudience: { type: Type.STRING },
+      marketLandscape: { type: Type.STRING },
+      competitorAnalysis: { type: Type.STRING },
+      customerPainPoints: { type: Type.STRING },
+      differentiation: { type: Type.STRING },
+      brandPurpose: { type: Type.STRING },
+      brandVoice: { type: Type.STRING },
+      mission: { type: Type.STRING },
+      vision: { type: Type.STRING },
+      brandValues: { type: Type.ARRAY, items: { type: Type.STRING } },
+      brandPersonality: {
+        type: Type.OBJECT,
+        properties: {
+          primary: { type: Type.STRING },
+          secondary: { type: Type.STRING },
+          tertiary: { type: Type.STRING },
+          avoid: { type: Type.ARRAY, items: { type: Type.STRING } },
+          communicationStyle: { type: Type.STRING },
+          tone: { type: Type.STRING }
+        },
+        required: ["primary", "secondary", "tertiary", "avoid", "communicationStyle", "tone"]
+      },
+      brandArchetype: { type: Type.STRING },
+      messagingPillars: { type: Type.ARRAY, items: { type: Type.STRING } },
+      valueProposition: { type: Type.STRING },
+      taglineDirections: { type: Type.ARRAY, items: { type: Type.STRING } },
+      customerExperiencePrinciples: { type: Type.ARRAY, items: { type: Type.STRING } },
+      visualDirection: { type: Type.STRING },
+      strategicRecommendations: { type: Type.ARRAY, items: { type: Type.STRING } }
+    },
+    required: [
+      "businessFoundation", "targetAudience", "marketLandscape", "competitorAnalysis",
+      "customerPainPoints", "differentiation", "brandPurpose", "brandVoice", "mission", "vision",
+      "brandValues", "brandPersonality", "brandArchetype", "messagingPillars",
+      "valueProposition", "taglineDirections", "customerExperiencePrinciples",
+      "visualDirection", "strategicRecommendations"
+    ]
+  };
+
+  const response = await ai.models.generateContent({
+    model: 'gemini-3.5-flash',
+    contents: promptText,
+    config: {
+      systemInstruction: STRATEGY_SYSTEM_PROMPT,
+      responseMimeType: 'application/json',
+      responseSchema: schemaObj as any,
+      temperature: 0.8,
+    }
+  });
+
+  if (response.text) {
+    return JSON.parse(response.text) as StrategyWorkspaceData;
+  }
+  throw new Error("Failed to generate strategy");
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "id": "bs1",
+    "title": "Clear Brand Purpose",
+    "domain": "brandStrategy",
+    "definition": "A concise statement that explains why the brand exists beyond profit.",
+    "tags": ["purpose", "mission"],
+    "evidence": ["Harvard Business Review - The Power of Purpose"],
+    "validation_questions": ["Does this purpose resonate with target audience?"],
+    "source": "Harvard Business Review",
+    "source_type": "article",
+    "confidence": 0.95,
+    "version": "1.0",
+    "last_reviewed": "2024-01-15"
+  }
+]

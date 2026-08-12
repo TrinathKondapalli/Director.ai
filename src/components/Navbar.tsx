@@ -59,10 +59,12 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
           {/* Center: Desktop Nav Links */}
           <nav className="hidden md:flex items-center gap-8 text-[14px] font-medium tracking-wide">
             <button
-              onClick={handleHowItWorksClick}
-              className="text-[var(--color-text-secondary)] hover:text-white transition-colors cursor-pointer"
+              onClick={() => onNavigate('/ugc-studio')}
+              className={`transition-colors cursor-pointer ${
+                currentPath === '/ugc-studio' ? 'text-white' : 'text-[var(--color-text-secondary)] hover:text-white'
+              }`}
             >
-              How It Works
+              AI UGC Studio
             </button>
             <button
               onClick={() => onNavigate('/design-publisher')}
@@ -81,12 +83,12 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
               My Journal
             </button>
             <button
-              onClick={() => onNavigate('/pricing')}
+              onClick={() => onNavigate('/brand-strategist')}
               className={`transition-colors cursor-pointer ${
-                currentPath === '/pricing' ? 'text-white' : 'text-[var(--color-text-secondary)] hover:text-white'
+                currentPath === '/brand-strategist' ? 'text-white' : 'text-[var(--color-text-secondary)] hover:text-white'
               }`}
             >
-              Pricing
+              Brand Strategist
             </button>
           </nav>
 
@@ -136,30 +138,6 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
           >
             <div className="px-4 py-5 space-y-2.5">
               <button
-                onClick={() => handleMobileNav('/')}
-                className={`w-full flex items-center justify-between px-4 py-3 rounded-[14px] text-sm font-medium transition-colors ${
-                  currentPath === '/'
-                    ? 'bg-[var(--color-brand-violet)]/15 text-[var(--color-brand-lavender)] border border-[var(--color-brand-violet)]/30'
-                    : 'text-[var(--color-text-secondary)] hover:text-white bg-[var(--color-bg-primary)] border border-transparent'
-                }`}
-              >
-                <div className="flex items-center gap-3">
-                  <Home className="w-4 h-4" />
-                  <span>Home</span>
-                </div>
-              </button>
-
-              <button
-                onClick={handleHowItWorksClick}
-                className={`w-full flex items-center justify-between px-4 py-3 rounded-[14px] text-sm font-medium transition-colors text-[var(--color-text-secondary)] hover:text-white bg-[var(--color-bg-primary)] border border-transparent`}
-              >
-                <div className="flex items-center gap-3">
-                  <Lightbulb className="w-4 h-4 text-[var(--color-brand-violet)]" />
-                  <span>How It Works</span>
-                </div>
-              </button>
-
-              <button
                 onClick={() => handleMobileNav('/ugc-studio')}
                 className={`w-full flex items-center justify-between px-4 py-3 rounded-[14px] text-sm font-medium transition-colors ${
                   currentPath === '/ugc-studio'
@@ -172,7 +150,6 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
                   <span>AI UGC Studio</span>
                 </div>
               </button>
-
               <button
                 onClick={() => handleMobileNav('/design-publisher')}
                 className={`w-full flex items-center justify-between px-4 py-3 rounded-[14px] text-sm font-medium transition-colors ${
@@ -186,7 +163,6 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
                   <span>AI Design Publisher</span>
                 </div>
               </button>
-
               <button
                 onClick={() => handleMobileNav('/my-journal')}
                 className={`w-full flex items-center justify-between px-4 py-3 rounded-[14px] text-sm font-medium transition-colors ${
@@ -201,16 +177,16 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
                 </div>
               </button>
               <button
-                onClick={() => handleMobileNav('/pricing')}
+                onClick={() => handleMobileNav('/brand-strategist')}
                 className={`w-full flex items-center justify-between px-4 py-3 rounded-[14px] text-sm font-medium transition-colors ${
-                  currentPath === '/pricing'
+                  currentPath === '/brand-strategist'
                     ? 'bg-[var(--color-brand-violet)]/15 text-[var(--color-brand-lavender)] border border-[var(--color-brand-violet)]/30'
                     : 'text-[var(--color-text-secondary)] hover:text-white bg-[var(--color-bg-primary)] border border-transparent'
                 }`}
               >
                 <div className="flex items-center gap-3">
                   <Tag className="w-4 h-4 text-[var(--color-brand-violet)]" />
-                  <span>Pricing</span>
+                  <span>Brand Strategist</span>
                 </div>
               </button>
             </div>

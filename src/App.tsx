@@ -11,6 +11,7 @@ import { PricingPage } from './components/PricingPage';
 import { PrivacyPage } from './components/PrivacyPage';
 import { TermsPage } from './components/TermsPage';
 import { ContactPage } from './components/ContactPage';
+import BrandStrategistLayout from './components/BrandStrategist/BrandStrategistLayout';
 import { DirectorLogoIcon } from './components/DirectorLogo';
 import { UgcStudioInput, UgcStudioResult, DesignContentResult, UgcTopic, DesignTopic } from './types';
 import { generateUgcContent, generateLocalUgcMock, generateUgcFromTopic } from './data/generatorEngine';
@@ -32,7 +33,7 @@ export default function App() {
   const [currentPath, setCurrentPath] = useState<string>(() => {
     if (typeof window !== 'undefined') {
       const p = window.location.pathname;
-      if (p === '/ugc-studio' || p === '/ugc-result' || p === '/design-publisher' || p === '/design-result' || p === '/my-journal' || p === '/pricing' || p === '/privacy' || p === '/terms' || p === '/contact') {
+      if (p === '/ugc-studio' || p === '/ugc-result' || p === '/design-publisher' || p === '/design-result' || p === '/my-journal' || p === '/pricing' || p === '/privacy' || p === '/terms' || p === '/contact' || p === '/brand-strategist') {
         return p;
       }
     }
@@ -75,6 +76,7 @@ export default function App() {
     if (path === '/contact') pageName = 'Contact Us';
     if (path === '/ugc-result') pageName = 'Studio Result';
     if (path === '/design-result') pageName = 'Design Result';
+    if (path === '/brand-strategist') pageName = 'Brand Strategist';
 
     setIncomingPageName(pageName);
     setIsTransitioning(true);
@@ -270,6 +272,7 @@ export default function App() {
             {currentPath === '/privacy' && <PrivacyPage />}
             {currentPath === '/terms' && <TermsPage />}
             {currentPath === '/contact' && <ContactPage />}
+            {currentPath === '/brand-strategist' && <BrandStrategistLayout onBack={() => navigateTo('/')} />}
           </>
         )}
       </main>
