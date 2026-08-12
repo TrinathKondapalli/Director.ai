@@ -123,10 +123,11 @@ html {
 
 /* Glassmorphism System */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(16, 16, 24, 0.75);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transform: translateZ(0);
 }
 
 /* Custom Gradients & Glows */
@@ -137,5 +138,6 @@ html {
 .bg-hero-gradient {
   background: linear-gradient(135deg, var(--color-brand-purple), var(--color-brand-lavender), var(--color-brand-pink));
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
