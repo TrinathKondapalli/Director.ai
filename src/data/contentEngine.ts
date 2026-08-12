@@ -69,8 +69,155 @@ REQUIRED 17-PART IMAGE PROMPT FORMAT (MUST use this format explicitly):
 [TZINR BRANDING] 'TZINR' (Manrope ExtraBold) top-left with 'UX FOUNDATIONS [NUM]' (IBM Plex Mono) directly below, template number (IBM Plex Mono) top-right.
 [NEGATIVE] generic stacked stone blocks, plain toy cubes, generic brick piles, repetitive grids and dots on every post, Inter font, Roboto font, SF Pro font, Space Mono font, Helvetica Neue font, overlapping text, centered 3D object, text over object, giant blocky text, 7+-2 items, presentation slide, dense infographic, multi-column cards, full article text, purple, pink, orange, green, yellow, visual clutter.`;
 
+const ART_DIRECTIONS = [
+  {
+    family: 'ARCHITECTURAL',
+    metaphor: 'Cascading architectural staircases and converging concrete planes creating dramatic scale contrast.',
+    environment: 'Sunlit concrete gallery space with deep structural shadows.',
+    material: 'Smooth architectural concrete and matte white plaster.',
+    lighting: 'High-contrast natural directional sunlight from an overhead skylight.',
+    blueAccent: 'Cobalt Blue (#1557FF) applied to the single illuminated focal portal lens at the convergence point.'
+  },
+  {
+    family: 'EDITORIAL STILL LIFE',
+    metaphor: 'Curated arrangement of precision design tools, glass prisms, and tactile paper samples resting on a plaster pedestal.',
+    environment: 'Clean editorial studio tabletop setting.',
+    material: 'Flawless optical glass, heavy matte paper stock, and carved limestone.',
+    lighting: 'Soft diffused studio window lighting with gentle contact shadows.',
+    blueAccent: 'Cobalt Blue (#1557FF) tint inside the optical center of the glass prism.'
+  },
+  {
+    family: 'SCULPTURAL',
+    metaphor: 'A bronze kinetic pendulum suspended in static equilibrium over a carved limestone base.',
+    environment: 'Minimalist gallery alcove with neutral plaster backdrop.',
+    material: 'Patinated bronze wire, raw limestone block, and polished chrome.',
+    lighting: 'Dramatic side spotlight casting razor-sharp geometric shadows.',
+    blueAccent: 'Cobalt Blue (#1557FF) high-gloss enamel ring marking the balance pivot point.'
+  },
+  {
+    family: 'SHADOW / LIGHT',
+    metaphor: 'Single sharp beam of light cutting across a dark void to reveal hidden architectural depth.',
+    environment: 'Atmospheric dark studio space with subtle environmental haze.',
+    material: 'Dark slate, matte black metal, and translucent frosted glass.',
+    lighting: 'Single tight key spotlight creating stark chiaroscuro shadow contrast.',
+    blueAccent: 'Cobalt Blue (#1557FF) illuminated edge glowing where light hits the glass barrier.'
+  },
+  {
+    family: 'MATERIAL STUDY',
+    metaphor: 'Juxtaposition of rough volcanic rock resting against a polished glass sphere reflecting the room.',
+    environment: 'Raw material exhibition pedestal.',
+    material: 'Porous basalt stone, crystal optical sphere, and raw linen.',
+    lighting: 'Directional 45-degree key light creating rich tactile surface texture.',
+    blueAccent: 'Cobalt Blue (#1557FF) refraction line visible through the optical sphere center.'
+  },
+  {
+    family: 'OPTICAL / PERSPECTIVE',
+    metaphor: 'Forced-perspective corridor of receding archways guiding the viewer toward a single vanishing point.',
+    environment: 'Minimalist architectural corridor.',
+    material: 'Monolithic travertine marble and translucent acrylic.',
+    lighting: 'Symmetrical ambient fill with subtle directional rim lighting.',
+    blueAccent: 'Cobalt Blue (#1557FF) vertical neon edge framing the central vanishing portal.'
+  },
+  {
+    family: 'NEGATIVE SPACE',
+    metaphor: 'Interlocking geometric voids in a wall forming a complete conceptual icon through spatial subtraction.',
+    environment: 'Architectural facade wall on warm paper canvas.',
+    material: 'Fine grain ivory paper cardstock with laser-cut geometric voids.',
+    lighting: 'Backlit ambient diffusion accentuating precise cutout edges.',
+    blueAccent: 'Cobalt Blue (#1557FF) backplate visible exclusively through the central cutout void.'
+  },
+  {
+    family: 'HUMAN INTERACTION',
+    metaphor: 'A designer\'s hand precisely aligning a translucent glass visual filter over an architectural blueprint.',
+    environment: 'Warm tactile design workspace desk.',
+    material: 'Natural skin tones, thick cotton paper, optical glass filter.',
+    lighting: 'Warm overhead desk lamp ambient lighting.',
+    blueAccent: 'Cobalt Blue (#1557FF) alignment crosshair etched onto the glass filter.'
+  },
+  {
+    family: 'ORGANIC FORM',
+    metaphor: 'Fluid ceramic ribbon sculpting through space, contrasting with rigid geometric framework pins.',
+    environment: 'Soft studio background with gentle shadow gradient.',
+    material: 'Glazed matte porcelain ceramic and brass pins.',
+    lighting: 'Soft top-down dome diffusion lighting.',
+    blueAccent: 'Cobalt Blue (#1557FF) ceramic glaze applied to the primary organic curve zenith.'
+  },
+  {
+    family: 'PHOTOGRAPHIC',
+    metaphor: 'Macro studio photography of raw editorial paper grain with debossed typographic letterforms.',
+    environment: 'Macro studio copy stand.',
+    material: '350gsm warm ivory cotton paper with tactile letterpress texture.',
+    lighting: 'Low-angle grazing light casting deep tactile letterpress shadows.',
+    blueAccent: 'Cobalt Blue (#1557FF) foil stamp on the primary focus keyword.'
+  },
+  {
+    family: 'SURREAL',
+    metaphor: 'A floating marble archway opening to reveal a calm open horizon within a indoor gallery room.',
+    environment: 'Minimalist museum hall with open ceiling portal.',
+    material: 'Carrara marble, quiet atmospheric air, and glass horizon.',
+    lighting: 'Ethereal ambient sky illumination from above.',
+    blueAccent: 'Cobalt Blue (#1557FF) horizon line separating room and open space.'
+  },
+  {
+    family: 'ABSTRACT GEOMETRY',
+    metaphor: 'Overlapping geometric glass filters in space resolving multiple visual layers into one clear composite image.',
+    environment: 'Clean white studio environment.',
+    material: 'Multi-density colored glass plates and chrome stands.',
+    lighting: 'Direct multi-angle studio lighting casting overlapping color shadows.',
+    blueAccent: 'Cobalt Blue (#1557FF) glass plate positioned as the final resolving lens.'
+  },
+  {
+    family: 'CONCEPTUAL OBJECTS',
+    metaphor: 'Precision brass calipers measuring the exact focal gap between two structural elements.',
+    environment: 'Editorial product design bench.',
+    material: 'Machined brass, dark oxidized steel, and optical lens.',
+    lighting: 'Focused technical task light.',
+    blueAccent: 'Cobalt Blue (#1557FF) precision indicator needle pointing to exact measurement.'
+  },
+  {
+    family: 'MOTION / FROZEN MOTION',
+    metaphor: 'Stroboscopic sequence of a falling glass sphere caught in 5 static frozen mid-air stages.',
+    environment: 'High-speed photography studio void.',
+    material: 'Solid glass sphere and dark acoustic foam background.',
+    lighting: 'High-speed microsecond strobe flash.',
+    blueAccent: 'Cobalt Blue (#1557FF) streak line trailing the final frozen impact position.'
+  },
+  {
+    family: 'ENVIRONMENTAL SCENE',
+    metaphor: 'Quiet courtyard setting where sunlight creates geometric shadows aligned perfectly with architectural grid floor.',
+    environment: 'Open-air Mediterranean minimalist courtyard.',
+    material: 'Terracotta tiles, pale limestone walls, and clean shadow lines.',
+    lighting: 'Late afternoon warm sun at 45-degree angle.',
+    blueAccent: 'Cobalt Blue (#1557FF) ceramic bench positioned as the visual anchor.'
+  }
+];
+
+export function build15PartImagePrompt(topic: DesignTopic): string {
+  const artDir = ART_DIRECTIONS[topic.id % ART_DIRECTIONS.length];
+  const headline = topic.title.toUpperCase();
+  const templateNum = String(topic.id).padStart(3, '0');
+
+  return `[FORMAT] Premium 4:5 vertical editorial social media graphic (1080 x 1350 pixels resolution).
+[BRAND SYSTEM] TZINR brand identity. Warm off-white/ivory base (#FBFBFA), Deep Navy typography (#0A0A10), Cobalt Blue (#1557FF) strategic accent.
+[FIXED LAYOUT] ~36px safe padding on all 4 edges. Strict asymmetrical split: Left 45% typography column; Right 50% hero visual area. Zero text overlap.
+[CORE IDEA] Explaining ${topic.title} through clear visual hierarchy and structural clarity.
+[VISUAL METAPHOR] ${artDir.metaphor}
+[SELECTED ART DIRECTION] ${artDir.family}
+[HERO VISUAL] Right 50% hero visual: ${artDir.metaphor}
+[ENVIRONMENT] ${artDir.environment}
+[MATERIAL] ${artDir.material}
+[LIGHTING] ${artDir.lighting}
+[COLOR APPLICATION] Off-white environment, Deep Navy text structure, ${artDir.blueAccent}
+[TYPOGRAPHY] Display headline in Bebas Neue uppercase condensed; Subheadings & body in Manrope; Metadata in IBM Plex Mono.
+[VISIBLE TEXT] Top-left 'TZINR' (Manrope ExtraBold) + 'UX FOUNDATIONS ${templateNum}' (IBM Plex Mono); Top-right '${templateNum} / 100' (IBM Plex Mono); Left headline '${headline}' (Bebas Neue); Subheading with Cobalt Blue keyword accent (Manrope Semibold); Bottom-left 'CONCEPT: ${headline}' (IBM Plex Mono).
+[EDITORIAL DETAILS] Clean 36px margins, high-precision layout alignment, zero visual clutter.
+[NEGATIVE RULES] Do NOT add generic grids, dot patterns, blue gradients, blue glow, or stacked 3D blocks unless explicitly justified by the selected concept.`;
+}
+
 export function generateLocalContentMock(topic: DesignTopic, format: 'single' | 'carousel'): DesignContentResult {
   const headline = topic.title.toUpperCase();
+  const imagePromptText = build15PartImagePrompt(topic);
+
   const baseCaptions = {
     linkedin: {
       hook: `Why ${topic.title} defines modern product design excellence:`,
@@ -133,19 +280,19 @@ export function generateLocalContentMock(topic: DesignTopic, format: 'single' | 
         {
           heading: headline,
           description: `Guiding attention through scale and layout.`,
-          imagePrompt: `[FORMAT] 4:5 vertical editorial carousel slide. Cover slide for ${topic.title}.`,
+          imagePrompt: imagePromptText,
           imageText: { headline: headline, supporting: `Slide 1 / 5` }
         },
         {
           heading: `SCALE & CONTRAST`,
           description: `Primary anchors require dramatic typographic size contrast.`,
-          imagePrompt: `[FORMAT] 4:5 vertical editorial carousel slide. Focus on scale contrast.`,
+          imagePrompt: imagePromptText,
           imageText: { headline: `SCALE & CONTRAST`, supporting: `Slide 2 / 5` }
         },
         {
           heading: `FOCAL ISOLATION`,
           description: `Use Cobalt Blue accents only for key directional paths.`,
-          imagePrompt: `[FORMAT] 4:5 vertical editorial carousel slide. Cobalt Blue focal highlights.`,
+          imagePrompt: imagePromptText,
           imageText: { headline: `FOCAL ISOLATION`, supporting: `Slide 3 / 5` }
         }
       ],
@@ -184,17 +331,7 @@ export function generateLocalContentMock(topic: DesignTopic, format: 'single' | 
     tzinrSignaturePlacement: `top-left`,
     hashtags: [`#UXDesign`, `#VisualHierarchy`, `#ProductDesign`, `#UIUX`, `#DesignSystems`],
     keywords: [`UX Design`, topic.title, `Visual Hierarchy`, `UI UX`],
-    imagePrompt: `[FORMAT] Premium editorial social media graphic, 4:5 vertical aspect ratio (1080 x 1350 pixels resolution).
-[SAFE PADDING] ~36px safe margin on all 4 edges.
-[SPATIAL COMPOSITION] Strict two-column asymmetrical layout: Left 45% is clean typography column; Right 50% is bespoke 3D hero sculpture on rich paper canvas. Zero visual overlap.
-[TOP-LEFT BRANDING] 'TZINR' in Manrope ExtraBold with 'UX FOUNDATIONS ${String(topic.id).padStart(3, '0')}' in IBM Plex Mono.
-[TOP-RIGHT METADATA] '${String(topic.id).padStart(3, '0')} / 100' in IBM Plex Mono.
-[LEFT TYPOGRAPHY COLUMN] Headline '${headline}' in Bebas Neue uppercase condensed, Subheading 'Guiding attention through scale' in Manrope Semibold with 'scale' highlighted in Cobalt Blue (#1557FF), Paragraph explaining visual hierarchy in Manrope Regular.
-[RIGHT HERO VISUAL] Bespoke 3D architectural sculpture representing ${topic.title}, illuminated by a soft atmospheric Cobalt Blue background glow.
-[BOTTOM-LEFT METADATA] 'CONCEPT: ${topic.title.toUpperCase()}' in IBM Plex Mono.
-[BACKGROUND & TEXTURE] Warm off-white paper texture with fine blueprint grid lines, subtle dot matrix pattern, soft atmospheric blue background glow, and architectural shadows.
-[COLOR PALETTE] Off-white background, Deep Navy typography, Cobalt Blue (#1557FF) strategic accent.
-[TZINR BRANDING] 'TZINR' (Manrope ExtraBold) top-left with 'UX FOUNDATIONS ${String(topic.id).padStart(3, '0')}' (IBM Plex Mono).`
+    imagePrompt: imagePromptText
   };
 }
 
