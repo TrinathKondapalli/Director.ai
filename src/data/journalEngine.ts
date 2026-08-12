@@ -1,84 +1,83 @@
 import { GoogleGenAI } from '@google/genai';
 
-const JOURNAL_SYSTEM_PROMPT = `You are a Senior Art Director and Visual Designer for TZINR, a premium creative design publication and studio.
+const STICKY_NOTE_COLORS = [
+  'soft butter yellow',
+  'warm cream',
+  'blush pink',
+  'soft pastel blue',
+  'sage green',
+  'lavender',
+  'soft peach',
+];
 
-Your ONLY job is to take a user's raw content idea and transform it into a detailed, ready-to-paste image-generation prompt that maintains the TZINR brand identity.
+function getRandomStickyColor(): string {
+  return STICKY_NOTE_COLORS[Math.floor(Math.random() * STICKY_NOTE_COLORS.length)];
+}
 
-FIXED TZINR DESIGN SYSTEM (apply to EVERY prompt you generate):
+const JOURNAL_SYSTEM_PROMPT = `You are an image-prompt generator for the "My Journal" feature.
 
-BRAND IDENTITY:
-- Brand: TZINR
-- Style: Premium editorial design publication
-- The word "TZINR" must appear visibly in the generated image typography
+Your ONLY job is to take the user's exact text and wrap it inside the fixed My Journal design template as a ready-to-copy image-generation prompt.
 
-COLOR SYSTEM:
-- Primary background: White / Off-white with subtle texture
-- Typography: Black / Deep Navy (#0A0A14)
-- Accent: Blue (#1557FF) used selectively on ONE keyword or element
-- DO NOT use purple, pink, orange, green, yellow, or any other accent colors
+CRITICAL TEXT RULE:
+- The user's input is the ONLY readable text that should appear in the generated image.
+- Preserve the user's text EXACTLY as provided.
+- Do NOT correct spelling, grammar, or punctuation.
+- Do NOT rewrite, paraphrase, summarize, interpret, add words, or remove words.
+- Do NOT add a title, subtitle, description, quote, label, hashtag, number, watermark, or any text that is not in the user's original input.
+- The AI's job is ONLY to design around the user's exact sentence.
 
-TYPOGRAPHY:
-- Strong editorial sans-serif typeface
-- Dramatic scale contrast between headline and supporting text
-- Clean, confident, professional
-
-BACKGROUND & TEXTURE:
-- Never use a completely empty/flat white background
-- Always include: warm off-white paper texture, fine blue/gray grid lines, subtle dot pattern, soft atmospheric glow, architectural shadows, geometric framing, or editorial guide lines
-- Create three depth levels: 1. The Hook (Headline + Hero), 2. The Explanation (Supporting copy), 3. The Discovery (Metadata, grid, signature)
+FIXED DESIGN TEMPLATE (apply to every prompt):
 
 COMPOSITION:
-- Format: 4:5 vertical (social media optimized)
-- Reserve clean negative space in the upper-left area for TZINR branding
-- Balance: 40% visual storytelling + 30% typography/message + 20% editorial information + 10% TZINR identity
-- NOT an empty minimalist poster
-- NOT a cluttered infographic
-- Find the perfect editorial middle ground
+- Square 1:1 format
+- Warm off-white textured journal-paper background with subtle paper grain
+- One large, slightly imperfect rectangular sticky note placed near the center
+- Sticky note has subtle paper texture, slightly imperfect hand-torn edges, and a natural soft shadow beneath it
+- The sticky note appears naturally placed, as if stuck onto the journal page
 
-REQUIRED ELEMENTS IN EVERY IMAGE:
-1. TZINR brand text (above category metadata)
-2. Category label (e.g., TZINR / INSIGHTS, TZINR / PERSPECTIVES)
-3. Strong primary headline derived from the user's idea
-4. A conceptual visual metaphor that represents the idea
-5. Short supporting explanation text
-6. Small editorial metadata (numbering, date, category tags)
-7. Background texture/grid (never plain white)
+TYPOGRAPHY:
+- Bold, expressive, handwritten-style typography on the sticky note
+- High readability — the text must be clearly legible
+- Text is the user's exact input, nothing else
+- Natural letter spacing, as if written by hand with a thick marker or brush pen
+- Text is centered on the sticky note with comfortable margins
 
-EDITORIAL MICRO-DETAILS:
-- Include meaningful details: numbering (e.g., 001), category tags, subtle grid lines
-- Do NOT invent meaningless coordinates or random numbers
+DECORATIONS:
+- Minimal hand-drawn journal decorations scattered around the sticky note on the journal-paper background
+- Use: small stars, arrows, circles, pencil marks, simple doodles, tiny hearts, underlines, and subtle decorative elements
+- Doodles should feel personal, creative, youthful, handmade
+- Do NOT overload with decorations — keep it minimal and tasteful
+- Decorations are on the background paper, NOT on the sticky note itself
+
+AESTHETIC:
+- Personal, creative, youthful, handmade, premium journal aesthetic
+- The overall feel should be like a beautifully curated personal journal or planner page
+- Warm, inviting, and visually satisfying
+
+CONSISTENCY RULES (never change these):
+- Background style
+- Typography style (handwritten, bold, expressive)
+- Text placement (centered on sticky note)
+- Sticky-note shape (slightly imperfect rectangle)
+- Sticky-note size (large, near center)
+- Shadow style (natural, soft)
+- Doodle style (minimal, hand-drawn)
+- Doodle placement style (around the sticky note, on the background)
+- Overall composition and visual identity
+
+WHAT CHANGES PER POST:
+- ONLY the sticky-note color changes
+- The sticky-note color will be provided in the user's message
 
 NEGATIVE (always exclude):
-Beautiful empty poster, empty white background, flat canvas, generic infographic, dashboard, two-column cards, UI mockup, random decoration, purple, pink, orange, green, yellow, generic AI artwork, cheap 3D, excessive text, fake coordinates, meaningless numbers, visual clutter, stock photo look.
+Multiple sticky notes, digital/clean design, computer-generated typography, stock photo, 3D render, glossy surface, neon colors, dark background, complex illustration, brand logos, watermarks, additional text beyond the user's input, titles, subtitles, hashtags, labels, descriptions.
 
-INSTRUCTIONS:
-1. Read the user's idea carefully
-2. Extract the core message
-3. Invent a powerful visual metaphor that represents the idea
-4. Write a compelling headline
-5. Generate the complete 17-part image prompt using the format below
-
-OUTPUT FORMAT (return ONLY this, nothing else):
-
-[FORMAT] Premium editorial social media graphic, 4:5 vertical.
-[SAFE AREA] Reserve clean negative space in the upper-left area for the official TZINR logo overlay.
-[CREATIVE CONCEPT] ...
-[CORE MESSAGE] ...
-[VISUAL METAPHOR] ...
-[BACKGROUND] ...
-[ATMOSPHERE] ...
-[COLOR PALETTE] ...
-[HERO VISUAL] ...
-[TYPOGRAPHY] ...
-[EXACT VISIBLE TEXT] "TZINR - [CATEGORY] - [HEADLINE] - [CORE IDEA] - [SHORT EXPLANATION]"
-[COMPOSITION] ...
-[VISUAL HIERARCHY] ...
-[DEPTH / LIGHTING] ...
-[EDITORIAL DETAILS] ...
-[TZINR BRANDING] The exact word "TZINR" must be generated in the typography, preferably above the metadata.
-[NEGATIVE] beautiful empty poster, empty white background, flat canvas, generic infographic, dashboard, two-column cards, UI mockup, random decoration, purple, pink, orange, green, yellow, generic AI artwork, cheap 3D, excessive text, fake coordinates, meaningless numbers, visual clutter.`;
+OUTPUT FORMAT:
+Return ONLY the image-generation prompt. Do not explain. Do not add commentary. Do not rewrite the user's text outside the prompt.`;
 
 export const generateJournalPrompt = async (userIdea: string): Promise<string> => {
+  const stickyColor = getRandomStickyColor();
+
   try {
     const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
     if (!apiKey) {
@@ -87,13 +86,20 @@ export const generateJournalPrompt = async (userIdea: string): Promise<string> =
 
     const ai = new GoogleGenAI({ apiKey });
 
+    const userMessage = `STICKY-NOTE COLOR FOR THIS POST: ${stickyColor}
+
+USER'S EXACT TEXT (do NOT modify this in any way):
+"${userIdea}"
+
+Generate the complete image-generation prompt using the fixed My Journal design template. The ONLY readable text in the image must be the user's exact text above. Do not add any other text.`;
+
     const response = await ai.models.generateContent({
       model: 'gemini-2.5-flash',
-      contents: `The user's idea/content for this post is:\n\n"${userIdea}"\n\nTransform this into a complete, detailed image-generation prompt following the TZINR design system. Return ONLY the 17-part prompt, nothing else.`,
+      contents: userMessage,
       config: {
         systemInstruction: JOURNAL_SYSTEM_PROMPT,
-        temperature: 0.85,
-        maxOutputTokens: 2048,
+        temperature: 0.7,
+        maxOutputTokens: 1500,
       }
     });
 
@@ -104,29 +110,37 @@ export const generateJournalPrompt = async (userIdea: string): Promise<string> =
     return text;
   } catch (err) {
     console.warn('AI generation failed, using local fallback:', err);
-    return generateLocalJournalPrompt(userIdea);
+    return generateLocalJournalPrompt(userIdea, stickyColor);
   }
 };
 
-function generateLocalJournalPrompt(userIdea: string): string {
-  const headline = userIdea.length > 60 ? userIdea.substring(0, 57) + '...' : userIdea;
-  const headlineUpper = headline.toUpperCase();
+function generateLocalJournalPrompt(userIdea: string, stickyColor: string): string {
+  return `Create a square 1:1 composition image of a personal journal page.
 
-  return `[FORMAT] Premium editorial social media graphic, 4:5 vertical.
-[SAFE AREA] Reserve clean negative space in the upper-left area for the official TZINR logo overlay. Do not place critical typography, objects, or visual elements in this area.
-[CREATIVE CONCEPT] A thought-provoking editorial design that communicates the idea: "${userIdea}" through a powerful visual metaphor combined with strong typographic hierarchy.
-[CORE MESSAGE] ${userIdea}
-[VISUAL METAPHOR] An abstract architectural or geometric composition that symbolically represents the core idea - using intersecting planes, structural forms, or organic shapes that create visual tension and resolution.
-[BACKGROUND] Warm off-white textured paper surface with a fine blue-gray architectural grid overlay. Subtle dot pattern in the margins. Soft atmospheric blue glow emanating from behind the hero visual element. Faint editorial guide lines visible at the edges.
-[ATMOSPHERE] Premium editorial publication feel. Confident, intellectual, and visually sophisticated. The design should feel like a page from a high-end design journal.
-[COLOR PALETTE] Primary: Off-white (#F5F3EF) background. Typography: Deep Navy (#0A0A14). Accent: Blue (#1557FF) used on one key word only. No other colors.
-[HERO VISUAL] A striking conceptual object or architectural form rendered in deep navy and blue accent tones, positioned as the focal point of the composition. The visual should feel intentional and symbolic, not decorative.
-[TYPOGRAPHY] Strong editorial sans-serif. Main headline at dramatic large scale. Supporting text at refined smaller scale. Clean font weight contrast between bold headlines and light body text.
-[EXACT VISIBLE TEXT] "TZINR - INSIGHTS 001 - ${headlineUpper} - A TZINR PERSPECTIVE"
-[COMPOSITION] Asymmetric editorial layout with the hero visual occupying 40% of the canvas. Headline positioned with confident negative space. Supporting text and metadata arranged in a clean typographic hierarchy below. TZINR branding above category metadata at the top.
-[VISUAL HIERARCHY] 1. Hero visual + Main headline (immediate attention), 2. Supporting explanation text (understanding), 3. Editorial metadata + TZINR signature (brand recognition and depth).
-[DEPTH / LIGHTING] Three-layer depth: foreground typography with subtle shadow, mid-ground hero visual with soft blue atmospheric glow, background texture with fine grid. Soft directional light from upper-left creating gentle shadows on dimensional elements.
-[EDITORIAL DETAILS] Include: "INSIGHTS 001" category label, "DESIGN / PERSPECTIVE / IMPACT" tags, subtle numbered grid markers at margins, fine horizontal rule separating headline from body text, small "Read more at tzinr.com" footer text.
-[TZINR BRANDING] The exact word "TZINR" must be generated in the typography, placed clearly above the category metadata "INSIGHTS 001" at the top of the content section. Use deep navy editorial sans-serif, smaller than the main headline but clearly visible and recognizable.
-[NEGATIVE] beautiful empty poster, empty white background, flat canvas, generic infographic, dashboard, two-column cards, UI mockup, random decoration, purple, pink, orange, green, yellow, generic AI artwork, cheap 3D, excessive text, fake coordinates, meaningless numbers, visual clutter, stock photo look.`;
+BACKGROUND:
+Warm off-white textured journal-paper background with visible subtle paper grain and a soft, natural warmth. The paper should feel like a real physical journal page — not a flat digital canvas.
+
+STICKY NOTE:
+One large, slightly imperfect rectangular sticky note placed near the center of the journal page. The sticky note color is ${stickyColor}. The sticky note has subtle paper texture, slightly imperfect hand-torn edges, and a natural soft shadow beneath it, as if it was physically placed on the journal paper. The sticky note should feel real and tactile.
+
+TEXT ON THE STICKY NOTE:
+Display the following text EXACTLY as written, with no changes, no corrections, no additions, and no omissions:
+
+"${userIdea}"
+
+Use bold, expressive, handwritten-style typography. The text should look like it was written by hand with a thick marker or brush pen. High readability. Text is centered on the sticky note with comfortable margins. Natural letter spacing.
+
+IMPORTANT: This is the ONLY text that should appear anywhere in the entire image. Do NOT add any title, subtitle, label, hashtag, watermark, date, number, quote attribution, or any other text.
+
+JOURNAL DECORATIONS:
+Minimal hand-drawn journal decorations scattered around the sticky note on the background journal paper (NOT on the sticky note itself). Include: small hand-drawn stars, a few simple arrows, small circles, light pencil marks, tiny doodles, and subtle decorative elements. The decorations should feel personal, creative, youthful, and handmade — like someone's real journal. Keep decorations minimal and tasteful, do not overload.
+
+AESTHETIC:
+Personal, creative, youthful, handmade, premium journal aesthetic. The overall feel should be like a beautifully curated page from a personal journal or planner. Warm, inviting, and visually satisfying.
+
+LIGHTING:
+Soft, natural, warm lighting. No harsh shadows. The sticky note has a gentle, natural shadow on the journal paper beneath it.
+
+NEGATIVE PROMPT:
+Do NOT include: multiple sticky notes, digital/clean design, computer-generated typography, stock photo look, 3D render, glossy surface, neon colors, dark background, complex illustrations, brand logos, watermarks, any additional text beyond the user's exact input, titles, subtitles, hashtags, labels, descriptions, dates, numbers not in the original text.`;
 }

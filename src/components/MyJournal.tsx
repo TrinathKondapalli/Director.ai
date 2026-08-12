@@ -57,10 +57,10 @@ export const MyJournal: React.FC = () => {
     handleGenerate();
   };
 
-  const handleVoiceInput = () => {
+  const handleVoiceInput = async () => {
     const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
     if (!SpeechRecognition) {
-      showToast('Voice input is not supported in this browser.');
+      showToast('Voice input requires Chrome or Edge browser.');
       return;
     }
 
@@ -70,20 +70,39 @@ export const MyJournal: React.FC = () => {
       return;
     }
 
+    // Check microphone permission first
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      // Permission granted — stop the stream immediately (we only needed the permission)
+      stream.getTracks().forEach(track => track.stop());
+    } catch (permErr) {
+      showToast('Microphone access denied. Please allow microphone in browser settings.');
+      return;
+    }
+
     const recognition = new SpeechRecognition();
     recognition.lang = 'en-US';
     recognition.interimResults = false;
+    recognition.continuous = true;
     recognition.maxAlternatives = 1;
 
     recognition.onresult = (event: any) => {
-      const transcript = event.results[0][0].transcript;
-      setUserIdea(prev => prev ? prev + ' ' + transcript : transcript);
-      setIsListening(false);
+      let transcript = '';
+      for (let i = 0; i < event.results.length; i++) {
+        transcript += event.results[i][0].transcript + ' ';
+      }
+      setUserIdea(prev => prev ? prev + ' ' + transcript.trim() : transcript.trim());
     };
 
-    recognition.onerror = () => {
+    recognition.onerror = (event: any) => {
       setIsListening(false);
-      showToast('Voice input failed. Please try again.');
+      const errorMap: Record<string, string> = {
+        'not-allowed': 'Microphone access denied. Allow it in browser settings.',
+        'no-speech': 'No speech detected. Please try again.',
+        'network': 'Network error. Voice input requires an internet connection.',
+        'aborted': 'Voice input was cancelled.',
+      };
+      showToast(errorMap[event.error] || `Voice error: ${event.error}`);
     };
 
     recognition.onend = () => {
@@ -93,6 +112,7 @@ export const MyJournal: React.FC = () => {
     recognitionRef.current = recognition;
     recognition.start();
     setIsListening(true);
+    showToast('Listening... Speak your idea.');
   };
 
   return (
