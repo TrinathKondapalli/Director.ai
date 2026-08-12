@@ -1,33 +1,42 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg-primary: #06060A;
-  --color-bg-secondary: #0E0F14;
-  --color-bg-surface: #151821;
-  --color-bg-elevated: #1B1F2B;
-  --color-bg-card: #12141D;
+  /* BACKGROUNDS */
+  --color-bg-primary: #050507;
+  --color-bg-secondary: #101018;
+  --color-bg-surface: #101018;
+  --color-bg-elevated: #15131D;
+  --color-bg-card: #101018;
   
-  --color-border-primary: #262B39;
-  --color-border-divider: #323849;
+  /* BORDERS */
+  --color-border-primary: #25202F;
+  --color-border-divider: #25202F;
+  --color-border-hover: #3E364A;
 
+  /* TYPOGRAPHY */
   --color-text-primary: #FFFFFF;
-  --color-text-secondary: #C7CAD3;
-  --color-text-muted: #8E95A3;
-  --color-text-disabled: #626A79;
+  --color-text-secondary: #A5A5B5;
+  --color-text-muted: #7A7A8C;
+  --color-text-disabled: #4D4D5C;
   --color-text-inverse: #050505;
 
-  --color-brand-violet: #7B4DFF;
-  --color-brand-purple: #8A5BFF;
-  --color-brand-magenta: #D946EF;
-  --color-brand-lavender: #C084FC;
-  --color-brand-pink: #F472D0;
+  /* BRAND SYSTEM */
+  --color-brand-violet: #8B3DFF; /* Primary Brand Purple */
+  --color-brand-purple: #A855F7; /* Bright Accent */
+  --color-brand-indigo: #5B4BFF; /* Indigo Accent */
+  --color-brand-magenta: #D946EF; 
+  
+  /* CORE GRADIENT */
+  --gradient-brand: linear-gradient(135deg, #5B4BFF, #A855F7, #D946EF);
 
+  /* ACCENTS */
   --color-accent-blue: #4F8CFF;
   --color-accent-cyan: #38BDF8;
   --color-accent-success: #22C55E;
   --color-accent-warning: #FACC15;
   --color-accent-danger: #EF4444;
 
+  /* FONTS */
   --font-display: 'Satoshi', sans-serif;
   --font-sans: 'Inter', sans-serif;
   --font-mono: 'Geist Mono', monospace;
@@ -85,7 +94,7 @@ html {
 
 /* Brand Button System */
 .btn-primary {
-  background: linear-gradient(135deg, var(--color-brand-violet), var(--color-brand-magenta));
+  background: var(--gradient-brand);
   color: #FFFFFF;
   border-radius: 14px;
   font-weight: 600;
@@ -94,7 +103,7 @@ html {
 }
 .btn-primary:hover {
   transform: scale(1.03);
-  box-shadow: 0 0 40px rgba(217,70,239,.3);
+  box-shadow: 0 0 30px rgba(168,85,247,0.4);
 }
 .btn-primary:active {
   transform: scale(0.98);

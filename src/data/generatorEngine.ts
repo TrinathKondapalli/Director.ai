@@ -2,7 +2,7 @@ import { GoogleGenAI } from '@google/genai';
 import { UgcStudioInput, UgcStudioResult, UgcTopic } from '../types';
 
 const SYSTEM_PROMPT = `You are DIRECTOR.AI's AI UGC Studio Director.
-Your purpose is to generate authentic User Generated Content (UGC) ad video prompts and strategy that look, feel, and convert like genuine TikTok / Instagram Reels creator ads — NOT corporate TV commercials or generic promotional ads.
+Your purpose is to generate authentic User Generated Content (UGC) ad video prompts and strategy that look, feel, and convert like genuine TikTok / Instagram Reels creator ads - NOT corporate TV commercials or generic promotional ads.
 
 MANDATORY UGC AD DIRECTIVES:
 - Aesthetic: Raw, unpolished, mobile-recorded creator footage (iPhone 15 Pro 4K 60fps), handheld selfie perspective or desk-mounted ring-light setup.
@@ -49,7 +49,7 @@ export function generateLocalUgcMock(input: UgcStudioInput): UgcStudioResult {
       linkedin: {
         hook: `As professionals, we are constantly seeking ways to optimize our daily workflows.`,
         context: `I recently implemented ${prod} into my system and the results were profound.`,
-        mainInsight: `Efficiency isn't about working harder—it's about working smarter.`,
+        mainInsight: `Efficiency isn't about working harder-it's about working smarter.`,
         keyTakeaways: ["Automate repetitive tasks", "Focus on deep work", "Eliminate digital clutter"],
         cta: `What are your top productivity strategies?`,
         hashtags: ["#ThoughtLeadership", "#Productivity", "#Workflow"]
@@ -405,7 +405,7 @@ No cinematic commercial look, no studio lighting, no perfect actors, no dramatic
     oneLineSummary: `${topic.brandName} UGC ad addressing ${topic.corePainPoint}`,
     dailySuggestedTopic: `Why ${topic.brandName} is Taking Over ${topic.industry}`,
     creatorType: `${topic.targetAudience} Creator`,
-    coreIdea: `${topic.visualHookAngle} — demonstrating ${topic.solution}`,
+    coreIdea: `${topic.visualHookAngle} - demonstrating ${topic.solution}`,
     toneVibe: `${topic.tone} & Authentic Creator Energy`,
     ugcStory: {
       hook: topic.visualHookAngle,

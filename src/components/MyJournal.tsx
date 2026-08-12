@@ -73,7 +73,7 @@ export const MyJournal: React.FC = () => {
     // Check microphone permission first
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      // Permission granted — stop the stream immediately (we only needed the permission)
+      // Permission granted - stop the stream immediately (we only needed the permission)
       stream.getTracks().forEach(track => track.stop());
     } catch (permErr) {
       showToast('Microphone access denied. Please allow microphone in browser settings.');
@@ -148,7 +148,7 @@ export const MyJournal: React.FC = () => {
             My Journal
           </h1>
           <p className="text-[#A1A1AA] text-lg max-w-xl font-inter leading-relaxed">
-            Turn your idea into a brand-consistent image-generation prompt. Just write what you want to say — the design system handles the rest.
+            Turn your idea into a brand-consistent image-generation prompt. Just write what you want to say - the design system handles the rest.
           </p>
         </div>
 

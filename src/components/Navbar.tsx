@@ -17,11 +17,10 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
   };
 
   const handleLogoClick = () => {
-    if (currentPath === '/') {
+    onNavigate('/');
+    setTimeout(() => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      onNavigate('/');
-    }
+    }, 50);
     setIsMobileMenuOpen(false);
   };
 

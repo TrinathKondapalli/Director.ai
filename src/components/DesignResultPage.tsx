@@ -25,14 +25,14 @@ export const DesignResultPage: React.FC<DesignResultPageProps> = ({ result, onCr
 
   const cleanText = (text?: string): string => {
     if (!text) return '';
-    return text.replace(/[—–]/g, '-');
+    return text.replace(/[-–]/g, '-');
   };
 
   const formatHashtags = (tags?: string[]): string => {
     if (!tags || !Array.isArray(tags)) return '';
     return tags
       .map(t => {
-        const clean = t.trim().replace(/[—–]/g, '-');
+        const clean = t.trim().replace(/[-–]/g, '-');
         if (!clean) return '';
         return clean.startsWith('#') ? clean : `#${clean}`;
       })

@@ -37,7 +37,7 @@ COMPOSITION:
 
 TYPOGRAPHY:
 - Bold, expressive, handwritten-style typography on the sticky note
-- High readability — the text must be clearly legible
+- High readability - the text must be clearly legible
 - Text is the user's exact input, nothing else
 - Natural letter spacing, as if written by hand with a thick marker or brush pen
 - Text is centered on the sticky note with comfortable margins
@@ -46,7 +46,7 @@ DECORATIONS:
 - Minimal hand-drawn journal decorations scattered around the sticky note on the journal-paper background
 - Use: small stars, arrows, circles, pencil marks, simple doodles, tiny hearts, underlines, and subtle decorative elements
 - Doodles should feel personal, creative, youthful, handmade
-- Do NOT overload with decorations — keep it minimal and tasteful
+- Do NOT overload with decorations - keep it minimal and tasteful
 - Decorations are on the background paper, NOT on the sticky note itself
 
 AESTHETIC:
@@ -118,7 +118,7 @@ function generateLocalJournalPrompt(userIdea: string, stickyColor: string): stri
   return `Create a square 1:1 composition image of a personal journal page.
 
 BACKGROUND:
-Warm off-white textured journal-paper background with visible subtle paper grain and a soft, natural warmth. The paper should feel like a real physical journal page — not a flat digital canvas.
+Warm off-white textured journal-paper background with visible subtle paper grain and a soft, natural warmth. The paper should feel like a real physical journal page - not a flat digital canvas.
 
 STICKY NOTE:
 One large, slightly imperfect rectangular sticky note placed near the center of the journal page. The sticky note color is ${stickyColor}. The sticky note has subtle paper texture, slightly imperfect hand-torn edges, and a natural soft shadow beneath it, as if it was physically placed on the journal paper. The sticky note should feel real and tactile.
@@ -133,7 +133,7 @@ Use bold, expressive, handwritten-style typography. The text should look like it
 IMPORTANT: This is the ONLY text that should appear anywhere in the entire image. Do NOT add any title, subtitle, label, hashtag, watermark, date, number, quote attribution, or any other text.
 
 JOURNAL DECORATIONS:
-Minimal hand-drawn journal decorations scattered around the sticky note on the background journal paper (NOT on the sticky note itself). Include: small hand-drawn stars, a few simple arrows, small circles, light pencil marks, tiny doodles, and subtle decorative elements. The decorations should feel personal, creative, youthful, and handmade — like someone's real journal. Keep decorations minimal and tasteful, do not overload.
+Minimal hand-drawn journal decorations scattered around the sticky note on the background journal paper (NOT on the sticky note itself). Include: small hand-drawn stars, a few simple arrows, small circles, light pencil marks, tiny doodles, and subtle decorative elements. The decorations should feel personal, creative, youthful, and handmade - like someone's real journal. Keep decorations minimal and tasteful, do not overload.
 
 AESTHETIC:
 Personal, creative, youthful, handmade, premium journal aesthetic. The overall feel should be like a beautifully curated page from a personal journal or planner. Warm, inviting, and visually satisfying.

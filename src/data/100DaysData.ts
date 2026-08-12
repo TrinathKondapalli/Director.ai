@@ -5,7 +5,7 @@ export interface DayConcept {
 }
 
 export const hundredDaysData: DayConcept[] = [
-  // 01–20 — UX Foundations & Psychology
+  // 01–20 - UX Foundations & Psychology
   { id: 1, title: "Fitts's Law", category: "UX Foundations & Psychology" },
   { id: 2, title: "Hick's Law", category: "UX Foundations & Psychology" },
   { id: 3, title: "Jakob's Law", category: "UX Foundations & Psychology" },
@@ -27,7 +27,7 @@ export const hundredDaysData: DayConcept[] = [
   { id: 19, title: "Gestalt Principle of Closure", category: "UX Foundations & Psychology" },
   { id: 20, title: "Gestalt Principle of Figure-Ground", category: "UX Foundations & Psychology" },
 
-  // 21–40 — UX Psychology, Layout & Interaction
+  // 21–40 - UX Psychology, Layout & Interaction
   { id: 21, title: "Peak-End Rule", category: "UX Psychology, Layout & Interaction" },
   { id: 22, title: "Von Restorff Effect (Isolation Effect)", category: "UX Psychology, Layout & Interaction" },
   { id: 23, title: "Zeigarnik Effect", category: "UX Psychology, Layout & Interaction" },
@@ -49,7 +49,7 @@ export const hundredDaysData: DayConcept[] = [
   { id: 39, title: "Error Message Design", category: "UX Psychology, Layout & Interaction" },
   { id: 40, title: "Form Field Labeling", category: "UX Psychology, Layout & Interaction" },
 
-  // 41–60 — Product UX, Research & Behavioral Design
+  // 41–60 - Product UX, Research & Behavioral Design
   { id: 41, title: "Onboarding Friction Reduction", category: "Product UX, Research & Behavioral Design" },
   { id: 42, title: "Trust Signals in Checkout", category: "Product UX, Research & Behavioral Design" },
   { id: 43, title: "Skeleton Screens vs Spinners", category: "Product UX, Research & Behavioral Design" },
@@ -71,7 +71,7 @@ export const hundredDaysData: DayConcept[] = [
   { id: 59, title: "Recognition Over Recall", category: "Product UX, Research & Behavioral Design" },
   { id: 60, title: "Social Proof", category: "Product UX, Research & Behavioral Design" },
 
-  // 61–80 — Cognitive Bias, Design Systems & Navigation
+  // 61–80 - Cognitive Bias, Design Systems & Navigation
   { id: 61, title: "Scarcity Principle", category: "Cognitive Bias, Design Systems & Navigation" },
   { id: 62, title: "Framing Effect", category: "Cognitive Bias, Design Systems & Navigation" },
   { id: 63, title: "Atomic Design Methodology", category: "Cognitive Bias, Design Systems & Navigation" },
@@ -93,7 +93,7 @@ export const hundredDaysData: DayConcept[] = [
   { id: 79, title: "Line Height (Leading)", category: "Cognitive Bias, Design Systems & Navigation" },
   { id: 80, title: "Iconography Consistency", category: "Cognitive Bias, Design Systems & Navigation" },
 
-  // 81–100 — Visual Design, Motion, Forms, Accessibility & Career
+  // 81–100 - Visual Design, Motion, Forms, Accessibility & Career
   { id: 81, title: "Alignment Principle", category: "Visual Design, Motion, Forms, Accessibility & Career" },
   { id: 82, title: "Balance in Composition", category: "Visual Design, Motion, Forms, Accessibility & Career" },
   { id: 83, title: "Repetition Principle", category: "Visual Design, Motion, Forms, Accessibility & Career" },

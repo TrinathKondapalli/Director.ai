@@ -280,27 +280,26 @@ export default function App() {
           <div className="grid grid-cols-1 md:grid-cols-5 gap-12 lg:gap-8 mb-24">
             
             <div className="md:col-span-1 lg:col-span-2">
-              <div className="mb-6">
-                <DirectorLogoIcon className="h-10 w-auto mb-2" />
-                <div className="text-[10px] font-mono tracking-widest text-[var(--color-text-muted)] uppercase">AI Creative Studio</div>
-              </div>
+              <button 
+                onClick={() => {
+                  if (currentPath === '/') {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  } else {
+                    navigateTo('/');
+                  }
+                }}
+                className="mb-6 focus:outline-none cursor-pointer flex flex-col items-center md:items-start group active:scale-95 transition-transform"
+              >
+                <img 
+                  src="/Horizontal_Logo.png" 
+                  alt="Director.ai" 
+                  className="h-8 md:h-10 w-auto object-contain mb-2"
+                />
+              </button>
               <p className="font-sans text-[14px] text-[var(--color-text-secondary)] leading-relaxed max-w-sm mb-8">
-                The AI Content Studio that turns ideas into scroll-stopping ads and educational posts — in seconds. <br/> No generic templates. Just results.
+                The AI Content Studio that turns ideas into scroll-stopping ads and educational posts - in seconds. <br/> No generic templates. Just results.
               </p>
-              <div className="flex items-center gap-3">
-                <button className="w-10 h-10 rounded-[14px] bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] flex items-center justify-center text-[var(--color-text-secondary)] hover:text-white hover:border-[var(--color-border-divider)] transition-colors">
-                  <Youtube className="w-4 h-4" />
-                </button>
-                <button className="w-10 h-10 rounded-[14px] bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] flex items-center justify-center text-[var(--color-text-secondary)] hover:text-white hover:border-[var(--color-border-divider)] transition-colors">
-                  <Instagram className="w-4 h-4" />
-                </button>
-                <button className="w-10 h-10 rounded-[14px] bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] flex items-center justify-center text-[var(--color-text-secondary)] hover:text-white hover:border-[var(--color-border-divider)] transition-colors">
-                  <Music className="w-4 h-4" />
-                </button>
-                <button className="w-10 h-10 rounded-[14px] bg-[var(--color-bg-surface)] border border-[var(--color-border-primary)] flex items-center justify-center text-[var(--color-text-secondary)] hover:text-white hover:border-[var(--color-border-divider)] transition-colors">
-                  <Linkedin className="w-4 h-4" />
-                </button>
-              </div>
+
             </div>
 
             <div className="md:col-span-1 lg:col-span-1">
@@ -321,8 +320,7 @@ export default function App() {
                 <div className="w-1.5 h-1.5 rounded-full bg-[var(--color-brand-violet)] shadow-[0_0_8px_rgba(123,77,255,0.8)]" />
               </div>
               <ul className="space-y-4 font-sans text-[14px] text-[var(--color-text-secondary)]">
-                <li><button className="hover:text-white transition-colors">GitHub Repository</button></li>
-                <li><button className="hover:text-white transition-colors">Developer Portfolio</button></li>
+                <li><a href="https://trinath-kondapalli.vercel.app/tzinr" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Designer Portfolio</a></li>
                 <li><button onClick={() => navigateTo('/contact')} className="hover:text-white transition-colors">Contact</button></li>
               </ul>
             </div>
