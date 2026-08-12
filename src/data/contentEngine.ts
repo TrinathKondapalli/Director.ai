@@ -226,8 +226,10 @@ const ART_DIRECTIONS = [
   }
 ];
 
-export function build17PartImagePrompt(topic: DesignTopic): string {
-  const artDir = ART_DIRECTIONS[topic.id % ART_DIRECTIONS.length];
+export function build17PartImagePrompt(topic: DesignTopic, variantSeed?: number): string {
+  const seed = variantSeed !== undefined ? Math.abs(variantSeed) : Math.floor(Math.random() * 10000);
+  const selectIndex = (topic.id + seed) % ART_DIRECTIONS.length;
+  const artDir = ART_DIRECTIONS[selectIndex];
   const headline = topic.title.toUpperCase();
   const templateNum = String(topic.id).padStart(3, '0');
 
@@ -237,7 +239,7 @@ export function build17PartImagePrompt(topic: DesignTopic): string {
 [CONTENT] LAYER B: Left column features clean Deep Navy typography printed directly onto the warm off-white canvas: Headline '${headline}' (Bebas Neue uppercase condensed in Deep Navy #0A0A10), Subheading in Manrope Semibold with Cobalt Blue accent, concise explanation in Manrope Regular, category metadata in IBM Plex Mono. ~36px safe margins.
 [CORE IDEA] Visualizing ${topic.title}: Human/behavioral UX principle expressed through bespoke physical visual metaphor.
 [VISUAL METAPHOR] ${artDir.metaphor}
-[ART DIRECTION] LAYER C: ${artDir.family}
+[ART DIRECTION] LAYER C: ${artDir.family} (Variant ${seed % 100})
 [HERO VISUAL] Right 50% features the concept hero artwork: ${artDir.metaphor}, integrated into the warm off-white scene, casting realistic soft light reflections and directional shadows extending across the surrounding floor and wall canvas.
 [ENVIRONMENT] ${artDir.environment}
 [MATERIAL] ${artDir.material}
@@ -251,7 +253,8 @@ export function build17PartImagePrompt(topic: DesignTopic): string {
 
 export function generateLocalContentMock(topic: DesignTopic, format: 'single' | 'carousel'): DesignContentResult {
   const headline = topic.title.toUpperCase();
-  const imagePromptText = build17PartImagePrompt(topic);
+  const baseSeed = Math.floor(Math.random() * 10000);
+  const imagePromptText = build17PartImagePrompt(topic, baseSeed);
 
   const baseCaptions = {
     linkedin: {
@@ -315,19 +318,19 @@ export function generateLocalContentMock(topic: DesignTopic, format: 'single' | 
         {
           heading: headline,
           description: `Guiding attention through scale and layout.`,
-          imagePrompt: imagePromptText,
+          imagePrompt: build17PartImagePrompt(topic, baseSeed),
           imageText: { headline: headline, supporting: `Slide 1 / 5` }
         },
         {
           heading: `SCALE & CONTRAST`,
           description: `Primary anchors require dramatic typographic size contrast.`,
-          imagePrompt: imagePromptText,
+          imagePrompt: build17PartImagePrompt(topic, baseSeed + 1),
           imageText: { headline: `SCALE & CONTRAST`, supporting: `Slide 2 / 5` }
         },
         {
           heading: `FOCAL ISOLATION`,
           description: `Use Cobalt Blue accents only for key directional paths.`,
-          imagePrompt: imagePromptText,
+          imagePrompt: build17PartImagePrompt(topic, baseSeed + 2),
           imageText: { headline: `FOCAL ISOLATION`, supporting: `Slide 3 / 5` }
         }
       ],
