@@ -14,8 +14,8 @@ import { ContactPage } from './components/ContactPage';
 import BrandStrategistLayout from './components/BrandStrategist/BrandStrategistLayout';
 import { DirectorLogoIcon } from './components/DirectorLogo';
 import { UgcStudioInput, UgcStudioResult, DesignContentResult, UgcTopic, DesignTopic } from './types';
-import { generateUgcContent, generateLocalUgcMock, generateUgcFromTopic } from './data/generatorEngine';
-import { generateContentFromTopic } from './data/contentEngine';
+import { generateUgcContent, generateLocalUgcMock, generateUgcFromTopic, generateLocalUgcMockFromTopic } from './data/generatorEngine';
+import { generateContentFromTopic, generateLocalContentMock } from './data/contentEngine';
 import { PageCurtain } from './components/PageCurtain';
 import { 
   Youtube, 
@@ -97,7 +97,7 @@ export default function App() {
     setShowLoadingAnimation(true);
 
     const startTime = Date.now();
-    let resultObj;
+    let resultObj: UgcStudioResult;
     try {
       resultObj = await generateUgcContent(input);
     } catch (err) {
@@ -106,7 +106,7 @@ export default function App() {
     }
 
     const elapsed = Date.now() - startTime;
-    const minLoadingTime = 3000;
+    const minLoadingTime = 1200;
     if (elapsed < minLoadingTime) {
       await new Promise(r => setTimeout(r, minLoadingTime - elapsed));
     }
@@ -117,22 +117,21 @@ export default function App() {
     navigateTo('/ugc-result');
   };
 
-
   const handleGenerateUgcTopic = async (topic: UgcTopic) => {
     setIsGenerating(true);
     setShowLoadingAnimation(true);
 
     const startTime = Date.now();
-    let resultObj;
+    let resultObj: UgcStudioResult;
     try {
       resultObj = await generateUgcFromTopic(topic);
     } catch (err) {
       console.warn('Backend API unavailable, using local topic engine:', err);
-      resultObj = await generateUgcFromTopic(topic);
+      resultObj = generateLocalUgcMockFromTopic(topic);
     }
 
     const elapsed = Date.now() - startTime;
-    const minLoadingTime = 3000;
+    const minLoadingTime = 1200;
     if (elapsed < minLoadingTime) {
       await new Promise(r => setTimeout(r, minLoadingTime - elapsed));
     }
@@ -148,16 +147,16 @@ export default function App() {
     setShowLoadingAnimation(true);
 
     const startTime = Date.now();
-    let resultObj;
+    let resultObj: DesignContentResult;
     try {
       resultObj = await generateContentFromTopic(topic, format);
     } catch (err) {
       console.warn('Backend API unavailable, using local topic engine:', err);
-      resultObj = await generateContentFromTopic(topic, format);
+      resultObj = generateLocalContentMock(topic, format);
     }
 
     const elapsed = Date.now() - startTime;
-    const minLoadingTime = 3000;
+    const minLoadingTime = 1200;
     if (elapsed < minLoadingTime) {
       await new Promise(r => setTimeout(r, minLoadingTime - elapsed));
     }
