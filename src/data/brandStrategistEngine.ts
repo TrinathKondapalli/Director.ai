@@ -1,10 +1,10 @@
 import { GoogleGenAI, Type } from '@google/genai';
 import { InitialBrief, DiscoveryQuestion, DiscoveryAnswer, StrategicAnalysis, PositioningOption, BrandPersonality, StrategyWorkspaceData } from '../types/brandStrategist';
 
-// We must instantiate the client (assuming standard env setup from existing engine)
-const ai = new GoogleGenAI({
-  apiKey: import.meta.env.VITE_GEMINI_API_KEY
-});
+function getAiClient() {
+  const apiKey = import.meta.env.VITE_GEMINI_API_KEY || 'DUMMY_KEY';
+  return new GoogleGenAI({ apiKey });
+}
 
 const STRATEGY_SYSTEM_PROMPT = `You are Director.ai's Elite Brand Strategist.
 You act as a senior consultant guiding a client to develop a highly differentiated, defensible brand strategy.
@@ -53,7 +53,7 @@ Make it conversational but professional. Do not ask generic questions we already
     required: ["category", "questionText"]
   };
 
-  const response = await ai.models.generateContent({
+  const response = await getAiClient().models.generateContent({
     model: 'gemini-3.5-flash',
     contents: promptText,
     config: {
@@ -139,7 +139,7 @@ Be highly specific, insightful, and actionable. Do not use generic corporate jar
     ]
   };
 
-  const response = await ai.models.generateContent({
+  const response = await getAiClient().models.generateContent({
     model: 'gemini-3.5-flash',
     contents: promptText,
     config: {
