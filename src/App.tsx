@@ -54,6 +54,10 @@ export default function App() {
   const [isTransitioning, setIsTransitioning] = useState<boolean>(false);
   const [incomingPageName, setIncomingPageName] = useState<string>('');
 
+  const [loadingType, setLoadingType] = useState<'ugc' | 'design'>('ugc');
+  const pendingUgcRef = React.useRef<UgcStudioResult | null>(null);
+  const pendingDesignRef = React.useRef<DesignContentResult | null>(null);
+
   useEffect(() => {
     const handlePopState = () => {
       const path = window.location.pathname || '/';
@@ -94,9 +98,7 @@ export default function App() {
 
   const handleGeneratePrompt = async (input: UgcStudioInput) => {
     setIsGenerating(true);
-    setShowLoadingAnimation(true);
-
-    const startTime = Date.now();
+    setLoadingType('ugc');
     let resultObj: UgcStudioResult;
     try {
       resultObj = await generateUgcContent(input);
@@ -104,24 +106,13 @@ export default function App() {
       console.warn('Backend API unavailable, using local high-performance engine:', err);
       resultObj = generateLocalUgcMock(input);
     }
-
-    const elapsed = Date.now() - startTime;
-    const minLoadingTime = 1200;
-    if (elapsed < minLoadingTime) {
-      await new Promise(r => setTimeout(r, minLoadingTime - elapsed));
-    }
-
-    setActiveResult(resultObj);
-    setIsGenerating(false);
-    setShowLoadingAnimation(false);
-    navigateTo('/ugc-result');
+    pendingUgcRef.current = resultObj;
+    setShowLoadingAnimation(true);
   };
 
   const handleGenerateUgcTopic = async (topic: UgcTopic) => {
     setIsGenerating(true);
-    setShowLoadingAnimation(true);
-
-    const startTime = Date.now();
+    setLoadingType('ugc');
     let resultObj: UgcStudioResult;
     try {
       resultObj = await generateUgcFromTopic(topic);
@@ -129,24 +120,13 @@ export default function App() {
       console.warn('Backend API unavailable, using local topic engine:', err);
       resultObj = generateLocalUgcMockFromTopic(topic);
     }
-
-    const elapsed = Date.now() - startTime;
-    const minLoadingTime = 1200;
-    if (elapsed < minLoadingTime) {
-      await new Promise(r => setTimeout(r, minLoadingTime - elapsed));
-    }
-
-    setActiveResult(resultObj);
-    setIsGenerating(false);
-    setShowLoadingAnimation(false);
-    navigateTo('/ugc-result');
+    pendingUgcRef.current = resultObj;
+    setShowLoadingAnimation(true);
   };
 
   const handleGenerateDesignTopic = async (topic: DesignTopic, format: 'single' | 'carousel') => {
     setIsGenerating(true);
-    setShowLoadingAnimation(true);
-
-    const startTime = Date.now();
+    setLoadingType('design');
     let resultObj: DesignContentResult;
     try {
       resultObj = await generateContentFromTopic(topic, format);
@@ -154,20 +134,21 @@ export default function App() {
       console.warn('Backend API unavailable, using local topic engine:', err);
       resultObj = generateLocalContentMock(topic, format);
     }
-
-    const elapsed = Date.now() - startTime;
-    const minLoadingTime = 1200;
-    if (elapsed < minLoadingTime) {
-      await new Promise(r => setTimeout(r, minLoadingTime - elapsed));
-    }
-
-    setActiveDesignResult(resultObj);
-    setIsGenerating(false);
-    setShowLoadingAnimation(false);
-    navigateTo('/design-result');
+    pendingDesignRef.current = resultObj;
+    setShowLoadingAnimation(true);
   };
 
-  const handleLoadingComplete = () => {};
+  const handleLoadingComplete = () => {
+    setShowLoadingAnimation(false);
+    setIsGenerating(false);
+    if (loadingType === 'design' && pendingDesignRef.current) {
+      setActiveDesignResult(pendingDesignRef.current);
+      navigateTo('/design-result');
+    } else if (pendingUgcRef.current) {
+      setActiveResult(pendingUgcRef.current);
+      navigateTo('/ugc-result');
+    }
+  };
 
   const handleCreateAnotherUgc = () => {
     setActiveResult(null);
@@ -189,7 +170,7 @@ export default function App() {
 
       <main className="flex-1">
         {showLoadingAnimation ? (
-          <LoadingScreen onComplete={handleLoadingComplete} />
+          <LoadingScreen type={loadingType} onComplete={handleLoadingComplete} />
         ) : (
           <>
             {currentPath === '/' && (

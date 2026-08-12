@@ -1,57 +1,57 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Check, Loader2, Clapperboard } from 'lucide-react';
+import { Check, Loader2, Clapperboard, PenTool } from 'lucide-react';
 
 interface LoadingScreenProps {
+  type?: 'ugc' | 'design';
   onComplete: () => void;
 }
 
-const STEPS = [
-  'Understanding your product...',
-  'Researching the market...',
-  'Finding winning UGC concepts...',
-  'Selecting the strongest hook...',
-  'Building creative strategy...',
-  'Writing cinematic scenes...',
-  'Optimizing for AI video...',
-  'Generating MASTER PROMPT...',
-  'Processing...',
+const UGC_STEPS = [
+  'Understanding your product & target market...',
+  'Selecting winning UGC hooks...',
+  'Writing 10-second creator dialogue script...',
+  'Optimizing visual camera angles...',
+  'Finalizing UGC Master Prompt...',
+  'Complete!'
 ];
 
-export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
+const DESIGN_STEPS = [
+  'Analyzing design foundation & topic...',
+  'Selecting Bebas Neue headline typography...',
+  'Formulating bespoke 3D hero visual metaphor...',
+  'Applying TZINR color system...',
+  'Structuring multi-platform captions & hashtags...',
+  'Complete!'
+];
+
+export const LoadingScreen: React.FC<LoadingScreenProps> = ({ type = 'ugc', onComplete }) => {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
-  const [dotCount, setDotCount] = useState(1);
+
+  const steps = type === 'design' ? DESIGN_STEPS : UGC_STEPS;
+  const isDesign = type === 'design';
 
   useEffect(() => {
-    // Step interval timing
+    // Total timing ~1.8 seconds (280ms per step)
     const interval = setInterval(() => {
       setCurrentStepIndex((prev) => {
-        if (prev < STEPS.length - 1) {
+        if (prev < steps.length - 1) {
           return prev + 1;
         } else {
           clearInterval(interval);
           setTimeout(() => {
             onComplete();
-          }, 400);
+          }, 350);
           return prev;
         }
       });
-    }, 450);
+    }, 280);
 
     return () => clearInterval(interval);
-  }, [onComplete]);
+  }, [steps, onComplete]);
 
-  // 3-dot animation loop during Processing... stage
-  useEffect(() => {
-    const dotInterval = setInterval(() => {
-      setDotCount((prev) => (prev >= 3 ? 1 : prev + 1));
-    }, 400);
-    return () => clearInterval(dotInterval);
-  }, []);
-
-  const isProcessing = currentStepIndex === STEPS.length - 1;
-  const progressPercent = isProcessing ? 92 : Math.min(90, Math.round(((currentStepIndex + 1) / STEPS.length) * 100));
-  const activeDotText = '.'.repeat(dotCount);
+  const isComplete = currentStepIndex === steps.length - 1;
+  const progressPercent = Math.min(100, Math.round(((currentStepIndex + 1) / steps.length) * 100));
 
   return (
     <div className="min-h-[calc(100vh-4rem)] bg-[var(--color-bg-primary)] py-12 px-4 flex flex-col items-center justify-center selection:bg-[var(--color-brand-violet)]/30">
@@ -60,13 +60,21 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
         <div className="relative w-20 h-20 mx-auto mb-6 flex items-center justify-center">
           <div className="absolute inset-0 rounded-full bg-[var(--color-brand-violet)]/20 animate-ping" />
           <div className="w-16 h-16 rounded-2xl bg-[var(--color-bg-primary)] border border-[var(--color-brand-violet)]/50 flex items-center justify-center shadow-lg shadow-[var(--color-brand-violet)]/30 relative z-10 text-[var(--color-brand-violet)]">
-            <Clapperboard className="w-8 h-8 animate-pulse" />
+            {isDesign ? (
+              <PenTool className="w-8 h-8 animate-pulse text-[var(--color-brand-violet)]" />
+            ) : (
+              <Clapperboard className="w-8 h-8 animate-pulse text-[var(--color-brand-violet)]" />
+            )}
           </div>
         </div>
 
         {/* Heading */}
-        <h2 className="text-xl font-extrabold text-[#FAFAFA] mb-1">Director.ai is Working</h2>
-        <p className="text-xs text-[#A1A1AA] font-mono mb-6">Building your high-converting UGC Master Prompt...</p>
+        <h2 className="text-xl font-extrabold text-[#FAFAFA] mb-1">
+          {isDesign ? 'AI Design Publisher is Working' : 'AI UGC Studio is Working'}
+        </h2>
+        <p className="text-xs text-[#A1A1AA] font-mono mb-6">
+          {isDesign ? 'Building your 4:5 vertical editorial package (1080 x 1350)...' : 'Building your high-converting UGC Master Prompt...'}
+        </p>
 
         {/* Progress Bar */}
         <div className="w-full bg-[var(--color-bg-primary)] border border-[var(--color-border-primary)] h-2.5 rounded-full overflow-hidden mb-6">
@@ -74,7 +82,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
             className="h-full bg-gradient-to-r from-[var(--color-brand-violet)] to-[var(--color-brand-magenta)] rounded-full"
             initial={{ width: '0%' }}
             animate={{ width: `${progressPercent}%` }}
-            transition={{ duration: 0.3, ease: 'easeOut' }}
+            transition={{ duration: 0.25, ease: 'easeOut' }}
           />
         </div>
 
@@ -89,29 +97,31 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
               transition={{ duration: 0.15 }}
               className="flex items-center gap-2 text-xs text-[#FAFAFA] font-medium font-mono"
             >
-              <Loader2 className="w-4 h-4 text-[var(--color-brand-violet)] animate-spin" />
-              <span>
-                {isProcessing ? `Processing${activeDotText}` : STEPS[currentStepIndex]}
+              {isComplete ? (
+                <Check className="w-4 h-4 text-[#22C55E]" />
+              ) : (
+                <Loader2 className="w-4 h-4 text-[var(--color-brand-violet)] animate-spin" />
+              )}
+              <span className={isComplete ? 'text-[#22C55E] font-semibold' : 'text-[#FAFAFA]'}>
+                {steps[currentStepIndex]}
               </span>
             </motion.div>
           </AnimatePresence>
         </div>
 
         {/* Completed Log List */}
-        <div className="space-y-1.5 text-left bg-[var(--color-bg-primary)] p-4 rounded-xl border border-[var(--color-border-primary)] max-h-40 overflow-y-auto font-mono text-[11px] text-[#A1A1AA]">
-          {STEPS.slice(0, currentStepIndex + 1).map((step, idx) => {
-            const isCurrent = idx === currentStepIndex;
+        <div className="space-y-2 text-left bg-[var(--color-bg-primary)] p-4 rounded-xl border border-[var(--color-border-primary)] max-h-44 overflow-y-auto font-mono text-[11px] text-[#A1A1AA]">
+          {steps.slice(0, currentStepIndex + 1).map((step, idx) => {
+            const isDone = idx < currentStepIndex || isComplete;
             return (
               <div key={idx} className="flex items-center gap-2">
-                {isCurrent && isProcessing ? (
-                  <Loader2 className="w-3 h-3 text-[var(--color-brand-violet)] animate-spin shrink-0" />
-                ) : isCurrent ? (
-                  <Loader2 className="w-3 h-3 text-[var(--color-brand-violet)] animate-spin shrink-0" />
+                {isDone ? (
+                  <Check className="w-3.5 h-3.5 text-[#22C55E] shrink-0" />
                 ) : (
-                  <Check className="w-3 h-3 text-[#22C55E] shrink-0" />
+                  <Loader2 className="w-3.5 h-3.5 text-[var(--color-brand-violet)] animate-spin shrink-0" />
                 )}
-                <span className={isCurrent ? 'text-white font-medium' : 'text-[#A1A1AA]/60'}>
-                  {isCurrent && isProcessing ? `Processing${activeDotText}` : step}
+                <span className={idx === currentStepIndex && !isComplete ? 'text-white font-medium' : isDone ? 'text-[#A1A1AA]/80' : 'text-[#A1A1AA]/40'}>
+                  {step}
                 </span>
               </div>
             );
