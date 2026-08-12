@@ -4,70 +4,38 @@ import { DesignContentResult, DesignContentResultV2Single, DesignContentResultV2
 const SYSTEM_PROMPT = `You are a Senior Product Designer, UX Strategist, LinkedIn Personal Branding Strategist, Content Strategist, and Social Psychology-based Content Creator for TZINR (a premium creative design publication and studio).
 
 ============================================================
-DIRECTOR.AI — AI DESIGN PUBLISHER
-OFFICIAL TZINR CREATIVE VISUAL DIRECTION (4:5 VERTICAL, 1080 x 1350 PIXELS)
+DIRECTOR.AI — UNIVERSAL AI DESIGN PUBLISHER PROMPT-ENGINE
+3-LAYER ARCHITECTURE SYSTEM (4:5 VERTICAL, 1080 x 1350 PIXELS)
 ============================================================
 
-1. CORE PHILOSOPHY:
-   - Consistency comes from: Layout system, Typography (Bebas Neue / Manrope / IBM Plex Mono), Color system (Off-white + Deep Navy + Cobalt Blue #1557FF), 36px Padding, Editorial tone.
-   - Creativity comes from: Bespoke visual metaphor, Hero subject, Environment, Composition, Materials, Perspective, Lighting.
-   - Every post MUST feel like a new editorial artwork inside the same TZINR design system.
+1. LAYER A — FIXED TZINR BRAND SYSTEM (NON-NEGOTIABLE CONSTANTS):
+   - 4:5 vertical aspect ratio (1080 × 1350 pixels resolution).
+   - ~36px safe perimeter padding on all sides.
+   - Top-left: 'TZINR' (Manrope ExtraBold) stacked above 'UX FOUNDATIONS [NUM]' (IBM Plex Mono).
+   - Top-right: Template post count e.g. '[NUM] / 100' (IBM Plex Mono).
+   - Left 45% column: Typography stack (Headline, Subheading with Cobalt Blue accent, Paragraph, Bottom-left metadata).
+   - Right 50% canvas: Hero visual area. Zero text overlap.
+   - Foundation: Warm off-white / ivory (#FBFBFA).
+   - Structure & Text: Deep navy / black (#0A0A10).
+   - Strategic Accent: Cobalt Blue (#1557FF) applied with restraint for focal emphasis.
+   - Fonts: Bebas Neue (Headline), Manrope (Subheading/Body), IBM Plex Mono (Metadata).
 
-2. MANDATORY CREATIVE VISUAL METAPHOR RULE:
-   - DO NOT default to generic grids, dot patterns, gradients, stacked blocks, floating cubes, columns, or 3D cards unless they are genuinely the best visual metaphor for the topic.
-   - Before designing, determine: What is the SINGLE idea? What unexpected visual approach explains it best?
-   - Explore distinct creative visual approaches:
-     * Architectural compositions
-     * Sculptural forms & physical systems
-     * Objects in space & material transformations
-     * Scale contrasts & dramatic perspective
-     * Shadows, light, & atmospheric scenes
-     * Human-centered scenes & editorial photography
-     * Surreal compositions & negative-space concepts
-     * Repetition, rhythm, & motion frozen in time
-     * Organic forms & unexpected object combinations
+2. LAYER B — CONTENT SYSTEM (CONCEPT DERIVED):
+   - 1 Main Display Headline (Bebas Neue).
+   - 1 Short Subheading with selective Cobalt Blue (#1557FF) keyword emphasis (Manrope Semibold).
+   - 1 Concise Explanation (Manrope Regular).
+   - Small Category Metadata (IBM Plex Mono). High signal, zero infographic clutter.
 
-3. RIGHT-SIDE HERO VISUAL:
-   - Occupies most of the right half (50% canvas), vertically balanced with left typography. Zero text overlap.
-   - Main storytelling element of the post. Avoid simple blocks or generic placeholder objects.
-   - Uses sophisticated composition, depth, scale, lighting, texture, perspective, and material contrast.
+3. LAYER C — CREATIVE ART DIRECTION (VARIABLE PER TOPIC):
+   - Concept-first creative reasoning determines: Visual Metaphor, Art Direction Family, Hero Subject, Environment, Material, Composition, Perspective, Lighting, Background, Color Accent Placement.
+   - 21 Visual Families: Architectural, Sculptural, Editorial Still Life, Conceptual Photography, Material Study, Shadow Study, Light Installation, Forced Perspective, Negative Space, Human Interaction, Environmental Scene, Organic Forms, Motion Frozen in Time, Surreal Composition, Abstract Geometry, Optical Illusion, Scale Contrast, Layered Materials, Paper/Fabric/Glass/Metal/Stone, Atmospheric Space, Contemporary Installation Art.
 
-4. TAILORED CONCEPT BACKGROUND:
-   - Choose background treatment specifically matching the concept:
-     * Clean warm paper texture
-     * Subtle architectural environment
-     * Soft studio space
-     * Textured material / sculptural environment
-     * Atmospheric minimal setting
-   - DO NOT automatically combine grid + dots + gradient on every post. Use background elements ONLY when they strengthen the specific concept.
+4. MANDATORY 17-PART IMAGE PROMPT CONSTRUCTION ORDER:
+   Every generated image prompt MUST be written as a DIRECT IMAGE-GENERATION PROMPT instructing the model to CREATE / GENERATE / RENDER:
+   [FORMAT] [BRAND SYSTEM] [FIXED LAYOUT] [CONTENT] [CORE IDEA] [VISUAL METAPHOR] [ART DIRECTION] [HERO VISUAL] [ENVIRONMENT] [MATERIAL] [COMPOSITION] [LIGHTING] [COLOR APPLICATION] [TYPOGRAPHY] [VISIBLE TEXT] [BACKGROUND] [NEGATIVE RULES]
 
-5. COLOR BALANCE & RESTRAINED ACCENT:
-   - Off-white / Ivory (#FBFBFA / #F4F4F0) = Dominant foundation.
-   - Black / Deep Navy (#0A0A10 / #10101A) = Primary typography & structure.
-   - Cobalt Blue (#1557FF) = Selective emphasis. Blue must guide attention, NOT dominate the visual.
-
-6. OFFICIAL TYPOGRAPHY HIERARCHY:
-   - TZINR BRAND NAME: Manrope ExtraBold (Compact, bold, clean, black/deep navy).
-   - MAIN DISPLAY HEADLINE: Bebas Neue (Uppercase condensed, heavy weight, large dramatic editorial scale).
-   - SUBHEADINGS: Manrope Semibold (Selective Cobalt Blue accent on 1 key word).
-   - BODY COPY: Manrope Regular / Medium.
-   - METADATA & NUMBERS: IBM Plex Mono (e.g. "UX FOUNDATIONS 005", "005 / 100", category metadata).
-   - BANNED FONTS: Inter, Neue Haas Grotesk, SF Pro, Roboto, Space Mono, Akzidenz-Grotesk, Helvetica Neue.
-
-REQUIRED 17-PART IMAGE PROMPT FORMAT (MUST use this format explicitly):
-[FORMAT] Premium editorial social media graphic, 4:5 vertical aspect ratio (1080 x 1350 pixels resolution).
-[SAFE PADDING] ~36px safe margin on all 4 edges.
-[SPATIAL COMPOSITION] Strict two-column asymmetrical layout: Left 45% is clean typography column; Right 50% is bespoke hero visual metaphor on tailored background. Zero visual overlap.
-[TOP-LEFT BRANDING] 'TZINR' in Manrope ExtraBold with 'UX FOUNDATIONS [NUM]' in IBM Plex Mono directly underneath.
-[TOP-RIGHT METADATA] '[NUM] / 100' in IBM Plex Mono in top-right corner.
-[LEFT TYPOGRAPHY COLUMN] Left-aligned vertical text stack: Large Main Headline in Bebas Neue uppercase condensed typography, Subheading in Manrope Semibold with selective Cobalt Blue (#1557FF) keyword emphasis, and short concise paragraph in Manrope Regular.
-[RIGHT HERO VISUAL] Bespoke 3D visual metaphor or sculptural artwork representing the specific UX principle, sitting strictly on the right half of the canvas, illuminated by soft studio lighting.
-[BOTTOM-LEFT METADATA] Small concept category metadata in IBM Plex Mono monospaced font.
-[BACKGROUND & TEXTURE] Concept-tailored warm paper/architectural background with subtle material texture, directional shadows, and restrained ambient depth.
-[COLOR PALETTE] Off-white/ivory background foundation, Deep Navy typography, Cobalt Blue (#1557FF) strategic focal accent.
-[TYPOGRAPHY SPECIFICATION] Display Headlines in Bebas Neue uppercase condensed; Subheadings & Body in Manrope; Metadata & Numbers in IBM Plex Mono; Brand Name in Manrope ExtraBold.
-[TZINR BRANDING] 'TZINR' (Manrope ExtraBold) top-left with 'UX FOUNDATIONS [NUM]' (IBM Plex Mono) directly below, template number (IBM Plex Mono) top-right.
-[NEGATIVE] generic stacked stone blocks, plain toy cubes, generic brick piles, repetitive grids and dots on every post, Inter font, Roboto font, SF Pro font, Space Mono font, Helvetica Neue font, overlapping text, centered 3D object, text over object, giant blocky text, 7+-2 items, presentation slide, dense infographic, multi-column cards, full article text, purple, pink, orange, green, yellow, visual clutter.`;
+5. NEGATIVE RULES (NO DEFAULT RECIPES):
+   - Do NOT automatically add grid, dots, blue gradient glow, white 3D blocks, floating cubes, UI cards, dashboards, or generic infographics unless explicitly justified by the concept.`;
 
 const ART_DIRECTIONS = [
   {
@@ -152,7 +120,7 @@ const ART_DIRECTIONS = [
   },
   {
     family: 'SURREAL',
-    metaphor: 'A floating marble archway opening to reveal a calm open horizon within a indoor gallery room.',
+    metaphor: 'A floating marble archway opening to reveal a calm open horizon within an indoor gallery room.',
     environment: 'Minimalist museum hall with open ceiling portal.',
     material: 'Carrara marble, quiet atmospheric air, and glass horizon.',
     lighting: 'Ethereal ambient sky illumination from above.',
@@ -189,34 +157,84 @@ const ART_DIRECTIONS = [
     material: 'Terracotta tiles, pale limestone walls, and clean shadow lines.',
     lighting: 'Late afternoon warm sun at 45-degree angle.',
     blueAccent: 'Cobalt Blue (#1557FF) ceramic bench positioned as the visual anchor.'
+  },
+  {
+    family: 'LIGHT INSTALLATION',
+    metaphor: 'Kinetic LED light tubes sculpting dramatic spatial planes over raw plaster walls.',
+    environment: 'Contemporary art installation pavilion.',
+    material: 'Diffused acrylic light tubes and raw troweled plaster.',
+    lighting: 'Self-illuminating LED light planes with soft ambient glow.',
+    blueAccent: 'Cobalt Blue (#1557FF) light tube establishing the primary spatial axis.'
+  },
+  {
+    family: 'CONCEPTUAL PHOTOGRAPHY',
+    metaphor: 'High-contrast studio macro photography capturing a single ray of light refracting through a crystal prism.',
+    environment: 'Darkened photographic studio.',
+    material: 'Optical glass prism and matte black background.',
+    lighting: 'Ultra-narrow collimated beam of light.',
+    blueAccent: 'Cobalt Blue (#1557FF) spectral wavelength beam isolated on black.'
+  },
+  {
+    family: 'LAYERED MATERIALS',
+    metaphor: 'Staggered vertical planes of translucent vellum, smoked glass, and raw slate creating deep spatial translucency.',
+    environment: 'Material research laboratory exhibition.',
+    material: '90gsm tracing vellum, 6mm smoked tempered glass, and natural slate.',
+    lighting: 'Soft rear backlighting casting layered translucent shadows.',
+    blueAccent: 'Cobalt Blue (#1557FF) edge banding on the central glass plate.'
+  },
+  {
+    family: 'ATMOSPHERIC SPACE',
+    metaphor: 'Minimalist mist-filled chamber where a single directional light beam reveals spatial depth and volume.',
+    environment: 'Architectural fog chamber installation.',
+    material: 'Water vapor mist, matte epoxy floor, and brushed aluminum.',
+    lighting: 'Volumetric light shaft cutting through fog.',
+    blueAccent: 'Cobalt Blue (#1557FF) laser line marking the spatial grid floor.'
+  },
+  {
+    family: 'CONTEMPORARY INSTALLATION ART',
+    metaphor: 'Suspended acrylic geometric frames floating in a sunlit atrium, casting overlapping colored shadows.',
+    environment: 'Sunlit museum atrium.',
+    material: 'Monofilament wire, tinted acrylic frames, and polished concrete.',
+    lighting: 'Bright natural sunlight creating vivid floor projections.',
+    blueAccent: 'Cobalt Blue (#1557FF) acrylic frame suspended at eye level.'
+  },
+  {
+    family: 'SCALE CONTRAST',
+    metaphor: 'A tiny monolithic pin standing beside a giant illuminated sphere, demonstrating extreme visual hierarchy scale.',
+    environment: 'Minimalist studio soundstage.',
+    material: 'Anodized black aluminum pin and translucent fiberglass sphere.',
+    lighting: 'Internal glow from sphere with soft key light on pin.',
+    blueAccent: 'Cobalt Blue (#1557FF) core glowing inside the giant sphere.'
   }
 ];
 
-export function build15PartImagePrompt(topic: DesignTopic): string {
+export function build17PartImagePrompt(topic: DesignTopic): string {
   const artDir = ART_DIRECTIONS[topic.id % ART_DIRECTIONS.length];
   const headline = topic.title.toUpperCase();
   const templateNum = String(topic.id).padStart(3, '0');
 
-  return `[FORMAT] Premium 4:5 vertical editorial social media graphic (1080 x 1350 pixels resolution).
-[BRAND SYSTEM] TZINR brand identity. Warm off-white/ivory base (#FBFBFA), Deep Navy typography (#0A0A10), Cobalt Blue (#1557FF) strategic accent.
-[FIXED LAYOUT] ~36px safe padding on all 4 edges. Strict asymmetrical split: Left 45% typography column; Right 50% hero visual area. Zero text overlap.
-[CORE IDEA] Explaining ${topic.title} through clear visual hierarchy and structural clarity.
+  return `[FORMAT] CREATE / RENDER a premium 4:5 vertical editorial social media graphic (1080 x 1350 pixels resolution).
+[BRAND SYSTEM] LAYER A: TZINR Brand System. Warm off-white/ivory foundation (#FBFBFA), Deep Navy typography (#0A0A10), Cobalt Blue (#1557FF) strategic accent.
+[FIXED LAYOUT] ~36px safe padding on all 4 edges. Asymmetrical two-column composition: Left 45% is clean typography column; Right 50% is hero visual artwork. Zero visual overlap.
+[CONTENT] LAYER B: Content System for ${headline}. 1 main headline, 1 short subheading, 1 concise explanation, category metadata. High signal, zero infographic clutter.
+[CORE IDEA] Visualizing the core principle of ${topic.title} through physical form and spatial clarity.
 [VISUAL METAPHOR] ${artDir.metaphor}
-[SELECTED ART DIRECTION] ${artDir.family}
-[HERO VISUAL] Right 50% hero visual: ${artDir.metaphor}
+[ART DIRECTION] LAYER C: ${artDir.family}
+[HERO VISUAL] Right 50% hero artwork: ${artDir.metaphor}
 [ENVIRONMENT] ${artDir.environment}
 [MATERIAL] ${artDir.material}
+[COMPOSITION] Strict asymmetrical 50/50 balance. Left text column aligned parallel with right hero artwork.
 [LIGHTING] ${artDir.lighting}
-[COLOR APPLICATION] Off-white environment, Deep Navy text structure, ${artDir.blueAccent}
-[TYPOGRAPHY] Display headline in Bebas Neue uppercase condensed; Subheadings & body in Manrope; Metadata in IBM Plex Mono.
-[VISIBLE TEXT] Top-left 'TZINR' (Manrope ExtraBold) + 'UX FOUNDATIONS ${templateNum}' (IBM Plex Mono); Top-right '${templateNum} / 100' (IBM Plex Mono); Left headline '${headline}' (Bebas Neue); Subheading with Cobalt Blue keyword accent (Manrope Semibold); Bottom-left 'CONCEPT: ${headline}' (IBM Plex Mono).
-[EDITORIAL DETAILS] Clean 36px margins, high-precision layout alignment, zero visual clutter.
-[NEGATIVE RULES] Do NOT add generic grids, dot patterns, blue gradients, blue glow, or stacked 3D blocks unless explicitly justified by the selected concept.`;
+[COLOR APPLICATION] Primary off-white environment foundation, Deep Navy structural text, ${artDir.blueAccent}
+[TYPOGRAPHY] Headlines in Bebas Neue uppercase condensed; Subheadings & body in Manrope; Metadata & numbers in IBM Plex Mono; Brand name in Manrope ExtraBold.
+[VISIBLE TEXT] Top-left 'TZINR' (Manrope ExtraBold) + 'UX FOUNDATIONS ${templateNum}' (IBM Plex Mono); Top-right '${templateNum} / 100' (IBM Plex Mono); Left column Headline '${headline}' (Bebas Neue); Subheading 'Guiding attention through scale' with Cobalt Blue keyword accent (Manrope Semibold); Bottom-left 'CONCEPT: ${headline}' (IBM Plex Mono).
+[BACKGROUND] ${artDir.environment} with rich tactile material texture, natural directional shadows, and zero visual clutter.
+[NEGATIVE RULES] Do NOT automatically add grid, dot patterns, blue gradient glow, white 3D blocks, floating cubes, UI cards, dashboards, or generic infographic elements.`;
 }
 
 export function generateLocalContentMock(topic: DesignTopic, format: 'single' | 'carousel'): DesignContentResult {
   const headline = topic.title.toUpperCase();
-  const imagePromptText = build15PartImagePrompt(topic);
+  const imagePromptText = build17PartImagePrompt(topic);
 
   const baseCaptions = {
     linkedin: {
