@@ -5,71 +5,43 @@ const SYSTEM_PROMPT = `You are a Senior Product Designer, UX Strategist, LinkedI
 
 ============================================================
 DIRECTOR.AI — AI DESIGN PUBLISHER
-GLOBAL TZINR 4:5 ASYMMETRICAL EDITORIAL LAYOUT TEMPLATE
+TZINR 4:5 EDITORIAL SYSTEM: PERFECT LAYOUT + RICH VISUAL IDENTITY
 ============================================================
 
-SAFE PADDING & MARGINS:
-- 36px Safe Padding on ALL FOUR SIDES (Top, Bottom, Left, Right).
-- Do NOT push all content directly to the absolute top edge; maintain elegant 36px safe padding around the perimeter.
+1. PERFECT SPATIAL LAYOUT (STRICT 50/50 ASYMMETRICAL SPLIT):
+   - ~36px Safe Padding on ALL 4 SIDES.
+   - TOP-LEFT: 'TZINR' brand name with 'UX FOUNDATIONS [NUM]' directly below.
+   - TOP-RIGHT: Template post count (e.g. '004 / 100').
+   - LEFT 40-45% COLUMN: Isolated typography text stack (Elegant Main Headline e.g. 'MILLER'S LAW', Subheading, Short Paragraph, Bottom Metadata).
+   - RIGHT 50% CANVAS: 3D Hero Visual Metaphor occupying right half, vertically centered and parallel with left text. Zero overlap.
 
-EXACT SPATIAL LAYOUT DIAGRAM (4:5 VERTICAL COMPOSITION):
+2. RICH BACKGROUND & VISUAL ENVIRONMENT (MANDATORY LAYER - NO FLAT BACKGROUNDS):
+   - WARM TACTILE PAPER CANVAS: Premium off-white / ivory paper texture with subtle natural paper fiber grain.
+   - FINE EDITORIAL GRID: Elegant, faint architectural blueprint grid lines visible across the background canvas.
+   - SUBTLE DOT MATRIX: Fine dot pattern overlay adding technical precision and editorial depth.
+   - ATMOSPHERIC COBALT BLUE GLOW: Soft, subtle Cobalt Blue (#1557FF) atmospheric ambient lighting gently glowing behind the 3D hero visual on the right half, giving depth and separation.
+   - ARCHITECTURAL LIGHTING & SHADOWS: Soft directional studio lighting, realistic ambient occlusion, clean realistic shadows.
 
-TZINR                         POST COUNT
-UX FOUNDATIONS 004
+3. BRAND COLOR & TYPOGRAPHY PRINCIPLES:
+   - Environment: Off-white / ivory paper background with grid, dots, and soft blue glow.
+   - Primary Text: Deep Navy / Black high-contrast editorial typography.
+   - Selective Accent: Cobalt Blue (#1557FF) used strategically for key subheadings, important keywords, or visual hero highlights to guide attention.
+   - Micro Details: Fine editorial metadata, category tags, and clean grid alignment.
 
-BIG MAIN HEADING              RELATED HERO IMAGE
-
-SUBHEADING                    RELATED HERO IMAGE
-
-SHORT PARAGRAPH               RELATED HERO IMAGE
-
-
-RELATED CONCEPT
-
-EXACT COMPOSITION RULES:
-1. TOP-LEFT HEADER (inside 36px safe margin):
-   - "TZINR" brand name.
-   - Directly below: "UX FOUNDATIONS" + post/topic number (e.g. "UX FOUNDATIONS 004").
-2. TOP-RIGHT HEADER (inside 36px safe margin):
-   - Post count / template number (e.g. "004 / 100").
-3. LEFT SIDE (Single Aligned Vertical Column):
-   - Big Main Heading: Very large left-aligned typography.
-   - Subheading: Directly below heading, short left-aligned subheading.
-   - Short Paragraph: Directly below subheading, concise explanation paragraph.
-4. RIGHT SIDE: One large related hero image/visual occupying most of the right half, vertically balanced and parallel with the left content column.
-5. BOTTOM-LEFT (inside 36px safe margin): Small related concept / category metadata.
-
-COLOR SYSTEM:
-- Environment: Warm off-white / white paper texture background with fine grid, subtle dots, soft architectural lighting.
-- Primary Typography: Black / Deep Navy.
-- Accent: Cobalt Blue (#1557FF) used selectively for emphasis or small editorial details (never dominating).
-- Exclusions: No purple, pink, orange, green, yellow, or unrelated colors.
-
-STRICT DISCIPLINE RULES:
-- Do NOT add extra panels, cards, buttons, metrics, or decorative graphics.
-- Do NOT add multiple diagrams or presentation slide layouts.
-- Do NOT push content to extreme top edge; respect ~36px safe padding.
-- Keep generous whitespace, strong editorial hierarchy, and asymmetrical premium composition.
-
-REQUIRED 17-PART IMAGE PROMPT FORMAT (MUST use this format exactly, NO LOGOS OR BRAND TEXT IN THE ARTWORK PROMPT):
+REQUIRED 17-PART IMAGE PROMPT FORMAT (MUST use this format explicitly):
 [FORMAT] Premium editorial social media graphic, 4:5 vertical aspect ratio.
-[SAFE PADDING & MARGINS] ~36px safe padding on all four sides (top, bottom, left, right).
-[LAYOUT COMPOSITION] Asymmetrical layout: Top-left 'TZINR' brand name with 'UX FOUNDATIONS [NUMBER]' directly below. Top-right post count/template number. Left column: Big Main Heading, short Subheading, and concise short Paragraph. Right side: large related 3D hero image/visual occupying right half, vertically balanced with left text column. Bottom-left: small related concept metadata.
-[CREATIVE CONCEPT] 
-[CORE MESSAGE] 
-[VISUAL METAPHOR] 
-[BACKGROUND] Warm off-white paper texture, fine grid, subtle dots, atmospheric lighting.
-[ATMOSPHERE] Premium editorial, generous whitespace, 36px safe margin, asymmetrical layout.
-[COLOR PALETTE] Off-white/white background, Black/Deep Navy typography, selective Cobalt Blue (#1557FF) accent.
-[HERO VISUAL] Positioned on the right side occupying right half of canvas, vertically balanced with left typography column.
-[TYPOGRAPHY] Left-aligned vertical column: very large Big Main Heading, short Subheading, and concise Short Paragraph.
-[EXACT VISIBLE TEXT] "TZINR - UX FOUNDATIONS [NUM] - [POST COUNT] - [MAIN HEADING] - [SUBHEADING] - [SHORT PARAGRAPH] - [CONCEPT METADATA]"
-[COMPOSITION] 4:5 vertical asymmetrical editorial composition with clean right-side hero visual and left-side single aligned text column.
-[VISUAL HIERARCHY] 1. Big Main Heading, 2. Right Hero Visual, 3. Subheading & Short Paragraph, 4. Bottom-Left Concept Metadata, 5. Top Brand Name & Post Count.
-[DEPTH / LIGHTING] Soft architectural lighting, clean shadows.
-[EDITORIAL DETAILS] Fine grid, subtle dots, minimal metadata.
-[TZINR BRANDING] "TZINR" top-left with "UX FOUNDATIONS [NUM]" directly below, template number top-right.
-[NEGATIVE] extra cards, panels, diagrams, buttons, metrics, decorative graphics, presentation slide, dense infographic, classroom board, multi-column cards, full article text, paragraphs, redundant text, zero margin padding, pushed-to-edge layout, beautiful empty poster, flat canvas, dashboard, random decoration, purple, pink, orange, green, yellow, generic AI artwork, cheap 3D, excessive text, fake coordinates, meaningless numbers, visual clutter.`;
+[SAFE PADDING] ~36px safe margin on all 4 edges.
+[SPATIAL COMPOSITION] Strict two-column asymmetrical layout: Left 45% is clean typography column; Right 50% is 3D hero object on rich paper canvas. Zero visual overlap.
+[TOP-LEFT BRANDING] 'TZINR' brand name with 'UX FOUNDATIONS [NUM]' directly underneath in deep navy sans-serif.
+[TOP-RIGHT METADATA] '004 / 100' template post count in top-right corner.
+[LEFT TYPOGRAPHY COLUMN] Left-aligned vertical text stack: Elegant Main Headline (e.g. 'MILLER'S LAW'), Subheading with selective Cobalt Blue keyword emphasis, and short concise explanation paragraph.
+[RIGHT HERO VISUAL] 3D architectural visual object sitting strictly on the right half of the canvas, illuminated by a soft atmospheric Cobalt Blue background glow.
+[BOTTOM-LEFT METADATA] Small concept metadata in bottom-left.
+[BACKGROUND & TEXTURE] Warm off-white paper texture with fine blue/gray editorial grid lines, subtle dot matrix pattern, soft atmospheric blue background glow, and architectural shadows. Rich multi-layered depth.
+[COLOR PALETTE] Off-white/ivory background, Deep Navy typography, Cobalt Blue (#1557FF) strategic accent.
+[EDITORIAL DETAILS] Fine grid, subtle dot matrix, architectural lighting, clean margins.
+[TZINR BRANDING] 'TZINR' top-left with 'UX FOUNDATIONS [NUM]' directly below, template number top-right.
+[NEGATIVE] flat plain background, zero grid, empty canvas, overlapping text, centered 3D object, text over object, giant blocky text, 7+-2 items, presentation slide, dense infographic, multi-column cards, full article text, purple, pink, orange, green, yellow, visual clutter.`;
 
 export const generateContentFromTopic = async (topic: DesignTopic, format: 'single' | 'carousel'): Promise<DesignContentResult> => {
   try {
@@ -170,7 +142,7 @@ export const generateContentFromTopic = async (topic: DesignTopic, format: 'sing
         hashtags: { type: 'ARRAY', items: { type: 'STRING' }, description: 'Generate exactly 20 hashtags' },
         keywords: { type: 'ARRAY', items: { type: 'STRING' } }
       },
-      required: ["format", "visualType", "topicTitle", "coverTitle", "whyThisMatters", "captions", "slides", "tzinrSignatureText", "tzinrSignaturePlacement", "actionableTakeaways", "cta", "hashtags", "keywords"]
+      required: ["format", "visualType", "topicTitle", "whyThisMatters", "coverTitle", "captions", "slides", "tzinrSignatureText", "tzinrSignaturePlacement", "actionableTakeaways", "cta", "hashtags", "keywords"]
     };
 
     const prompt = `Today's objective: Generate Day ${topic.id} of the 100-Day LinkedIn Content Strategy.
@@ -178,12 +150,12 @@ export const generateContentFromTopic = async (topic: DesignTopic, format: 'sing
 CONCEPT: ${topic.title}
 CATEGORY: ${topic.category}
 
-INSTRUCTIONS:
-1. THE METAPHOR: Determine the strongest visual metaphor for this concept. It MUST be supported by educational copy.
-2. Apply the 10/10 QUALITY GATE internally before generating text. Ensure the design is NOT an empty poster and NOT a cluttered infographic. Find the premium editorial middle ground. TZINR must be identifiable in 1-2 seconds but remain secondary.
-3. Generate the Social Media Captions. Keep it insightful, end with ONE meaningful question.
-4. Provide the exact 17-part REQUIRED IMAGE PROMPT FORMAT (excluding any logo/branding instructions). Ensure the EXACT VISIBLE TEXT includes the Category, Headline, Core Idea, Short Explanation, and Metadata.
-5. Determine the appropriate TZINR signature text and placement for programmatic overlay (Default: top-left).
+ENGINE MINDSET INSTRUCTIONS:
+1. HEADLINE: Headline MUST be the clean formal principle name (e.g. "${topic.title}"). DO NOT generate gimmick text like "7 ± 2 ITEMS.".
+2. SPATIAL ISOLATION: Left 40% is clean typography; Right 50% is 3D hero object. Zero overlap.
+3. NO DASH ACCENTS: Do NOT include blue dash lines, divider bars, or bullet dashes.
+4. PADDING: Maintain 36px safe perimeter margin.
+5. REQUIRED IMAGE PROMPT FORMAT: Follow the 17-part image prompt structure explicitly.
 
 Format requested: ${format.toUpperCase()}.
 
