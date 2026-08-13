@@ -1,5 +1,5 @@
 import React from 'react';
-import logoNoBg from '../Director_ai_NOBG.png';
+const logoNoBg = '/logo-nobg.png';
 
 interface DirectorLogoProps {
   className?: string;

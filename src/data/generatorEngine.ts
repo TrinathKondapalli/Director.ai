@@ -4,9 +4,23 @@ import { UgcStudioInput, UgcStudioResult, UgcTopic } from '../types';
 const SYSTEM_PROMPT = `You are DIRECTOR.AI's AI UGC Studio Director.
 Your purpose is to generate authentic User Generated Content (UGC) ad video prompts and strategy that look, feel, and convert like genuine TikTok / Instagram Reels creator ads — NOT corporate TV commercials, cinematic promotional films, or polished brand advertisements.
 
-==================================================
-CORE UGC AUTHENTICITY RULES — MANDATORY
-==================================================
+---
+**NEW RULES**
+---
+1. **VOICEOVER — STRICT SINGLE DELIVERY**
+   - Every scripted dialogue must be spoken exactly ONCE.
+   - No repeats, echoes, duplicate lines, or overlapping voiceovers.
+   - The final audio must contain exactly five spoken lines (HOOK, PROBLEM, PRODUCT, RESULT, CTA) each appearing a single time.
+2. **CREATOR — INDIAN CHARACTER CONSISTENCY**
+   - If the creator is male, generate an authentic Indian male creator.
+   - If the creator is female, generate an authentic Indian female creator.
+   - The creator’s ethnicity must remain consistent across all scenes.
+   - Include this consistency in the \`characterDescription\` field of the video prompt.
+---
+
+// ==================================================
+// CORE UGC AUTHENTICITY RULES — MANDATORY
+// ==================================================
 
 THE VIDEO MUST FEEL LIKE:
 A real creator casually recording a useful, genuine recommendation for their audience.
@@ -264,8 +278,8 @@ export function generateLocalUgcMock(input: UgcStudioInput): UgcStudioResult {
       hook: `Creator sitting at their desk, already mid-task, looks into camera with a tired expression and says: "I was losing so much time on this every day."`,
       sceneObjective: `Show the contrast between the creator's before-state (frustrated, manual effort) and after-state (relieved, done) through natural interaction with ${prod}.`,
       sceneDescription: `Real home workspace or kitchen counter. Creator interacts naturally with ${prod} on their laptop or phone. No staged props or styled set.`,
-      characterDescription: `Relatable creator, late 20s to early 30s, natural appearance, no professional styling.`,
-      characterAppearance: `Casual, approachable, natural hair, no heavy makeup.`,
+      characterDescription: `Relatable Indian creator, late 20s to early 30s, natural appearance, no professional styling.`,
+      characterAppearance: `Authentic Indian creator, casual, approachable, natural hair, no heavy makeup.`,
       characterClothing: `Everyday casual clothing — t-shirt, hoodie, or comfortable top. Nothing styled.`,
       characterExpressions: `Genuine frustration transitioning to quiet relief and a natural satisfied smile.`,
       characterEmotions: `Stressed and overwhelmed → genuinely relieved and confident.`,
@@ -284,18 +298,18 @@ export function generateLocalUgcMock(input: UgcStudioInput): UgcStudioResult {
       cinematicStyle: `Raw authentic mobile UGC — handheld smartphone footage. Non-commercial. Non-cinematic.`,
       visualStyle: `Unpolished native 4K smartphone video, 60fps. Slight natural grain acceptable.`,
       transition: `Quick natural jump cut on spoken phrase change. No dramatic whip pans.`,
-      motionDetails: `Natural creator gestures — hand pointing to screen, leaning in slightly, nodding. Human and unscripted-feeling.`,
-      videoQuality: `iPhone 15 Pro 4K HDR 60fps.`,
-      renderingStyle: `Raw organic creator video. Zero commercial sheen. Zero polished production look.`,
-      aspectRatio: `9:16 vertical.`,
-      frameRate: `60fps.`,
-      duration: `Exactly 10 seconds.`,
-      voiceoverScript: `"Was losing so much time on this. Then I found ${prod}. Honestly — try it."`,
-      voiceStyle: `Conversational, honest, low-key energetic. Natural creator recommendation voice.`,
-      voiceGender: `Neutral.`,
+      motionDetails: `Natural micro-movements, organic breathing, casual head turns while speaking.`,
+      videoQuality: `iPhone 15 Pro 4K 60fps`,
+      renderingStyle: `Raw Organic Creator Video — Zero Commercial Sheen`,
+      aspectRatio: `9:16 vertical`,
+      frameRate: `60 fps`,
+      duration: `10 seconds`,
+      voiceoverScript: `"Was losing so much time on this every day. Then I found ${prod}. Honestly — try it."`,
+      voiceStyle: `Conversational creator voice — natural pacing, honest tone, genuine recommendation`,
+      voiceGender: `Neutral`,
       voiceEmotion: `Genuine — honest relief transitioning to quiet recommendation.`,
       voiceSpeed: `Natural conversational pace. No fast-talking. Not rushed.`,
-      accent: `Neutral American.`,
+      accent: `Indian English (natural Indian accent)`,
       dialogue: `Natural spoken recommendation — not scripted announcer delivery.`,
       backgroundMusic: `Optional: Subtle trending lo-fi background audio at very low volume. Not distracting.`,
       soundEffects: `Natural keyboard click sounds when product is used. Quiet ambient room tone. No cinematic whooshes.`,
@@ -712,8 +726,8 @@ POV opening, POV framing, POV shot, cinematic commercial, studio lighting, corpo
       hook: topic.visualHookAngle,
       sceneObjective: `Show immediate contrast between ${topic.corePainPoint} and ${topic.solution}`,
       sceneDescription: `A ${topic.targetAudience} in an authentic workspace setting. ${topic.visualHookAngle}`,
-      characterDescription: `A relatable ${topic.targetAudience} individual`,
-      characterAppearance: `Casual professional, early 30s, natural appearance`,
+      characterDescription: `Authentic Indian creator, relatable ${topic.targetAudience} individual`,
+      characterAppearance: `Authentic Indian creator, casual professional, early 30s, natural appearance`,
       characterClothing: `Minimalist ergonomic outfit`,
       characterExpressions: `Initial frustration shifting to instant delight and relief`,
       characterEmotions: `Stressed to empowered`,
@@ -729,10 +743,10 @@ POV opening, POV framing, POV shot, cinematic commercial, studio lighting, corpo
       props: `Smartphone / Laptop displaying ${topic.brandName}`,
       colorPalette: `Natural organic color grading, warm relatable skin tones`,
       composition: `Casual mobile creator composition`,
-      cinematicStyle: `Raw Authentic Mobile TikTok/Reels UGC Creator Style`,
-      visualStyle: `Unpolished Native 4K Smartphone Video (60fps)`,
-      transition: `Quick jump cut on spoken phrase`,
-      motionDetails: `Natural creator gestures and screen pointing`,
+      cinematicStyle: `Raw authentic mobile UGC — handheld smartphone video`,
+      visualStyle: `Unpolished native 4K smartphone video, 60fps`,
+      transition: `Quick natural jump cut on spoken phrase change`,
+      motionDetails: `Natural creator gestures, nodding, pointing to screen`,
       videoQuality: `iPhone 15 Pro 4K HDR 60fps`,
       renderingStyle: `Raw Organic Creator Video — Zero Commercial Sheen, Zero Polished Production`,
       aspectRatio: `9:16 vertical`,
@@ -743,7 +757,7 @@ POV opening, POV framing, POV shot, cinematic commercial, studio lighting, corpo
       voiceGender: `Neutral`,
       voiceEmotion: `Genuine quiet relief — not exaggerated excitement or sales enthusiasm`,
       voiceSpeed: `Natural conversational pace — not rushed, not announcer speed`,
-      accent: `Neutral American`,
+      accent: `Indian English (natural Indian accent)`,
       dialogue: `Natural spoken creator recommendation — not scripted commercial delivery`,
       backgroundMusic: `Optional: Very subtle trending lo-fi background audio at low volume. Not distracting.`,
       soundEffects: `Natural product interaction sounds — keyboard clicks, subtle UI chime. No cinematic whooshes.`,
