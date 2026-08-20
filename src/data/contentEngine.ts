@@ -4,7 +4,7 @@ import { DesignContentResult, DesignContentResultV2Single, DesignContentResultV2
 const SYSTEM_PROMPT = `You are a Senior Product Designer, UX Strategist, LinkedIn Personal Branding Strategist, Content Strategist, and Social Psychology-based Content Creator for TZINR (a premium creative design publication and studio).
 
 ============================================================
-DIRECTOR.AI — TZINR BRAND-FIRST EDITORIAL PROMPT ENGINE
+DIRECTOR.AI - TZINR BRAND-FIRST EDITORIAL PROMPT ENGINE
 MANDATORY BRAND FOUNDATION CONSISTENCY RULE (4:5 VERTICAL, 1080 x 1350)
 ============================================================
 
@@ -32,6 +32,7 @@ MANDATORY BRAND FOUNDATION CONSISTENCY RULE (4:5 VERTICAL, 1080 x 1350)
    [FORMAT] [BRAND FOUNDATION] [COMPOSITION MANDATE] [CONTENT] [CORE IDEA] [VISUAL METAPHOR] [ART DIRECTION] [HERO VISUAL] [ENVIRONMENT] [MATERIAL] [LIGHTING] [COLOR APPLICATION] [TYPOGRAPHY] [VISIBLE TEXT] [BACKGROUND & ATMOSPHERE] [NEGATIVE RULES]
 
 5. NEGATIVE RULES (BANS DARK BACKGROUNDS & SPLIT-SCREEN BOXES):
+   - TYPOGRAPHY RULE: DO NOT USE the em-dash character "-". YOU MUST ALWAYS USE a standard hyphen "-" in all generated text and descriptions.
    - Prohibit: Dark background, black environment, night scene, dark cinematic lighting, inverted white text on dark background, text half + image half, split screen, two panels, vertical division line, inserted photo box, rectangular picture frame border, collage seam, low-quality rendering, unreadable typography, visual clutter, unrelated random objects, generic stock art, accidental watermarks, distorted text, broken composition.`;
 
 const ART_DIRECTIONS = [
@@ -267,14 +268,14 @@ export function generateLocalContentMock(topic: DesignTopic, format: 'single' | 
         `Maintain generous safe margins to preserve editorial breathability.`
       ],
       cta: `How do you apply ${topic.title} in your design system? Let's discuss in the comments.`,
-      hashtags: [`#UXDesign`, `#VisualHierarchy`, `#ProductDesign`, `#UIUX`, `#DesignSystems`]
+      hashtags: [`#UXDesign`, `#VisualHierarchy`, `#ProductDesign`, `#UIUX`, `#DesignSystems`, `#DesignStrategy`, `#CreativeDirection`, `#UserExperience`, `#WebDesign`, `#DesignCommunity`, `#DesignInspiration`, `#TechTrends`]
     },
     instagram: {
       hook: `Guiding attention through scale with ${topic.title}. 🎯`,
-      story: `Design isn't just about making things look good—it's about directing the human eye effortlessly.`,
+      story: `Design isn't just about making things look good-it's about directing the human eye effortlessly.`,
       lesson: `Size, contrast, and layout work together to create clear reading orders.`,
       cta: `Save this post for your next UI audit! 📌`,
-      hashtags: [`#uxdesign`, `#uidesign`, `#designrules`, `#productdesign`]
+      hashtags: [`#uxdesign`, `#uidesign`, `#designrules`, `#productdesign`, `#designstrategy`, `#userexperience`, `#creativeprocess`, `#designthinking`, `#uiux`, `#designinspiration`, `#techdesign`, `#designcommunity`]
     },
     facebook: {
       opening: `Here's a key UX principle every designer should master: ${topic.title}.`,
@@ -282,7 +283,7 @@ export function generateLocalContentMock(topic: DesignTopic, format: 'single' | 
       advice: `Structure your canvas with clear typographic contrast and focal isolation.`,
       example: `Notice how Bebas Neue headlines create instant anchor points for the reader.`,
       question: `What's your biggest takeaway from this layout?`,
-      hashtags: [`#UX`, `#DesignStrategy`, `#UIUX`]
+      hashtags: [`#UX`, `#DesignStrategy`, `#UIUX`, `#DesignSystems`, `#CreativeDirection`, `#UserExperience`, `#WebDesign`, `#DesignCommunity`, `#DesignInspiration`, `#TechTrends`, `#DigitalDesign`, `#UXResearch`]
     },
     twitter: {
       singleTweet: `${topic.title}: Guiding user attention through scale, contrast, and spatial hierarchy. 📐✨`,
@@ -293,7 +294,7 @@ export function generateLocalContentMock(topic: DesignTopic, format: 'single' | 
         `4/5 Maintain 36px safe perimeter margins for breathing room.`,
         `5/5 Follow @tzinr for daily UX foundations & design strategy!`
       ],
-      hashtags: [`#UX`, `#DesignStrategy`]
+      hashtags: [`#UX`, `#DesignStrategy`, `#UIUX`, `#DesignSystems`, `#CreativeDirection`, `#UserExperience`, `#WebDesign`, `#DesignCommunity`, `#DesignInspiration`, `#TechTrends`, `#DigitalDesign`, `#UXResearch`]
     },
     youtube: {
       seoTitle: `${topic.title} Explained: Master Visual Hierarchy & UI Design`,
@@ -302,7 +303,7 @@ export function generateLocalContentMock(topic: DesignTopic, format: 'single' | 
       chapters: [`0:00 Introduction`, `1:30 Core Principle`, `4:15 Real-World Case Study`, `7:00 Key Takeaways`],
       cta: `Subscribe to Director.ai for weekly design breakdowns!`,
       keywords: [`UX Design`, topic.title, `Visual Hierarchy`, `UI UX`],
-      hashtags: [`#UXDesign`, `#UIUX`]
+      hashtags: [`#UXDesign`, `#UIUX`, `#DesignSystems`, `#CreativeDirection`, `#UserExperience`, `#WebDesign`, `#DesignCommunity`, `#DesignInspiration`, `#TechTrends`, `#DigitalDesign`, `#UXResearch`, `#DesignStrategy`]
     }
   };
 
@@ -342,7 +343,7 @@ export function generateLocalContentMock(topic: DesignTopic, format: 'single' | 
         `Maintain IBM Plex Mono for technical metadata and counts.`
       ],
       cta: `Follow TZINR for daily UX foundations.`,
-      hashtags: [`#UXDesign`, `#VisualHierarchy`, `#ProductDesign`, `#UIUX`, `#DesignSystems`],
+      hashtags: [`#UXDesign`, `#VisualHierarchy`, `#ProductDesign`, `#UIUX`, `#DesignSystems`, `#DesignStrategy`, `#CreativeDirection`, `#UserExperience`, `#WebDesign`, `#DesignCommunity`, `#DesignInspiration`, `#TechTrends`],
       keywords: [`UX Design`, topic.title, `Visual Hierarchy`, `UI UX`]
     };
   }
@@ -367,7 +368,7 @@ export function generateLocalContentMock(topic: DesignTopic, format: 'single' | 
     },
     tzinrSignatureText: `TZINR / UX`,
     tzinrSignaturePlacement: `top-left`,
-    hashtags: [`#UXDesign`, `#VisualHierarchy`, `#ProductDesign`, `#UIUX`, `#DesignSystems`],
+    hashtags: [`#UXDesign`, `#VisualHierarchy`, `#ProductDesign`, `#UIUX`, `#DesignSystems`, `#DesignStrategy`, `#CreativeDirection`, `#UserExperience`, `#WebDesign`, `#DesignCommunity`, `#DesignInspiration`, `#TechTrends`],
     keywords: [`UX Design`, topic.title, `Visual Hierarchy`, `UI UX`],
     imagePrompt: imagePromptText
   };
@@ -396,23 +397,23 @@ export const generateContentFromTopic = async (topic: DesignTopic, format: 'sing
           type: 'OBJECT',
           properties: {
             linkedin: { 
-              type: 'OBJECT', properties: { hook: { type: 'STRING' }, context: { type: 'STRING' }, mainInsight: { type: 'STRING' }, keyTakeaways: { type: 'ARRAY', items: { type: 'STRING' } }, cta: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } },
+              type: 'OBJECT', properties: { hook: { type: 'STRING' }, context: { type: 'STRING' }, mainInsight: { type: 'STRING' }, keyTakeaways: { type: 'ARRAY', items: { type: 'STRING' } }, cta: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' }, description: 'Generate 10-12 highly relevant hashtags for maximum reach' } },
               required: ["hook", "context", "mainInsight", "keyTakeaways", "cta", "hashtags"]
             },
             instagram: { 
-              type: 'OBJECT', properties: { hook: { type: 'STRING' }, story: { type: 'STRING' }, lesson: { type: 'STRING' }, cta: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } },
+              type: 'OBJECT', properties: { hook: { type: 'STRING' }, story: { type: 'STRING' }, lesson: { type: 'STRING' }, cta: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' }, description: 'Generate 10-12 highly relevant hashtags for maximum reach' } },
               required: ["hook", "story", "lesson", "cta", "hashtags"]
             },
             facebook: { 
-              type: 'OBJECT', properties: { opening: { type: 'STRING' }, problem: { type: 'STRING' }, advice: { type: 'STRING' }, example: { type: 'STRING' }, question: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } },
+              type: 'OBJECT', properties: { opening: { type: 'STRING' }, problem: { type: 'STRING' }, advice: { type: 'STRING' }, example: { type: 'STRING' }, question: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' }, description: 'Generate 10-12 highly relevant hashtags for maximum reach' } },
               required: ["opening", "problem", "advice", "example", "question", "hashtags"]
             },
             twitter: { 
-              type: 'OBJECT', properties: { singleTweet: { type: 'STRING' }, threadVersion: { type: 'ARRAY', items: { type: 'STRING' } }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } },
+              type: 'OBJECT', properties: { singleTweet: { type: 'STRING' }, threadVersion: { type: 'ARRAY', items: { type: 'STRING' } }, hashtags: { type: 'ARRAY', items: { type: 'STRING' }, description: 'Generate 10-12 highly relevant hashtags for maximum reach' } },
               required: ["singleTweet", "threadVersion", "hashtags"]
             },
             youtube: { 
-              type: 'OBJECT', properties: { seoTitle: { type: 'STRING' }, description: { type: 'STRING' }, whatYouWillLearn: { type: 'ARRAY', items: { type: 'STRING' } }, chapters: { type: 'ARRAY', items: { type: 'STRING' } }, cta: { type: 'STRING' }, keywords: { type: 'ARRAY', items: { type: 'STRING' } }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } },
+              type: 'OBJECT', properties: { seoTitle: { type: 'STRING' }, description: { type: 'STRING' }, whatYouWillLearn: { type: 'ARRAY', items: { type: 'STRING' } }, chapters: { type: 'ARRAY', items: { type: 'STRING' } }, cta: { type: 'STRING' }, keywords: { type: 'ARRAY', items: { type: 'STRING' } }, hashtags: { type: 'ARRAY', items: { type: 'STRING' }, description: 'Generate 10-12 highly relevant hashtags for maximum reach' } },
               required: ["seoTitle", "description", "whatYouWillLearn", "chapters", "cta", "keywords", "hashtags"]
             }
           },
@@ -442,11 +443,11 @@ export const generateContentFromTopic = async (topic: DesignTopic, format: 'sing
         captions: {
           type: 'OBJECT',
           properties: {
-            linkedin: { type: 'OBJECT', properties: { hook: { type: 'STRING' }, context: { type: 'STRING' }, mainInsight: { type: 'STRING' }, keyTakeaways: { type: 'ARRAY', items: { type: 'STRING' } }, cta: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } }, required: ["hook", "context", "mainInsight", "keyTakeaways", "cta", "hashtags"] },
-            instagram: { type: 'OBJECT', properties: { hook: { type: 'STRING' }, story: { type: 'STRING' }, lesson: { type: 'STRING' }, cta: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } }, required: ["hook", "story", "lesson", "cta", "hashtags"] },
-            facebook: { type: 'OBJECT', properties: { opening: { type: 'STRING' }, problem: { type: 'STRING' }, advice: { type: 'STRING' }, example: { type: 'STRING' }, question: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } }, required: ["opening", "problem", "advice", "example", "question", "hashtags"] },
-            twitter: { type: 'OBJECT', properties: { singleTweet: { type: 'STRING' }, threadVersion: { type: 'ARRAY', items: { type: 'STRING' } }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } }, required: ["singleTweet", "threadVersion", "hashtags"] },
-            youtube: { type: 'OBJECT', properties: { seoTitle: { type: 'STRING' }, description: { type: 'STRING' }, whatYouWillLearn: { type: 'ARRAY', items: { type: 'STRING' } }, chapters: { type: 'ARRAY', items: { type: 'STRING' } }, cta: { type: 'STRING' }, keywords: { type: 'ARRAY', items: { type: 'STRING' } }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } }, required: ["seoTitle", "description", "whatYouWillLearn", "chapters", "cta", "keywords", "hashtags"] }
+            linkedin: { type: 'OBJECT', properties: { hook: { type: 'STRING' }, context: { type: 'STRING' }, mainInsight: { type: 'STRING' }, keyTakeaways: { type: 'ARRAY', items: { type: 'STRING' } }, cta: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' }, description: 'Generate 10-12 highly relevant hashtags for maximum reach' } }, required: ["hook", "context", "mainInsight", "keyTakeaways", "cta", "hashtags"] },
+            instagram: { type: 'OBJECT', properties: { hook: { type: 'STRING' }, story: { type: 'STRING' }, lesson: { type: 'STRING' }, cta: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' }, description: 'Generate 10-12 highly relevant hashtags for maximum reach' } }, required: ["hook", "story", "lesson", "cta", "hashtags"] },
+            facebook: { type: 'OBJECT', properties: { opening: { type: 'STRING' }, problem: { type: 'STRING' }, advice: { type: 'STRING' }, example: { type: 'STRING' }, question: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' }, description: 'Generate 10-12 highly relevant hashtags for maximum reach' } }, required: ["opening", "problem", "advice", "example", "question", "hashtags"] },
+            twitter: { type: 'OBJECT', properties: { singleTweet: { type: 'STRING' }, threadVersion: { type: 'ARRAY', items: { type: 'STRING' } }, hashtags: { type: 'ARRAY', items: { type: 'STRING' }, description: 'Generate 10-12 highly relevant hashtags for maximum reach' } }, required: ["singleTweet", "threadVersion", "hashtags"] },
+            youtube: { type: 'OBJECT', properties: { seoTitle: { type: 'STRING' }, description: { type: 'STRING' }, whatYouWillLearn: { type: 'ARRAY', items: { type: 'STRING' } }, chapters: { type: 'ARRAY', items: { type: 'STRING' } }, cta: { type: 'STRING' }, keywords: { type: 'ARRAY', items: { type: 'STRING' } }, hashtags: { type: 'ARRAY', items: { type: 'STRING' }, description: 'Generate 10-12 highly relevant hashtags for maximum reach' } }, required: ["seoTitle", "description", "whatYouWillLearn", "chapters", "cta", "keywords", "hashtags"] }
           },
           required: ["linkedin", "instagram", "facebook", "twitter", "youtube"]
         },

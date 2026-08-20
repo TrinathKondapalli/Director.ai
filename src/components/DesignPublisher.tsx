@@ -36,10 +36,10 @@ export const DesignPublisher: React.FC<DesignPublisherProps> = ({ onGenerateTopi
         </div>
         
         <h1 className="text-4xl md:text-5xl font-sora font-extrabold text-[#FAFAFA] tracking-tight leading-tight mb-4">
-          100-Day Content Strategy
+          130-Day Content Strategy
         </h1>
         <p className="text-[#A1A1AA] text-lg max-w-2xl font-inter leading-relaxed">
-          Generate high-value LinkedIn posts using the fixed 100 UX/UI concepts, designed to build authority, curiosity, and client trust.
+          Generate high-value LinkedIn posts using the fixed 130 UX/UI concepts, designed to build authority, curiosity, and client trust.
         </p>
       </div>
 
@@ -48,7 +48,7 @@ export const DesignPublisher: React.FC<DesignPublisherProps> = ({ onGenerateTopi
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-6 border-b border-[var(--color-border-divider)] gap-4">
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-2">
-              <span className="text-xs font-mono text-[var(--color-brand-violet)] uppercase tracking-wider font-semibold">100 Days Progress</span>
+              <span className="text-xs font-mono text-[var(--color-brand-violet)] uppercase tracking-wider font-semibold">130 Days Progress</span>
               <span className="px-2 py-0.5 bg-[var(--color-brand-violet)]/10 text-[var(--color-brand-violet)] text-[10px] font-mono rounded border border-[var(--color-brand-violet)]/20 font-bold">
                 {completedDesignCount} / {totalDesignCount}
               </span>
@@ -100,16 +100,17 @@ export const DesignPublisher: React.FC<DesignPublisherProps> = ({ onGenerateTopi
           </div>
         </div>
 
-        {/* 100 Days Grid */}
+        {/* 130 Days Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 max-h-[600px] overflow-y-auto pr-2 custom-scrollbar">
           {allDesignTopics.map((topic) => {
             const isCompleted = completedDesignIds.includes(topic.id);
             const getPhase = (id: number) => {
               if (id <= 20) return { name: 'Phase 1: Who is this?', color: 'border-blue-500/30 bg-blue-500/5 text-blue-400' };
-              if (id <= 40) return { name: 'Phase 2: How do they think?', color: 'border-emerald-500/30 bg-emerald-500/5 text-emerald-400' };
-              if (id <= 60) return { name: 'Phase 3: Real Skills', color: 'border-amber-500/30 bg-amber-500/5 text-amber-400' };
-              if (id <= 80) return { name: 'Phase 4: Product Context', color: 'border-orange-500/30 bg-orange-500/5 text-orange-400' };
-              return { name: 'Phase 5: Point of View', color: 'border-[var(--color-brand-violet)]/30 bg-[var(--color-brand-violet)]/5 text-[var(--color-brand-violet)]' };
+              if (id <= 50) return { name: 'Phase 2: August Trends', color: 'border-pink-500/30 bg-pink-500/5 text-pink-400' };
+              if (id <= 70) return { name: 'Phase 3: How do they think?', color: 'border-emerald-500/30 bg-emerald-500/5 text-emerald-400' };
+              if (id <= 90) return { name: 'Phase 4: Real Skills', color: 'border-amber-500/30 bg-amber-500/5 text-amber-400' };
+              if (id <= 110) return { name: 'Phase 5: Product Context', color: 'border-orange-500/30 bg-orange-500/5 text-orange-400' };
+              return { name: 'Phase 6: Point of View', color: 'border-[var(--color-brand-violet)]/30 bg-[var(--color-brand-violet)]/5 text-[var(--color-brand-violet)]' };
             };
             const phase = getPhase(topic.id);
 

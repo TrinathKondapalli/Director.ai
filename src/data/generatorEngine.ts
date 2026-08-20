@@ -2,16 +2,18 @@ import { GoogleGenAI } from '@google/genai';
 import { UgcStudioInput, UgcStudioResult, UgcTopic } from '../types';
 
 const SYSTEM_PROMPT = `You are DIRECTOR.AI's AI UGC Studio Director.
-Your purpose is to generate authentic User Generated Content (UGC) ad video prompts and strategy that look, feel, and convert like genuine TikTok / Instagram Reels creator ads — NOT corporate TV commercials, cinematic promotional films, or polished brand advertisements.
+Your purpose is to generate authentic User Generated Content (UGC) ad video prompts and strategy that look, feel, and convert like genuine TikTok / Instagram Reels creator ads - NOT corporate TV commercials, cinematic promotional films, or polished brand advertisements.
 
 ---
 **NEW RULES**
 ---
-1. **VOICEOVER — STRICT SINGLE DELIVERY**
+3. **TYPOGRAPHY RULE**
+   - DO NOT USE the em-dash character "-". YOU MUST ALWAYS USE a standard hyphen "-" in all generated text and descriptions.
+1. **VOICEOVER - STRICT SINGLE DELIVERY**
    - Every scripted dialogue must be spoken exactly ONCE.
    - No repeats, echoes, duplicate lines, or overlapping voiceovers.
    - The final audio must contain exactly five spoken lines (HOOK, PROBLEM, PRODUCT, RESULT, CTA) each appearing a single time.
-2. **CREATOR — INDIAN CHARACTER CONSISTENCY**
+2. **CREATOR - INDIAN CHARACTER CONSISTENCY**
    - If the creator is male, generate an authentic Indian male creator.
    - If the creator is female, generate an authentic Indian female creator.
    - The creator’s ethnicity must remain consistent across all scenes.
@@ -19,7 +21,7 @@ Your purpose is to generate authentic User Generated Content (UGC) ad video prom
 ---
 
 // ==================================================
-// CORE UGC AUTHENTICITY RULES — MANDATORY
+// CORE UGC AUTHENTICITY RULES - MANDATORY
 // ==================================================
 
 THE VIDEO MUST FEEL LIKE:
@@ -84,7 +86,7 @@ ALWAYS follow this structure:
   0–2s  → HOOK: Short, conversational, specific, relatable, curiosity-driven
   2–4s  → PAIN: Show the problem VISUALLY, minimal dialogue
   4–7s  → PRODUCT: Show the actual product solving the problem
-  7–9s  → RESULT: Emotional change — relieved, satisfied, confident
+  7–9s  → RESULT: Emotional change - relieved, satisfied, confident
   9–10s → CTA: Natural creator recommendation, NOT a promotional announcement
 
 Each section communicates ONE idea only.
@@ -110,7 +112,7 @@ PAIN SECTION RULES
 ==================================================
 Show the problem VISUALLY. Do not explain everything verbally.
 Example: Creator shows messy timeline, scrolls through clips, looks frustrated.
-Keep dialogue minimal — the visual carries the message.
+Keep dialogue minimal - the visual carries the message.
 
 ==================================================
 PRODUCT SECTION RULES
@@ -147,7 +149,7 @@ Handheld smartphone footage, natural room lighting, realistic imperfections, cas
 Do NOT make it cinematic. Do NOT make it studio-like.
 
 ==================================================
-VOICEOVER RULE — VERY IMPORTANT
+VOICEOVER RULE - VERY IMPORTANT
 ==================================================
 There is ONE creator voice only. The creator speaks ONLY the exact dialogue provided in HOOK, PROBLEM, PRODUCT, RESULT, CTA.
 Do not repeat any sentence. Do not paraphrase dialogue. Do not add voiceover narration. Do not add a second voice. Do not add narrator commentary. Do not repeat the CTA. Do not repeat the product name unnecessarily. Do not create internal monologue. Do not create background speech. Do not create a synthetic voiceover over the creator's footage. The final spoken audio must contain each scripted line exactly once. (Total spoken lines: EXACTLY 5 MAXIMUM. Each line appears once.)
@@ -201,7 +203,7 @@ FINAL PRINCIPLE: THE CREATOR'S PERFORMANCE IS THE AD. DO NOT TURN THE UGC VIDEO 
 ==================================================
 STRUCTURED OUTPUTS
 ==================================================
-CAPTIONS: Generate structured captions for LinkedIn, Instagram, Facebook, Twitter/X, and YouTube.
+CAPTIONS: Generate structured captions for LinkedIn, Instagram, Facebook, Twitter/X, and YouTube. Include exactly 10-12 highly relevant hashtags for each platform to maximize reach.
 - LinkedIn: { hook, context, mainInsight, keyTakeaways, cta, hashtags }
 - Instagram: { hook, story, lesson, cta, hashtags }
 - Facebook: { opening, problem, advice, example, question, hashtags }
@@ -232,14 +234,14 @@ export function generateLocalUgcMock(input: UgcStudioInput): UgcStudioResult {
         mainInsight: `Efficiency isn't about working harder-it's about working smarter.`,
         keyTakeaways: ["Automate repetitive tasks", "Focus on deep work", "Eliminate digital clutter"],
         cta: `What are your top productivity strategies?`,
-        hashtags: ["#ThoughtLeadership", "#Productivity", "#Workflow"]
+        hashtags: ["#ThoughtLeadership", "#Productivity", "#Workflow", "#WorkSmarter", "#CreatorTips", "#GrowthHack", "#LifeHack", "#DailyRoutine", "#TechGadget", "#GameChanger", "#Efficiency", "#UGC"]
       },
       instagram: {
         hook: `Stop what you're doing right now! 🛑`,
         story: `I finally found the ultimate hack for your daily routine. ${prod} literally changed everything for me.`,
         lesson: `You don't need more time, you need better systems.`,
         cta: `Link in bio to grab yours! ✨👇`,
-        hashtags: ["#DailyHack", "#MustHave", "#Productivity"]
+        hashtags: ["#DailyHack", "#MustHave", "#Productivity", "#WorkSmarter", "#CreatorTips", "#GrowthHack", "#LifeHack", "#DailyRoutine", "#TechGadget", "#GameChanger", "#Efficiency", "#UGC"]
       },
       facebook: {
         opening: `Hey everyone!`,
@@ -247,7 +249,7 @@ export function generateLocalUgcMock(input: UgcStudioInput): UgcStudioResult {
         advice: `We've been using ${prod} in our community and it's an absolute game-changer.`,
         example: `For example, it saved us 3 hours just yesterday.`,
         question: `What's your biggest time-waster right now?`,
-        hashtags: ["#GameChanger", "#CommunityTips"]
+        hashtags: ["#GameChanger", "#CommunityTips", "#Productivity", "#WorkSmarter", "#CreatorTips", "#GrowthHack", "#LifeHack", "#DailyRoutine", "#TechGadget", "#MustHave", "#Efficiency", "#UGC"]
       },
       twitter: {
         singleTweet: `Hit a new productivity record today using ${prod}. If you aren't automating this yet, you're falling behind. Work smarter, not harder. 🚀`,
@@ -257,7 +259,7 @@ export function generateLocalUgcMock(input: UgcStudioInput): UgcStudioResult {
           `Solution: ${prod} automates the entire process in one click.`,
           `The takeaway: You don't need more hours in the day, you just need better tools.`
         ],
-        hashtags: ["#ProductivityHack", "#WorkSmarter"]
+        hashtags: ["#ProductivityHack", "#WorkSmarter", "#Productivity", "#CreatorTips", "#GrowthHack", "#LifeHack", "#DailyRoutine", "#TechGadget", "#GameChanger", "#MustHave", "#Efficiency", "#UGC"]
       },
       youtube: {
         seoTitle: `How I Fixed My Workflow using ${prod} (Save 3 Hours a Day)`,
@@ -266,7 +268,7 @@ export function generateLocalUgcMock(input: UgcStudioInput): UgcStudioResult {
         chapters: ["0:00 Intro", "1:20 The Problem", "3:45 The Solution"],
         cta: `Don't forget to like and subscribe! Link in description.`,
         keywords: ["productivity", "workflow tutorial", "time management"],
-        hashtags: ["#Productivity", "#Tutorial", "#Workflow"]
+        hashtags: ["#Productivity", "#Tutorial", "#Workflow", "#WorkSmarter", "#CreatorTips", "#GrowthHack", "#LifeHack", "#DailyRoutine", "#TechGadget", "#GameChanger", "#MustHave", "#Efficiency"]
       }
     },
     seoHashtags: ["#UGC", "#TechTrend", "#ProductivityHack", "#MustHave", "#DailyEssentials", "#TikTokMadeMeBuyIt", "#ViralProduct", "#LifeHack", "#SmartLiving", "#CreatorTips", "#GrowthHack", "#WorkSmarter", "#TechGadget", "#RoutineRefresh", "#GameChanger", "#Efficiency", "#SetupTour", "#TechReview", "#Unboxing", "#Aesthetic"],
@@ -280,64 +282,64 @@ export function generateLocalUgcMock(input: UgcStudioInput): UgcStudioResult {
       sceneDescription: `Real home workspace or kitchen counter. Creator interacts naturally with ${prod} on their laptop or phone. No staged props or styled set.`,
       characterDescription: `Relatable Indian creator, late 20s to early 30s, natural appearance, no professional styling.`,
       characterAppearance: `Authentic Indian creator, casual, approachable, natural hair, no heavy makeup.`,
-      characterClothing: `Everyday casual clothing — t-shirt, hoodie, or comfortable top. Nothing styled.`,
+      characterClothing: `Everyday casual clothing - t-shirt, hoodie, or comfortable top. Nothing styled.`,
       characterExpressions: `Genuine frustration transitioning to quiet relief and a natural satisfied smile.`,
       characterEmotions: `Stressed and overwhelmed → genuinely relieved and confident.`,
       characterActions: `Scrolls through work or device showing the problem, then naturally opens and uses ${prod}. Looks back at camera with honest reaction.`,
-      cameraAngle: `Handheld eye-level creator angle — facing camera directly, or slightly below eye-level for intimacy.`,
+      cameraAngle: `Handheld eye-level creator angle - facing camera directly, or slightly below eye-level for intimacy.`,
       cameraMovement: `Subtle natural handheld motion. No dramatic push-ins or cinematic moves. Small, organic micro-movements only.`,
-      cameraLens: `24mm mobile wide lens — iPhone 15 Pro aesthetic.`,
+      cameraLens: `24mm mobile wide lens - iPhone 15 Pro aesthetic.`,
       cameraDistance: `Medium close-up creator talking-head shot.`,
       framing: `Vertical 9:16 portrait. Creator centered or slightly off-center. Natural, casual composition.`,
-      lighting: `Natural ambient room light — window light, overhead household lighting. No ring lights or studio setup visible.`,
-      environment: `Authentic real-world space — home office, kitchen table, bedroom desk. No staged studio backgrounds.`,
-      background: `Out-of-focus everyday background — shelf, plant, neutral wall. Nothing styled.`,
-      props: `Laptop or phone showing ${prod} interface. Everyday items nearby — coffee mug, notebook. Nothing decorative.`,
+      lighting: `Natural ambient room light - window light, overhead household lighting. No ring lights or studio setup visible.`,
+      environment: `Authentic real-world space - home office, kitchen table, bedroom desk. No staged studio backgrounds.`,
+      background: `Out-of-focus everyday background - shelf, plant, neutral wall. Nothing styled.`,
+      props: `Laptop or phone showing ${prod} interface. Everyday items nearby - coffee mug, notebook. Nothing decorative.`,
       colorPalette: `Warm natural skin tones, everyday interior colors. No oversaturated grade. Natural organic color.`,
       composition: `Casual mobile creator composition. Creator fills frame naturally.`,
-      cinematicStyle: `Raw authentic mobile UGC — handheld smartphone footage. Non-commercial. Non-cinematic.`,
+      cinematicStyle: `Raw authentic mobile UGC - handheld smartphone footage. Non-commercial. Non-cinematic.`,
       visualStyle: `Unpolished native 4K smartphone video, 60fps. Slight natural grain acceptable.`,
       transition: `Quick natural jump cut on spoken phrase change. No dramatic whip pans.`,
       motionDetails: `Natural micro-movements, organic breathing, casual head turns while speaking.`,
       videoQuality: `iPhone 15 Pro 4K 60fps`,
-      renderingStyle: `Raw Organic Creator Video — Zero Commercial Sheen`,
+      renderingStyle: `Raw Organic Creator Video - Zero Commercial Sheen`,
       aspectRatio: `9:16 vertical`,
       frameRate: `60 fps`,
       duration: `10 seconds`,
-      voiceoverScript: `"Was losing so much time on this every day. Then I found ${prod}. Honestly — try it."`,
-      voiceStyle: `Conversational creator voice — natural pacing, honest tone, genuine recommendation`,
+      voiceoverScript: `"Was losing so much time on this every day. Then I found ${prod}. Honestly - try it."`,
+      voiceStyle: `Conversational creator voice - natural pacing, honest tone, genuine recommendation`,
       voiceGender: `Neutral`,
-      voiceEmotion: `Genuine — honest relief transitioning to quiet recommendation.`,
+      voiceEmotion: `Genuine - honest relief transitioning to quiet recommendation.`,
       voiceSpeed: `Natural conversational pace. No fast-talking. Not rushed.`,
       accent: `Indian English (natural Indian accent)`,
-      dialogue: `Natural spoken recommendation — not scripted announcer delivery.`,
+      dialogue: `Natural spoken recommendation - not scripted announcer delivery.`,
       backgroundMusic: `Optional: Subtle trending lo-fi background audio at very low volume. Not distracting.`,
       soundEffects: `Natural keyboard click sounds when product is used. Quiet ambient room tone. No cinematic whooshes.`,
-      ambientSounds: `Soft natural room ambience — faint background hum, subtle environment. Nothing dramatic.`,
+      ambientSounds: `Soft natural room ambience - faint background hum, subtle environment. Nothing dramatic.`,
       negativePrompt: `POV opening, POV framing, POV shot, POV perspective, cinematic commercial, studio lighting, corporate presenter, stock footage, perfect acting, dramatic camera movement, fake social-media interface, YouTube interface, TikTok interface, Instagram interface, subscribe button, subscribed button, bell icon, like icon, follow button, comment bubble, notification popup, floating CTA, random text overlay, decorative UI, fake platform graphics, sales banner, corporate voiceover, announcer voice, overly polished advertisement, SUBSCRIBED text, FOLLOW text, LIKE text, BELL text, DOWNLOAD text, promotional banner, social media UI mockup`
     },
     videoHook: `"I was losing so much time on this every day."`,
-    voiceoverScript: `"Was losing so much time on this. Then I found ${prod}. Honestly — try it."`,
+    voiceoverScript: `"Was losing so much time on this. Then I found ${prod}. Honestly - try it."`,
     videoScriptTimeline: [
       { time: "0–2s (HOOK)", action: `Creator looks into camera from desk, tired but casual expression.`, audio: `"I was losing so much time on this every day."` },
-      { time: "2–4s (PAIN)", action: `Creator turns camera to show the frustrating workflow — scrolling, messy files, manual work.`, audio: `Minimal or silent — visual carries the message.` },
+      { time: "2–4s (PAIN)", action: `Creator turns camera to show the frustrating workflow - scrolling, messy files, manual work.`, audio: `Minimal or silent - visual carries the message.` },
       { time: "4–7s (PRODUCT)", action: `Creator opens ${prod} naturally and quickly demonstrates the key feature solving the problem.`, audio: `"Then I found ${prod}. It handles it in seconds."` },
-      { time: "7–9s (RESULT)", action: `Creator looks back at camera with a genuine quiet smile — visibly relieved.`, audio: `"Honestly, it saved me so much time."` },
+      { time: "7–9s (RESULT)", action: `Creator looks back at camera with a genuine quiet smile - visibly relieved.`, audio: `"Honestly, it saved me so much time."` },
       { time: "9–10s (CTA)", action: `Creator nods toward camera or gives a casual thumbs-up.`, audio: `"Give ${prod} a try."` }
     ],
     shotList: [
       { sceneNumber: "Scene 1 (HOOK)", description: `Creator at desk, looking directly into camera. Tired but relatable expression. Casual setting.`, camera: `Medium Close-Up`, movement: `Subtle handheld hold`, voice: `"I was losing so much time on this every day."`, sfx: `Natural room tone`, transition: `Jump cut` },
-      { sceneNumber: "Scene 2 (PAIN)", description: `Creator turns phone/laptop to show cluttered workflow or frustrating manual task.`, camera: `Over-the-shoulder close-up of screen`, movement: `Natural handheld`, voice: `Minimal — visual emphasis`, sfx: `Soft keyboard clicks`, transition: `Jump cut` },
-      { sceneNumber: "Scene 3 (PRODUCT)", description: `Close-up of creator using ${prod} — quick, natural product interaction showing the key fix.`, camera: `Close-up of hands and screen`, movement: `Steady handheld`, voice: `"Then I found ${prod}. It handles it in seconds."`, sfx: `Clean UI click sound`, transition: `Jump cut` },
-      { sceneNumber: "Scene 4 (RESULT + CTA)", description: `Creator back on camera — genuine quiet smile. Nods and says recommendation naturally.`, camera: `Medium Close-Up`, movement: `Subtle handheld`, voice: `"Honestly, try ${prod}."`, sfx: `Natural room tone`, transition: `Fade` }
+      { sceneNumber: "Scene 2 (PAIN)", description: `Creator turns phone/laptop to show cluttered workflow or frustrating manual task.`, camera: `Over-the-shoulder close-up of screen`, movement: `Natural handheld`, voice: `Minimal - visual emphasis`, sfx: `Soft keyboard clicks`, transition: `Jump cut` },
+      { sceneNumber: "Scene 3 (PRODUCT)", description: `Close-up of creator using ${prod} - quick, natural product interaction showing the key fix.`, camera: `Close-up of hands and screen`, movement: `Steady handheld`, voice: `"Then I found ${prod}. It handles it in seconds."`, sfx: `Clean UI click sound`, transition: `Jump cut` },
+      { sceneNumber: "Scene 4 (RESULT + CTA)", description: `Creator back on camera - genuine quiet smile. Nods and says recommendation naturally.`, camera: `Medium Close-Up`, movement: `Subtle handheld`, voice: `"Honestly, try ${prod}."`, sfx: `Natural room tone`, transition: `Fade` }
     ],
     bRollIdeas: [
       `Natural close-up of creator's hands on keyboard while using ${prod}.`,
       `Screen-recording style clip showing the key feature in action.`,
-      `Wide shot of authentic real-world workspace — no staged styling.`
+      `Wide shot of authentic real-world workspace - no staged styling.`
     ],
     thumbnailPrompt: `Creator with a natural relieved expression holding up their device showing ${prod} on screen. Authentic, no heavy graphic overlay.`,
-    thumbnailStyle: `Clean authentic UGC photo portrait — natural expression, no shouting text, no heavy borders.`,
+    thumbnailStyle: `Clean authentic UGC photo portrait - natural expression, no shouting text, no heavy borders.`,
     generatedAt: new Date().toISOString()
   };
 }
@@ -368,34 +370,34 @@ export const generateUgcMasterPrompt = async (input: UgcStudioInput): Promise<Ug
               type: 'OBJECT', 
               properties: { 
                 hook: { type: 'STRING' }, context: { type: 'STRING' }, mainInsight: { type: 'STRING' }, 
-                keyTakeaways: { type: 'ARRAY', items: { type: 'STRING' } }, cta: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } 
+                keyTakeaways: { type: 'ARRAY', items: { type: 'STRING' } }, cta: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' }, description: 'Generate 10-12 highly relevant hashtags for maximum reach' } 
               },
               required: ["hook", "context", "mainInsight", "keyTakeaways", "cta", "hashtags"]
             },
             instagram: { 
               type: 'OBJECT', 
-              properties: { hook: { type: 'STRING' }, story: { type: 'STRING' }, lesson: { type: 'STRING' }, cta: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } },
+              properties: { hook: { type: 'STRING' }, story: { type: 'STRING' }, lesson: { type: 'STRING' }, cta: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' }, description: 'Generate 10-12 highly relevant hashtags for maximum reach' } },
               required: ["hook", "story", "lesson", "cta", "hashtags"]
             },
             facebook: { 
               type: 'OBJECT', 
-              properties: { opening: { type: 'STRING' }, problem: { type: 'STRING' }, advice: { type: 'STRING' }, example: { type: 'STRING' }, question: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } },
+              properties: { opening: { type: 'STRING' }, problem: { type: 'STRING' }, advice: { type: 'STRING' }, example: { type: 'STRING' }, question: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' }, description: 'Generate 10-12 highly relevant hashtags for maximum reach' } },
               required: ["opening", "problem", "advice", "example", "question", "hashtags"]
             },
             twitter: { 
               type: 'OBJECT', 
-              properties: { singleTweet: { type: 'STRING' }, threadVersion: { type: 'ARRAY', items: { type: 'STRING' } }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } },
+              properties: { singleTweet: { type: 'STRING' }, threadVersion: { type: 'ARRAY', items: { type: 'STRING' } }, hashtags: { type: 'ARRAY', items: { type: 'STRING' }, description: 'Generate 10-12 highly relevant hashtags for maximum reach' } },
               required: ["singleTweet", "threadVersion", "hashtags"]
             },
             youtube: { 
               type: 'OBJECT', 
-              properties: { seoTitle: { type: 'STRING' }, description: { type: 'STRING' }, whatYouWillLearn: { type: 'ARRAY', items: { type: 'STRING' } }, chapters: { type: 'ARRAY', items: { type: 'STRING' } }, cta: { type: 'STRING' }, keywords: { type: 'ARRAY', items: { type: 'STRING' } }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } },
+              properties: { seoTitle: { type: 'STRING' }, description: { type: 'STRING' }, whatYouWillLearn: { type: 'ARRAY', items: { type: 'STRING' } }, chapters: { type: 'ARRAY', items: { type: 'STRING' } }, cta: { type: 'STRING' }, keywords: { type: 'ARRAY', items: { type: 'STRING' } }, hashtags: { type: 'ARRAY', items: { type: 'STRING' }, description: 'Generate 10-12 highly relevant hashtags for maximum reach' } },
               required: ["seoTitle", "description", "whatYouWillLearn", "chapters", "cta", "keywords", "hashtags"]
             }
           },
           required: ["linkedin", "instagram", "facebook", "twitter", "youtube"]
         },
-        seoHashtags: { type: 'ARRAY', items: { type: 'STRING' } },
+        seoHashtags: { type: 'ARRAY', items: { type: 'STRING' }, description: 'Generate 10-12 highly relevant SEO hashtags' },
         primaryKeywords: { type: 'ARRAY', items: { type: 'STRING' } },
         secondaryKeywords: { type: 'ARRAY', items: { type: 'STRING' } },
         longTailKeywords: { type: 'ARRAY', items: { type: 'STRING' } },
@@ -565,22 +567,22 @@ export function generateLocalUgcMockFromTopic(topic: UgcTopic): UgcStudioResult 
   const masterPromptText = `Create a natural 10-second vertical UGC ad featuring a relatable ${topic.targetAudience} creator recording themselves in a real-world workspace setting.
 
 0–2 seconds (HOOK):
-Creator looks directly into camera — already in the middle of their work, casually relatable expression. They say: "${topic.visualHookAngle}"
+Creator looks directly into camera - already in the middle of their work, casually relatable expression. They say: "${topic.visualHookAngle}"
 Do NOT use POV framing or POV language. Begin naturally.
 
 2–4 seconds (PAIN):
 Creator turns camera toward laptop/desk SHOWING the frustration of dealing with ${topic.corePainPoint}.
-Minimal spoken dialogue — let the visual carry the message.
+Minimal spoken dialogue - let the visual carry the message.
 
 4–7 seconds (PRODUCT):
 Creator naturally opens and uses ${topic.brandName} to handle ${topic.solution}. Fast, authentic, spontaneous feel.
 Do NOT repeat the same product action twice.
 
 7–9 seconds (RESULT):
-Creator looks back at camera — genuinely relieved quiet smile. Says: "Honestly, this saved me so much time."
+Creator looks back at camera - genuinely relieved quiet smile. Says: "Honestly, this saved me so much time."
 
 9–10 seconds (CTA):
-Creator nods naturally: "If you deal with this — give ${topic.brandName} a try."
+Creator nods naturally: "If you deal with this - give ${topic.brandName} a try."
 NO forced graphic CTA overlay. NO DOWNLOAD/SUBSCRIBE/FOLLOW text. Natural creator recommendation.
 
 Total spoken dialogue: MAXIMUM 25 words across the entire video.
@@ -620,10 +622,10 @@ POV opening, POV framing, POV shot, cinematic commercial, studio lighting, corpo
     toneVibe: `${topic.tone} & Authentic Creator Energy`,
     ugcStory: {
       hook: topic.visualHookAngle,
-      pain: `Visually shows the frustration of ${topic.corePainPoint} — creator's messy workflow or frustrated expression`,
-      product: `${topic.brandName} quickly handles ${topic.solution} — natural product interaction, not over-explained`,
-      result: `Creator genuinely relieved — quiet, authentic satisfied smile`,
-      cta: `"If you deal with this — give ${topic.brandName} a try."`
+      pain: `Visually shows the frustration of ${topic.corePainPoint} - creator's messy workflow or frustrated expression`,
+      product: `${topic.brandName} quickly handles ${topic.solution} - natural product interaction, not over-explained`,
+      result: `Creator genuinely relieved - quiet, authentic satisfied smile`,
+      cta: `"If you deal with this - give ${topic.brandName} a try."`
     },
     storyboardTimeline: [
       {
@@ -639,14 +641,14 @@ POV opening, POV framing, POV shot, cinematic commercial, studio lighting, corpo
         timeRange: '2–4s',
         whatWeSee: `Creator turns camera to show cluttered workflow, messy file management, or repetitive manual task representing ${topic.corePainPoint}.`,
         whatCreatorDoes: `Sighs or shakes head with genuine low-key frustration. Lets visual carry the message.`,
-        whatCreatorSays: `Minimal — visual emphasis. Optional: "Every. Single. Day."`,
+        whatCreatorSays: `Minimal - visual emphasis. Optional: "Every. Single. Day."`,
         audioSfx: `Soft keyboard clicks, subtle ambient room sounds`
       },
       {
         stage: 'PRODUCT',
         timeRange: '4–7s',
-        whatWeSee: `Natural close-up of creator's hands using ${topic.brandName} on screen — showing ${topic.solution} working quickly.`,
-        whatCreatorDoes: `Interacts with ${topic.brandName} naturally. One clear product action — not repeated.`,
+        whatWeSee: `Natural close-up of creator's hands using ${topic.brandName} on screen - showing ${topic.solution} working quickly.`,
+        whatCreatorDoes: `Interacts with ${topic.brandName} naturally. One clear product action - not repeated.`,
         whatCreatorSays: `"Then I found ${topic.brandName}. Done in seconds."`,
         audioSfx: `Clean UI click sound`
       },
@@ -654,7 +656,7 @@ POV opening, POV framing, POV shot, cinematic commercial, studio lighting, corpo
         stage: 'RESULT',
         timeRange: '7–9s',
         whatWeSee: `Creator back on camera with a quiet, genuine relieved smile.`,
-        whatCreatorDoes: `Leans back slightly, relaxed. Honest satisfied expression — not exaggerated.`,
+        whatCreatorDoes: `Leans back slightly, relaxed. Honest satisfied expression - not exaggerated.`,
         whatCreatorSays: `"Honestly, this saved me so much time."`,
         audioSfx: `Soft natural room ambience`
       },
@@ -662,7 +664,7 @@ POV opening, POV framing, POV shot, cinematic commercial, studio lighting, corpo
         stage: 'CTA',
         timeRange: '9–10s',
         whatWeSee: `Creator nods naturally toward camera. No graphic overlays. No floating buttons.`,
-        whatCreatorDoes: `Nods or gives a casual thumbs-up — no forced pointing at invisible screen graphic.`,
+        whatCreatorDoes: `Nods or gives a casual thumbs-up - no forced pointing at invisible screen graphic.`,
         whatCreatorSays: `"Give ${topic.brandName} a try."`,
         audioSfx: `Natural fade out`
       }
@@ -672,7 +674,7 @@ POV opening, POV framing, POV shot, cinematic commercial, studio lighting, corpo
     problem: topic.corePainPoint,
     story: `Was dealing with ${topic.corePainPoint} constantly. Found ${topic.brandName}. Genuinely changed my workflow.`,
     solution: topic.solution,
-    callToAction: `Give ${topic.brandName} a try — honestly worth it.`,
+    callToAction: `Give ${topic.brandName} a try - honestly worth it.`,
     captions: {
       linkedin: {
         hook: `Struggling with ${topic.corePainPoint}? Here's how ${topic.brandName} changes the game.`,
@@ -680,14 +682,14 @@ POV opening, POV framing, POV shot, cinematic commercial, studio lighting, corpo
         mainInsight: topic.why,
         keyTakeaways: ["Identify core friction", `Implement ${topic.brandName}`, "Scale your results"],
         cta: `How does your team handle ${topic.corePainPoint}?`,
-        hashtags: [`#${topic.brandName.replace(/\s+/g, '')}`, `#${topic.industry.replace(/\s+/g, '')}`, "#Productivity"]
+        hashtags: [`#${topic.brandName.replace(/\s+/g, '')}`, `#${topic.industry.replace(/\s+/g, '')}`, "#Productivity", "#WorkSmarter", "#CreatorTips", "#GrowthHack", "#LifeHack", "#DailyRoutine", "#TechGadget", "#GameChanger", "#MustHave", "#Efficiency"]
       },
       instagram: {
         hook: `Stop making this mistake! 🛑`,
         story: `${topic.visualHookAngle} But then I found ${topic.brandName}.`,
         lesson: topic.solution,
         cta: `Link in bio to check out ${topic.brandName}! ✨`,
-        hashtags: [`#${topic.brandName.replace(/\s+/g, '')}`, `#${topic.industry.replace(/\s+/g, '')}`]
+        hashtags: [`#${topic.brandName.replace(/\s+/g, '')}`, `#${topic.industry.replace(/\s+/g, '')}`, "#Productivity", "#WorkSmarter", "#CreatorTips", "#GrowthHack", "#LifeHack", "#DailyRoutine", "#TechGadget", "#GameChanger", "#MustHave", "#Efficiency"]
       },
       facebook: {
         opening: `Attention ${topic.targetAudience}!`,
@@ -695,7 +697,7 @@ POV opening, POV framing, POV shot, cinematic commercial, studio lighting, corpo
         advice: topic.solution,
         example: topic.visualHookAngle,
         question: `Ready to upgrade your workflow?`,
-        hashtags: [`#${topic.brandName.replace(/\s+/g, '')}`, `#${topic.industry.replace(/\s+/g, '')}`]
+        hashtags: [`#${topic.brandName.replace(/\s+/g, '')}`, `#${topic.industry.replace(/\s+/g, '')}`, "#Productivity", "#WorkSmarter", "#CreatorTips", "#GrowthHack", "#LifeHack", "#DailyRoutine", "#TechGadget", "#GameChanger", "#MustHave", "#Efficiency"]
       },
       twitter: {
         singleTweet: `${topic.visualHookAngle} ${topic.solution} Check out ${topic.brandName}!`,
@@ -705,7 +707,7 @@ POV opening, POV framing, POV shot, cinematic commercial, studio lighting, corpo
           `2/ The solution: ${topic.solution}`,
           `3/ Why it works: ${topic.why}`
         ],
-        hashtags: [`#${topic.brandName.replace(/\s+/g, '')}`, `#Tech`]
+        hashtags: [`#${topic.brandName.replace(/\s+/g, '')}`, `#Tech`, "#Productivity", "#WorkSmarter", "#CreatorTips", "#GrowthHack", "#LifeHack", "#DailyRoutine", "#TechGadget", "#GameChanger", "#MustHave", "#Efficiency"]
       },
       youtube: {
         seoTitle: `How ${topic.brandName} Solves ${topic.corePainPoint}`,
@@ -714,7 +716,7 @@ POV opening, POV framing, POV shot, cinematic commercial, studio lighting, corpo
         chapters: ["0:00 Intro", "1:30 The Problem", "3:00 The Solution"],
         cta: `Subscribe for more ${topic.industry} breakdowns!`,
         keywords: [topic.brandName, topic.industry, topic.productCategory],
-        hashtags: [`#${topic.brandName.replace(/\s+/g, '')}`, `#${topic.industry.replace(/\s+/g, '')}`]
+        hashtags: [`#${topic.brandName.replace(/\s+/g, '')}`, `#${topic.industry.replace(/\s+/g, '')}`, "#Productivity", "#WorkSmarter", "#CreatorTips", "#GrowthHack", "#LifeHack", "#DailyRoutine", "#TechGadget", "#GameChanger", "#MustHave", "#Efficiency"]
       }
     },
     seoHashtags: [`#${topic.brandName.replace(/\s+/g, '')}`, `#${topic.industry.replace(/\s+/g, '')}`, "#UGCAds", "#Marketing"],
@@ -743,49 +745,49 @@ POV opening, POV framing, POV shot, cinematic commercial, studio lighting, corpo
       props: `Smartphone / Laptop displaying ${topic.brandName}`,
       colorPalette: `Natural organic color grading, warm relatable skin tones`,
       composition: `Casual mobile creator composition`,
-      cinematicStyle: `Raw authentic mobile UGC — handheld smartphone video`,
+      cinematicStyle: `Raw authentic mobile UGC - handheld smartphone video`,
       visualStyle: `Unpolished native 4K smartphone video, 60fps`,
       transition: `Quick natural jump cut on spoken phrase change`,
       motionDetails: `Natural creator gestures, nodding, pointing to screen`,
       videoQuality: `iPhone 15 Pro 4K HDR 60fps`,
-      renderingStyle: `Raw Organic Creator Video — Zero Commercial Sheen, Zero Polished Production`,
+      renderingStyle: `Raw Organic Creator Video - Zero Commercial Sheen, Zero Polished Production`,
       aspectRatio: `9:16 vertical`,
       frameRate: `60 fps`,
       duration: `Exactly 10 seconds`,
-      voiceoverScript: `"Was dealing with ${topic.corePainPoint} constantly. Then I found ${topic.brandName}. Honestly — give it a try."`,
-      voiceStyle: `Conversational creator voice — natural pacing, honest tone, genuine recommendation`,
+      voiceoverScript: `"Was dealing with ${topic.corePainPoint} constantly. Then I found ${topic.brandName}. Honestly - give it a try."`,
+      voiceStyle: `Conversational creator voice - natural pacing, honest tone, genuine recommendation`,
       voiceGender: `Neutral`,
-      voiceEmotion: `Genuine quiet relief — not exaggerated excitement or sales enthusiasm`,
-      voiceSpeed: `Natural conversational pace — not rushed, not announcer speed`,
+      voiceEmotion: `Genuine quiet relief - not exaggerated excitement or sales enthusiasm`,
+      voiceSpeed: `Natural conversational pace - not rushed, not announcer speed`,
       accent: `Indian English (natural Indian accent)`,
-      dialogue: `Natural spoken creator recommendation — not scripted commercial delivery`,
+      dialogue: `Natural spoken creator recommendation - not scripted commercial delivery`,
       backgroundMusic: `Optional: Very subtle trending lo-fi background audio at low volume. Not distracting.`,
-      soundEffects: `Natural product interaction sounds — keyboard clicks, subtle UI chime. No cinematic whooshes.`,
-      ambientSounds: `Soft natural room ambience — faint background hum, everyday environment`,
+      soundEffects: `Natural product interaction sounds - keyboard clicks, subtle UI chime. No cinematic whooshes.`,
+      ambientSounds: `Soft natural room ambience - faint background hum, everyday environment`,
       negativePrompt: `POV opening, POV framing, POV shot, POV perspective, cinematic commercial, studio lighting, corporate presenter, stock footage, perfect acting, dramatic camera movement, fake social-media interface, YouTube UI, TikTok UI, Instagram UI, subscribe button, subscribed button, bell icon, like button, follow button, comment bubble, notification popup, floating CTA, random text overlay, decorative UI, fake platform graphics, sales banner, corporate voiceover, announcer voice, overly polished advertisement, SUBSCRIBED text, FOLLOW text, LIKE text, BELL text, DOWNLOAD text, promotional banner`
     },
     videoHook: topic.visualHookAngle,
-    voiceoverScript: `"Was dealing with ${topic.corePainPoint} constantly. Then I found ${topic.brandName}. Honestly — give it a try."`,
+    voiceoverScript: `"Was dealing with ${topic.corePainPoint} constantly. Then I found ${topic.brandName}. Honestly - give it a try."`,
     videoScriptTimeline: [
       { time: "0–2s (HOOK)", action: `Creator at real workspace, looks directly into camera with casual tired expression. No POV framing.`, audio: topic.visualHookAngle },
-      { time: "2–4s (PAIN)", action: `Creator turns camera to show the frustrating workflow — messy files, repetitive manual work, ${topic.corePainPoint} visually shown.`, audio: `Minimal — visual carries the message.` },
-      { time: "4–7s (PRODUCT)", action: `Creator naturally opens and uses ${topic.brandName} — one clear product action showing ${topic.solution}.`, audio: `"Then I found ${topic.brandName}. Done in seconds."` },
-      { time: "7–9s (RESULT)", action: `Creator back on camera — quiet genuine relieved smile. Not exaggerated.`, audio: `"Honestly, this saved me so much time."` },
+      { time: "2–4s (PAIN)", action: `Creator turns camera to show the frustrating workflow - messy files, repetitive manual work, ${topic.corePainPoint} visually shown.`, audio: `Minimal - visual carries the message.` },
+      { time: "4–7s (PRODUCT)", action: `Creator naturally opens and uses ${topic.brandName} - one clear product action showing ${topic.solution}.`, audio: `"Then I found ${topic.brandName}. Done in seconds."` },
+      { time: "7–9s (RESULT)", action: `Creator back on camera - quiet genuine relieved smile. Not exaggerated.`, audio: `"Honestly, this saved me so much time."` },
       { time: "9–10s (CTA)", action: `Creator nods naturally. No graphic overlay. No pointing at floating UI element.`, audio: `"Give ${topic.brandName} a try."` }
     ],
     shotList: [
       { sceneNumber: "Scene 1 (HOOK)", description: `Creator at authentic workspace looking directly into camera. Casual, tired-but-relatable expression. No POV language.`, camera: `Handheld Medium Close-Up, eye-level`, movement: `Subtle natural handheld hold`, voice: topic.visualHookAngle, sfx: `Natural room tone`, transition: `Jump cut` },
-      { sceneNumber: "Scene 2 (PAIN)", description: `Creator turns camera to show frustrating workflow — ${topic.corePainPoint} shown visually on screen.`, camera: `Over-the-shoulder close-up of screen`, movement: `Natural handheld micro-movement`, voice: `Minimal`, sfx: `Soft keyboard clicks, ambient room tone`, transition: `Jump cut` },
-      { sceneNumber: "Scene 3 (PRODUCT)", description: `Natural close-up of creator using ${topic.brandName} — showing ${topic.solution}. One clear action, not repeated.`, camera: `Close-up of hands + screen`, movement: `Steady natural handheld`, voice: `"Then I found ${topic.brandName}. Done in seconds."`, sfx: `Clean UI click sound`, transition: `Jump cut` },
-      { sceneNumber: "Scene 4 (RESULT + CTA)", description: `Creator back on camera with genuine quiet relieved smile. Natural nod. No graphic overlay.`, camera: `Medium Close-Up`, movement: `Subtle handheld hold`, voice: `"Honestly — give it a try."`, sfx: `Natural room tone, soft fade`, transition: `Fade` }
+      { sceneNumber: "Scene 2 (PAIN)", description: `Creator turns camera to show frustrating workflow - ${topic.corePainPoint} shown visually on screen.`, camera: `Over-the-shoulder close-up of screen`, movement: `Natural handheld micro-movement`, voice: `Minimal`, sfx: `Soft keyboard clicks, ambient room tone`, transition: `Jump cut` },
+      { sceneNumber: "Scene 3 (PRODUCT)", description: `Natural close-up of creator using ${topic.brandName} - showing ${topic.solution}. One clear action, not repeated.`, camera: `Close-up of hands + screen`, movement: `Steady natural handheld`, voice: `"Then I found ${topic.brandName}. Done in seconds."`, sfx: `Clean UI click sound`, transition: `Jump cut` },
+      { sceneNumber: "Scene 4 (RESULT + CTA)", description: `Creator back on camera with genuine quiet relieved smile. Natural nod. No graphic overlay.`, camera: `Medium Close-Up`, movement: `Subtle handheld hold`, voice: `"Honestly - give it a try."`, sfx: `Natural room tone, soft fade`, transition: `Fade` }
     ],
     bRollIdeas: [
       `Natural close-up of creator's hands on keyboard using ${topic.brandName}.`,
       `Screen-recording clip of the key ${topic.solution} feature working.`,
-      `Wide shot of authentic everyday workspace — no styled props.`
+      `Wide shot of authentic everyday workspace - no styled props.`
     ],
-    thumbnailPrompt: `Creator with genuine relieved expression, holding device showing ${topic.brandName} on screen. Natural, authentic — no heavy graphic overlay or shouting text.`,
-    thumbnailStyle: `Clean authentic UGC portrait — natural expression, minimal text, no heavy border styling.`,
+    thumbnailPrompt: `Creator with genuine relieved expression, holding device showing ${topic.brandName} on screen. Natural, authentic - no heavy graphic overlay or shouting text.`,
+    thumbnailStyle: `Clean authentic UGC portrait - natural expression, minimal text, no heavy border styling.`,
     generatedAt: new Date().toISOString()
   };
 }
@@ -814,29 +816,29 @@ export async function generateUgcFromTopic(topic: UgcTopic): Promise<UgcStudioRe
           type: 'OBJECT',
           properties: {
             linkedin: { 
-              type: 'OBJECT', properties: { hook: { type: 'STRING' }, context: { type: 'STRING' }, mainInsight: { type: 'STRING' }, keyTakeaways: { type: 'ARRAY', items: { type: 'STRING' } }, cta: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } },
+              type: 'OBJECT', properties: { hook: { type: 'STRING' }, context: { type: 'STRING' }, mainInsight: { type: 'STRING' }, keyTakeaways: { type: 'ARRAY', items: { type: 'STRING' } }, cta: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' }, description: 'Generate 10-12 highly relevant hashtags for maximum reach' } },
               required: ["hook", "context", "mainInsight", "keyTakeaways", "cta", "hashtags"]
             },
             instagram: { 
-              type: 'OBJECT', properties: { hook: { type: 'STRING' }, story: { type: 'STRING' }, lesson: { type: 'STRING' }, cta: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } },
+              type: 'OBJECT', properties: { hook: { type: 'STRING' }, story: { type: 'STRING' }, lesson: { type: 'STRING' }, cta: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' }, description: 'Generate 10-12 highly relevant hashtags for maximum reach' } },
               required: ["hook", "story", "lesson", "cta", "hashtags"]
             },
             facebook: { 
-              type: 'OBJECT', properties: { opening: { type: 'STRING' }, problem: { type: 'STRING' }, advice: { type: 'STRING' }, example: { type: 'STRING' }, question: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } },
+              type: 'OBJECT', properties: { opening: { type: 'STRING' }, problem: { type: 'STRING' }, advice: { type: 'STRING' }, example: { type: 'STRING' }, question: { type: 'STRING' }, hashtags: { type: 'ARRAY', items: { type: 'STRING' }, description: 'Generate 10-12 highly relevant hashtags for maximum reach' } },
               required: ["opening", "problem", "advice", "example", "question", "hashtags"]
             },
             twitter: { 
-              type: 'OBJECT', properties: { singleTweet: { type: 'STRING' }, threadVersion: { type: 'ARRAY', items: { type: 'STRING' } }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } },
+              type: 'OBJECT', properties: { singleTweet: { type: 'STRING' }, threadVersion: { type: 'ARRAY', items: { type: 'STRING' } }, hashtags: { type: 'ARRAY', items: { type: 'STRING' }, description: 'Generate 10-12 highly relevant hashtags for maximum reach' } },
               required: ["singleTweet", "threadVersion", "hashtags"]
             },
             youtube: { 
-              type: 'OBJECT', properties: { seoTitle: { type: 'STRING' }, description: { type: 'STRING' }, whatYouWillLearn: { type: 'ARRAY', items: { type: 'STRING' } }, chapters: { type: 'ARRAY', items: { type: 'STRING' } }, cta: { type: 'STRING' }, keywords: { type: 'ARRAY', items: { type: 'STRING' } }, hashtags: { type: 'ARRAY', items: { type: 'STRING' } } },
+              type: 'OBJECT', properties: { seoTitle: { type: 'STRING' }, description: { type: 'STRING' }, whatYouWillLearn: { type: 'ARRAY', items: { type: 'STRING' } }, chapters: { type: 'ARRAY', items: { type: 'STRING' } }, cta: { type: 'STRING' }, keywords: { type: 'ARRAY', items: { type: 'STRING' } }, hashtags: { type: 'ARRAY', items: { type: 'STRING' }, description: 'Generate 10-12 highly relevant hashtags for maximum reach' } },
               required: ["seoTitle", "description", "whatYouWillLearn", "chapters", "cta", "keywords", "hashtags"]
             }
           },
           required: ["linkedin", "instagram", "facebook", "twitter", "youtube"]
         },
-        seoHashtags: { type: 'ARRAY', items: { type: 'STRING' } },
+        seoHashtags: { type: 'ARRAY', items: { type: 'STRING' }, description: 'Generate 10-12 highly relevant SEO hashtags' },
         primaryKeywords: { type: 'ARRAY', items: { type: 'STRING' } },
         secondaryKeywords: { type: 'ARRAY', items: { type: 'STRING' } },
         longTailKeywords: { type: 'ARRAY', items: { type: 'STRING' } },
@@ -928,18 +930,18 @@ You are creating a complete UGC Ad specification strictly based on this CURATED 
 
 Generate the complete UGC Studio Result based on this topic.
 
-MANDATORY QUALITY RULES — ENFORCE STRICTLY:
+MANDATORY QUALITY RULES - ENFORCE STRICTLY:
 - SCRIPT = SOURCE OF TRUTH: If an element is not explicitly in the Hook, Problem, Product, Result, or CTA, DO NOT ADD IT.
 - Video duration: strictly 10 seconds
 - Total spoken dialogue: MAXIMUM 20–28 words across the entire video
 - 10-second structure: 0–2s HOOK | 2–4s PAIN (visual, minimal dialogue) | 4–7s PRODUCT | 7–9s RESULT | 9–10s CTA
 - NEVER use POV framing, POV shot, POV perspective, or POV language anywhere
 - NEVER add fake social-media UI: no subscribe buttons, bell icons, like buttons, follow buttons, comment bubbles, notification overlays, TikTok/YouTube/Instagram UI
-- CTA must sound like a natural creator recommendation — NOT a promotional announcement (avoid DOWNLOAD NOW, SUBSCRIBE, CLICK HERE)
-- The hook must be short, conversational, and relatable — NOT a corporate advertising opener
+- CTA must sound like a natural creator recommendation - NOT a promotional announcement (avoid DOWNLOAD NOW, SUBSCRIBE, CLICK HERE)
+- The hook must be short, conversational, and relatable - NOT a corporate advertising opener
 - The pain section must rely on VISUAL storytelling, not verbal explanation
-- The product section must show ONE clear product action — do NOT describe the same action twice
-- The result must show genuine emotional change — believable, not exaggerated
+- The product section must show ONE clear product action - do NOT describe the same action twice
+- The result must show genuine emotional change - believable, not exaggerated
 - negativePrompt MUST include: POV opening, POV framing, POV shot, fake social-media interface, subscribe button, bell icon, like button, follow button, comment bubble, notification popup, floating CTA, decorative UI, SUBSCRIBED text, FOLLOW text, LIKE text, BELL text, DOWNLOAD text, cinematic commercial, studio lighting, corporate presenter, announcer voice, overly polished advertisement
 
 [Random Seed: ${Math.random().toString(36).substring(2, 9)}]`;
