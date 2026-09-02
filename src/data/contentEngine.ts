@@ -75,8 +75,8 @@ Add a very subtle 1 px horizontal divider beneath the header.
 MAIN STATEMENT:
 Place the main statement in the upper-middle and center-left portion of the canvas.
 
-Use Instrument Serif:
-- Very large display typography
+Use Bebas Neue (or Archivo Black / Anton):
+- Very large display typography (Bold Grotesk)
 - Dominates 70-80% of visual attention
 - Approx. 110-140 px font size
 - Tight line-height: approximately 0.85-0.95
@@ -117,13 +117,15 @@ BOTTOM-RIGHT:
 A small minimal editorial arrow or circular navigation mark may be used.
 Keep it subtle and geometric.
 
-COMPOSITION:
-- Typography is the artwork.
-- Strong asymmetrical editorial balance.
-- Large headline dominates.
-- Plenty of intentional negative space.
+LAYOUT PRINCIPLES & COMPOSITION:
+- Typography first. Space second. Everything else third.
+- Very large headline scale with short text blocks.
+- Generous line spacing and large gaps between sections.
+- Strong alignment with plenty of empty canvas around the typography.
+- Deep Black #131112 background + huge Ivory typography + Electric Lime emphasis + generous negative space.
 - Clear reading hierarchy from top -> statement -> supporting thought -> footer.
-- Use subtle typography scale changes, line breaks, dividers, or small editorial marks for visual rhythm.
+- AVOID: Crowded compositions, too many text elements, decorative UI elements, excessive borders/cards.
+- AVOID: Filling empty space just because it exists, multiple competing font styles.
 
 TEXT HANDLING:
 Use the exact supplied text.
