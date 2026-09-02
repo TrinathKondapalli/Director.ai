@@ -102,28 +102,13 @@ Manrope Medium / Regular:
 Statement:
 "${supportingStatement}"
 
-CATEGORY / SERIES (FOOTER):
-Place near the bottom-left inside the safe area as a tiny technical footer.
-
-IBM Plex Mono:
-- 12-14 px
-- Uppercase
-- Text:
-${categoryMeta}
-
-Use Electric Lime only for one metadata word or separator.
-
-BOTTOM-RIGHT:
-A small minimal editorial arrow or circular navigation mark may be used.
-Keep it subtle and geometric.
-
 LAYOUT PRINCIPLES & COMPOSITION:
 - Typography first. Space second. Everything else third.
 - Very large headline scale with short text blocks.
 - Generous line spacing and large gaps between sections.
 - Strong alignment with plenty of empty canvas around the typography.
 - Deep Black #131112 background + huge Ivory typography + Electric Lime emphasis + generous negative space.
-- Clear reading hierarchy from top -> statement -> supporting thought -> footer.
+- Clear reading hierarchy from top -> statement -> supporting thought.
 - AVOID: Crowded compositions, too many text elements, decorative UI elements, excessive borders/cards.
 - AVOID: Filling empty space just because it exists, multiple competing font styles.
 
