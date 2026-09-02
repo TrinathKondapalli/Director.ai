@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import ugcTopicsData from '../data/ugcTopics.json';
-import { hundredDaysData } from '../data/100DaysData';
+import { tzinrConceptsData } from '../data/tzinrConceptsData';
 import { UgcTopic, DesignTopic } from '../types';
 
 const UGC_COMPLETED_KEY = 'director_ai_ugc_completed_ids';
@@ -42,7 +42,7 @@ export function useTopicTracker() {
   }, [completedDesignIds]);
 
   const allUgcTopics = ugcTopicsData as UgcTopic[];
-  const allDesignTopics = hundredDaysData as DesignTopic[];
+  const allDesignTopics = tzinrConceptsData as DesignTopic[];
 
   const uncompletedUgcTopics = allUgcTopics.filter(t => !completedUgcIds.includes(t.id));
   const uncompletedDesignTopics = allDesignTopics.filter(t => !completedDesignIds.includes(t.id));

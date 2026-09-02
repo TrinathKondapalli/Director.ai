@@ -346,7 +346,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                 <div className="relative z-10 w-[240px] aspect-[4/5] bg-[#F5F3EF] rounded shadow-2xl p-6 flex flex-col">
                   <div className="text-[#0A0A14] font-sora font-bold text-[8px] mb-4 uppercase">TZINR</div>
                   <div className="text-[#0A0A14] font-sora font-bold text-2xl leading-tight mb-2 uppercase">Jakob's<br/>Law</div>
-                  <div className="text-[#1557FF] font-mono text-[8px] mb-8">FAMILIARITY OVER NOVELTY.</div>
+                  <div className="text-[#C8F423] font-mono text-[8px] mb-8">FAMILIARITY OVER NOVELTY.</div>
                   <div className="mt-auto border-t border-[#0A0A14]/20 pt-4 flex justify-between items-end">
                      <div className="text-[#0A0A14] font-sora text-[6px]">UX PRINCIPLES 003</div>
                      <div className="text-[#0A0A14] font-sora text-[6px]">03 / 100</div>

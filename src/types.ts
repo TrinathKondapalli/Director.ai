@@ -37,6 +37,13 @@ export interface DesignTopic {
   id: number;
   title: string;
   category: string;
+  insight?: string;
+  message?: string;
+  visualMetaphor?: string;
+  creativeFamily?: string;
+  layout?: string;
+  color?: string;
+  background?: string;
 }
 
 export interface PlatformCaptions {
