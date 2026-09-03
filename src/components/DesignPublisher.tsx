@@ -101,7 +101,7 @@ export const DesignPublisher: React.FC<DesignPublisherProps> = ({ onGenerateTopi
         </div>
 
         {/* 130 Days Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 max-h-[600px] overflow-y-auto pr-2 custom-scrollbar">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 max-h-[600px] overflow-y-auto pr-2 custom-scrollbar">
           {allDesignTopics.map((topic) => {
             const isCompleted = completedDesignIds.includes(topic.id);
             const phase = { name: topic.category || 'Concept', color: 'border-[var(--color-brand-violet)]/30 bg-[var(--color-brand-violet)]/5 text-[var(--color-brand-violet)]' };

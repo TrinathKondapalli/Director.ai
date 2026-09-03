@@ -48,8 +48,8 @@ export function buildEditorialTextPrompt(topic: DesignTopic): string {
 DESIGN STYLE:
 Bold, modern, editorial, typography-led, highly intentional, minimal but visually rich. The typography is the primary visual element. No hero image or illustration.
 
-COLOR SYSTEM:
-- Background: Deep Black / near-black #131112
+COLOR SYSTEM & TEXTURE:
+- Background: Deep Black / near-black #131112. IMPORTANT: Do NOT make it a flat color. Add rich editorial textures such as subtle 35mm film grain, extremely faint architectural grid lines, or a soft, moody spotlight gradient to give the canvas depth.
 - Primary text: Warm Ivory #F8F1E7
 - Accent: Electric Lime #C8F423
 - Use electric lime selectively on key words or small graphic details.
@@ -64,11 +64,10 @@ CANVAS & PADDING:
 TOP HEADER:
 At x=36-60 px and y=36-70 px:
 - "TZINR"
-- IBM Plex Mono (small mono metadata)
-- Font size: 14-16 px
+- Font size: 24-28 px
 - Uppercase
 - Warm Ivory
-- Do NOT include any numbering like "1/100" at the top right. Remove it entirely.
+- Do NOT include any numbering, metadata, or subtitles at the top. Only the word TZINR.
 
 Add a very subtle 1 px horizontal divider beneath the header.
 
@@ -107,9 +106,10 @@ LAYOUT PRINCIPLES & COMPOSITION:
 - Very large headline scale with short text blocks.
 - Generous line spacing and large gaps between sections.
 - Strong alignment with plenty of empty canvas around the typography.
-- Deep Black #131112 background + huge Ivory typography + Electric Lime emphasis + generous negative space.
+- Deep Black textured background + huge Ivory typography + Electric Lime emphasis + generous negative space.
+- The background MUST have texture (grain, subtle grids, or soft lighting gradients) so it does not look like a dull, flat digital canvas.
 - Clear reading hierarchy from top -> statement -> supporting thought.
-- AVOID: Crowded compositions, too many text elements, decorative UI elements, excessive borders/cards.
+- AVOID: Flat/dull solid black backgrounds, crowded compositions, too many text elements, decorative UI elements, excessive borders/cards.
 - AVOID: Filling empty space just because it exists, multiple competing font styles.
 
 TEXT HANDLING:
