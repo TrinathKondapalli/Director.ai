@@ -89,18 +89,6 @@ Use Electric Lime on ONE strategically important word or phrase only.
 The headline should occupy approximately 70-80% of the visual width while remaining inside the safe area.
 Do not center every line mechanically. Use deliberate editorial line breaks.
 
-SUPPORTING THOUGHT:
-Below the main statement with approximately 40-55 px separation.
-
-Manrope Medium / Regular:
-- Small and restrained
-- 20-24 px
-- Clean line-height
-- Maximum 2 short lines
-
-Statement:
-"${supportingStatement}"
-
 LAYOUT PRINCIPLES & COMPOSITION:
 - Typography first. Space second. Everything else third.
 - Very large headline scale with short text blocks.
@@ -108,7 +96,7 @@ LAYOUT PRINCIPLES & COMPOSITION:
 - Strong alignment with plenty of empty canvas around the typography.
 - Deep Black textured background + huge Ivory typography + Electric Lime emphasis + generous negative space.
 - The background MUST have texture (grain, subtle grids, or soft lighting gradients) so it does not look like a dull, flat digital canvas.
-- Clear reading hierarchy from top -> statement -> supporting thought.
+- Clear reading hierarchy from top -> statement.
 - AVOID: Flat/dull solid black backgrounds, crowded compositions, too many text elements, decorative UI elements, excessive borders/cards.
 - AVOID: Filling empty space just because it exists, multiple competing font styles.
 
@@ -139,25 +127,28 @@ export function generateLocalContentMock(topic: DesignTopic, format: 'single' | 
   const headline = topic.title.toUpperCase();
   const imagePromptText = buildEditorialTextPrompt(topic);
 
+  const titleWords = topic.title.split(' ').filter(w => w.length > 3).map(w => w.replace(/[^a-zA-Z0-9]/g, ''));
+  const dynamicHashtags = ['#UXDesign', '#ProductDesign', '#TZINR', ...titleWords.map(w => `#${w}`), '#CreativeDirection', '#DesignLeadership'].slice(0, 10);
+
   const baseCaptions = {
     linkedin: {
-      hook: `Why ${topic.title} defines modern product design excellence:`,
-      context: `In complex digital interfaces, visual clarity is achieved through intentional spatial hierarchy and visual weight.`,
-      mainInsight: `Guiding attention through scale allows users to parse information rapidly without cognitive strain.`,
+      hook: `"${topic.title}" - Why this principle defines modern product design excellence:`,
+      context: `When crafting digital interfaces, ${topic.title.toLowerCase()} is achieved through intentional spatial hierarchy and visual weight.`,
+      mainInsight: `Mastering this concept allows users to parse information rapidly without cognitive strain.`,
       keyTakeaways: [
-        `Establish clear visual scale contrast between primary headlines and supporting copy.`,
-        `Use strategic Electric Lime accents to focus attention on primary action paths.`,
-        `Maintain generous safe margins to preserve editorial breathability.`
+        `Establish clear visual scale contrast.`,
+        `Use strategic accents to focus attention.`,
+        `Maintain generous safe margins to preserve breathability.`
       ],
-      cta: `How do you apply ${topic.title} in your design system? Let's discuss in the comments.`,
-      hashtags: [`#UXDesign`, `#VisualHierarchy`, `#ProductDesign`, `#UIUX`, `#DesignSystems`, `#DesignStrategy`, `#CreativeDirection`, `#UserExperience`, `#WebDesign`, `#DesignCommunity`, `#DesignInspiration`, `#TechTrends`]
+      cta: `How do you apply this in your design system? Let's discuss below.`,
+      hashtags: dynamicHashtags
     },
     instagram: {
-      hook: `Guiding attention through scale with ${topic.title}. 🎯`,
-      story: `Design isn't just about making things look good-it's about directing the human eye effortlessly.`,
+      hook: `${topic.title} 🎯`,
+      story: `Design isn't just about making things look good - it's about directing the human eye effortlessly.`,
       lesson: `Size, contrast, and layout work together to create clear reading orders.`,
       cta: `Save this post for your next UI audit! 📌`,
-      hashtags: [`#uxdesign`, `#uidesign`, `#designrules`, `#productdesign`, `#designstrategy`, `#userexperience`, `#creativeprocess`, `#designthinking`, `#uiux`, `#designinspiration`, `#techdesign`, `#designcommunity`]
+      hashtags: dynamicHashtags
     },
     facebook: {
       opening: `Here's a key UX principle every designer should master: ${topic.title}.`,
@@ -165,7 +156,7 @@ export function generateLocalContentMock(topic: DesignTopic, format: 'single' | 
       advice: `Structure your canvas with clear typographic contrast and focal isolation.`,
       example: `Notice how Bebas Neue headlines create instant anchor points for the reader.`,
       question: `What's your biggest takeaway from this layout?`,
-      hashtags: [`#UX`, `#DesignStrategy`, `#UIUX`, `#DesignSystems`, `#CreativeDirection`, `#UserExperience`, `#WebDesign`, `#DesignCommunity`, `#DesignInspiration`, `#TechTrends`, `#DigitalDesign`, `#UXResearch`]
+      hashtags: dynamicHashtags
     },
     twitter: {
       singleTweet: `${topic.title}: Guiding user attention through scale, contrast, and spatial hierarchy. 📐✨`,
@@ -176,7 +167,7 @@ export function generateLocalContentMock(topic: DesignTopic, format: 'single' | 
         `4/5 Maintain 36px safe perimeter margins for breathing room.`,
         `5/5 Follow @tzinr for daily UX foundations & design strategy!`
       ],
-      hashtags: [`#UX`, `#DesignStrategy`, `#UIUX`, `#DesignSystems`, `#CreativeDirection`, `#UserExperience`, `#WebDesign`, `#DesignCommunity`, `#DesignInspiration`, `#TechTrends`, `#DigitalDesign`, `#UXResearch`]
+      hashtags: dynamicHashtags
     },
     youtube: {
       seoTitle: `${topic.title} Explained: Master Visual Hierarchy & UI Design`,
